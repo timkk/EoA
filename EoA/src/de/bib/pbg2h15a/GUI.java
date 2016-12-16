@@ -89,16 +89,16 @@ public class GUI{
 		this.p3 = p3;
 		this.p4 = p4;
 		
-		txTimer= new Texture("EoA_Grafiken/Buttons/GUI/Timer_BGLabel85%.png");
-		txP1= new Texture("EoA_Grafiken/Buttons/GUI/Spieler1_BGLabel85%.png");
-		txP2= new Texture("EoA_Grafiken/Buttons/GUI/Spieler2_BGLabel85%.png");
-		txP3= new Texture("EoA_Grafiken/Buttons/GUI/Spieler3_BGLabel85%.png");
-		txP4= new Texture("EoA_Grafiken/Buttons/GUI/Spieler4_BGLabel85%.png");
-		txDP= new Texture("EoA_Grafiken/Buttons/GUI/SpielerDead_BGLabel.png");
+		txTimer= new Texture("img/Buttons/GUI/Timer_BGLabel.png");
+		txP1= new Texture("img/Buttons/GUI/Spieler1_BGLabel.png");
+		txP2= new Texture("img/Buttons/GUI/Spieler2_BGLabel.png");
+		txP3= new Texture("img/Buttons/GUI/Spieler3_BGLabel.png");
+		txP4= new Texture("img/Buttons/GUI/Spieler4_BGLabel.png");
+		txDP= new Texture("img/Buttons/GUI/SpielerDead_BGLabel.png");
 		
 		//Menü Buttons
-		txBtnBack =new Texture("EoA_Grafiken/Buttons/GUI/ZurueckIconButton75%.png");
-		txBtnPause =new Texture("EoA_Grafiken/Buttons/GUI/PauseIconButton75%.png");
+		txBtnBack =new Texture("img/Buttons/GUI/ZurueckIconButton.png");
+		txBtnPause =new Texture("img/Buttons/GUI/PauseIconButton.png");
 		
 		trBtnBack= new TextureRegion(txBtnBack);
 		trBtnPause= new TextureRegion(txBtnPause);
@@ -111,11 +111,11 @@ public class GUI{
 		
 		
 		//Steuerungs Buttons
-		txBtnBomb =new Texture("EoA_Grafiken/Buttons/GUI/BombeButton75%.png");
-		txBtnUp =new Texture("EoA_Grafiken/Buttons/GUI/UpButton75%.png");
-		txBtnDown =new Texture("EoA_Grafiken/Buttons/GUI/DownButton75%.png");
-		txBtnRight =new Texture("EoA_Grafiken/Buttons/GUI/RightButton75%.png");
-		txBtnLeft =new Texture("EoA_Grafiken/Buttons/GUI/LeftButton75%.png");
+		txBtnBomb =new Texture("img/Buttons/GUI/BombeButton.png");
+		txBtnUp =new Texture("img/Buttons/GUI/UpButton.png");
+		txBtnDown =new Texture("img/Buttons/GUI/DownButton.png");
+		txBtnRight =new Texture("img/Buttons/GUI/RightButton.png");
+		txBtnLeft =new Texture("img/Buttons/GUI/LeftButton.png");
 		
 		trBtnBomb= new TextureRegion(txBtnBomb);
 		trBtnUp= new TextureRegion(txBtnUp);
