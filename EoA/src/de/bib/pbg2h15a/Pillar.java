@@ -10,7 +10,7 @@ public class Pillar extends GameObject {
 	/**
 	 * 
 	 * @author pbg2h15ani
-	 * 
+	 *  
 	 */
 	
 	public Pillar(int x, int y) {
