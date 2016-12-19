@@ -76,7 +76,7 @@ public class LocalGameState extends GameState{
     	font_countdown.setColor(Color.FIREBRICK);
     	font_countdown.getData().setScale(2);
     	
-    	texture_player = new Texture(Gdx.files.internal("path"));//to do
+    	texture_player = new Texture(Gdx.files.internal("img/Stage_1/WindFalle.png"));//to do
     	sprite_player = new Sprite(texture_player);
     	sprite_player.setPosition(FIELD_START_X, FIELD_START_Y);
 
@@ -186,6 +186,9 @@ public class LocalGameState extends GameState{
     	texture_background_topbottom.dispose();
     	texture_background_topleft.dispose();
     	texture_background_topright.dispose();
+    	texture_pillar.dispose();
+    	texture_pillarOutside.dispose();
+    	texture_wall.dispose();
 	}
 
 	private Sprite[][] setupField(int width, int height){
