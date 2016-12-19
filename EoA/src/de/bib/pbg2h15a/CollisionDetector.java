@@ -23,8 +23,6 @@ public class CollisionDetector {
 		this.height = s.getHeight();
 	}
 	
-	
-	
 	public CollisionDetector(float x, float y, float width, float height, int os) {
 		super();
 		this.x = x;
@@ -33,8 +31,6 @@ public class CollisionDetector {
 		this.height = height;
 		this.os = os;
 	}
-
-
 
 	public boolean collidesWith(Sprite other){
 		

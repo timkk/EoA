@@ -76,27 +76,27 @@ public class LocalGameState extends GameState{
     	font_countdown.setColor(Color.FIREBRICK);
     	font_countdown.getData().setScale(2);
     	
-    	texture_player = new Texture(Gdx.files.internal("data/red32x32.jpg"));
+    	texture_player = new Texture(Gdx.files.internal("path"));//to do
     	sprite_player = new Sprite(texture_player);
     	sprite_player.setPosition(FIELD_START_X, FIELD_START_Y);
 
     	/**
     	 * texture not final !
     	 */
-    	texture_background_center = new Texture(Gdx.files.internal("img/GrassZentrum.png"));
-    	texture_background_left = new Texture(Gdx.files.internal("img/GrassLinks.png"));
-    	texture_background_right = new Texture(Gdx.files.internal("img/GrassRechts.png"));
-    	texture_background_top = new Texture(Gdx.files.internal("img/GrassOben.png"));
-    	texture_background_bottom = new Texture(Gdx.files.internal("img/GrassUnten.png"));
-    	texture_background_leftright = new Texture(Gdx.files.internal("img/GrassRechtsLinks.png"));
-    	texture_background_topbottom = new Texture(Gdx.files.internal("img/GrassObenUnten.png"));
-    	texture_background_topleft = new Texture(Gdx.files.internal("img/GrassObenLinks.png"));
-    	texture_background_topright = new Texture(Gdx.files.internal("img/GrassObenRechts.png"));
-    	texture_background_bottomleft = new Texture(Gdx.files.internal("img/GrassUntenLinks.png"));
-    	texture_background_bottomright = new Texture(Gdx.files.internal("img/GrassUntenRechts.png"));
-    	texture_pillar = new Texture(Gdx.files.internal("img/Saeule.png"));
-    	texture_pillarOutside = new Texture(Gdx.files.internal("img/AussenWand.png"));
-    	texture_wall = new Texture(Gdx.files.internal("img/Kiste.png"));
+    	texture_background_center = new Texture(Gdx.files.internal("img/Stage_1/GrassZentrum.png"));
+    	texture_background_left = new Texture(Gdx.files.internal("img/Stage_1/GrassLinks.png"));
+    	texture_background_right = new Texture(Gdx.files.internal("img/Stage_1/GrassRechts.png"));
+    	texture_background_top = new Texture(Gdx.files.internal("img/Stage_1/GrassOben.png"));
+    	texture_background_bottom = new Texture(Gdx.files.internal("img/Stage_1/GrassUnten.png"));
+    	texture_background_leftright = new Texture(Gdx.files.internal("img/Stage_1/GrassRechtsLinks.png"));
+    	texture_background_topbottom = new Texture(Gdx.files.internal("img/Stage_1/GrassObenUnten.png"));
+    	texture_background_topleft = new Texture(Gdx.files.internal("img/Stage_1/GrassObenLinks.png"));
+    	texture_background_topright = new Texture(Gdx.files.internal("img/Stage_1/GrassObenRechts.png"));
+    	texture_background_bottomleft = new Texture(Gdx.files.internal("img/Stage_1/GrassUntenLinks.png"));
+    	texture_background_bottomright = new Texture(Gdx.files.internal("img/Stage_1/GrassUntenRechts.png"));
+    	texture_pillar = new Texture(Gdx.files.internal("img/Stage_1/Saeule.png"));
+    	texture_pillarOutside = new Texture(Gdx.files.internal("img/Stage_1/AussenWand.png"));
+    	texture_wall = new Texture(Gdx.files.internal("img/Stage_1/Kiste.png"));
     	
     	field = setupField(17, 13);
 		
@@ -197,7 +197,7 @@ public class LocalGameState extends GameState{
     			int posx = 80 - 32 + 32 * j;
     			int posy = 0 + 32 * i;
     			if(i == 0 || j == 0 || i == height-1 || j == width-1){
-    				Sprite pillar = new Sprite(texture_pillar);
+    				Sprite pillar = new Sprite(texture_pillarOutside);
     				pillar.setPosition(posx, posy);
     				newField[i][j] = pillar;
     				collision_objects.add(pillar);
