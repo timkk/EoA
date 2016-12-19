@@ -5,6 +5,7 @@ public class GameStateManager {
 	/**
 	 * @author pbg2h15aza
 	 * @author pbg2h15awi
+	 * @author pbg2h15asu
 	 */
 	
 	private GameState gameState;
