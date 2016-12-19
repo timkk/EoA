@@ -42,6 +42,9 @@ public class LocalGameState extends GameState{
 	private Texture texture_pillar;
 	private Texture texture_pillarOutside;
 	private Texture texture_wall;
+	private Texture texture_bomb;
+	private Texture texture_firetrap;
+	private Texture texture_windtrap;
 	
 	private Sprite sprite_player;
 	
@@ -97,6 +100,9 @@ public class LocalGameState extends GameState{
     	texture_pillar = new Texture(Gdx.files.internal("img/Stage_1/Saeule.png"));
     	texture_pillarOutside = new Texture(Gdx.files.internal("img/Stage_1/AussenWand.png"));
     	texture_wall = new Texture(Gdx.files.internal("img/Stage_1/Kiste.png"));
+    	texture_bomb = new Texture(Gdx.files.internal("img/Stage_1/Bombe.png"));
+    	texture_firetrap = new Texture(Gdx.files.internal("img/Stage_1/FeuerFalle.png"));
+    	texture_windtrap = new Texture(Gdx.files.internal("img/Stage_1/WindFalle.png"));
     	
     	field = setupField(17, 13);
 		
@@ -156,8 +162,8 @@ public class LocalGameState extends GameState{
     	Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     	String pos = "";
     
+    	//for testing
     	pos = "x/y: " + sprite_player.getX() + " - " + (sprite_player.getX()+sprite_player.getWidth()) + " / " + sprite_player.getY() + " - " + (sprite_player.getY()+sprite_player.getHeight());
-    	
     	
     	batch.begin();
     	drawField(field, 17, 13);
@@ -168,7 +174,6 @@ public class LocalGameState extends GameState{
     		font_countdown.draw(batch, ""+time, Gdx.graphics.getWidth()/2 - 8, Gdx.graphics.getHeight()/2-20);
     	}
     	batch.end();
-		
 	}
 
 	@Override
@@ -199,6 +204,7 @@ public class LocalGameState extends GameState{
     		for(int j=0;j<width;j++){
     			int posx = 80 - 32 + 32 * j;
     			int posy = 0 + 32 * i;
+    			//kleines if muss hier mal durch
     			if(i == 0 || j == 0 || i == height-1 || j == width-1){
     				Sprite pillar = new Sprite(texture_pillarOutside);
     				pillar.setPosition(posx, posy);
