@@ -1,7 +1,7 @@
 package de.bib.pbg2h15a;
 
-public class PowerUp extends Collectable{
-	
+//public class PowerUp extends Collectable{
+public class PowerUp {	
 	private PowerUpType type;
 	
 	/**
