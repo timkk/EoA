@@ -15,6 +15,7 @@ public class Wall extends GameObject {
 	 * 
 	 */
 
+	
 	private Collectable content;
 
 	public Wall(int x, int y) {

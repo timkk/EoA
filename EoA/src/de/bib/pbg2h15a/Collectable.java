@@ -13,3 +13,4 @@ public abstract class Collectable extends GameObject {
 	}
 
 }
+
