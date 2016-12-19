@@ -28,13 +28,24 @@ public class LocalGameState extends GameState{
 	private SpriteBatch batch;
 	
 	private Texture texture_player;
-	private Texture texture_background;
+	private Texture texture_background_center;
+	private Texture texture_background_left;
+	private Texture texture_background_right;
+	private Texture texture_background_top;
+	private Texture texture_background_bottom;
+	private Texture texture_background_leftright;
+	private Texture texture_background_topbottom;
+	private Texture texture_background_topleft;
+	private Texture texture_background_topright;
+	private Texture texture_background_bottomleft;
+	private Texture texture_background_bottomright;
 	private Texture texture_pillar;
+	private Texture texture_pillarOutside;
 	private Texture texture_wall;
 	
 	private Sprite sprite_player;
 	
-	private Player[] players;
+	private Player player;
 	
 	private final float FIELD_START_X = 80f;
 	private final float FIELD_START_Y = 32f;
@@ -72,9 +83,20 @@ public class LocalGameState extends GameState{
     	/**
     	 * texture not final !
     	 */
-    	texture_background = new Texture(Gdx.files.internal("data/grey32x32.jpg"));
-    	texture_pillar = new Texture(Gdx.files.internal("data/brown32x32.jpg"));
-    	texture_wall = new Texture(Gdx.files.internal("data/orange32x32.jpg"));
+    	texture_background_center = new Texture(Gdx.files.internal("img/GrassZentrum.png"));
+    	texture_background_left = new Texture(Gdx.files.internal("img/GrassLinks.png"));
+    	texture_background_right = new Texture(Gdx.files.internal("img/GrassRechts.png"));
+    	texture_background_top = new Texture(Gdx.files.internal("img/GrassOben.png"));
+    	texture_background_bottom = new Texture(Gdx.files.internal("img/GrassUnten.png"));
+    	texture_background_leftright = new Texture(Gdx.files.internal("img/GrassRechtsLinks.png"));
+    	texture_background_topbottom = new Texture(Gdx.files.internal("img/GrassObenUnten.png"));
+    	texture_background_topleft = new Texture(Gdx.files.internal("img/GrassObenLinks.png"));
+    	texture_background_topright = new Texture(Gdx.files.internal("img/GrassObenRechts.png"));
+    	texture_background_bottomleft = new Texture(Gdx.files.internal("img/GrassUntenLinks.png"));
+    	texture_background_bottomright = new Texture(Gdx.files.internal("img/GrassUntenRechts.png"));
+    	texture_pillar = new Texture(Gdx.files.internal("img/Saeule.png"));
+    	texture_pillarOutside = new Texture(Gdx.files.internal("img/AussenWand.png"));
+    	texture_wall = new Texture(Gdx.files.internal("img/Kiste.png"));
     	
     	field = setupField(17, 13);
 		
@@ -153,6 +175,17 @@ public class LocalGameState extends GameState{
 	public void dispose() {
     	batch.dispose();
     	texture_player.dispose();
+    	texture_background_bottom.dispose();
+    	texture_background_bottomleft.dispose();
+    	texture_background_bottomright.dispose();
+    	texture_background_center.dispose();
+    	texture_background_left.dispose();
+    	texture_background_leftright.dispose();
+    	texture_background_right.dispose();
+    	texture_background_top.dispose();
+    	texture_background_topbottom.dispose();
+    	texture_background_topleft.dispose();
+    	texture_background_topright.dispose();
 	}
 
 	private Sprite[][] setupField(int width, int height){
@@ -163,15 +196,59 @@ public class LocalGameState extends GameState{
     		for(int j=0;j<width;j++){
     			int posx = 80 - 32 + 32 * j;
     			int posy = 0 + 32 * i;
-    			if(i == 0 || j == 0 || i == height-1 || j == width-1 || ((i % 2) == 0 && (j % 2) == 0)){
+    			if(i == 0 || j == 0 || i == height-1 || j == width-1){
     				Sprite pillar = new Sprite(texture_pillar);
     				pillar.setPosition(posx, posy);
     				newField[i][j] = pillar;
     				collision_objects.add(pillar);
-				}else{
-    				Sprite background = new Sprite(texture_background);
-    				background.setPosition(posx, posy);
-    				newField[i][j] = background;
+				}else if(((i % 2) == 0 && (j % 2) == 0)){
+    				Sprite pillar = new Sprite(texture_pillar);
+    				pillar.setPosition(posx, posy);
+    				newField[i][j] = pillar;
+				}else if(i == 1 && j == 1){
+					Sprite s = new Sprite(texture_background_topleft);
+					s.setPosition(posx, posy);
+					newField[i][j] = s;
+				}else if(i == 1 && j == width-2){
+					Sprite s = new Sprite(texture_background_topright);
+					s.setPosition(posx, posy);
+					newField[i][j] = s;
+				}else if(i == height-2 && j == 1){
+					Sprite s = new Sprite(texture_background_bottomleft);
+					s.setPosition(posx, posy);
+					newField[i][j] = s;
+				}else if(i == height-2 && j == width-2){
+					Sprite s = new Sprite(texture_background_bottomright);
+					s.setPosition(posx, posy);
+					newField[i][j] = s;
+				}else if(i > 1 && i < height-2 && (i % 2) == 1 && j == 1){
+					Sprite s = new Sprite(texture_background_left);
+					s.setPosition(posx, posy);
+					newField[i][j] = s;
+				}else if(i > 1 && i < height-2 && (i % 2) == 1 && j == width-2){
+					Sprite s = new Sprite(texture_background_right);
+					s.setPosition(posx, posy);
+					newField[i][j] = s;
+				}else if(i > 1 && i < height-2 && (i % 2) == 0 && j > 1 && j < width-2 && (j % 2) == 1){
+					Sprite s = new Sprite(texture_background_leftright);
+					s.setPosition(posx, posy);
+					newField[i][j] = s;
+				}else if(i > 1 && i < height-1 && (i % 2) == 1 && j > 1 && j < width-1 && (j % 2) == 0){
+					Sprite s = new Sprite(texture_background_topbottom);
+					s.setPosition(posx, posy);
+					newField[i][j] = s;
+				}else if(i == 1 && j > 1 && j < width-2){
+					Sprite s = new Sprite(texture_background_top);
+					s.setPosition(posx, posy);
+					newField[i][j] = s;
+				}else if(i == height-2 && j > 1 && j < width-2){
+					Sprite s = new Sprite(texture_background_bottom);
+					s.setPosition(posx, posy);
+					newField[i][j] = s;
+				}else if(i > 1 && i < height-2 && j > 1 && j < width-2 && (i % 2) == 1 && (j % 2) == 1){
+					Sprite s = new Sprite(texture_background_center);
+					s.setPosition(posx, posy);
+					newField[i][j] = s;
 				}
     		}
     	}
