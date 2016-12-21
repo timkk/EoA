@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.sun.javafx.scene.paint.GradientUtils.Point;
 
 public class GUI{
 	/**
@@ -102,6 +103,8 @@ public class GUI{
 	//Objects
 	private Stage stage;
 	private Timer time;
+	private GameStateManager gsm;
+	private GameState gs;
 	
 	private Player[] players;
 	private boolean[] alife={true,true,true,true};
@@ -110,8 +113,10 @@ public class GUI{
 	 * @author pbd2h15aho
 	 * The GUI is the Graphical User Interface, which enables the User to control the game through mouse controls
 	 */	
-	public GUI(Timer time, Player p1, Player p2, Player p3, Player p4) {
+	public GUI(Timer time, Player p1, Player p2, Player p3, Player p4,GameStateManager gameStateManager, GameState gameState) {
 		super();
+		this.gsm=gameStateManager;
+		this.gs=gameState;
 		this.time = time;
 		players= new Player[4];
 		players[0]=p1;
@@ -195,8 +200,9 @@ public class GUI{
 		tblMenueBtns.add(iBtnBack);
 		tblMenueBtns.add().size(2*SCALE_X,0);
 		
-		//TODO Check if NetworkGame or SinglePlayer
-		tblMenueBtns.add(iBtnPause);
+		if(gs.getClass().getName().equals("LocalGameState")){
+			tblMenueBtns.add(iBtnPause);
+		}
 		
 		tblMenueBtns.setFillParent(true);
 		tblMenueBtns.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -307,15 +313,14 @@ public class GUI{
 	 * The private method createListeners initializes the Buttons Listeners and connects them to their functionalities
 	 */	
 	private void createListeners(){ 
-		//TODO back to Menu
+		
 			iBtnBack.addListener(new InputListener() {
 				@Override
 				public boolean handle(Event event) {
 					if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
-						System.out.println("Back:click");
+						gsm.setState(0);
 						return true;
 					}
-					
 					return false;
 				}
 			});
@@ -330,67 +335,29 @@ public class GUI{
 					}
 					return false;}
 			});
-
-		//TODO connect to  moveup()
-			iBtnUp.addListener(new InputListener() {	
-				@Override
-				public boolean handle(Event event) {
-					if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
-						
-						System.out.println("Up:click");
-						return true;
-					}
-					return false;
-				}
-			});
-			
-		//TODO connect to movedown()
-			iBtnDown.addListener(new InputListener() {	
-				@Override
-				public boolean handle(Event event) {
-					if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
-						System.out.println("Down:click");
-						return true;
-					}
-					return false;
-				}
-			});
-			
-		//TODO connect to move left
-			iBtnLeft.addListener(new InputListener() {	
-				@Override
-				public boolean handle(Event event) {
-					if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
-						System.out.println("Left:click");
-						return true;
-					}
-					return false;
-				}
-			});
-			
-		//TODO connect to move right
-			iBtnRight.addListener(new InputListener() {	
-				@Override
-				public boolean handle(Event event) {
-					if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
-						System.out.println("Right:click");
-						return true;
-					}
-					return false;
-				}
-			});
-		
-		//TODO connect to dropBomb
-			iBtnBomb.addListener(new InputListener() {	
-				@Override	
-				public boolean handle(Event event) {
-					if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
-						System.out.println("Bomb:click");
-						return true;
-					}
-					return false;
-				}
-			});
 	}
+	
+
+	public ImageButton getiBtnBomb() {
+		return iBtnBomb;
+	}
+
+	public ImageButton getiBtnUp() {
+		return iBtnUp;
+	}
+
+	public ImageButton getiBtnDown() {
+		return iBtnDown;
+	}
+
+	public ImageButton getiBtnRight() {
+		return iBtnRight;
+	}
+
+	public ImageButton getiBtnLeft() {
+		return iBtnLeft;
+	}
+	
+	
 	
 }

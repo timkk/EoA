@@ -4,13 +4,17 @@ import java.awt.Point;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.scenes.scene2d.Event;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class Control {
 	
 	private GameObject gameobject;
+	private GUI gui;
 	
-	public Control(GameObject gameobject) {
+	public Control(GameObject gameobject,GUI gui) {
 		this.gameobject = gameobject;
+		this.gui=gui;
 	}
 
 	/**
@@ -32,6 +36,62 @@ public class Control {
 			p.translate(0,-1);
 			gameobject.setPos(p);
 		}
+		
+		
+		/**
+		 * @author pbd2h15aho
+		 * Einbindung der GUI Buttons;
+		**/
+		
+		gui.getiBtnUp().addListener(new InputListener() {	
+			@Override
+			public boolean handle(Event event) {
+				if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
+					p.translate(0,1);
+					gameobject.setPos(p);
+					return true;
+				}
+				return false;
+			}
+		});
+		
+		gui.getiBtnDown().addListener(new InputListener() {	
+			@Override
+			public boolean handle(Event event) {
+				if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
+					p.translate(0,-1);
+					gameobject.setPos(p);
+					return true;
+				}
+				return false;
+			}
+		});
+		
+		gui.getiBtnRight().addListener(new InputListener() {	
+			@Override
+			public boolean handle(Event event) {
+				if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
+					p.translate(1, 0);
+					gameobject.setPos(p);
+					return true;
+				}
+				return false;
+			}
+		});
+		
+		gui.getiBtnLeft().addListener(new InputListener() {	
+			@Override
+			public boolean handle(Event event) {
+				if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
+					p.translate(-1, 0);
+					gameobject.setPos(p);
+					return true;
+				}
+				return false;
+			}
+		});
+				
+		
 	}
 	
 	/**
@@ -42,5 +102,22 @@ public class Control {
 		if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
 			bombe.dropBomb();
 		}
+		
+	/**
+	* @author pbd2h15aho
+	* Einbindung der GUI Buttons;
+	**/
+		
+		gui.getiBtnBomb().addListener(new InputListener() {	
+			@Override	
+			public boolean handle(Event event) {
+				if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
+					bombe.dropBomb();
+					return true;
+				}
+				return false;
+			}
+		});
+		
 	}
 }
