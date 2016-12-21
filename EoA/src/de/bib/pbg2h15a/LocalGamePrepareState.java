@@ -267,7 +267,7 @@ public class LocalGamePrepareState extends GameState {
 		
 		/**
 		 *  @author pbg2h15ala
-		 *  entnommen aus Buttonerstellen
+		 *  entnommen aus Buttonerstellen 
 		 */
 
 		private Texture texture;
