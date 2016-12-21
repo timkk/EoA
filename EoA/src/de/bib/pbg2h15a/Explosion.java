@@ -12,12 +12,34 @@ public class Explosion extends GameObject {
 	 */
 	private float time;
 	private TextureRegion texture;
+<<<<<<< HEAD
 	
 	
 	public Explosion(Point pos, Texture spritesheet, int region) {
 		super(pos, true, spritesheet);
 		// TODO TextureRegion benötigt Bild
 	}
+=======
+	private Player player;
+	
+	/**
+	 * 
+	 * @param player Reference of the player who dropped the bomb and caused the explosion.	 
+	 */
+	public Explosion(Player player, Point pos, Texture spritesheet, int region) {
+		super(pos, true, spritesheet);
+		this.player = player;
+		// TODO TextureRegion benötigt Bild
+	}
+
+	
+	
+	public Player getPlayer() {
+		return player;
+	}
+
+
+>>>>>>> branch 'master' of https://github.com/timkk/EoA.git
 
 	public boolean shouldRemove(){
 		return time <= 0;
