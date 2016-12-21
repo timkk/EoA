@@ -43,6 +43,11 @@ public class Explosion extends GameObject {
 		return time <= 0;
 	}
 
+	/**
+	 * 
+	 * @author pbg2h15awi
+	 */
+	
 	@Override
 	public void render(SpriteBatch sb) {
 		sb.draw(texture, pos.x, pos.y);

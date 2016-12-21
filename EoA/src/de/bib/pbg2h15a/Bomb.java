@@ -109,6 +109,11 @@ public class Bomb extends GameObject{
 		}
 	}
 
+	/**
+	 * 
+	 * @author pbg2h15awi
+	 */
+	
 		@Override
 		public void render(SpriteBatch sb) {
 			sb.draw(spritesheet, pos.x, pos.y);
