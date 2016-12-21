@@ -27,7 +27,7 @@ public class LocalGamePrepareState extends GameState {
 	int rundenZeitSek=30;
 	int rundenAnzahl =3;
 
-	// Textures
+	// assets/GamePrepare
 	ButtonErstellen name;
 	private TextField txfName;	
 
@@ -76,7 +76,7 @@ public class LocalGamePrepareState extends GameState {
 		/**
 		 * @author pbg2h15ago, pbg2h15ani
 		 */
-		skinName = new Skin(Gdx.files.internal("uiskin.json"));
+		skinName = new Skin(Gdx.files.internal("assets/GamePrepare/uiskin.json"));
 		
 		txfName = new TextField("", skinName);
 		txfName.setPosition(330, 375);
@@ -122,7 +122,7 @@ public class LocalGamePrepareState extends GameState {
 			if (mapNr < 1) {
 				mapNr = 3;
 			}
-			changeStageValue.setTexture("textures/stage_" + mapNr + ".png");
+			changeStageValue.setTexture("assets/GamePrepare/stage_" + mapNr + ".png");
 			System.out.println(mapNr);
 		}
 		if (changeStageRight.isClicked()) {
@@ -130,7 +130,7 @@ public class LocalGamePrepareState extends GameState {
 			if (mapNr > 3) {
 				mapNr = 1;
 			}
-			changeStageValue.setTexture("textures/stage_" + mapNr + ".png");
+			changeStageValue.setTexture("assets/GamePrepare/stage_" + mapNr + ".png");
 		}
 		
 		/**
@@ -233,34 +233,34 @@ public class LocalGamePrepareState extends GameState {
 
 		// 0.Zeile
 
-		name = new ButtonErstellen(110, 375, "textures/name.png");
+		name = new ButtonErstellen(110, 375, "assets/GamePrepare/name.png");
 
 
 		// 1. Zeile
 
-		changeStage = new ButtonErstellen(110, 285, "textures/stage.png");
-		changeStageLeft = new ButtonErstellen(330, 285, "textures/arrow_left.png");
-		changeStageValue = new texHelper(380, 285, "textures/stage_1.png");
-		changeStageRight = new ButtonErstellen(480, 285, "textures/arrow_right.png");
+		changeStage = new ButtonErstellen(110, 285, "assets/GamePrepare/stage.png");
+		changeStageLeft = new ButtonErstellen(330, 285, "assets/GamePrepare/arrow_left.png");
+		changeStageValue = new texHelper(380, 285, "assets/GamePrepare/stage_1.png");
+		changeStageRight = new ButtonErstellen(480, 285, "assets/GamePrepare/arrow_right.png");
 
 		// 2. Zeile
 
-		runden = new ButtonErstellen(110, 195, "textures/runden.png");
-		rundenLeft = new ButtonErstellen(330, 195, "textures/arrow_left.png");
-		rundenValue1 = new texHelper(430, 195, "textures/number.png");
-		rundenValue10 = new texHelper(380, 195, "textures/number.png");
-		rundenRight = new ButtonErstellen(480, 195, "textures/arrow_right.png");
+		runden = new ButtonErstellen(110, 195, "assets/GamePrepare/runden.png");
+		rundenLeft = new ButtonErstellen(330, 195, "assets/GamePrepare/arrow_left.png");
+		rundenValue1 = new texHelper(430, 195, "assets/GamePrepare/number.png");
+		rundenValue10 = new texHelper(380, 195, "assets/GamePrepare/number.png");
+		rundenRight = new ButtonErstellen(480, 195, "assets/GamePrepare/arrow_right.png");
 
 		// 3. Zeile
 
-		zeit = new ButtonErstellen(110, 105, "textures/zeit.png");
-		zeitLeft = new ButtonErstellen(330, 105, "textures/arrow_left.png");
-		zeitRight = new ButtonErstellen(480, 105, "textures/arrow_right.png");
+		zeit = new ButtonErstellen(110, 105, "assets/GamePrepare/zeit.png");
+		zeitLeft = new ButtonErstellen(330, 105, "assets/GamePrepare/arrow_left.png");
+		zeitRight = new ButtonErstellen(480, 105, "assets/GamePrepare/arrow_right.png");
 
 		// 4. Zeile
 
-		zuruck = new ButtonErstellen(110, 15, "textures/zuruck.png");
-		start = new ButtonErstellen(330, 15, "textures/start.png");
+		zuruck = new ButtonErstellen(110, 15, "assets/GamePrepare/zuruck.png");
+		start = new ButtonErstellen(330, 15, "assets/GamePrepare/start.png");
 	}
 	
 	private class texHelper {
@@ -294,8 +294,8 @@ public class LocalGamePrepareState extends GameState {
 		 *  @author pbg2h15ala
 		 */
 		number%=100;
-		value10.setTexture("textures/number_" + number/10+".png");
-		value1.setTexture("textures/number_" + number%10+".png");
+		value10.setTexture("assets/GamePrepare/number_" + number/10+".png");
+		value1.setTexture("assets/GamePrepare/number_" + number%10+".png");
 	}
 	
 
