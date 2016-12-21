@@ -8,8 +8,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import javafx.scene.input.KeyCode;
-
 /**
  * 
  * @author pbg2h15ast
@@ -124,6 +122,13 @@ public class Bomb extends GameObject{
 		public void update(float dt) {
 			time -= dt;
 			explode(stage);
+		}
+
+
+
+		public void dropBomb() {
+			// TODO Auto-generated method stub
+			
 		}
 
 }
