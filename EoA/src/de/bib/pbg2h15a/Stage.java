@@ -34,6 +34,8 @@ public class Stage {
 		return null;
 	}
 	
+<<<<<<< HEAD
+=======
 	/**
 	 * @author pbg2h15are
 	 * @return set Pillars on the Stage
@@ -59,5 +61,6 @@ public class Stage {
 		}
 		
 	}
+>>>>>>> branch 'master' of https://github.com/timkk/EoA.git
 	
 }

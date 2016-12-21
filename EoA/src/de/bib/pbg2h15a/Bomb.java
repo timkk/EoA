@@ -22,7 +22,6 @@ public class Bomb extends GameObject{
 	private float time;
 	private Player player;
 	private GameObject[][] stage;
-	
 	private static final float BOMB_TIMER = 5;
 	
 
@@ -41,9 +40,7 @@ public class Bomb extends GameObject{
 		this.stage = stage;
 	}
 
-	public void dropBomb(){
 	
-	}
 	
 	public Player getPlayer() {
 		return player;
@@ -79,57 +76,54 @@ public class Bomb extends GameObject{
 		
 		if(time <= 0){
 			Texture explosion = new Texture("");
-			/**
-			 * @author pbg2h15asu
-			 * fixed constructor
-			 */
-			Explosion mitte = new Explosion(player, getPos(), explosion, player.getBombRadius());
-			/**
-			 * @return
-			 */
+			Explosion mitte = new Explosion(getPos(), explosion, 0);
 			stage[mitte.getPos().x][mitte.getPos().y] = mitte; 
 			
 			//Explosion in +y-Richtung
 			for (int i = 1; i <= radius; i++){
-				if(stage[pos.x][pos.y+1] instanceof Wall){
+				if(stage[pos.x][pos.y+1] instanceof Wand){
 					//TODO Kollision (Player, Bombe, PowerUp)
 				}
 			}
 			
 			//Explosion in -y-Richtung
 			for (int i = 1; i <= radius; i++){
-				if(stage[pos.x][pos.y-1] instanceof Wall){
+				if(stage[pos.x][pos.y-1] instanceof Wand){
 					//TODO Kollision (Player, Bombe, PowerUp)
 				}
 			}
 			
 			//Explosion in +x-Richtung
 			for (int i = 1; i <= radius; i++){
-				if(stage[pos.x+1][pos.y] instanceof Wall){
+				if(stage[pos.x+1][pos.y] instanceof Wand){
 					//TODO Kollision (Player, Bombe, PowerUp)
 				}
 			}
 			
 			//Explosion in -x-Richtung
 			for (int i = 1; i <= radius; i++){
-				if(stage[pos.x-1][pos.y] instanceof Wall){
+				if(stage[pos.x-1][pos.y] instanceof Wand){
 					//TODO Kollision (Player, Bombe, PowerUp)
 				}
 			}
 		}
-		
+	}
+
+	/**
+	 * 
+	 * @author pbg2h15awi
+	 */
 	
+		@Override
+		public void render(SpriteBatch sb) {
+			sb.draw(spritesheet, pos.x, pos.y);
+			
+		}
 
-	@Override
-	public void render(SpriteBatch sb) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void update(float dt) {
-		// TODO Auto-generated method stub
-		
-	}
+		@Override
+		public void update(float dt) {
+			time -= dt;
+			explode(stage);
+		}
 
 }

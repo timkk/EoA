@@ -12,6 +12,14 @@ public class Explosion extends GameObject {
 	 */
 	private float time;
 	private TextureRegion texture;
+
+	
+	
+	public Explosion(Point pos, Texture spritesheet, int region) {
+		super(pos, true, spritesheet);
+		// TODO TextureRegion benötigt Bild
+	}
+
 	private Player player;
 	
 	/**
@@ -31,11 +39,15 @@ public class Explosion extends GameObject {
 	}
 
 
-
 	public boolean shouldRemove(){
 		return time <= 0;
 	}
 
+	/**
+	 * 
+	 * @author pbg2h15awi
+	 */
+	
 	@Override
 	public void render(SpriteBatch sb) {
 		sb.draw(texture, pos.x, pos.y);
