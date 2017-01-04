@@ -15,7 +15,8 @@ public class GameStateManager {
 	
 	public static final int MAIN = 0;
 	public static final int MODE_SELECT = 100;
-	public static final int OPTIONS = 150;
+	public static final int LOCAL_PREPARE = 150;
+	public static final int OPTIONS = 50;
 	public static final int GAME = 200;
 	public static final int ENDSCREEN = 300;
 	
