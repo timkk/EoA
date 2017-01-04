@@ -3,6 +3,7 @@ package de.bib.pbg2h15a;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -107,6 +108,8 @@ public class GUI{
 	
 	private Player[] players;
 	private boolean[] alife={true,true,true,true};
+    private OrthographicCamera camera;
+    private SpriteBatch batch;
 	
 	/**
 	 * @author pbd2h15aho
@@ -131,11 +134,12 @@ public class GUI{
 		bitfont = new BitmapFont();
 		bitfont.setColor(Color.WHITE);
 
-		createMenuButtons();
-		createControlButtons();
-		createLabels();
-		createImages();
-		createListeners();
+		//createMenuButtons();
+		//createControlButtons();
+		//createLabels();
+		//createImages();
+		//createListeners();
+		create();
 		
 		stage= new Stage();
 		Gdx.input.setInputProcessor(stage);
@@ -358,5 +362,21 @@ public class GUI{
 	}
 	
 	
+	/**
+	 * @author pbd2h15ary
+	 */	
 	
+	
+	public void create()
+	{
+	
+        createControlButtons();
+        createImages();
+        createLabels();
+        createListeners();
+        createMenuButtons();
+	}
+	
+
+
 }
