@@ -1,6 +1,6 @@
 package de.bib.pbg2h15a;
 
-public class Rect {
+public class Rectangle {
 
 /**
  * 
@@ -13,7 +13,7 @@ public class Rect {
 	private float width;
 	private float height;
 
-	public Rect(float x, float y, float width, float height) {
+	public Rectangle(float x, float y, float width, float height) {
 		super();
 		this.x = x;
 		this.y = y;

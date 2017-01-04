@@ -1,6 +1,5 @@
 package de.bib.pbg2h15a;
 
-import java.awt.Point;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -50,14 +49,18 @@ public class LocalGameState extends GameState{
 	
 	private Sprite sprite_player;
 	
-	private Player player;
+	private Player[] player;
 	
-	private final float FIELD_START_X = 125f;
-	private final float FIELD_START_Y = 50f;
-	private final float FIELD_END_X = 825f;
-	private final float FIELD_END_Y = 600f;
+	//custom class Point(float,float)
+	private final Point FIELD_START = new Point(125f, 50f);
+	private final Point FIELD_END = new Point(825f, 600f);
 	private final int SPRITESIZE = 50;
 	
+	private final Point[] player_spawns = 
+		{new Point(FIELD_START.getX(), FIELD_END.getY()-SPRITESIZE), 
+		new Point(FIELD_END.getX()-SPRITESIZE,FIELD_START.getY()),
+		new Point(FIELD_START.getX(), FIELD_START.getX()),
+		new Point(FIELD_END.getX()-SPRITESIZE,FIELD_END.getY()-SPRITESIZE)};
 	private final float COLLISION_OFFSET = 1f;
 	
 	private Sprite[][] field;
@@ -87,7 +90,7 @@ public class LocalGameState extends GameState{
     	
     	texture_player = new Texture(Gdx.files.internal("img/Stage_1/WindFalle.png"));//to do
     	sprite_player = new Sprite(texture_player);
-    	sprite_player.setPosition(FIELD_START_X, FIELD_START_Y);
+    	sprite_player.setPosition(FIELD_START.getX(), FIELD_START.getY());
 
     	texture_background_center = new Texture(Gdx.files.internal("img/Stage_1/GrassZentrum.png"));
 //    	texture_background_left = new Texture(Gdx.files.internal("img/Stage_1/GrassLinks.png"));
@@ -110,9 +113,11 @@ public class LocalGameState extends GameState{
     	field = new Sprite[17][13];
     	field = setupField(17, 13);
 		
-    	Player p = new Player("player", new Point(1,1), texture_background_center, null);
+    	player = new Player[4];
+    	//insert players
+    	
     	rundenTimer = new Timer(300);
-    	gui = new GUI(rundenTimer, p, p, p, p, gsm, this);
+    	gui = new GUI(rundenTimer, player[0], player[1], player[2], player[3], gsm, this);
 	}
 
 	@Override
@@ -126,8 +131,8 @@ public class LocalGameState extends GameState{
 	    	if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
 	    		sprite_player.translateX(-speed);
 		    	
-		    	if(sprite_player.getX() < FIELD_START_X)
-		    		sprite_player.setPosition(FIELD_START_X, sprite_player.getY());
+		    	if(sprite_player.getX() < FIELD_START.getX())
+		    		sprite_player.setPosition(FIELD_START.getX(), sprite_player.getY());
 		    	if(collision(sprite_player, collision_objects, COLLISION_OFFSET))
 		    		sprite_player.setPosition(posx, posy);
 	    	}
@@ -135,8 +140,8 @@ public class LocalGameState extends GameState{
 	    	if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
 	    		sprite_player.translateX(speed);
 		    	
-		    	if(sprite_player.getX() > FIELD_END_X)
-		    		sprite_player.setPosition(FIELD_END_X, sprite_player.getY());
+		    	if(sprite_player.getX() > FIELD_END.getX())
+		    		sprite_player.setPosition(FIELD_END.getX(), sprite_player.getY());
 			    if(collision(sprite_player, collision_objects, COLLISION_OFFSET))
 		    		sprite_player.setPosition(posx, posy);
 	    	}
@@ -146,8 +151,8 @@ public class LocalGameState extends GameState{
 	    	if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
 	    		sprite_player.translateY(-speed);
 	    		
-		    	if(sprite_player.getY() < FIELD_START_Y)
-		    		sprite_player.setPosition(sprite_player.getX(), FIELD_START_Y);
+		    	if(sprite_player.getY() < FIELD_START.getY())
+		    		sprite_player.setPosition(sprite_player.getX(), FIELD_START.getY());
 		    	if(collision(sprite_player, collision_objects, COLLISION_OFFSET))
 		    		sprite_player.setPosition(posx, posy);
 	    	}
@@ -155,8 +160,8 @@ public class LocalGameState extends GameState{
 	    	if(Gdx.input.isKeyPressed(Input.Keys.UP)){
 		    	sprite_player.translateY(speed);
 		    	
-		    	if(sprite_player.getY() > FIELD_END_Y)
-		    		sprite_player.setPosition(sprite_player.getX(), FIELD_END_Y);
+		    	if(sprite_player.getY() > FIELD_END.getY())
+		    		sprite_player.setPosition(sprite_player.getX(), FIELD_END.getY());
 			    if(collision(sprite_player, collision_objects, COLLISION_OFFSET))
 		    		sprite_player.setPosition(posx, posy);
 	    	}

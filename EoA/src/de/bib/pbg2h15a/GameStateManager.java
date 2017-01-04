@@ -21,7 +21,7 @@ public class GameStateManager {
 	public static final int ENDSCREEN = 300;
 	
 	public GameStateManager() {
-		setState(GAME);
+		setState(MAIN);
 	}
 	
 	public void setState(int state) {
