@@ -5,7 +5,6 @@ public class Rectangle {
 /**
  * 
  * @author pbg2h15asu
- * protoype, not final
  */
 	
 	private float x;

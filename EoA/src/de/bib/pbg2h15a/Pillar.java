@@ -1,7 +1,5 @@
 package de.bib.pbg2h15a;
 
-import java.awt.Point;
-
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -22,7 +20,7 @@ public class Pillar extends GameObject {
 	@Override
 	public void render(SpriteBatch sb) {
 		
-		sb.draw(spritesheet, pos.x, pos.y);
+		sb.draw(spritesheet, pos.getX(), pos.getY());
 		
 	}
 

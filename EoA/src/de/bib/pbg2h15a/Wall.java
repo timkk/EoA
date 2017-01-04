@@ -1,6 +1,5 @@
 package de.bib.pbg2h15a;
 
-import java.awt.Point;
 import java.util.Random;
 
 import javax.swing.text.StyledEditorKit.ForegroundAction;
@@ -33,7 +32,7 @@ public class Wall extends GameObject {
 	@Override
 	public void render(SpriteBatch sb) {
 		// TODO Auto-generated method stub
-		sb.draw(spritesheet, pos.x, pos.y);
+		sb.draw(spritesheet, pos.getX(), pos.getY());
 	}
 
 	@Override

@@ -1,7 +1,5 @@
 package de.bib.pbg2h15a;
 
-import java.awt.Point;
-
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -51,9 +49,8 @@ public class Player extends GameObject {
 	public Bomb dropBomb() {
 
 		Bomb bombe = new Bomb(this, pos, this.bombRadius, stage.getFields());
-		Player player = new Player("", new Point(), null, stage);
 
-		bombe.setPos(player.getPos());
+		bombe.setPos(this.getPos());
 
 		return bombe;
 	}

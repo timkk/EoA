@@ -30,4 +30,9 @@ public class Point {
 	public void setY(float y) {
 		this.y = y;
 	}
+
+	public void translate(float x, float y) {
+		this.x += x;
+		this.y += y;
+	}
 }

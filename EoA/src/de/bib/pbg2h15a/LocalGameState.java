@@ -116,6 +116,10 @@ public class LocalGameState extends GameState{
     	player = new Player[4];
     	//insert players
     	
+    	for(int i = 0;i<4;i++){
+    		player[i].setPos(player_spawns[i]);
+    	}
+    	
     	rundenTimer = new Timer(300);
     	gui = new GUI(rundenTimer, player[0], player[1], player[2], player[3], gsm, this);
 	}

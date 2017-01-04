@@ -1,6 +1,5 @@
 package de.bib.pbg2h15a;
 
-import java.awt.Point;
 import java.awt.RenderingHints.Key;
 
 import com.badlogic.gdx.Gdx;
@@ -75,32 +74,32 @@ public class Bomb extends GameObject{
 		if(time <= 0){
 			Texture explosion = new Texture("");
 			Explosion mitte = new Explosion(getPos(), explosion, 0);
-			stage[mitte.getPos().x][mitte.getPos().y] = mitte; 
+			stage[(int) mitte.getPos().getX()][(int) mitte.getPos().getY()] = mitte; 
 			
 			//Explosion in +y-Richtung
 			for (int i = 1; i <= radius; i++){
-				if(stage[pos.x][pos.y+1] instanceof Wand){
+				if(stage[(int) pos.getX()][(int) (pos.getY()+1)] instanceof Wand){
 					//TODO Kollision (Player, Bombe, PowerUp)
 				}
 			}
 			
 			//Explosion in -y-Richtung
 			for (int i = 1; i <= radius; i++){
-				if(stage[pos.x][pos.y-1] instanceof Wand){
+				if(stage[(int) pos.getX()][(int) (pos.getY()-1)] instanceof Wand){
 					//TODO Kollision (Player, Bombe, PowerUp)
 				}
 			}
 			
 			//Explosion in +x-Richtung
 			for (int i = 1; i <= radius; i++){
-				if(stage[pos.x+1][pos.y] instanceof Wand){
+				if(stage[(int) (pos.getX()+1)][(int) pos.getY()] instanceof Wand){
 					//TODO Kollision (Player, Bombe, PowerUp)
 				}
 			}
 			
 			//Explosion in -x-Richtung
 			for (int i = 1; i <= radius; i++){
-				if(stage[pos.x-1][pos.y] instanceof Wand){
+				if(stage[(int) (pos.getX()-1)][(int) pos.getY()] instanceof Wand){
 					//TODO Kollision (Player, Bombe, PowerUp)
 				}
 			}
@@ -114,7 +113,7 @@ public class Bomb extends GameObject{
 	
 		@Override
 		public void render(SpriteBatch sb) {
-			sb.draw(spritesheet, pos.x, pos.y);
+			sb.draw(spritesheet, pos.getX(), pos.getY());
 			
 		}
 

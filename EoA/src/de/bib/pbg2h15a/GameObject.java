@@ -1,7 +1,5 @@
 package de.bib.pbg2h15a;
 
-import java.awt.Point;
-
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -36,8 +34,8 @@ public abstract class GameObject {
 		return passable;
 	}
 
-	public void setPos(Point pos) {
-		this.pos = pos;
+	public void setPos(Point player_spawns) {
+		this.pos = player_spawns;
 	}
 	
 

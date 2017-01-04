@@ -1,7 +1,5 @@
 package de.bib.pbg2h15a;
 
-import java.awt.Point;
-
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -50,7 +48,7 @@ public class Explosion extends GameObject {
 	
 	@Override
 	public void render(SpriteBatch sb) {
-		sb.draw(texture, pos.x, pos.y);
+		sb.draw(texture, pos.getX(), pos.getY());
 	}
 
 	@Override
