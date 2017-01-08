@@ -149,7 +149,7 @@ public class Player extends GameObject {
 
 	@Override
 	public void render(SpriteBatch sb) {
-		sb.draw(spritesheet, pos.x, pos.y);
+		sb.draw(spritesheet, pos.getX(), pos.getY());
 	}
 
 	@Override
