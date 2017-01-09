@@ -80,8 +80,9 @@ public class LocalGameState extends GameState{
     	stage = new Stage((GameObject[][]) field, 300, StageType.STANDARD, player_spawns, 3, Mode.LAST_MAN_STANDING);
 		
     	player = new Player[4];
-    	//insert players
-    	
+    	for(int i = 0;i < 4;i++){
+    		player[i] = new Player("Player " + i, null, texture_player, stage);
+    	}
     	for(int i = 0;i<4;i++){
     		player[i].setPos(player_spawns[i]);
     	}
@@ -174,8 +175,10 @@ public class LocalGameState extends GameState{
     	
     	for(int i=0;i<height;i++){
     		for(int j=0;j<width;j++){
+    			
     			int posx = 75 + SPRITESIZE * j;
     			int posy = 0 + SPRITESIZE * i;
+    			
     			if(i == 0 || j == 0 || i == height-1 || j == width-1){
     				Pillar pillar = new Pillar(new Point(posx, posy));
     				newField[i][j] = pillar;
@@ -203,13 +206,13 @@ public class LocalGameState extends GameState{
     	}
 	}
 
-	private boolean collision(Sprite s1, List<Object> objects, float os) {
+	private boolean collision(Sprite s, List<Object> objects, float os) {
 		
 		boolean collision = false;
     	CollisionDetector cd = new CollisionDetector(sprite_player, COLLISION_OFFSET);
     	
-    	for(Object s : objects){
-    		if(cd.collidesWith((GameObject) s))
+    	for(Object o : objects){
+    		if(cd.collidesWith((GameObject) o))
     			collision = true;
     	}
     	
