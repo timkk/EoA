@@ -23,7 +23,7 @@ public class GameStateManager {
 	public GameStateManager() {
 		setState(MAIN);
 	}
-	
+
 	public void setState(int state) {
 		if(gameState != null) gameState.dispose();
 		
