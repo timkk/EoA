@@ -28,24 +28,6 @@ public class LocalGameState extends GameState{
 	private SpriteBatch batch;
 	
 	private Texture texture_player;
-	private Texture texture_background_center;
-	
-//	private Texture texture_background_left;
-//	private Texture texture_background_right;
-//	private Texture texture_background_top;
-//	private Texture texture_background_bottom;
-//	private Texture texture_background_leftright;
-//	private Texture texture_background_topbottom;
-//	private Texture texture_background_topleft;
-//	private Texture texture_background_topright;
-//	private Texture texture_background_bottomleft;
-//	private Texture texture_background_bottomright;
-	private Texture texture_pillar;
-	private Texture texture_pillarOutside;
-	private Texture texture_wall;
-	private Texture texture_bomb;
-	private Texture texture_firetrap;
-	private Texture texture_windtrap;
 	
 	private Sprite sprite_player;
 	
@@ -63,8 +45,9 @@ public class LocalGameState extends GameState{
 		new Point(FIELD_END.getX()-SPRITESIZE,FIELD_END.getY()-SPRITESIZE)};
 	private final float COLLISION_OFFSET = 1f;
 	
-	private Sprite[][] field;
-	private List<Sprite> collision_objects;
+	private Stage stage;
+	private List<Object> collision_objects;
+	private List<Object> collision_explosion;
 	
 	private Timer timer = new Timer(6);
 	
@@ -80,7 +63,8 @@ public class LocalGameState extends GameState{
 	public void init() {
     	batch = new SpriteBatch();
     	
-    	collision_objects = new LinkedList<Sprite>();
+    	collision_objects = new LinkedList<Object>();
+    	collision_explosion = new LinkedList<Object>();
 
     	font = new BitmapFont();
     	font.setColor(Color.BLACK);
@@ -91,27 +75,9 @@ public class LocalGameState extends GameState{
     	texture_player = new Texture(Gdx.files.internal("img/Stage_1/WindFalle.png"));//to do
     	sprite_player = new Sprite(texture_player);
     	sprite_player.setPosition(FIELD_START.getX(), FIELD_START.getY());
-
-    	texture_background_center = new Texture(Gdx.files.internal("img/Stage_1/GrassZentrum.png"));
-//    	texture_background_left = new Texture(Gdx.files.internal("img/Stage_1/GrassLinks.png"));
-//    	texture_background_right = new Texture(Gdx.files.internal("img/Stage_1/GrassRechts.png"));
-//    	texture_background_top = new Texture(Gdx.files.internal("img/Stage_1/GrassOben.png"));
-//    	texture_background_bottom = new Texture(Gdx.files.internal("img/Stage_1/GrassUnten.png"));
-//    	texture_background_leftright = new Texture(Gdx.files.internal("img/Stage_1/GrassRechtsLinks.png"));
-//    	texture_background_topbottom = new Texture(Gdx.files.internal("img/Stage_1/GrassObenUnten.png"));
-//    	texture_background_topleft = new Texture(Gdx.files.internal("img/Stage_1/GrassObenLinks.png"));
-//    	texture_background_topright = new Texture(Gdx.files.internal("img/Stage_1/GrassObenRechts.png"));
-//    	texture_background_bottomleft = new Texture(Gdx.files.internal("img/Stage_1/GrassUntenLinks.png"));
-//    	texture_background_bottomright = new Texture(Gdx.files.internal("img/Stage_1/GrassUntenRechts.png"));
-    	texture_pillar = new Texture(Gdx.files.internal("img/Stage_1/Saeule.png"));
-    	texture_pillarOutside = new Texture(Gdx.files.internal("img/Stage_1/AussenWand.png"));
-    	texture_wall = new Texture(Gdx.files.internal("img/Stage_1/Kiste.png"));
-    	texture_bomb = new Texture(Gdx.files.internal("img/Stage_1/Bombe.png"));
-    	texture_firetrap = new Texture(Gdx.files.internal("img/Stage_1/FeuerFalle.png"));
-    	texture_windtrap = new Texture(Gdx.files.internal("img/Stage_1/WindFalle.png"));
     	
-    	field = new Sprite[17][13];
-    	field = setupField(17, 13);
+    	Object[][] field = setupField(17, 13);
+    	stage = new Stage((GameObject[][]) field, 300, StageType.STANDARD, player_spawns, 3, Mode.LAST_MAN_STANDING);
 		
     	player = new Player[4];
     	//insert players
@@ -184,7 +150,7 @@ public class LocalGameState extends GameState{
     	pos = "x/y: " + sprite_player.getX() + " - " + (sprite_player.getX()+sprite_player.getWidth()) + " / " + sprite_player.getY() + " - " + (sprite_player.getY()+sprite_player.getHeight());
     	
     	batch.begin();
-    	drawField(field, 17, 13);
+    	drawField(stage);
     	font.draw(batch, pos, 80, 16);
     	sprite_player.draw(batch);
     	if(!timer.isFinished()){
@@ -199,88 +165,28 @@ public class LocalGameState extends GameState{
 	public void dispose() {
     	batch.dispose();
     	texture_player.dispose();
-//    	texture_background_bottom.dispose();
-//    	texture_background_bottomleft.dispose();
-//    	texture_background_bottomright.dispose();
-    	texture_background_center.dispose();
-//    	texture_background_left.dispose();
-//    	texture_background_leftright.dispose();
-//    	texture_background_right.dispose();
-//    	texture_background_top.dispose();
-//    	texture_background_topbottom.dispose();
-//    	texture_background_topleft.dispose();
-//    	texture_background_topright.dispose();
-    	texture_pillar.dispose();
-    	texture_pillarOutside.dispose();
-    	texture_wall.dispose();
+    	
 	}
 
-	private Sprite[][] setupField(int width, int height){
+	private Object[][] setupField(int width, int height){
     	
-    	Sprite[][] newField = new Sprite[height][width];
+    	Object[][] newField = new GameObject[height][width];
     	
     	for(int i=0;i<height;i++){
     		for(int j=0;j<width;j++){
     			int posx = 75 + SPRITESIZE * j;
     			int posy = 0 + SPRITESIZE * i;
     			if(i == 0 || j == 0 || i == height-1 || j == width-1){
-    				Sprite pillar = new Sprite(texture_pillarOutside);
-    				pillar.setPosition(posx, posy);
+    				Pillar pillar = new Pillar(new Point(posx, posy));
     				newField[i][j] = pillar;
     				collision_objects.add(pillar);
 				}else if(((i % 2) == 0 && (j % 2) == 0)){
-    				Sprite pillar = new Sprite(texture_pillar);
-    				pillar.setPosition(posx, posy);
-    				newField[i][j] = pillar;
-    				collision_objects.add(pillar);
-//				}else if(i == 1 && j == 1){
-//					Sprite s = new Sprite(texture_background_topleft);
-//					s.setPosition(posx, posy);
-//					newField[i][j] = s;
-//				}else if(i == 1 && j == width-2){
-//					Sprite s = new Sprite(texture_background_topright);
-//					s.setPosition(posx, posy);
-//					newField[i][j] = s;
-//				}else if(i == height-2 && j == 1){
-//					Sprite s = new Sprite(texture_background_bottomleft);
-//					s.setPosition(posx, posy);
-//					newField[i][j] = s;
-//				}else if(i == height-2 && j == width-2){
-//					Sprite s = new Sprite(texture_background_bottomright);
-//					s.setPosition(posx, posy);
-//					newField[i][j] = s;
-//				}else if(i > 1 && i < height-2 && (i % 2) == 1 && j == 1){
-//					Sprite s = new Sprite(texture_background_left);
-//					s.setPosition(posx, posy);
-//					newField[i][j] = s;
-//				}else if(i > 1 && i < height-2 && (i % 2) == 1 && j == width-2){
-//					Sprite s = new Sprite(texture_background_right);
-//					s.setPosition(posx, posy);
-//					newField[i][j] = s;
-//				}else if(i > 1 && i < height-2 && (i % 2) == 0 && j > 1 && j < width-2 && (j % 2) == 1){
-//					Sprite s = new Sprite(texture_background_leftright);
-//					s.setPosition(posx, posy);
-//					newField[i][j] = s;
-//				}else if(i > 1 && i < height-1 && (i % 2) == 1 && j > 1 && j < width-1 && (j % 2) == 0){
-//					Sprite s = new Sprite(texture_background_topbottom);
-//					s.setPosition(posx, posy);
-//					newField[i][j] = s;
-//				}else if(i == 1 && j > 1 && j < width-2){
-//					Sprite s = new Sprite(texture_background_top);
-//					s.setPosition(posx, posy);
-//					newField[i][j] = s;
-//				}else if(i == height-2 && j > 1 && j < width-2){
-//					Sprite s = new Sprite(texture_background_bottom);
-//					s.setPosition(posx, posy);
-//					newField[i][j] = s;
-//				}else if(i > 1 && i < height-2 && j > 1 && j < width-2 && (i % 2) == 1 && (j % 2) == 1){
-//					Sprite s = new Sprite(texture_background_center);
-//					s.setPosition(posx, posy);
-//					newField[i][j] = s;
+					Wall wall = new Wall(new Point(posx, posy));
+    				newField[i][j] = wall;
+    				collision_objects.add(wall);
 				}else{
-					Sprite s = new Sprite(texture_background_center);
-					s.setPosition(posx, posy);
-					newField[i][j] = s;
+					Background background = new Background(new Point(posx, posy));
+					newField[i][j] = background;
 				}
     		}
     	}
@@ -288,25 +194,25 @@ public class LocalGameState extends GameState{
     	return newField;
     }
 
-    private void drawField(Sprite[][] sprites, int width, int height) {
-    	for(int i=0;i<height;i++){
-    		for(int j=0;j<width;j++){
-    			Sprite s = sprites[i][j];
-    			s.draw(batch);
+    private void drawField(Stage s) {
+    	for(int i=0;i<13;i++){
+    		for(int j=0;j<17;j++){
+    			GameObject g = s.getFields()[i][j];
+    			g.render(batch);
     		}
     	}
 	}
-    
-    private boolean collision(Sprite s1, List<Sprite> s2, float offset){
 
-    	boolean collision = false;
-    	CollisionDetector cd = new CollisionDetector(sprite_player, (int) COLLISION_OFFSET);
+	private boolean collision(Sprite s1, List<Object> objects, float os) {
+		
+		boolean collision = false;
+    	CollisionDetector cd = new CollisionDetector(sprite_player, COLLISION_OFFSET);
     	
-    	for(Sprite s : s2){
-    		if(cd.collidesWith(s))
+    	for(Object s : objects){
+    		if(cd.collidesWith((GameObject) s))
     			collision = true;
     	}
     	
     	return collision;
-    }
+	}
 }

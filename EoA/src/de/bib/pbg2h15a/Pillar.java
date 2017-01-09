@@ -10,10 +10,19 @@ public class Pillar extends GameObject {
 	 * @author pbg2h15ani
 	 *  
 	 */
-	
 	public Pillar(int x, int y) {
 		
-		super(new Point(x,y), false, null);
+		super(new Point(x, y), false, null);
+		this.spritesheet = new Texture("Saeule.png"); // TODO 
+	}
+
+	/**
+	 * @author pbg2h15asu
+	 * @param p Position
+	 */
+	public Pillar(Point p) {
+		
+		super(p, false, null);
 		this.spritesheet = new Texture("Saeule.png"); // TODO 
 	}
 
