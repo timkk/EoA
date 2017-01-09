@@ -96,7 +96,7 @@ public class LocalGameState extends GameState{
 		if(timer.isFinished()){
 			rundenTimer.update(dt);
 			
-	    	
+	    	//spieler input
 	    	for(int i=0;i<4;i++){
 	    		
 		    	InputConfig playerinput = player[i].getControls();
@@ -145,6 +145,11 @@ public class LocalGameState extends GameState{
 		    		bombs.add(player[i].dropBomb());
 		    	}
 	    	}
+	    	
+	    	for(Bomb b : bombs){
+	    		b.update(dt);
+	    	}
+	    	
 		}else{
 			timer.update(dt);
 		}

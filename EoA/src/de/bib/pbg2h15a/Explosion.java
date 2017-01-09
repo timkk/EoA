@@ -10,14 +10,6 @@ public class Explosion extends GameObject {
 	 */
 	private float time;
 	private TextureRegion texture;
-
-	
-	
-	public Explosion(Point pos, Texture spritesheet, int region) {
-		super(pos, true, spritesheet);
-		// TODO TextureRegion benötigt Bild
-	}
-
 	private Player player;
 	
 	/**
@@ -30,12 +22,14 @@ public class Explosion extends GameObject {
 		// TODO TextureRegion benötigt Bild
 	}
 
-	
-	
+	public Explosion(Point pos, Texture spritesheet, int region) {
+		super(pos, true, spritesheet);
+		// TODO TextureRegion benötigt Bild
+	}
+
 	public Player getPlayer() {
 		return player;
 	}
-
 
 	public boolean shouldRemove(){
 		return time <= 0;
