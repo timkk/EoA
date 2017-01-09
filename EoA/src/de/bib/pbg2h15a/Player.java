@@ -17,7 +17,8 @@ public class Player extends GameObject {
 	private Illness illness;
 	private String name;
 	private Stage stage;
-
+	private InputConfig controls;
+	
 	protected Point pos;
 	protected boolean passable;
 	protected Texture spritesheet;
@@ -31,7 +32,7 @@ public class Player extends GameObject {
 	 * 
 	 * @author pbg2h15akl
 	 */
-	public Player(String name, Point pos, Texture spritesheet, Stage stage) {
+	public Player(String name, Point pos, Texture spritesheet, InputConfig controls, Stage stage) {
 		super(pos, false, spritesheet);
 		this.name = name;
 		this.moveSpeed = 2;
@@ -43,6 +44,7 @@ public class Player extends GameObject {
 		this.stats = new Statistic();
 		this.illness = null;
 		this.stage = stage;
+		this.controls = controls;
 	}
 
 	
@@ -70,6 +72,15 @@ public class Player extends GameObject {
 	public void setMoveSpeed(int moveSpeed) {
 		this.moveSpeed = moveSpeed;
 	}
+
+	/**
+	 * @author pbg2h15asu
+	 * @return input config for this player
+	 */
+	public InputConfig getControls() {
+		return controls;
+	}
+
 
 	/**
 	 * Adds the value to the original movespeed. To decrease commit a negative
