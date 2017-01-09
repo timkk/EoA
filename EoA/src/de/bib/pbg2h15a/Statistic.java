@@ -13,7 +13,7 @@ public class Statistic {
 	/**
 	 * @author pbg2h15akl
 	 */
-	public Statistic() {
+	public void Statisctis() {
 		this.points = 0;
 		this.placedBombs = 0;
 		this.killedEnemies = 0;
@@ -133,19 +133,18 @@ public class Statistic {
 	public void setIllnessTransferCount(int illnessTransferCount) {
 		this.illnessTransferCount = illnessTransferCount;
 	}
+
 	/**
-	 * 
-	 * @author pbg2h15agu, pbg2h15ala
+	 * @author pbg2h15asu
+	 * @param statistic that will be added to this one
 	 */
-	// Für Gesamtstatistik um Rundenstatistiken zusammen zu rechnen
-	public void addStatistic(Statistic other){
-		this.points += other.points;
-		this.placedBombs +=  other.placedBombs;
-		this.killedEnemies +=  other.killedEnemies;
-		this.selfkills +=  other.selfkills;
-		this.powerUpPickUpCount +=  other.powerUpPickUpCount;
-		this.illnessPickUpCount +=  other.illnessPickUpCount;
-		this.illnessTransferCount += other.illnessTransferCount;
+	public void addStatistic(Statistic s) {
+		this.points += s.points;
+		this.selfkills += s.selfkills;
+		this.powerUpPickUpCount += s.powerUpPickUpCount;
+		this.placedBombs += s.placedBombs;
+		this.killedEnemies += s.killedEnemies;
+		this.illnessTransferCount += s.illnessTransferCount;
+		this.illnessPickUpCount += s.illnessPickUpCount;
 	}
-	
 }
