@@ -13,7 +13,7 @@ public class Pillar extends GameObject {
 	public Pillar(int x, int y) {
 		
 		super(new Point(x, y), false, null);
-		this.spritesheet = new Texture("Saeule.png"); // TODO 
+		this.spritesheet = new Texture("img/Stage_1/Saeule.png"); 
 	}
 
 	/**
@@ -23,7 +23,7 @@ public class Pillar extends GameObject {
 	public Pillar(Point p) {
 		
 		super(p, false, null);
-		this.spritesheet = new Texture("Saeule.png"); // TODO 
+		this.spritesheet = new Texture("img/Stage_1/Saeule.png"); 
 	}
 
 	@Override

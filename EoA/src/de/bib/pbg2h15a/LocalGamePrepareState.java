@@ -1,6 +1,7 @@
 package de.bib.pbg2h15a;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -67,6 +68,9 @@ public class LocalGamePrepareState extends GameState {
 		
 		batch = new SpriteBatch();    	
     	buttonSet();
+    	
+    	zeitValue = new BitmapFont();
+    	zeitValue.setColor(Color.BLACK);
     	
     	stage = new Stage();
 		Gdx.input.setInputProcessor(stage);

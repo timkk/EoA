@@ -27,8 +27,8 @@ public class LocalGameState extends GameState{
 	private Texture texture_player;
 	
 	private Player[] player;
-	private final InputConfig[] input 
-		= {new InputConfig(Input.Keys.A, Input.Keys.D, Input.Keys.W, Input.Keys.S, Input.Keys.Q),
+	private final InputConfig[] input =
+		  {new InputConfig(Input.Keys.A, Input.Keys.D, Input.Keys.W, Input.Keys.S, Input.Keys.Q),
 			new InputConfig(Input.Keys.LEFT, Input.Keys.RIGHT, Input.Keys.UP, Input.Keys.DOWN, Input.Keys.PAGE_DOWN),
 			new InputConfig(Input.Keys.J, Input.Keys.L, Input.Keys.I, Input.Keys.K, Input.Keys.SPACE),
 			new InputConfig(Input.Keys.NUMPAD_1, Input.Keys.NUMPAD_3, Input.Keys.NUMPAD_5, Input.Keys.NUMPAD_2, Input.Keys.NUMPAD_0)};;
@@ -37,11 +37,12 @@ public class LocalGameState extends GameState{
 	private final Point FIELD_END = new Point(825f, 600f);
 	private final int SPRITESIZE = 50;
 	
-	private final Point[] player_spawns = 
+	private final Point[] player_spawns =
 		{new Point(FIELD_START.getX(), FIELD_END.getY()-SPRITESIZE), 
 		new Point(FIELD_END.getX()-SPRITESIZE,FIELD_START.getY()),
 		new Point(FIELD_START.getX(), FIELD_START.getX()),
 		new Point(FIELD_END.getX()-SPRITESIZE,FIELD_END.getY()-SPRITESIZE)};
+	
 	private final float COLLISION_OFFSET = 1f;
 	
 	private Stage stage;
@@ -80,10 +81,7 @@ public class LocalGameState extends GameState{
     	
     	player = new Player[4];
     	for(int i = 0;i < 4;i++){
-    		player[i] = new Player("Player " + i, null, texture_player, input[i], stage);
-    	}
-    	for(int i = 0;i<4;i++){
-    		player[i].setPos(player_spawns[i]);
+    		player[i] = new Player("Player " + i, player_spawns[i], texture_player, input[i], stage);
     	}
     	
     	rundenTimer = new Timer(300);

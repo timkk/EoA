@@ -20,7 +20,7 @@ public class Wall extends GameObject {
 	public Wall(int x, int y) {
 		super(new Point(x, y), false, null);
 		this.content = generateCollectable();
-		this.spritesheet = new Texture("/img/Stage_1/Kiste.png");
+		this.spritesheet = new Texture("img/Stage_1/Kiste.png");
 
 	}
 	
@@ -31,7 +31,7 @@ public class Wall extends GameObject {
 	public Wall(Point p){
 		super(p, false, null);
 		this.content = generateCollectable();
-		this.spritesheet = new Texture("/img/Stage_1/Kiste.png");
+		this.spritesheet = new Texture("img/Stage_1/Kiste.png");
 	}
 
 	public Collectable getContent() {
