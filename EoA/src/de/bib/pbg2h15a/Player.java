@@ -51,7 +51,7 @@ public class Player extends GameObject {
 	public Bomb dropBomb() {
 
 		Bomb bombe = new Bomb(this, pos, this.bombRadius, stage.getFields());
-
+		this.anzahlBomben++;
 		bombe.setPos(this.getPos());
 
 		return bombe;

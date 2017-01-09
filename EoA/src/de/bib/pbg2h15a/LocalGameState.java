@@ -76,6 +76,8 @@ public class LocalGameState extends GameState{
     	Object[][] field = setupField(17, 13);
     	stage = new Stage((GameObject[][]) field, 300, StageType.STANDARD, player_spawns, 3, Mode.LAST_MAN_STANDING);
 		
+    	texture_player = new Texture("img/Stage_1/Windfalle.png");
+    	
     	player = new Player[4];
     	for(int i = 0;i < 4;i++){
     		player[i] = new Player("Player " + i, null, texture_player, input[i], stage);
