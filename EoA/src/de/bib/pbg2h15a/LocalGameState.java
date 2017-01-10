@@ -57,7 +57,7 @@ public class LocalGameState extends GameState{
 	
 	protected LocalGameState(GameStateManager gsm) {
 		super(gsm);
-		// TODO Auto-generated constructor stub
+		init();
 	}
 
 	@Override
@@ -85,7 +85,7 @@ public class LocalGameState extends GameState{
     	}
     	
     	rundenTimer = new Timer(300);
-    	gui = new GUI(rundenTimer, player[0], player[1], player[2], player[3], gsm, this);
+
 	}
 
 	@Override
@@ -164,13 +164,12 @@ public class LocalGameState extends GameState{
     		b.render(batch);
     	}
     	for(Player p : player){
-    		p.render(batch);
+    		//p.render(batch);
     	}
     	if(!timer.isFinished()){
     		int time = (int)timer.getTime();
     		font_countdown.draw(batch, ""+time, Gdx.graphics.getWidth()/2 - 8, Gdx.graphics.getHeight()/2-20);
     	}
-    	gui.render(batch);
     	batch.end();
 	}
 
@@ -192,13 +191,13 @@ public class LocalGameState extends GameState{
     			int posy = 0 + SPRITESIZE * i;
     			
     			if(i == 0 || j == 0 || i == height-1 || j == width-1){
-    				Pillar pillar = new Pillar(new Point(posx, posy));
+    				Pillar pillar = new Pillar(new Point(posx, posy), false);
     				newField[i][j] = (GameObject)pillar;
     				collision_objects.add(pillar);
 				}else if(((i % 2) == 0 && (j % 2) == 0)){
-					Wall wall = new Wall(new Point(posx, posy));
-    				newField[i][j] = (GameObject)wall;
-    				collision_objects.add(wall);
+    				Pillar pillar = new Pillar(new Point(posx, posy), true);
+    				newField[i][j] = (GameObject)pillar;
+    				collision_objects.add(pillar);
 				}else{
 					Background background = new Background(new Point(posx, posy));
 					newField[i][j] = (GameObject)background;

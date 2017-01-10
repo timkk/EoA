@@ -25,6 +25,19 @@ public class Pillar extends GameObject {
 		super(p, false, null);
 		this.spritesheet = new Texture("img/Stage_1/Saeule.png"); 
 	}
+	
+	/**
+	 * @author pbg2h15asu
+	 * @param p Position
+	 * @param b true -> innen, false -> auﬂen
+	 */
+	public Pillar(Point p, boolean b){
+		super(p, false, null);
+		if(b)
+			this.spritesheet = new Texture("img/Stage_1/Saeule.png");
+		else 
+			this.spritesheet = new Texture("img/Stage_1/Aussenwand.png");
+	}
 
 	@Override
 	public void render(SpriteBatch sb) {

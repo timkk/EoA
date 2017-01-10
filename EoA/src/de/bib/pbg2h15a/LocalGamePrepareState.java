@@ -57,7 +57,7 @@ public class LocalGamePrepareState extends GameState {
 
 	protected LocalGamePrepareState(GameStateManager gsm) {
 		super(gsm);
-		// TODO Auto-generated constructor stub
+		init();
 	}
 	
 	

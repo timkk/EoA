@@ -23,6 +23,7 @@ public class ModeSelectState extends GameState {
 	
 	protected ModeSelectState(GameStateManager gsm) {
 		super(gsm);
+		init();
 	}
 
 	@Override

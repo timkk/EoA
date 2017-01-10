@@ -160,6 +160,10 @@ public class Player extends GameObject {
 
 	@Override
 	public void render(SpriteBatch sb) {
+		if(spritesheet == null)
+			System.out.println("ss");
+		if(pos == null)
+			System.out.println("pos");
 		sb.draw(spritesheet, pos.getX(), pos.getY());
 	}
 

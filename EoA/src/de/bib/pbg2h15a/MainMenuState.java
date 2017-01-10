@@ -19,7 +19,7 @@ public class MainMenuState extends GameState {
 	
 	protected MainMenuState(GameStateManager gsm) {
 		super(gsm);
-		// TODO Auto-generated constructor stub
+		init();
 	}
 
 	@Override

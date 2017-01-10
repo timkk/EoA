@@ -18,7 +18,7 @@ public class OptionsState extends GameState {
 	
 	protected OptionsState(GameStateManager gsm) {
 		super(gsm);
-		// TODO Auto-generated constructor stub
+		init();
 	}
 
 	@Override
