@@ -19,6 +19,7 @@ public class Pillar extends GameObject {
 	/**
 	 * @author pbg2h15asu
 	 * @param p Position
+	 * 			erstellt S‰ule mit Gras texture
 	 */
 	public Pillar(Point p) {
 		
@@ -32,6 +33,7 @@ public class Pillar extends GameObject {
 	 * @param b true -> innen, false -> auﬂen
 	 */
 	public Pillar(Point p, boolean b){
+		
 		super(p, false, null);
 		if(b)
 			this.spritesheet = new Texture("img/Stage_1/Saeule.png");
@@ -42,15 +44,11 @@ public class Pillar extends GameObject {
 	@Override
 	public void render(SpriteBatch sb) {
 		
-		sb.draw(spritesheet, pos.getX(), pos.getY());
-		
+		sb.draw(this.getSpritesheet(), this.getPos().getX(), this.getPos().getY());
 	}
 
 	@Override
 	public void update(float dt) {
 		
-		
-		
 	}
-
 }

@@ -27,20 +27,21 @@ public class LocalGameState extends GameState{
 	private Texture texture_player;
 	
 	private Player[] player;
-	private final InputConfig[] input =
+	
+	protected final InputConfig[] input =
 		  {new InputConfig(Input.Keys.A, Input.Keys.D, Input.Keys.W, Input.Keys.S, Input.Keys.Q),
 			new InputConfig(Input.Keys.LEFT, Input.Keys.RIGHT, Input.Keys.UP, Input.Keys.DOWN, Input.Keys.PAGE_DOWN),
 			new InputConfig(Input.Keys.J, Input.Keys.L, Input.Keys.I, Input.Keys.K, Input.Keys.SPACE),
 			new InputConfig(Input.Keys.NUMPAD_1, Input.Keys.NUMPAD_3, Input.Keys.NUMPAD_5, Input.Keys.NUMPAD_2, Input.Keys.NUMPAD_0)};;
 	
 	private final Point FIELD_START = new Point(125f, 50f);
-	private final Point FIELD_END = new Point(825f, 600f);
+	private final Point FIELD_END = new Point(875f, 600f);
 	private final int SPRITESIZE = 50;
 	
-	private final Point[] player_spawns =
+	protected final Point[] player_spawns =
 		{new Point(FIELD_START.getX(), FIELD_END.getY()-SPRITESIZE), 
 		new Point(FIELD_END.getX()-SPRITESIZE,FIELD_START.getY()),
-		new Point(FIELD_START.getX(), FIELD_START.getX()),
+		new Point(FIELD_START.getX(), FIELD_START.getY()),
 		new Point(FIELD_END.getX()-SPRITESIZE,FIELD_END.getY()-SPRITESIZE)};
 	
 	private final float COLLISION_OFFSET = 1f;
@@ -105,17 +106,18 @@ public class LocalGameState extends GameState{
 		    	
 		    	if(Gdx.input.isKeyPressed(playerinput.getKeyLeft())){
 		    		
-		    		player[i].pos.translate(-player[i].getMoveSpeed(), 0);
+		    		Point tmp = new Point(player[i].getPos());
+		    		tmp.translate(-player[i].getMoveSpeed(), 0);
+			    	if(!collision(tmp, collision_objects))
+			    		player[i].setPos(tmp);
 		    		
-			    	if(collision(player[i], collision_objects))
-			    		player[i].pos = pos;
 		    	}
 		    	if(Gdx.input.isKeyPressed(playerinput.getKeyRight())){
 
-		    		player[i].pos.translate(player[i].getMoveSpeed(), 0);
-		    		
-			    	if(collision(player[i], collision_objects))
-			    		player[i].pos = pos;
+		    		Point tmp = new Point(player[i].getPos());
+		    		tmp.translate(player[i].getMoveSpeed(), 0);
+			    	if(!collision(tmp, collision_objects))
+			    		player[i].setPos(tmp);
 		    	}
 		    	
 		    	pos.setX(player[i].getPos().getX());
@@ -124,17 +126,17 @@ public class LocalGameState extends GameState{
 
 		    	if(Gdx.input.isKeyPressed(playerinput.getKeyUp())){
 
-		    		player[i].pos.translate(0, player[i].getMoveSpeed());
-		    		
-			    	if(collision(player[i], collision_objects))
-			    		player[i].pos = pos;
+		    		Point tmp = new Point(player[i].getPos());
+		    		tmp.translate(0, player[i].getMoveSpeed());
+			    	if(!collision(tmp, collision_objects))
+			    		player[i].setPos(tmp);
 		    	}
 		    	if(Gdx.input.isKeyPressed(playerinput.getKeyDown())){
 
-		    		player[i].pos.translate(0, -player[i].getMoveSpeed());
-		    		
-			    	if(collision(player[i], collision_objects))
-			    		player[i].pos = pos;
+		    		Point tmp = new Point(player[i].getPos());
+		    		tmp.translate(0, -player[i].getMoveSpeed());
+			    	if(!collision(tmp, collision_objects))
+			    		player[i].setPos(tmp);
 		    	}
 		    	
 		    	//bombe legen
@@ -164,7 +166,7 @@ public class LocalGameState extends GameState{
     		b.render(batch);
     	}
     	for(Player p : player){
-    		//p.render(batch);
+    		p.render(batch);
     	}
     	if(!timer.isFinished()){
     		int time = (int)timer.getTime();
@@ -221,6 +223,19 @@ public class LocalGameState extends GameState{
 		
 		boolean collision = false;
     	CollisionDetector cd = new CollisionDetector((GameObject) p, COLLISION_OFFSET);
+    	
+    	for(GameObject o : objects){
+    		if(cd.collidesWith(o))
+    			collision = true;
+    	}
+    	
+    	return collision;
+    }
+
+	private boolean collision(Point p, List<GameObject> objects) {
+		
+		boolean collision = false;
+    	CollisionDetector cd = new CollisionDetector(p, 50f, 50f, COLLISION_OFFSET);
     	
     	for(GameObject o : objects){
     		if(cd.collidesWith(o))

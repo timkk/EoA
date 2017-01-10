@@ -39,7 +39,7 @@ public class Player extends GameObject {
 		this.bombKickable = false;
 		this.bombThrowable = false;
 		this.anzahlBomben = 1;
-		this.anzahlBombenMax = 10;
+		this.anzahlBombenMax = 1;
 		this.life = 1;
 		this.stats = new Statistic();
 		this.illness = null;
@@ -160,15 +160,11 @@ public class Player extends GameObject {
 
 	@Override
 	public void render(SpriteBatch sb) {
-		if(spritesheet == null)
-			System.out.println("ss");
-		if(pos == null)
-			System.out.println("pos");
-		sb.draw(spritesheet, pos.getX(), pos.getY());
+		sb.draw(this.getSpritesheet(), this.getPos().getX(), this.getPos().getY());
 	}
 
 	@Override
 	public void update(float dt) {
+		
 	}
-
 }

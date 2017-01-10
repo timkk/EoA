@@ -42,7 +42,7 @@ public class Wall extends GameObject {
 	@Override
 	public void render(SpriteBatch sb) {
 		// TODO Auto-generated method stub
-		sb.draw(spritesheet, pos.getX(), pos.getY());
+		sb.draw(this.getSpritesheet(), this.getPos().getX(), this.getPos().getY());
 	}
 
 	@Override

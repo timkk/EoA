@@ -15,6 +15,12 @@ public class Point {
 		this.y = y;
 	}
 	
+	public Point(Point p) {
+		super();
+		this.x = p.getX();
+		this.y = p.getY();
+	}
+	
 	public float getX() {
 		return x;
 	}

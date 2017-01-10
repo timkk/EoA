@@ -34,9 +34,15 @@ public abstract class GameObject {
 		return passable;
 	}
 
-	public void setPos(Point player_spawns) {
-		this.pos = player_spawns;
+	public void setPos(Point pos) {
+		this.pos = pos;
 	}
-	
 
+	public Animation getAnimation() {
+		return animation;
+	}
+
+	public Texture getSpritesheet() {
+		return this.spritesheet;
+	}
 }

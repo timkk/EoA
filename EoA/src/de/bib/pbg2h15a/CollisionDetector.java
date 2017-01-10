@@ -38,8 +38,8 @@ public class CollisionDetector {
 		super();
 		this.x = g.getPos().getX();
 		this.y = g.getPos().getY();
-		this.width = g.spritesheet.getWidth();
-		this.height = g.spritesheet.getHeight();
+		this.width = g.getSpritesheet().getWidth();
+		this.height = g.getSpritesheet().getHeight();
 		if(os < 1)
 			this.os = 1;
 		else
@@ -48,8 +48,11 @@ public class CollisionDetector {
 
 	public boolean collidesWith(GameObject other){
 		
+		Point tmp = other.getPos();
+		Texture ttmp = other.getSpritesheet();
+		
 		Rectangle rect1 = new Rectangle(this.x, this.y, this.width, this.height);
-		Rectangle rect2 = new Rectangle(other.getPos().getX()+os, other.getPos().getY()+os, other.spritesheet.getWidth()-os*2, other.spritesheet.getHeight()-os*2);
+		Rectangle rect2 = new Rectangle(tmp.getX()+os, tmp.getY(), ttmp.getWidth()-os*2, ttmp.getHeight()-os*2);
 
 		return (rect1.getX() < rect2.getX() + rect2.getWidth() &&
 		        rect1.getX() + rect1.getWidth() > rect2.getX() &&
