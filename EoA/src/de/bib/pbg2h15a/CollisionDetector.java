@@ -52,7 +52,7 @@ public class CollisionDetector {
 		Texture ttmp = other.getSpritesheet();
 		
 		Rectangle rect1 = new Rectangle(this.x, this.y, this.width, this.height);
-		Rectangle rect2 = new Rectangle(tmp.getX()+os, tmp.getY(), ttmp.getWidth()-os*2, ttmp.getHeight()-os*2);
+		Rectangle rect2 = new Rectangle(tmp.getX()+os, tmp.getY()+os, ttmp.getWidth()-os*2, ttmp.getHeight()-os*2);
 
 		return (rect1.getX() < rect2.getX() + rect2.getWidth() &&
 		        rect1.getX() + rect1.getWidth() > rect2.getX() &&

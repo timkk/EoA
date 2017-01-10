@@ -51,7 +51,7 @@ public class LocalGameState extends GameState{
 	private List<GameObject> collision_explosion;
 	private List<Bomb> bombs;
 	
-	private Timer timer = new Timer(6);
+	private Timer timer = new Timer(1);
 	
 	private GUI gui;
 	private Timer rundenTimer;
@@ -81,7 +81,7 @@ public class LocalGameState extends GameState{
     	texture_player = new Texture("img/Stage_1/Windfalle.png");
     	
     	player = new Player[4];
-    	for(int i = 0;i < 4;i++){
+    	for(int i = 0;i < player.length;i++){
     		player[i] = new Player("Player " + i, player_spawns[i], texture_player, input[i], stage);
     	}
     	
@@ -96,7 +96,7 @@ public class LocalGameState extends GameState{
 			rundenTimer.update(dt);
 			
 	    	//spieler input
-	    	for(int i=0;i<4;i++){
+	    	for(int i=0;i<player.length;i++){
 	    		
 		    	InputConfig playerinput = player[i].getControls();
 		    	
@@ -142,7 +142,7 @@ public class LocalGameState extends GameState{
 		    	//bombe legen
 		    	
 		    	if(Gdx.input.isKeyPressed(playerinput.getKeyBomb()) && player[i].getAnzahlBomben() < player[i].getAnzahlBombenMax()){
-		    		bombs.add(player[i].dropBomb());
+		    		newBomb(player[i].dropBomb());
 		    	}
 	    	}
 	    	
@@ -162,6 +162,7 @@ public class LocalGameState extends GameState{
 
     	batch.begin();
     	drawField(stage);
+    	
     	for(Bomb b : bombs){
     		b.render(batch);
     	}
@@ -219,6 +220,20 @@ public class LocalGameState extends GameState{
     	}
 	}
 
+    private void newBomb(Bomb b){
+    	Point tmp = new Point(b.getPos());
+    	float tmpxm = tmp.getX() % SPRITESIZE;
+    	float tmpym = tmp.getY() % SPRITESIZE;
+    	
+    	float tmpx = tmpxm * SPRITESIZE + 25;
+    	float tmpy = tmpym * SPRITESIZE;
+    	
+    	Point newPoint = new Point(tmpx, tmpy);
+    	
+    	b.setPos(newPoint);
+    	bombs.add(b);
+    }
+    
 	private boolean collision(Player p, List<GameObject> objects) {
 		
 		boolean collision = false;
@@ -235,7 +250,7 @@ public class LocalGameState extends GameState{
 	private boolean collision(Point p, List<GameObject> objects) {
 		
 		boolean collision = false;
-    	CollisionDetector cd = new CollisionDetector(p, 50f, 50f, COLLISION_OFFSET);
+    	CollisionDetector cd = new CollisionDetector(p, SPRITESIZE, SPRITESIZE, COLLISION_OFFSET);
     	
     	for(GameObject o : objects){
     		if(cd.collidesWith(o))
