@@ -38,7 +38,7 @@ public class Player extends GameObject {
 		this.moveSpeed = 2;
 		this.bombKickable = false;
 		this.bombThrowable = false;
-		this.anzahlBomben = 1;
+		this.anzahlBomben = 0  ;
 		this.anzahlBombenMax = 1;
 		this.life = 1;
 		this.stats = new Statistic();

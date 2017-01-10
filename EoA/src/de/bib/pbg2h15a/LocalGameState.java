@@ -148,6 +148,10 @@ public class LocalGameState extends GameState{
 	    	
 	    	for(Bomb b : bombs){
 	    		b.update(dt);
+	    		if(b.getTime() <= 0){
+	    			bombs.remove(b);
+	    			b.getPlayer().setAnzahlBomben(b.getPlayer().getAnzahlBomben()-1);
+	    		}
 	    	}
 	    	
 		}else{
@@ -222,14 +226,30 @@ public class LocalGameState extends GameState{
 
     private void newBomb(Bomb b){
     	Point tmp = new Point(b.getPos());
-    	float tmpxm = tmp.getX() % SPRITESIZE;
-    	float tmpym = tmp.getY() % SPRITESIZE;
+    	int tmpx = (int)tmp.getX();
+    	System.out.println(tmpx);
+    	int tmpy = (int)tmp.getY() + 25;
+    	System.out.println(tmpy);
     	
-    	float tmpx = tmpxm * SPRITESIZE + 25;
-    	float tmpy = tmpym * SPRITESIZE;
+    	System.out.println();
     	
-    	Point newPoint = new Point(tmpx, tmpy);
+    	tmpx /= SPRITESIZE;
+    	System.out.println(tmpx);
+    	tmpy /= SPRITESIZE;
+    	System.out.println(tmpy);
     	
+    	System.out.println();
+    	
+    	tmpx *= SPRITESIZE;
+    	System.out.println(tmpx);
+    	tmpy *= SPRITESIZE;
+    	System.out.println(tmpy);
+    	
+    	System.out.println();
+    	
+    	Point newPoint = new Point(tmpx+25, tmpy);
+    	System.out.println(newPoint.toString());
+
     	b.setPos(newPoint);
     	bombs.add(b);
     }
