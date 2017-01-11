@@ -27,7 +27,7 @@ public class ButtonErstellen {
 		texture = new Texture(pfad);
 		this.x = x;
 		this.y = y;
-
+		imClick=true;
 	}
 
 	public boolean isClicked() {

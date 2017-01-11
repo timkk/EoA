@@ -51,4 +51,9 @@ public class Rectangle {
 	public void setHeight(float height) {
 		this.height = height;
 	}
+
+	@Override
+	public String toString() {
+		return "Rectangle [x=" + x + ", y=" + y + ", width=" + width + ", height=" + height + "]";
+	}
 }

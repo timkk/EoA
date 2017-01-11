@@ -38,8 +38,8 @@ public class Player extends GameObject {
 		this.moveSpeed = 2;
 		this.bombKickable = false;
 		this.bombThrowable = false;
-		this.anzahlBomben = 1;
-		this.anzahlBombenMax = 10;
+		this.anzahlBomben = 0  ;
+		this.anzahlBombenMax = 1;
 		this.life = 1;
 		this.stats = new Statistic();
 		this.illness = null;
@@ -50,12 +50,16 @@ public class Player extends GameObject {
 	
 	public Bomb dropBomb() {
 
-		Bomb bombe = new Bomb(this, pos, this.bombRadius, stage.getFields());
+		Bomb bombe = new Bomb(this, this.getPos(), this.getBombRadius(), this.getStage().getFields());
 		this.anzahlBomben++;
-		bombe.setPos(this.getPos());
 
 		return bombe;
 	}
+
+	private Stage getStage() {
+		return this.stage;
+	}
+
 
 	public int getBombRadius() {
 		return bombRadius;
@@ -160,11 +164,11 @@ public class Player extends GameObject {
 
 	@Override
 	public void render(SpriteBatch sb) {
-		sb.draw(spritesheet, pos.getX(), pos.getY());
+		sb.draw(this.getSpritesheet(), this.getPos().getX(), this.getPos().getY());
 	}
 
 	@Override
 	public void update(float dt) {
+		
 	}
-
 }

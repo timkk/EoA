@@ -24,8 +24,7 @@ public class Bomb extends GameObject{
 	 */
 	public Bomb(Player player, Point pos, int radius,  GameObject[][] stage) {
 		super(pos, false, null);
-		//TODO Pfad für Bombentextur
-		spritesheet = new Texture("");
+		spritesheet = new Texture("img/Stage_1/Bombe.png");
 		//Übergibt  den Spieler, der die Bombe gelegt hat
 		this.player = player;
 		this.radius = radius;
@@ -67,8 +66,10 @@ public class Bomb extends GameObject{
 	 */
 	public void explode(GameObject[][] stage){
 		
+		//explode in update einfügen
+		
 		if(time <= 0){
-			Texture explosion = new Texture("");
+			Texture explosion = new Texture("img/Stage_1/Feuerfalle.png");
 			Explosion mitte = new Explosion(getPos(), explosion, 0);
 			stage[(int) mitte.getPos().getX()][(int) mitte.getPos().getY()] = mitte; 
 			
@@ -116,7 +117,7 @@ public class Bomb extends GameObject{
 		@Override
 		public void update(float dt) {
 			time -= dt;
-			explode(stage);
+			//explode(stage);
 		}
 
 

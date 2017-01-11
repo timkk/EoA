@@ -23,7 +23,7 @@ public class GameStateManager {
 	public GameStateManager() {
 		setState(MAIN);
 	}
-	
+
 	public void setState(int state) {
 		if(gameState != null) gameState.dispose();
 		
@@ -36,8 +36,10 @@ public class GameStateManager {
 		if(state == MODE_SELECT) {
 			gameState = new ModeSelectState(this);
 		}
+		if(state == LOCAL_PREPARE){
+			gameState = new LocalGamePrepareState(this);
+		}
 		if(state == GAME){
-			//prototyp
 			gameState = new LocalGameState(this);
 		}
 	}

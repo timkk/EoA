@@ -18,15 +18,15 @@ public class OptionsState extends GameState {
 	
 	protected OptionsState(GameStateManager gsm) {
 		super(gsm);
-		// TODO Auto-generated constructor stub
+		init();
 	}
 
 	@Override
 	public void init() {
 		batch = new SpriteBatch();
-		cbxSound = new CheckBoxErstellen(Gdx.graphics.getWidth()/2 - 206/2, Gdx.graphics.getHeight()/1.5f, "assets/soundChecked.jpg", "assets/soundUnchecked.jpg", GameStateManager.sound);
-		cbxMusic = new CheckBoxErstellen(Gdx.graphics.getWidth()/2 - 206/2, Gdx.graphics.getHeight()/2.5f, "assets/musicChecked.jpg", "assets/musicUnchecked.jpg", GameStateManager.music);
-		btnBack = new ButtonErstellen(10, Gdx.graphics.getHeight() - 83, "img/Buttons/back.png");
+		cbxSound = new CheckBoxErstellen(Gdx.graphics.getWidth()/2 - 350/2, Gdx.graphics.getHeight()/1.5f-42, "img/Buttons/soundChecked.png", "img/Buttons/soundUnchecked.png", GameStateManager.sound);
+		cbxMusic = new CheckBoxErstellen(Gdx.graphics.getWidth()/2 - 350/2, Gdx.graphics.getHeight()/2.5f-42, "img/Buttons/musicChecked.png", "img/Buttons/musicUnchecked.png", GameStateManager.music);
+		btnBack = new ButtonErstellen(10, Gdx.graphics.getHeight() - 122, "img/Buttons/back.png");
 	}
 
 	@Override
