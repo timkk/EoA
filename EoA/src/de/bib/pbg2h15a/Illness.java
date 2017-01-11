@@ -5,10 +5,17 @@ public class Illness {
 	/**
 	 * @author pbg2h15ary/pbg2h15ake
 	 */
+	/**
+	 * Represents all illnesses and their effects
+	 */
 	private IllnessType type;
 	private Player player;
+	private Bomb bomb;
+	private IllnessType[] illness;
+	private int key;
 	public float time;
 	public Timer timer = new Timer(10);
+	
 	
 	public Illness()
 	{
@@ -31,11 +38,11 @@ public class Illness {
 		int zufallszahl = (int)(Math.random()*4) + 0;
 		
 		//Array sollte mit allen Krankheitstypen gefüllt werden
-		IllnessType Illnesses[] = null;
+		illness[0] = null;
 		
-		Illnesses[0] = null;
+		key = zufallszahl;
 		
-		return Illnesses[zufallszahl];
+		return illness[zufallszahl];
 	}
 	
 	private boolean illnessExpired()
@@ -50,10 +57,31 @@ public class Illness {
 		return expired;
 	}
 	
-	private void illnessReset()
+	
+	private void illnessSet()
 	{
-		//Switch-case für jede Art Illness.
-		//Alle Eigenschaften des Spielers müssen abhängig von der Krankheit
-		//geresetet werden !
+		switch(key)
+		{
+			//Explosionsradius minimum
+			case 0: bomb.setRadius(1);
+					break;
+			
+			//Bombe zufällig legen
+			case 1:  ;
+					break;
+			
+			//Bomben legen deaktivieren
+			case 2:  ;
+					break;
+			
+			//Geschwindigkeitserhöhung
+			case 3:  ;
+					break;
+			
+			//Geschwindigkeitsverringerung
+			case 4:  ;
+					break;
+			
+		}
 	}
 }
