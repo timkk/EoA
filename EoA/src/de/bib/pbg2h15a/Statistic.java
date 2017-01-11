@@ -13,7 +13,7 @@ public class Statistic {
 	/**
 	 * @author pbg2h15akl
 	 */
-	public void Statisctis() {
+	public Statistic() {
 		this.points = 0;
 		this.placedBombs = 0;
 		this.killedEnemies = 0;
@@ -147,5 +147,4 @@ public class Statistic {
 		this.illnessTransferCount += s.illnessTransferCount;
 		this.illnessPickUpCount += s.illnessPickUpCount;
 	}
-
 }

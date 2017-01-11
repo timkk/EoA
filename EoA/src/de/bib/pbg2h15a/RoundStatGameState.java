@@ -5,15 +5,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-
-public class FinalStatGameState extends GameState {
+public class RoundStatGameState extends GameState {
 	/**
-	 * @author pbg2h15agu, pbg2h15ala 
+	 * @author pbg2h15agu, pbg2h15ala
 	 */
-	private static FinalStatGameState ref = null;
-	private Statistic[] stats = null;	
-	private int[] wins = null;
-	
+
+	private Statistic[] stats;
+	private FinalStatGameState finalStats;
+
 	private BitmapFont writer;
 	private SpriteBatch batch;
 
@@ -39,19 +38,16 @@ public class FinalStatGameState extends GameState {
 	// the numbers? what do they mean?
 
 	texHelper[][] numbers = new texHelper[4][16];
-	
-	//Singelton erstellen/Referen holen
-	public static FinalStatGameState  getInstance(GameStateManager gsm){
 
-		if(ref == null)
-			ref = new FinalStatGameState(gsm);
-		return ref;
-	}
-	
-	//Kostruktor für Singelton
-	private FinalStatGameState(GameStateManager gsm) {
+	protected RoundStatGameState(GameStateManager gsm, Statistic[] stats) {
 		super(gsm);
-
+		
+		this.stats = stats;
+		// FinalStatGameState - Referenz holen
+		finalStats = FinalStatGameState.getInstance(gsm);
+		// FinalStatGameState add round;
+		finalStats.addRound(stats, getWinner());
+		
 		init();
 	}
 
@@ -88,7 +84,7 @@ public class FinalStatGameState extends GameState {
 				yOffset = (y / 2) * 50;
 				numbers[x][y] = new texHelper(400 + x * 100 + xOffset, 225 + yOffset, "assets/img/Stats/0_50x50.png");
 			}
-			setNumberTo(getWins()[x], numbers[x][0], numbers[x][1]);
+			setNumberTo(finalStats.getWins()[x], numbers[x][0], numbers[x][1]);
 			setNumberTo(stats[x].getPoints(), numbers[x][2], numbers[x][3]);
 			
 			setNumberTo(stats[x].getPlacedBombs(), numbers[x][4], numbers[x][5]);
@@ -100,17 +96,18 @@ public class FinalStatGameState extends GameState {
 			setNumberTo(stats[x].getIllnessPickUpCount(), numbers[x][12], numbers[x][13]);
 			setNumberTo(stats[x].getIllnessTransferCount(), numbers[x][14], numbers[x][15]);
 		}
-		
+
 	}
 
 	@Override
 	public void update(float dt) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void render() {
+		// TODO Auto-generated method stub
 		batch.begin();
 		// Label für die Spieler rendern
 		lblSpieler1.render(batch);
@@ -138,39 +135,28 @@ public class FinalStatGameState extends GameState {
 		}
 
 		batch.end();
+
 	}
 
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
+	}
+
+	private int getWinner() {
 		
-	} 
-	
-	public void addRound(Statistic[] roundStats, int posOfWinner){
-		// Stats übernehmen wenn null
-		if(stats == null){
-			stats = roundStats;
-			wins = new int[roundStats.length];
-		}
-		// sonst dazurechnen
-		else{
-			for (int i=0;i<roundStats.length;i++){
-				stats[i].addStatistic(roundStats[i]);
+		// TODO: Methode zum gewinner wählen festlegen
+		int maxPos = 0;
+		int maxPoints = 0;
+		for (int i = 0; i < stats.length; i++) {
+			if (stats[i].getPoints() > maxPoints) {
+				maxPoints = stats[i].getPoints();
+				maxPos = i;
 			}
 		}
-		wins[posOfWinner]++;
+		return maxPos;
 	}
-	
-	public void resetFinalStats(){
-		// Statistik zurücksetzten
-		// TODO Methode in SpielEnde aufrufen
-		stats = null;	
-		wins = null;
-	}
-	public int[] getWins(){
-		return wins;
-	}
-	
+
 	private class texHelper {
 
 		/**
@@ -197,7 +183,7 @@ public class FinalStatGameState extends GameState {
 			texture = new Texture(pfad);
 		}
 	}
-	
+
 	private void setNumberTo(int number, texHelper value10, texHelper value1) {
 		/**
 		 * @author pbg2h15ala
