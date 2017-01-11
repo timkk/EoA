@@ -163,7 +163,7 @@ public class LocalGameState extends GameState{
     			
     			if(collision(p.getPos(), list)){
     				p.setLife(p.getLife()-1); //player killed
-    				int i = (int)Math.random()*4;
+    				int i = (int)(Math.random()*4);
     				p.setPos(player_spawns[i]);
     			}
 	    	}
