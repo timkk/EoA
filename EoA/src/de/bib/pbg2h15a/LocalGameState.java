@@ -81,12 +81,14 @@ public class LocalGameState extends GameState{
     	texture_player = new Texture("img/Stage_1/Windfalle.png");
     	
     	player = new LinkedList<Player>();
-    	for(int i = 0;i < 2;i++){
+    	for(int i = 0;i < 4;i++){
     		player.add(new Player("Player " + i, player_spawns[i], texture_player, input[i], stage));
     	}
     	
     	rundenTimer = new Timer(300);
 
+    	gui = new GUI(rundenTimer, player.get(0), player.get(1), player.get(2), player.get(3), gsm, this);
+    	
 	}
 
 	@Override
@@ -171,6 +173,7 @@ public class LocalGameState extends GameState{
 		}else{
 			timer.update(dt);
 		}
+		
 	}
 
 	@Override
@@ -194,7 +197,9 @@ public class LocalGameState extends GameState{
     		int time = (int)timer.getTime();
     		font_countdown.draw(batch, ""+time, Gdx.graphics.getWidth()/2 - 8, Gdx.graphics.getHeight()/2-20);
     	}
+    	gui.render(batch);
     	batch.end();
+    	
 	}
 
 	@Override
