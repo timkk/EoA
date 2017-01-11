@@ -82,7 +82,7 @@ public class LocalGameState extends GameState{
     	Object[][] field = setupField(17, 13);
     	stage = new Stage((GameObject[][]) field, 300, StageType.STANDARD, player_spawns, 3, Mode.LAST_MAN_STANDING);
 		walls = generateWalls(17, 13);
-    	
+		
     	texture_player = new Texture("img/Stage_1/Windfalle.png");
     	
     	player = new LinkedList<Player>();
@@ -169,6 +169,8 @@ public class LocalGameState extends GameState{
 	    	}
 	    	
 	    	//bomben verwalten
+	    	List<Bomb> delBomb = new LinkedList<Bomb>();
+	    	List<Bomb> delCollBomb = new LinkedList<Bomb>();
 	    	for(Bomb b : bombs){
 	    		b.update(dt);
 	    		if(!collision_objects.contains(b)){
@@ -183,10 +185,10 @@ public class LocalGameState extends GameState{
 	    		}
 	    		
 	    		if(b.getTime() <= 0){
-	    			bombs.remove(b);
-	    			explosions.addAll(b.explode(stage));
+	    			delBomb.add(b);
+	    			explosions.addAll(b.explode(stage, walls));
 	    			if(collision_objects.contains(b))
-	    				collision_objects.remove(b);
+	    				delCollBomb.add(b);
 	    			b.getPlayer().setAnzahlBomben(b.getPlayer().getAnzahlBomben()-1);
 	    		}
 
@@ -196,23 +198,28 @@ public class LocalGameState extends GameState{
     				list.add((GameObject)e);
     			
 	    		if(collision(new Point(b.getPos()), list) && bombs.contains(b)){
-	    			explosions.addAll(b.explode(stage));
-	    			bombs.remove(b);
+	    			explosions.addAll(b.explode(stage, walls));
+	    			delBomb.add(b);
 	    			if(collision_objects.contains(b))
-	    				collision_objects.remove(b);
+	    				delCollBomb.add(b);
 	    			b.getPlayer().setAnzahlBomben(b.getPlayer().getAnzahlBomben()-1);
 	    		}
 	    	}
+	    	bombs.removeAll(delBomb);
+	    	collision_objects.removeAll(delCollBomb);
 	    	
 	    	//explosionen verwalten
+	    	List<Explosion> delExplosion = new LinkedList<Explosion>();
 	    	for(Explosion e : explosions){
 	    		e.update(dt);
 	    		
 	    		if(e.getTime() <= 0)
-	    			explosions.remove(e);
+	    			delExplosion.add(e);
 	    	}
+	    	explosions.removeAll(delExplosion);
 	    	
 	    	//kisten verwalten
+			List<Wall> delWall = new LinkedList<Wall>();
 	    	for(Wall w : walls){
 
     			List<GameObject> list = new LinkedList<GameObject>();
@@ -226,9 +233,12 @@ public class LocalGameState extends GameState{
     					c.setPos(w.getPos());
     					collectables.add(c);
     				}
-    				walls.remove(w);
+    				delWall.add(w);
     			}
 	    	}
+	    	
+	    	walls.removeAll(delWall);
+	    	collision_objects.removeAll(delWall);
 	    	
 		}else{
 			timer.update(dt);
@@ -340,28 +350,15 @@ public class LocalGameState extends GameState{
     private void newBomb(Bomb b){
     	Point tmp = new Point(b.getPos());
     	int tmpx = (int)tmp.getX();
-    	System.out.println(tmpx);
     	int tmpy = (int)tmp.getY() + 25;
-    	System.out.println(tmpy);
-    	
-    	System.out.println();
     	
     	tmpx /= SPRITESIZE;
-    	System.out.println(tmpx);
     	tmpy /= SPRITESIZE;
-    	System.out.println(tmpy);
-    	
-    	System.out.println();
     	
     	tmpx *= SPRITESIZE;
-    	System.out.println(tmpx);
     	tmpy *= SPRITESIZE;
-    	System.out.println(tmpy);
-    	
-    	System.out.println();
     	
     	Point newPoint = new Point(tmpx+25, tmpy);
-    	System.out.println(newPoint.toString());
 
     	b.setPos(newPoint);
     	bombs.add(b);

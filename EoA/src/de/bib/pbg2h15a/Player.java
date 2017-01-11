@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 //TODO Extends GameObject
 public class Player extends GameObject {
 
-	private int bombRadius;
+	private int bombRadius = 1;
 	private int moveSpeed;
 	private boolean bombKickable;
 	private boolean bombThrowable;

@@ -66,7 +66,6 @@ public class Wall extends GameObject {
 
 		} else if (zufallsZahl > 85 && zufallsZahl < 95) {
 			int debuffZufall = (int) (6 + Math.random() * 3);
-			System.out.println("debuff");
 			// collect = new PowerUp();
 			// ((PowerUp) collect).setType(PoerUpType.values[debuffZufall]);
 		} else {

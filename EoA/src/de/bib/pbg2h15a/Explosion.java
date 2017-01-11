@@ -26,6 +26,11 @@ public class Explosion extends GameObject {
 		super(pos, true, spritesheet);
 		// TODO TextureRegion benötigt Bild
 	}
+	
+	//for testing
+	public Explosion(Point pos){
+		super(pos, true, new Texture("img/Stage_1/Feuerfalle.png"));
+	}
 
 	public Player getPlayer() {
 		return player;
@@ -42,7 +47,7 @@ public class Explosion extends GameObject {
 	
 	@Override
 	public void render(SpriteBatch sb) {
-		sb.draw(texture, pos.getX(), pos.getY());
+		sb.draw(this.getSpritesheet(), this.getPos().getX(), this.getPos().getY());
 	}
 
 	@Override
