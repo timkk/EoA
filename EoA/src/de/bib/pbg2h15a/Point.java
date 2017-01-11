@@ -15,6 +15,12 @@ public class Point {
 		this.y = y;
 	}
 	
+	public Point(Point p) {
+		super();
+		this.x = p.getX();
+		this.y = p.getY();
+	}
+	
 	public float getX() {
 		return x;
 	}
@@ -34,5 +40,10 @@ public class Point {
 	public void translate(float x, float y) {
 		this.x += x;
 		this.y += y;
+	}
+
+	@Override
+	public String toString() {
+		return "Point [x=" + x + ", y=" + y + "]";
 	}
 }

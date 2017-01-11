@@ -19,8 +19,8 @@ public class FinalStatGameState extends GameState {
 	//Kostruktor für Singelton
 	private FinalStatGameState(GameStateManager gsm) {
 		super(gsm);
-		
-		// TODO Auto-generated constructor stub
+
+		init();
 	}
 
 	@Override

@@ -373,8 +373,8 @@ public class GUI{
         createControlButtons();
         createImages();
         createLabels();
-        createListeners();
         createMenuButtons();
+        createListeners();
 	}
 	
 
