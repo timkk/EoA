@@ -24,8 +24,8 @@ public class OptionsState extends GameState {
 	@Override
 	public void init() {
 		batch = new SpriteBatch();
-		cbxSound = new CheckBoxErstellen(Gdx.graphics.getWidth()/2 - 350/2, Gdx.graphics.getHeight()/1.5f-42, "img/Buttons/soundChecked.png", "img/Buttons/soundUnchecked.png", GameStateManager.sound);
-		cbxMusic = new CheckBoxErstellen(Gdx.graphics.getWidth()/2 - 350/2, Gdx.graphics.getHeight()/2.5f-42, "img/Buttons/musicChecked.png", "img/Buttons/musicUnchecked.png", GameStateManager.music);
+		cbxSound = new CheckBoxErstellen(Gdx.graphics.getWidth()/2 - 350/2, Gdx.graphics.getHeight()/1.5f-42, "img/Buttons/soundChecked.png", "img/Buttons/soundUnchecked.png", GameStateManager.SOUND);
+		cbxMusic = new CheckBoxErstellen(Gdx.graphics.getWidth()/2 - 350/2, Gdx.graphics.getHeight()/2.5f-42, "img/Buttons/musicChecked.png", "img/Buttons/musicUnchecked.png", GameStateManager.MUSIC);
 		btnBack = new ButtonErstellen(10, Gdx.graphics.getHeight() - 122, "img/Buttons/back.png");
 	}
 
@@ -33,11 +33,12 @@ public class OptionsState extends GameState {
 	public void update(float dt) {
 		if(cbxSound.isClicked()) {
 			cbxSound.toggle();
-			GameStateManager.sound = !GameStateManager.sound;
+			GameStateManager.SOUND = !GameStateManager.SOUND;
 		}
 		if(cbxMusic.isClicked()){
-			GameStateManager.music = !GameStateManager.music;
+			GameStateManager.MUSIC = !GameStateManager.MUSIC;
 			cbxMusic.toggle();
+			Tunes.MUSIC_MENU.Play();
 		}
 		if(btnBack.isClicked()) {
 			gsm.setState(GameStateManager.MAIN);

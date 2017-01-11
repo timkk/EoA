@@ -57,7 +57,7 @@ public class LocalGameState extends GameState{
 	
 	private GUI gui;
 	private Timer rundenTimer;
-	
+		
 	protected LocalGameState(GameStateManager gsm) {
 		super(gsm);
 		init();
@@ -93,6 +93,8 @@ public class LocalGameState extends GameState{
     	rundenTimer = new Timer(300);
 
     	gui = new GUI(rundenTimer, player.get(0), player.get(1), player.get(2), player.get(3), gsm, this);
+    	
+    	Tunes.MUSIC_GAME_BACKGROUND.Play();
     	
 	}
 
@@ -146,10 +148,11 @@ public class LocalGameState extends GameState{
 			    		player.get(i).setPos(tmp);
 		    	}
 		    	
-		    	//bombe legen
-		    	
+		    	//bombe legen		    	
 		    	if(Gdx.input.isKeyPressed(playerinput.getKeyBomb()) && player.get(i).getAnzahlBomben() < player.get(i).getAnzahlBombenMax()){
 		    		newBomb(player.get(i).dropBomb());
+		    		
+		    		Sounds.EFFECT_BOMB_DROPPED.Play();
 		    	}
 	    	}
 	    	

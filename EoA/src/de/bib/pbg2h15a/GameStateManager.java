@@ -10,8 +10,8 @@ public class GameStateManager {
 	
 	private GameState gameState;
 	
-	public static boolean sound = true;
-	public static boolean music = true;
+	public static boolean SOUND = true;
+	public static boolean MUSIC = true;
 	
 	public static final int MAIN = 0;
 	public static final int MODE_SELECT = 100;

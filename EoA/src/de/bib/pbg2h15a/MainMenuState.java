@@ -29,6 +29,9 @@ public class MainMenuState extends GameState {
 		btnQuit = new ButtonErstellen(Gdx.graphics.getWidth()/2 - 350/2, Gdx.graphics.getHeight()/3, "img/Buttons/quit.png");
 		
 		batch = new SpriteBatch();
+		
+		//Musik abspielen
+		Tunes.MUSIC_MENU.Play();
 	}
 
 	@Override

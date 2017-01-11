@@ -162,6 +162,8 @@ public class Bomb extends GameObject{
 			}
 		}
 		
+		Sounds.EFFECT_POWERUP_COLLECTED.Play();
+		
 		return el;
 		
 //		if(time <= 0){

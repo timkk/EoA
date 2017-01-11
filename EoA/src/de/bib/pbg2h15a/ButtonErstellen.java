@@ -34,7 +34,14 @@ public class ButtonErstellen {
 			if(!imClick){
 				Rectangle r = new Rectangle(x, y, texture.getWidth(), texture.getHeight());
 				imClick = true;
-				return r.contains(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
+				
+				boolean btnHit =  r.contains(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
+
+				//KlickSound abspielen
+				if(btnHit)					
+					Sounds.EFFECT_BUTTON_CLICKED.Play();
+				return btnHit;
+				
 			}
 			
 		} else {

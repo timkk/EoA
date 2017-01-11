@@ -11,13 +11,14 @@ public enum Tunes {
 	 */
 
 	//Music
-	MUSIC_GAME_BACKGROUND("assets/sounds/music/game_background_music.mp3"),	
-	MUSIC_GAME_FINISHED("assets/sounds/music/game_finished_music.mp3"),
-	MUSIC_MENU("assets/sounds/music/menu_music.mp3");
+	MUSIC_GAME_BACKGROUND("sounds/music/game_background_music.mp3"),	
+	MUSIC_GAME_FINISHED("sounds/music/game_finished_music.mp3"),
+	MUSIC_MENU("sounds/music/menu_music.mp3");
 	private Music music;
 
 	private Tunes(String path) {
 		this.music = Gdx.audio.newMusic(Gdx.files.internal(path));
+		music.setLooping(true);
 	}
 
 
@@ -25,9 +26,12 @@ public enum Tunes {
 		return this.music;
 	}
 
-	public void Play()
-	{
-		this.music.play();
+	public void Play(){
+		for (Tunes m : Tunes.values()) {
+			m.getSound().stop();
+		}
+		if(GameStateManager.MUSIC)
+			this.music.play();
 	}
 
 }
