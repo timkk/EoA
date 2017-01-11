@@ -8,7 +8,7 @@ public class Explosion extends GameObject {
 	/**
 	 * @author pbg2h15azu
 	 */
-	private float time;
+	private float time = 1.5f;
 	private TextureRegion texture;
 	private Player player;
 	
@@ -49,6 +49,10 @@ public class Explosion extends GameObject {
 	public void update(float dt) {
 		time -= dt;
 		
+	}
+
+	public float getTime() {
+		return time;
 	}
 	
 }

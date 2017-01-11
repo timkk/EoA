@@ -1,5 +1,7 @@
 package de.bib.pbg2h15a;
 
+import java.util.List;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -64,43 +66,45 @@ public class Bomb extends GameObject{
 	 * 
 	 * @author pbg2h15azu
 	 */
-	public void explode(GameObject[][] stage){
+	public List<Explosion> explode(Stage stage){
 		
 		//explode in update einfügen
 		
-		if(time <= 0){
-			Texture explosion = new Texture("img/Stage_1/Feuerfalle.png");
-			Explosion mitte = new Explosion(getPos(), explosion, 0);
-			stage[(int) mitte.getPos().getX()][(int) mitte.getPos().getY()] = mitte; 
-			
-			//Explosion in +y-Richtung
-			for (int i = 1; i <= radius; i++){
-				if(stage[(int) pos.getX()][(int) (pos.getY()+1)] instanceof Wand){
-					//TODO Kollision (Player, Bombe, PowerUp)
-				}
-			}
-			
-			//Explosion in -y-Richtung
-			for (int i = 1; i <= radius; i++){
-				if(stage[(int) pos.getX()][(int) (pos.getY()-1)] instanceof Wand){
-					//TODO Kollision (Player, Bombe, PowerUp)
-				}
-			}
-			
-			//Explosion in +x-Richtung
-			for (int i = 1; i <= radius; i++){
-				if(stage[(int) (pos.getX()+1)][(int) pos.getY()] instanceof Wand){
-					//TODO Kollision (Player, Bombe, PowerUp)
-				}
-			}
-			
-			//Explosion in -x-Richtung
-			for (int i = 1; i <= radius; i++){
-				if(stage[(int) (pos.getX()-1)][(int) pos.getY()] instanceof Wand){
-					//TODO Kollision (Player, Bombe, PowerUp)
-				}
-			}
-		}
+//		if(time <= 0){
+//			Texture explosion = new Texture("img/Stage_1/Feuerfalle.png");
+//			Explosion mitte = new Explosion(getPos(), explosion, 0);
+//			stage[(int) mitte.getPos().getX()][(int) mitte.getPos().getY()] = mitte; 
+//			
+//			//Explosion in +y-Richtung
+//			for (int i = 1; i <= radius; i++){
+//				if(stage[(int) pos.getX()][(int) (pos.getY()+1)] instanceof Wand){
+//					//TODO Kollision (Player, Bombe, PowerUp)
+//				}
+//			}
+//			
+//			//Explosion in -y-Richtung
+//			for (int i = 1; i <= radius; i++){
+//				if(stage[(int) pos.getX()][(int) (pos.getY()-1)] instanceof Wand){
+//					//TODO Kollision (Player, Bombe, PowerUp)
+//				}
+//			}
+//			
+//			//Explosion in +x-Richtung
+//			for (int i = 1; i <= radius; i++){
+//				if(stage[(int) (pos.getX()+1)][(int) pos.getY()] instanceof Wand){
+//					//TODO Kollision (Player, Bombe, PowerUp)
+//				}
+//			}
+//			
+//			//Explosion in -x-Richtung
+//			for (int i = 1; i <= radius; i++){
+//				if(stage[(int) (pos.getX()-1)][(int) pos.getY()] instanceof Wand){
+//					//TODO Kollision (Player, Bombe, PowerUp)
+//				}
+//			}
+//		}
+		
+		return null;
 	}
 
 	/**

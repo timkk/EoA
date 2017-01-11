@@ -51,6 +51,7 @@ public class LocalGameState extends GameState{
 	private List<Explosion> explosions;
 	private List<Bomb> bombs;
 	private List<Wall> walls;
+	private List<Collectable> collectables;
 	
 	private Timer timer = new Timer(1);
 	
@@ -70,6 +71,7 @@ public class LocalGameState extends GameState{
     	explosions = new LinkedList<Explosion>();
     	bombs = new LinkedList<Bomb>();
     	walls = new LinkedList<>();
+    	collectables = new LinkedList<Collectable>();
 
     	font = new BitmapFont();
     	font.setColor(Color.BLACK);
@@ -151,6 +153,21 @@ public class LocalGameState extends GameState{
 		    	}
 	    	}
 	    	
+	    	//spieler verwalten
+	    	for(Player p : player){
+
+    			List<GameObject> list = new LinkedList<GameObject>();
+    			
+    			for(Explosion e : explosions)
+    				list.add((GameObject)e);
+    			
+    			if(collision(p.getPos(), list)){
+    				p.setLife(p.getLife()-1); //player killed
+    				int i = (int)Math.random()*4;
+    				p.setPos(player_spawns[i]);
+    			}
+	    	}
+	    	
 	    	//bomben verwalten
 	    	for(Bomb b : bombs){
 	    		b.update(dt);
@@ -167,10 +184,50 @@ public class LocalGameState extends GameState{
 	    		
 	    		if(b.getTime() <= 0){
 	    			bombs.remove(b);
+	    			explosions.addAll(b.explode(stage));
 	    			if(collision_objects.contains(b))
 	    				collision_objects.remove(b);
 	    			b.getPlayer().setAnzahlBomben(b.getPlayer().getAnzahlBomben()-1);
 	    		}
+
+    			List<GameObject> list = new LinkedList<GameObject>();
+    			
+    			for(Explosion e : explosions)
+    				list.add((GameObject)e);
+    			
+	    		if(collision(new Point(b.getPos()), list) && bombs.contains(b)){
+	    			explosions.addAll(b.explode(stage));
+	    			bombs.remove(b);
+	    			if(collision_objects.contains(b))
+	    				collision_objects.remove(b);
+	    			b.getPlayer().setAnzahlBomben(b.getPlayer().getAnzahlBomben()-1);
+	    		}
+	    	}
+	    	
+	    	//explosionen verwalten
+	    	for(Explosion e : explosions){
+	    		e.update(dt);
+	    		
+	    		if(e.getTime() <= 0)
+	    			explosions.remove(e);
+	    	}
+	    	
+	    	//kisten verwalten
+	    	for(Wall w : walls){
+
+    			List<GameObject> list = new LinkedList<GameObject>();
+    			
+    			for(Explosion e : explosions)
+    				list.add((GameObject)e);
+    			
+    			if(collision(w.getPos(), list)){
+    				if(w.getContent() != null){
+    					Collectable c = w.getContent();
+    					c.setPos(w.getPos());
+    					collectables.add(c);
+    				}
+    				walls.remove(w);
+    			}
 	    	}
 	    	
 		}else{
