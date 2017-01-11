@@ -149,7 +149,7 @@ public class LocalGameState extends GameState{
 		    	}
 		    	
 		    	//bombe legen		    	
-		    	if(Gdx.input.isKeyPressed(playerinput.getKeyBomb()) && player.get(i).getAnzahlBomben() < player.get(i).getAnzahlBombenMax()){
+		    	if(Gdx.input.isKeyJustPressed(playerinput.getKeyBomb()) && player.get(i).getAnzahlBomben() < player.get(i).getAnzahlBombenMax()){
 		    		newBomb(player.get(i).dropBomb());
 		    		
 		    		Sounds.EFFECT_BOMB_DROPPED.Play();
@@ -193,19 +193,20 @@ public class LocalGameState extends GameState{
 	    			if(collision_objects.contains(b))
 	    				delCollBomb.add(b);
 	    			b.getPlayer().setAnzahlBomben(b.getPlayer().getAnzahlBomben()-1);
-	    		}
+	    		}else{
 
-    			List<GameObject> list = new LinkedList<GameObject>();
-    			
-    			for(Explosion e : explosions)
-    				list.add((GameObject)e);
-    			
-	    		if(collision(new Point(b.getPos()), list) && bombs.contains(b)){
-	    			explosions.addAll(b.explode(stage, walls));
-	    			delBomb.add(b);
-	    			if(collision_objects.contains(b))
-	    				delCollBomb.add(b);
-	    			b.getPlayer().setAnzahlBomben(b.getPlayer().getAnzahlBomben()-1);
+	    			List<GameObject> list = new LinkedList<GameObject>();
+	    			
+	    			for(Explosion e : explosions)
+	    				list.add((GameObject)e);
+	    			
+		    		if(collision(new Point(b.getPos()), list) && bombs.contains(b)){
+		    			explosions.addAll(b.explode(stage, walls));
+		    			delBomb.add(b);
+		    			if(collision_objects.contains(b))
+		    				delCollBomb.add(b);
+		    			b.getPlayer().setAnzahlBomben(b.getPlayer().getAnzahlBomben()-1);
+		    		}
 	    		}
 	    	}
 	    	bombs.removeAll(delBomb);
