@@ -42,5 +42,5 @@ public enum PowerUpType {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	
+
 }

@@ -17,31 +17,24 @@ public class Bomb extends GameObject{
 	private int radius;
 	private float time;
 	private Player player;
-	private GameObject[][] stage;
 	private static final float BOMB_TIMER = 5;
 	
 
 	/**
-	 * 
 	 * @param player Reference of the player who dropped the bomb.	 
 	 */
-	public Bomb(Player player, Point pos, int radius,  GameObject[][] stage) {
+	public Bomb(Player player, Point pos, int radius) {
 		super(pos, false, null);
 		spritesheet = new Texture("img/Stage_1/Bombe.png");
 		//Übergibt  den Spieler, der die Bombe gelegt hat
 		this.player = player;
 		this.radius = radius;
 		this.time = BOMB_TIMER;
-		this.stage = stage;
 	}
 
-	
-	
 	public Player getPlayer() {
 		return player;
 	}
-
-
 
 	public int getRadius() {
 		
@@ -64,10 +57,8 @@ public class Bomb extends GameObject{
 	}
 
 	/**
-	 * 
 	 * @author pbg2h15azu
 	 * @author pbg2h15asu
-	 * 
 	 */
 	public List<Explosion> explode(Stage stage, List<Wall> walls){
 		
@@ -172,6 +163,7 @@ public class Bomb extends GameObject{
 		}
 		
 		return el;
+		
 //		if(time <= 0){
 //			Texture explosion = new Texture("img/Stage_1/Feuerfalle.png");
 //			Explosion mitte = new Explosion(getPos(), explosion, 0);
@@ -208,27 +200,22 @@ public class Bomb extends GameObject{
 	}
 
 	/**
-	 * 
 	 * @author pbg2h15awi
 	 */
 	
-		@Override
-		public void render(SpriteBatch sb) {
-			sb.draw(spritesheet, pos.getX(), pos.getY());
-			
-		}
-
-		@Override
-		public void update(float dt) {
-			time -= dt;
-			//explode(stage);
-		}
-
-
-
-		public void dropBomb() {
-			// TODO Auto-generated method stub
-			
-		}
-
+	@Override
+	public void render(SpriteBatch sb) {
+		sb.draw(spritesheet, pos.getX(), pos.getY());
+		
+	}
+	
+	@Override
+	public void update(float dt) {
+		time -= dt;
+	}
+	
+	public void dropBomb() {
+		// TODO Auto-generated method stub
+		
+	}
 }

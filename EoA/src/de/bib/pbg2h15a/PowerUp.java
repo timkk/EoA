@@ -1,7 +1,7 @@
 package de.bib.pbg2h15a;
 
-//public class PowerUp extends Collectable{
 public class PowerUp {	
+	
 	private PowerUpType type;
 	
 	/**
@@ -29,5 +29,5 @@ public class PowerUp {
 		int rndNumber = (int)(Math.random()*6);
 		this.type = types[rndNumber];
 	}	
-	
+
 }

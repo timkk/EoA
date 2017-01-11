@@ -63,5 +63,4 @@ public class OptionsState extends GameState {
 		
 	}
 
-	
 }

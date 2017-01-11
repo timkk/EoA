@@ -183,43 +183,42 @@ public class LocalGamePrepareState extends GameState {
 		 */
 		
 		//Gewinnrundenanzahl
-      if(rundenRight.isClicked() && rundenAnzahl < 5){
+		if(rundenRight.isClicked() && rundenAnzahl < 5){
         	rundenAnzahl++;
-      }
-        
-        
-       if(rundenLeft.isClicked() && rundenAnzahl > 1){
-        	rundenAnzahl--;
-       }
-       
-       setNumberTo(rundenAnzahl, rundenValue10, rundenValue1);
-		
+		}
+      
+		if(rundenLeft.isClicked() && rundenAnzahl > 1){
+	    	rundenAnzahl--;
+		}
+	   
+		setNumberTo(rundenAnzahl, rundenValue10, rundenValue1);
+			
 		/**
 		 *  @author pbg2h15ala
 		 */
-
+		
 		name.render(batch);
-
-
+		
+		
 		changeStage.render(batch);
 		changeStageLeft.render(batch);
 		changeStageRight.render(batch);
 		changeStageValue.render(batch);
-
+		
 		runden.render(batch);
 		rundenLeft.render(batch);
 		rundenValue1.render(batch);
 		rundenValue10.render(batch);
 		rundenRight.render(batch);
-
+		
 		zeit.render(batch);
 		zeitLeft.render(batch);
-
+		
 		zeitRight.render(batch);
-
+		
 		start.render(batch);
 		zuruck.render(batch);
-
+		
 		batch.end();
 		stage.draw();
 	}
@@ -301,6 +300,5 @@ public class LocalGamePrepareState extends GameState {
 		value10.setTexture("img/GamePrepare/number_" + number/10+".png");
 		value1.setTexture("img/GamePrepare/number_" + number%10+".png");
 	}
-	
 
 }

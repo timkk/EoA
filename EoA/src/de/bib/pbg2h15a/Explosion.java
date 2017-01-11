@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class Explosion extends GameObject {
+	
 	/**
 	 * @author pbg2h15azu
 	 */
@@ -44,7 +45,6 @@ public class Explosion extends GameObject {
 	 * 
 	 * @author pbg2h15awi
 	 */
-	
 	@Override
 	public void render(SpriteBatch sb) {
 		sb.draw(this.getSpritesheet(), this.getPos().getX(), this.getPos().getY());

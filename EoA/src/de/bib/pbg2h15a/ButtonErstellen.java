@@ -14,7 +14,6 @@ import com.badlogic.gdx.math.Rectangle;
  *
  */
 
-
 public class ButtonErstellen {
 
 	private Texture texture;
@@ -45,7 +44,6 @@ public class ButtonErstellen {
 	}
 
 	public void render(SpriteBatch batch) {
-		// TODO Auto-generated method stub
 
 		batch.draw(texture, x, y);
 

@@ -13,8 +13,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  * 
  */
 public abstract class GameObject {
-	
-	
+
 	protected Point pos;
 	protected boolean passable;
 	protected Texture spritesheet;

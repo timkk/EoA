@@ -2,7 +2,6 @@ package de.bib.pbg2h15a;
 
 public class SpielVorbei {
 
-	
 	/**
 	 * @author pbg2h15ani
 	 * @param spieler
@@ -20,8 +19,6 @@ public class SpielVorbei {
 		}
 		
 		return anzahlLebenderSpieler < 2;
-		
-		
 	}
-	
+
 }

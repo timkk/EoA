@@ -1,6 +1,5 @@
 package de.bib.pbg2h15a;
 
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.Event;

@@ -3,10 +3,9 @@ package de.bib.pbg2h15a;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-//TODO Extends GameObject
 public class Player extends GameObject {
 
-	private int bombRadius = 1;
+	private int bombRadius;
 	private int moveSpeed;
 	private boolean bombKickable;
 	private boolean bombThrowable;
@@ -16,7 +15,6 @@ public class Player extends GameObject {
 	private Statistic stats;
 	private Illness illness;
 	private String name;
-	private Stage stage;
 	private InputConfig controls;
 	
 	protected Point pos;
@@ -24,7 +22,6 @@ public class Player extends GameObject {
 	protected Texture spritesheet;
 
 	/**
-	 *
 	 * @param name
 	 *            Players name
 	 * @param pos
@@ -43,23 +40,17 @@ public class Player extends GameObject {
 		this.life = 1;
 		this.stats = new Statistic();
 		this.illness = null;
-		this.stage = stage;
+		this.bombRadius = 1;
 		this.controls = controls;
 	}
 
-	
 	public Bomb dropBomb() {
 
-		Bomb bombe = new Bomb(this, this.getPos(), this.getBombRadius(), this.getStage().getFields());
+		Bomb bombe = new Bomb(this, this.getPos(), this.getBombRadius());
 		this.anzahlBomben++;
 
 		return bombe;
 	}
-
-	private Stage getStage() {
-		return this.stage;
-	}
-
 
 	public int getBombRadius() {
 		return bombRadius;
@@ -84,7 +75,6 @@ public class Player extends GameObject {
 	public InputConfig getControls() {
 		return controls;
 	}
-
 
 	/**
 	 * Adds the value to the original movespeed. To decrease commit a negative

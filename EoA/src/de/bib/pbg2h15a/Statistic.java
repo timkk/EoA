@@ -147,4 +147,5 @@ public class Statistic {
 		this.illnessTransferCount += s.illnessTransferCount;
 		this.illnessPickUpCount += s.illnessPickUpCount;
 	}
+
 }

@@ -17,23 +17,19 @@ public class Illness {
 	public Timer timer = new Timer(10);
 	
 	
-	public Illness()
-	{
+	public Illness(){
 		type = randIllnessType();
 	}
 	
-	public IllnessType getType()
-	{
+	public IllnessType getType(){
 		return type;
 	}
 	
-	public void setType(IllnessType type)
-	{
+	public void setType(IllnessType type){
 		this.type = type;
 	}
 	
-	private IllnessType randIllnessType()
-	{
+	private IllnessType randIllnessType(){
 		//Zufallszahl um eine der 5 Krankheiten auszusuchen
 		int zufallszahl = (int)(Math.random()*4) + 0;
 		
@@ -44,9 +40,8 @@ public class Illness {
 		
 		return illness[zufallszahl];
 	}
-	
-	private boolean illnessExpired()
-	{
+
+	private boolean illnessExpired(){
 		boolean expired = false;
 		if(timer.isFinished()==true)
 		{
@@ -56,10 +51,8 @@ public class Illness {
 		
 		return expired;
 	}
-	
-	
-	private void illnessSet()
-	{
+
+	private void illnessSet(){
 		switch(key)
 		{
 			//Explosionsradius minimum
@@ -81,7 +74,6 @@ public class Illness {
 			//Geschwindigkeitsverringerung
 			case 4:  ;
 					break;
-			
 		}
 	}
 }

@@ -6,7 +6,6 @@ import de.bib.pbg2h15a.Point;
 import de.bib.pbg2h15a.Rectangle;
 
 /**
- * 
  * @author pbg2h15asu
  */
 

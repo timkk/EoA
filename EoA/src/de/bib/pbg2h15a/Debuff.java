@@ -1,7 +1,5 @@
 package de.bib.pbg2h15a;
 
-
-//public class Debuff extends Collectable{
 public class Debuff {	
 	private DebuffType type;
 	

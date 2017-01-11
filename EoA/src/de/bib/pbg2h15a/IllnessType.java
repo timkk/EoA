@@ -16,12 +16,10 @@ public enum IllnessType {
 	private String bezeichnung;
 	private int value;
 	
-	
 	private IllnessType(String bezeichnung, int value) {
 		this.bezeichnung = bezeichnung;
 		this.value = value;
 	}
-
 
 	public String getBezeichnung() {
 		return bezeichnung;
@@ -32,18 +30,12 @@ public enum IllnessType {
 		this.bezeichnung = bezeichnung;
 	}
 
-
 	public int getValue() {
 		return value;
 	}
 
-
 	public void setValue(int value) {
 		this.value = value;
 	}
-	
-	
-	
-	
-	
+
 }

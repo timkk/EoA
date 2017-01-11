@@ -51,5 +51,5 @@ public class GameStateManager {
 	public void render() {
 		gameState.render();
 	}
-	
+
 }

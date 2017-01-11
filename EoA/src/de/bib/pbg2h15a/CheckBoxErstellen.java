@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
-
 public class CheckBoxErstellen {
 
 	/**
@@ -61,7 +60,6 @@ public class CheckBoxErstellen {
 	}
 	
 	public void render(SpriteBatch batch) {
-		// TODO Auto-generated method stub
 
 		batch.draw(activeTexture, x, y);
 

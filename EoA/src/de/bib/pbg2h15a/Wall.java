@@ -1,9 +1,5 @@
 package de.bib.pbg2h15a;
 
-import java.util.Random;
-
-import javax.swing.text.StyledEditorKit.ForegroundAction;
-
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -14,7 +10,6 @@ public class Wall extends GameObject {
 	 * 
 	 */
 
-	
 	private Collectable content;
 
 	public Wall(int x, int y) {

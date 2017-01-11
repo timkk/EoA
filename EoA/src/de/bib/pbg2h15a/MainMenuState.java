@@ -61,6 +61,4 @@ public class MainMenuState extends GameState {
 		
 	}
 
-	
-	
 }

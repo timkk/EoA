@@ -5,12 +5,11 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 
 public enum Sounds {
-	
+
 	/**
 	 * @author pbg2h15akl , pbg2h15ake
 	 */
-	
-	
+
 	//Effects
 	EFFECT_EXPLOSION("assets/sounds/effects/explosion_effect.mp3"),
 	EFFECT_BOMB_DROPPED("assets/sounds/effects/bomb_dropped_effect.mp3"),
@@ -23,12 +22,10 @@ public enum Sounds {
 	EFFECT_WALL_DESTROYED("assets/sounds/effects/wall_destroyed_effect.mp3");
 	
 	private Sound sound;
-	
-	
+
 	private Sounds(String path) {
 		this.sound = Gdx.audio.newSound(Gdx.files.internal(path));
 	}
-
 
 	public Sound getSound() {
 		return sound;

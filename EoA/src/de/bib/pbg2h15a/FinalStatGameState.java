@@ -68,5 +68,4 @@ public class FinalStatGameState extends GameState {
 		stats = null;	
 		wins = null;
 	}
-
 }

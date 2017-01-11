@@ -29,6 +29,5 @@ public enum DebuffType {
 	public void setValue(int value) {
 		this.value = value;
 	}
-	
-	
+
 }
