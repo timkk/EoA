@@ -50,6 +50,7 @@ public class LocalGameState extends GameState{
 	private List<GameObject> collision_objects;
 	private List<Explosion> explosions;
 	private List<Bomb> bombs;
+	private List<Wall> walls;
 	
 	private Timer timer = new Timer(1);
 	
@@ -68,6 +69,7 @@ public class LocalGameState extends GameState{
     	collision_objects = new LinkedList<GameObject>();
     	explosions = new LinkedList<Explosion>();
     	bombs = new LinkedList<Bomb>();
+    	walls = new LinkedList<>();
 
     	font = new BitmapFont();
     	font.setColor(Color.BLACK);
@@ -77,7 +79,8 @@ public class LocalGameState extends GameState{
 
     	Object[][] field = setupField(17, 13);
     	stage = new Stage((GameObject[][]) field, 300, StageType.STANDARD, player_spawns, 3, Mode.LAST_MAN_STANDING);
-		
+		walls = generateWalls(17, 13);
+    	
     	texture_player = new Texture("img/Stage_1/Windfalle.png");
     	
     	player = new LinkedList<Player>();
@@ -184,6 +187,10 @@ public class LocalGameState extends GameState{
     	batch.begin();
     	drawField(stage);
     	
+
+    	for(Wall w : walls){
+    		w.render(batch);
+    	}
     	for(Bomb b : bombs){
     		b.render(batch);
     	}
@@ -235,6 +242,30 @@ public class LocalGameState extends GameState{
     	}
     	
     	return newField;
+    }
+	
+	private List<Wall> generateWalls(int width, int height){
+    	
+    	List<Wall> newList = new LinkedList<>();
+    	
+    	for(int i=1;i<height-1;i++){
+    		for(int j=1;j<width-1;j++){
+    			
+    			int posx = 75 + SPRITESIZE * j;
+    			int posy = 0 + SPRITESIZE * i;
+    			
+    			if(!(((i % 2) == 0 && (j % 2) == 0) || i < 3 && j < 3 || i > height-4 && j > width-4 || i < 3 && j > width-4 || i > height-4 && j < 3)){
+    				newList.add(new Wall(new Point(posx, posy)));
+				}
+    		}
+    	}
+    	
+    	for(int i = 0; i < 20; i++){
+    		int x = (int)(Math.random() * newList.size());
+    		newList.remove(x);
+    	}
+    	
+    	return newList;
     }
 
     private void drawField(Stage s) {
