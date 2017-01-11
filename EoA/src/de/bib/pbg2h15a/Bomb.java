@@ -162,7 +162,7 @@ public class Bomb extends GameObject{
 			}
 		}
 		
-		Sounds.EFFECT_POWERUP_COLLECTED.Play();
+		Sounds.EFFECT_EXPLOSION.Play();
 		
 		return el;
 		

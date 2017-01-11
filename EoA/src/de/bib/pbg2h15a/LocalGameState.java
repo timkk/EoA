@@ -166,6 +166,7 @@ public class LocalGameState extends GameState{
     			
     			if(collision(p.getPos(), list)){
     				p.setLife(p.getLife()-1); //player killed
+    				Sounds.EFFECT_PLAYER_DIES.Play();
     				int i = (int)(Math.random()*4);
     				p.setPos(player_spawns[i]);
     			}
@@ -237,6 +238,7 @@ public class LocalGameState extends GameState{
     					c.setPos(w.getPos());
     					collectables.add(c);
     				}
+    				Sounds.EFFECT_WALL_DESTROYED.Play();
     				delWall.add(w);
     			}
 	    	}
