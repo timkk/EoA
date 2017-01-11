@@ -255,13 +255,16 @@ public class LocalGameState extends GameState{
     			int posy = 0 + SPRITESIZE * i;
     			
     			if(!(((i % 2) == 0 && (j % 2) == 0) || i < 3 && j < 3 || i > height-4 && j > width-4 || i < 3 && j > width-4 || i > height-4 && j < 3)){
-    				newList.add(new Wall(new Point(posx, posy)));
+    				Wall wall = new Wall(new Point(posx, posy));
+    				newList.add(wall);
+    				collision_objects.add(wall);
 				}
     		}
     	}
     	
     	for(int i = 0; i < 20; i++){
     		int x = (int)(Math.random() * newList.size());
+    		collision_objects.remove(newList.get(x));
     		newList.remove(x);
     	}
     	
