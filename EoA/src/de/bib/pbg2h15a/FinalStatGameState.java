@@ -32,7 +32,11 @@ public class FinalStatGameState extends GameState {
 	texHelper lblPowerUpPickUp;
 	texHelper lblIllnessPickUp;
 	texHelper lblIllnessTransfer;
+	
+	// Zurück Button
 
+	ButtonErstellen zurueck;
+	
 	// Mehrdimensionales Array
 	// 1. Index: 0-3: Spielernummer
 	// 2. Index: 0-15: je 2 => 1 Statistikunterpunkt
@@ -60,6 +64,9 @@ public class FinalStatGameState extends GameState {
 		writer = new BitmapFont();
 		writer.setColor(Color.BLACK);
 		batch = new SpriteBatch();
+		
+		// Zurück Button
+		zurueck = new ButtonErstellen(700, 625, "assets/img/Buttons/GUI/back.png");		
 
 		// Label für die Spieler initialisieren
 		lblSpieler1 = new texHelper(400, 175, "assets/img/Stats/spieler1_100_50.png");
@@ -106,7 +113,9 @@ public class FinalStatGameState extends GameState {
 	@Override
 	public void update(float dt) {
 		// TODO Auto-generated method stub
-		
+		if(zurueck.isClicked()){
+			gsm.setState(gsm.MAIN);
+		}
 	}
 
 	@Override
@@ -198,6 +207,8 @@ public class FinalStatGameState extends GameState {
 		}
 	}
 	
+	
+	
 	private void setNumberTo(int number, texHelper value10, texHelper value1) {
 		/**
 		 * @author pbg2h15ala
@@ -205,7 +216,5 @@ public class FinalStatGameState extends GameState {
 		number %= 100;
 		value10.setTexture("assets/img/Stats/" + number / 10 + "_50x50.png");
 		value1.setTexture("assets/img/Stats/" + number % 10 + "_50x50.png");
-		// assets/img/Stats/0_50x50.png
 	}
-
 }

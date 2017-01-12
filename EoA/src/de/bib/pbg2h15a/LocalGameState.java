@@ -290,6 +290,19 @@ public class LocalGameState extends GameState {
 					delWall.add(w);
 				}
 			}
+			
+			
+			
+			if(spielVorbei()){
+				Statistic[] stats = new Statistic[4];
+				int tmp = 0;
+				for(Player p: player){
+					stats[tmp] = p.getStats();
+					++tmp;
+				}
+				gsm.setState(gsm.ROUND_STATISTIC, stats);
+			}
+			
 
 			walls.removeAll(delWall);
 			collision_objects.removeAll(delWall);
@@ -454,6 +467,25 @@ public class LocalGameState extends GameState {
 				}
 			}
 		}
+	}
+	
+	/**
+	 * @author pbg2h15ani
+	 * @param spieler
+	 */
+	
+	public boolean spielVorbei()
+	{
+		int anzahlLebenderSpieler = 0;
+		
+		for (Player p:player) {
+			if(p.getLife() > 0)
+			{
+				anzahlLebenderSpieler++;
+			}
+		}
+		
+		return anzahlLebenderSpieler < 2;
 	}
 
 }

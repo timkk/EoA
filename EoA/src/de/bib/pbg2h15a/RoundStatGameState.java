@@ -15,6 +15,8 @@ public class RoundStatGameState extends GameState {
 
 	private BitmapFont writer;
 	private SpriteBatch batch;
+	
+	private Timer timer;
 
 	// Label für die Spieler
 	texHelper lblSpieler1;
@@ -35,9 +37,13 @@ public class RoundStatGameState extends GameState {
 	// Mehrdimensionales Array
 	// 1. Index: 0-3: Spielernummer
 	// 2. Index: 0-15: je 2 => 1 Statistikunterpunkt
-	// the numbers? what do they mean?
 
 	texHelper[][] numbers = new texHelper[4][16];
+	
+	// TODO
+	// Timer
+	// zum Spiel zurück
+	// nach letzter Runde zu Endstatistik wechseln
 
 	protected RoundStatGameState(GameStateManager gsm, Statistic[] stats) {
 		super(gsm);
@@ -96,12 +102,22 @@ public class RoundStatGameState extends GameState {
 			setNumberTo(stats[x].getIllnessPickUpCount(), numbers[x][12], numbers[x][13]);
 			setNumberTo(stats[x].getIllnessTransferCount(), numbers[x][14], numbers[x][15]);
 		}
-
+		
+		timer = new Timer(10);
+		
 	}
 
 	@Override
 	public void update(float dt) {
 		// TODO Auto-generated method stub
+		
+		timer.update(dt);
+		
+		if(timer.isFinished() || allpressedgo){
+			if(last round){
+				gsm.setState(gsm.FINAL_STATISTIC);
+			}
+		}
 
 	}
 

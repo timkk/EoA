@@ -19,6 +19,9 @@ public class GameStateManager {
 	public static final int OPTIONS = 50;
 	public static final int GAME = 200;
 	public static final int ENDSCREEN = 300;
+	public static final int ROUND_STATISTIC = 3;
+	public static final int FINAL_STATISTIC = 4;
+	
 	
 	public GameStateManager() {
 		setState(MAIN);
@@ -41,6 +44,16 @@ public class GameStateManager {
 		}
 		if(state == GAME){
 			gameState = new LocalGameState(this);
+		}
+		if(state == FINAL_STATISTIC){
+			gameState = FinalStatGameState.getInstance(this);
+		}
+		
+	}
+	
+	public void setState(int state, Statistic[] stats){
+		if(state == ROUND_STATISTIC){
+			gameState = new RoundStatGameState(this, stats);
 		}
 	}
 	
