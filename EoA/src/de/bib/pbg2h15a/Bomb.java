@@ -110,6 +110,7 @@ public class Bomb extends GameObject{
 			
 			while(z < range && (lb || rb || ub || db)){
 				
+				if(lb)
 				if((left instanceof Pillar))
 					lb = false;
 				else{
@@ -122,6 +123,7 @@ public class Bomb extends GameObject{
 						}
 					}
 				}
+				if(rb)
 				if((right instanceof Pillar))
 					rb = false;
 				else{
@@ -134,6 +136,7 @@ public class Bomb extends GameObject{
 						}
 					}
 				}
+				if(ub)
 				if((up instanceof Pillar))
 					ub = false;
 				else{
@@ -146,6 +149,7 @@ public class Bomb extends GameObject{
 						}
 					}
 				}
+				if(db)
 				if((down instanceof Pillar))
 					db = false;
 				else{
