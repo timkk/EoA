@@ -32,17 +32,19 @@ public class LocalGameState extends GameState {
 			new InputConfig(Input.Keys.A, Input.Keys.D, Input.Keys.W, Input.Keys.S, Input.Keys.Q),
 			new InputConfig(Input.Keys.LEFT, Input.Keys.RIGHT, Input.Keys.UP, Input.Keys.DOWN, Input.Keys.PAGE_DOWN),
 			new InputConfig(Input.Keys.J, Input.Keys.L, Input.Keys.I, Input.Keys.K, Input.Keys.SPACE),
-			new InputConfig(Input.Keys.NUMPAD_1, Input.Keys.NUMPAD_3, Input.Keys.NUMPAD_5, Input.Keys.NUMPAD_2,
-					Input.Keys.NUMPAD_0) };;
+			new InputConfig(Input.Keys.NUMPAD_1, Input.Keys.NUMPAD_3, Input.Keys.NUMPAD_5, Input.Keys.NUMPAD_2, Input.Keys.NUMPAD_0)
+	};
 
 	private final Point FIELD_START = new Point(125f, 50f);
 	private final Point FIELD_END = new Point(875f, 600f);
 	private final int SPRITESIZE = 50;
 
-	protected final Point[] player_spawns = { new Point(FIELD_START.getX(), FIELD_END.getY() - SPRITESIZE),
+	protected final Point[] player_spawns = {
+			new Point(FIELD_START.getX(), FIELD_END.getY() - SPRITESIZE),
 			new Point(FIELD_END.getX() - SPRITESIZE, FIELD_START.getY()),
 			new Point(FIELD_START.getX(), FIELD_START.getY()),
-			new Point(FIELD_END.getX() - SPRITESIZE, FIELD_END.getY() - SPRITESIZE) };
+			new Point(FIELD_END.getX() - SPRITESIZE, FIELD_END.getY() - SPRITESIZE)
+	};
 
 	private final float COLLISION_OFFSET = 1f;
 
@@ -53,13 +55,12 @@ public class LocalGameState extends GameState {
 	private List<Wall> walls;
 	private List<Collectable> collectables;
 
-	private Timer timer = new Timer(1);
+	private Timer timer = new Timer(6);
 
 	private GUI gui;
 	private Timer rundenTimer;
 
-	private float directionX = 0;
-	private float directionY = 0;
+	private Point direction = new Point(0, 0);
 	private boolean throwbomb;
 
 	protected LocalGameState(GameStateManager gsm) {
@@ -118,8 +119,7 @@ public class LocalGameState extends GameState {
 				// bewegung auf x
 
 				if (Gdx.input.isKeyPressed(playerinput.getKeyLeft())) {
-					directionX = -100;
-					directionY = 0;
+					direction.set(-100, 0);
 					Point tmp = new Point(player.get(i).getPos());
 					tmp.translate(-player.get(i).getMoveSpeed(), 0);
 					if (!collision(tmp, collision_objects)) {
@@ -129,11 +129,9 @@ public class LocalGameState extends GameState {
 							kick(-1, 0);
 						}
 					}
-
 				}
 				if (Gdx.input.isKeyPressed(playerinput.getKeyRight())) {
-					directionX = 100;
-					directionY = 0;
+					direction.set(100, 0);
 					Point tmp = new Point(player.get(i).getPos());
 					tmp.translate(player.get(i).getMoveSpeed(), 0);
 					if (!collision(tmp, collision_objects)) {
@@ -143,7 +141,6 @@ public class LocalGameState extends GameState {
 							kick(1, 0);
 						}
 					}
-
 				}
 
 				pos.setX(player.get(i).getPos().getX());
@@ -151,8 +148,7 @@ public class LocalGameState extends GameState {
 				// bewegung auf y
 
 				if (Gdx.input.isKeyPressed(playerinput.getKeyUp())) {
-					directionX = 0;
-					directionY = 100;
+					direction.set(0, 100);
 					Point tmp = new Point(player.get(i).getPos());
 					tmp.translate(0, player.get(i).getMoveSpeed());
 					if (!collision(tmp, collision_objects)) {
@@ -164,8 +160,7 @@ public class LocalGameState extends GameState {
 					}
 				}
 				if (Gdx.input.isKeyPressed(playerinput.getKeyDown())) {
-					directionX = 0;
-					directionY = -100;
+					direction.set(0, -100);
 					Point tmp = new Point(player.get(i).getPos());
 					tmp.translate(0, -player.get(i).getMoveSpeed());
 					if (!collision(tmp, collision_objects)) {
@@ -176,6 +171,7 @@ public class LocalGameState extends GameState {
 						}
 					}
 				}
+				
 				/**
 				 * @author pbg2h15aln,pbg2h15ago,pbg2h15afa,pbg2h15aza
 				 */
@@ -187,13 +183,13 @@ public class LocalGameState extends GameState {
 						for (Bomb bomb : bombs) {
 							if (collisionWithTwoGameObjects(bomb, (GameObject) player.get(i))) {
 								throwbomb = true;
-								bomb.setPos(new Point(bomb.getPos().getX() + directionX,
-										bomb.getPos().getY() + directionY));
+								bomb.setPos(new Point(bomb.getPos().getX() + direction.getX(), bomb.getPos().getY() + direction.getY()));
 							}
 						}
 					}
 
 				}
+				
 				/**
 				 * @author pbg2h15aln,pbg2h15ago,pbg2h15afa,pbg2h15aza
 				 */

@@ -51,4 +51,9 @@ public class Point {
 		
 		return (this.x == p.getX() && this.y == p.getY());
 	}
+
+	public void set(float x, float y) {
+		this.x = x;
+		this.y = y;
+	}
 }
