@@ -129,7 +129,7 @@ public class GUI{
 		stage.addActor(tblLabels);
 		stage.addActor(tblMenueBtns);
 		//stage.addActor(tblSteuerungBnt);
-		stage.addActor(iBtnBomb);
+		//stage.addActor(iBtnBomb);
 		
 	}
 	
