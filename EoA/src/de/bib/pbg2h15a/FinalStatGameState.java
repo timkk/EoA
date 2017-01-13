@@ -66,7 +66,7 @@ public class FinalStatGameState extends GameState {
 		batch = new SpriteBatch();
 		
 		// Zurück Button
-		zurueck = new ButtonErstellen(700, 625, "img/Buttons/GUI/back.png");		
+		zurueck = new ButtonErstellen(700, 625, "img/Buttons/back.png");		
 
 		// Label für die Spieler initialisieren
 		lblSpieler1 = new texHelper(400, 175, "img/Stats/spieler1_100_50.png");
