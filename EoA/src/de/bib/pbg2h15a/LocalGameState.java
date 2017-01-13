@@ -63,11 +63,19 @@ public class LocalGameState extends GameState {
 	private Point direction = new Point(0, 0);
 	private boolean throwbomb;
 
+	/**
+	 * @author pbg2h15aza
+	 * @author pbg2h15asu
+	 * @param gsm GameStateManager
+	 */
 	protected LocalGameState(GameStateManager gsm) {
 		super(gsm);
 		init();
 	}
 
+	/**
+	 * @author pbg2h15asu
+	 */
 	@Override
 	public void init() {
 		batch = new SpriteBatch();
@@ -103,6 +111,9 @@ public class LocalGameState extends GameState {
 
 	}
 
+	/**
+	 * @author pbg2h15asu
+	 */
 	@Override
 	public void update(float dt) {
 
@@ -118,58 +129,42 @@ public class LocalGameState extends GameState {
 
 				// bewegung auf x
 
+				//links
 				if (Gdx.input.isKeyPressed(playerinput.getKeyLeft())) {
 					direction.set(-100, 0);
 					Point tmp = new Point(player.get(i).getPos());
 					tmp.translate(-player.get(i).getMoveSpeed(), 0);
-					if (!collision(tmp, collision_objects)) {
+					if (!collision(tmp, collision_objects))
 						player.get(i).setPos(tmp);
-					} else {
-						if (player.get(i).isBombKickable()) {
-							kick(-1, 0);
-						}
-					}
 				}
+				//rechts
 				if (Gdx.input.isKeyPressed(playerinput.getKeyRight())) {
 					direction.set(100, 0);
 					Point tmp = new Point(player.get(i).getPos());
 					tmp.translate(player.get(i).getMoveSpeed(), 0);
-					if (!collision(tmp, collision_objects)) {
+					if (!collision(tmp, collision_objects))
 						player.get(i).setPos(tmp);
-					} else {
-						if (player.get(i).isBombKickable()) {
-							kick(1, 0);
-						}
-					}
 				}
 
 				pos.setX(player.get(i).getPos().getX());
 
 				// bewegung auf y
 
+				//oben
 				if (Gdx.input.isKeyPressed(playerinput.getKeyUp())) {
 					direction.set(0, 100);
 					Point tmp = new Point(player.get(i).getPos());
 					tmp.translate(0, player.get(i).getMoveSpeed());
-					if (!collision(tmp, collision_objects)) {
+					if (!collision(tmp, collision_objects))
 						player.get(i).setPos(tmp);
-					} else {
-						if (player.get(i).isBombKickable()) {
-							kick(0, 1);
-						}
-					}
 				}
+				//unten
 				if (Gdx.input.isKeyPressed(playerinput.getKeyDown())) {
 					direction.set(0, -100);
 					Point tmp = new Point(player.get(i).getPos());
 					tmp.translate(0, -player.get(i).getMoveSpeed());
-					if (!collision(tmp, collision_objects)) {
+					if (!collision(tmp, collision_objects))
 						player.get(i).setPos(tmp);
-					} else {
-						if (player.get(i).isBombKickable()) {
-							kick(0, -1);
-						}
-					}
 				}
 				
 				/**
@@ -189,19 +184,14 @@ public class LocalGameState extends GameState {
 					}
 
 				}
-				
-				/**
-				 * @author pbg2h15aln,pbg2h15ago,pbg2h15afa,pbg2h15aza
-				 */
+
 				// bombe legen
-				if (Gdx.input.isKeyJustPressed(playerinput.getKeyBomb())
-						&& player.get(i).getAnzahlBomben() < player.get(i).getAnzahlBombenMax()) {
+				if (Gdx.input.isKeyJustPressed(playerinput.getKeyBomb()) && player.get(i).getAnzahlBomben() < player.get(i).getAnzahlBombenMax()) {
 					if (!throwbomb) {
 						newBomb(player.get(i).dropBomb());
 						Sounds.EFFECT_BOMB_DROPPED.Play();
 					}
 				}
-
 			}
 
 			// spieler verwalten
@@ -212,6 +202,7 @@ public class LocalGameState extends GameState {
 				for (Explosion e : explosions)
 					list.add((GameObject) e);
 
+				//Kollision Player + Explosion
 				if (collision(p.getPos(), list)) {
 					p.setLife(p.getLife() - 1); // player killed
 					Sounds.EFFECT_PLAYER_DIES.Play();
@@ -225,6 +216,8 @@ public class LocalGameState extends GameState {
 			List<Bomb> delCollBomb = new LinkedList<Bomb>();
 			for (Bomb b : bombs) {
 				b.update(dt);
+				
+				//ermöglicht von Bombe runter gehen nach platzieren
 				if (!collision_objects.contains(b)) {
 
 					List<GameObject> list = new LinkedList<GameObject>();
@@ -236,6 +229,7 @@ public class LocalGameState extends GameState {
 						collision_objects.add(b);
 				}
 
+				//Zeit aufgelaufen ? Explosion : Kollision mit Explosion ? Explosion
 				if (b.getTime() <= 0) {
 					delBomb.add(b);
 					explosions.addAll(b.explode(stage, walls));
@@ -258,6 +252,7 @@ public class LocalGameState extends GameState {
 					}
 				}
 			}
+			//Explosdierte Bomben entfernen
 			bombs.removeAll(delBomb);
 			collision_objects.removeAll(delCollBomb);
 
@@ -280,6 +275,7 @@ public class LocalGameState extends GameState {
 				for (Explosion e : explosions)
 					list.add((GameObject) e);
 
+				//Kollision mit Explosion -> entfernen und mögliches Collectable platzieren
 				if (collision(w.getPos(), list)) {
 					if (w.getContent() != null) {
 						Collectable c = w.getContent();
@@ -290,9 +286,12 @@ public class LocalGameState extends GameState {
 					delWall.add(w);
 				}
 			}
+			walls.removeAll(delWall);
+			collision_objects.removeAll(delWall);
 			
-			
-			
+			/**
+			 * @author pbg2h15ani
+			 */
 			if(spielVorbei()){
 				Statistic[] stats = new Statistic[4];
 				int tmp = 0;
@@ -302,10 +301,6 @@ public class LocalGameState extends GameState {
 				}
 				gsm.setState(gsm.ROUND_STATISTIC, stats);
 			}
-			
-
-			walls.removeAll(delWall);
-			collision_objects.removeAll(delWall);
 
 		} else {
 			timer.update(dt);
@@ -313,6 +308,10 @@ public class LocalGameState extends GameState {
 
 	}
 
+	/**
+	 * @author pbg2h15asu
+	 * @return rendert das Spielfeld: Spieler > Explosionen > Bomben > Kisten > Spielfeld
+	 */
 	@Override
 	public void render() {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
@@ -339,16 +338,20 @@ public class LocalGameState extends GameState {
 		}
 		gui.render(batch);
 		batch.end();
-
 	}
 
 	@Override
 	public void dispose() {
 		batch.dispose();
 		texture_player.dispose();
-
 	}
 
+	/**
+	 * @author pbg2h15asu
+	 * @param width breite des Spielfelds
+	 * @param height höhe des Spielfelds
+	 * @return Spielfeld als 2dim Array
+	 */
 	private Object[][] setupField(int width, int height) {
 
 		GameObject[][] newField = new GameObject[height][width];
@@ -377,6 +380,12 @@ public class LocalGameState extends GameState {
 		return newField;
 	}
 
+	/**
+	 * @author pbg2h15awi
+	 * @param width briete des felds
+	 * @param height höhe des felds
+	 * @return
+	 */
 	private List<Wall> generateWalls(int width, int height) {
 
 		List<Wall> newList = new LinkedList<>();
@@ -405,6 +414,10 @@ public class LocalGameState extends GameState {
 		return newList;
 	}
 
+	/**
+	 * @author pbg2h15asu
+	 * @param s Stage
+	 */
 	private void drawField(Stage s) {
 		for (int i = 0; i < 13; i++) {
 			for (int j = 0; j < 17; j++) {
@@ -414,6 +427,11 @@ public class LocalGameState extends GameState {
 		}
 	}
 
+	/**
+	 * @author pbg2h15asu
+	 * @param b neue Bombe
+	 * @return positioniert die Bombe mittig auf dem Feld
+	 */
 	private void newBomb(Bomb b) {
 		Point tmp = new Point(b.getPos());
 		int tmpx = (int) tmp.getX();
@@ -431,6 +449,12 @@ public class LocalGameState extends GameState {
 		bombs.add(b);
 	}
 
+	/**
+	 * @author pbg2h15asu
+	 * @param p Position des Objects
+	 * @param objects Objekte die auf Kollision überprüft werden sollen
+	 * @return true wenn Kollision erfolgt
+	 */
 	private boolean collision(Point p, List<GameObject> objects) {
 
 		boolean collision = false;
@@ -451,29 +475,10 @@ public class LocalGameState extends GameState {
 		CollisionDetector cd = new CollisionDetector(g1, COLLISION_OFFSET);
 		return cd.collidesWith(g2);
 	}
-	/**
-	 * @author pbg2h15aln,pbg2h15ago,pbg2h15afa
-	 */
-	private void kick(float directionX, float directionY) {
-
-		for (GameObject object : collision_objects) {
-			if (object.getClass().getName().equals(Bomb.class.getName())) {
-				System.out.println("ist eine Bombe!");
-				List<GameObject> gameObjectsOhneBomb = collision_objects;
-				gameObjectsOhneBomb.remove(object);
-				while (!collision(object.getPos(), gameObjectsOhneBomb)) {
-					System.out.println("Panos");
-					object.setPos(new Point(object.pos.getX() + directionX, object.pos.getY() + directionY));
-				}
-			}
-		}
-	}
 	
 	/**
 	 * @author pbg2h15ani
-	 * @param spieler
 	 */
-	
 	public boolean spielVorbei()
 	{
 		int anzahlLebenderSpieler = 0;

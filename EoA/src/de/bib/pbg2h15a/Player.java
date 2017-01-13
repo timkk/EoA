@@ -7,7 +7,6 @@ public class Player extends GameObject {
 
 	private int bombRadius;
 	private int moveSpeed;
-	private boolean bombKickable;
 	private boolean bombThrowable;
 	private int anzahlBomben;
 	private int anzahlBombenMax;
@@ -33,8 +32,7 @@ public class Player extends GameObject {
 		super(pos, false, spritesheet);
 		this.name = name;
 		this.moveSpeed = 2;
-		this.bombKickable = false;
-		this.bombThrowable = false;
+		this.bombThrowable = true;
 		this.anzahlBomben = 0  ;
 		this.anzahlBombenMax = 1;
 		this.life = 1;
@@ -86,14 +84,6 @@ public class Player extends GameObject {
 	 */
 	public void addMoveSpeed(int value) {
 		this.moveSpeed += value;
-	}
-
-	public boolean isBombKickable() {
-		return bombKickable;
-	}
-
-	public void setBombKickable(boolean bombKickable) {
-		this.bombKickable = bombKickable;
 	}
 
 	public boolean isBombThrowable() {

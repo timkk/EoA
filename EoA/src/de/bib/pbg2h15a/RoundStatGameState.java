@@ -113,11 +113,11 @@ public class RoundStatGameState extends GameState {
 		
 		timer.update(dt);
 		
-		if(timer.isFinished() || allpressedgo){
-			if(last round){
-				gsm.setState(gsm.FINAL_STATISTIC);
-			}
-		}
+//		if(timer.isFinished() || allpressedgo){
+//			if(last round){
+//				gsm.setState(gsm.FINAL_STATISTIC);
+//			}
+//		}
 
 	}
 
