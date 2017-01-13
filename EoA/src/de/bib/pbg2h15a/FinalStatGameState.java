@@ -55,8 +55,6 @@ public class FinalStatGameState extends GameState {
 	//Kostruktor für Singelton
 	private FinalStatGameState(GameStateManager gsm) {
 		super(gsm);
-
-		init();
 	}
 
 	@Override
@@ -66,7 +64,7 @@ public class FinalStatGameState extends GameState {
 		batch = new SpriteBatch();
 		
 		// Zurück Button
-		zurueck = new ButtonErstellen(700, 625, "img/Buttons/back.png");		
+		zurueck = new ButtonErstellen(600, 75, "img/GamePrepare/zuruck.png");		
 
 		// Label für die Spieler initialisieren
 		lblSpieler1 = new texHelper(400, 175, "img/Stats/spieler1_100_50.png");
@@ -121,6 +119,9 @@ public class FinalStatGameState extends GameState {
 	@Override
 	public void render() {
 		batch.begin();
+		
+		zurueck.render(batch);
+		
 		// Label für die Spieler rendern
 		lblSpieler1.render(batch);
 		lblSpieler2.render(batch);
@@ -168,6 +169,7 @@ public class FinalStatGameState extends GameState {
 			}
 		}
 		wins[posOfWinner]++;
+		init();
 	}
 	
 	public void resetFinalStats(){
@@ -214,7 +216,7 @@ public class FinalStatGameState extends GameState {
 		 * @author pbg2h15ala
 		 */
 		number %= 100;
-		value10.setTexture("assets/img/Stats/" + number / 10 + "_50x50.png");
-		value1.setTexture("assets/img/Stats/" + number % 10 + "_50x50.png");
+		value10.setTexture("img/Stats/" + number / 10 + "_50x50.png");
+		value1.setTexture("img/Stats/" + number % 10 + "_50x50.png");
 	}
 }
