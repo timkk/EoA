@@ -184,14 +184,13 @@ public class LocalGameState extends GameState {
 										p.getY()<=FIELD_START.getY() || p.getY() >= FIELD_END.getY()))
 									bomb.setPos(p);
 								else{
-									if(p.getX() <= FIELD_START.getX()){
+									if(p.getX() < FIELD_START.getX()){
 										bomb.setPos(new Point(FIELD_END.getX()-SPRITESIZE,p.getY()));
-									}
-									else if(p.getX() >= FIELD_END.getX()){
+									}else if(p.getX() > FIELD_END.getX()){
 										bomb.setPos(new Point(FIELD_START.getX(),p.getY()));
-									}else if(p.getY() >= FIELD_END.getY()){
+									}else if(p.getY() > FIELD_END.getY()){
 										bomb.setPos(new Point(p.getX(),FIELD_START.getY()));
-									}else if(p.getY() <= FIELD_START.getY()){
+									}else if(p.getY() < FIELD_START.getY()){
 										bomb.setPos(new Point(p.getX(),FIELD_END.getY()-SPRITESIZE));
 										System.out.println(bomb.getPos().toString());
 									}

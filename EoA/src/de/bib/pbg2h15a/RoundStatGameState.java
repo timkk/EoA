@@ -9,7 +9,7 @@ public class RoundStatGameState extends GameState {
 	/**
 	 * @author pbg2h15agu, pbg2h15ala
 	 */
-
+	
 	private Statistic[] stats;
 	private FinalStatGameState finalStats;
 
@@ -17,6 +17,7 @@ public class RoundStatGameState extends GameState {
 	private SpriteBatch batch;
 	
 	private Timer timer;
+	ButtonErstellen next;
 
 	// Label für die Spieler
 	texHelper lblSpieler1;
@@ -62,22 +63,24 @@ public class RoundStatGameState extends GameState {
 		writer = new BitmapFont();
 		writer.setColor(Color.BLACK);
 		batch = new SpriteBatch();
+		
+		next = new ButtonErstellen(0,0,"img/GamePrepare/arrow_right.png");
 
 		// Label für die Spieler initialisieren
-		lblSpieler1 = new texHelper(400, 175, "assets/img/Stats/spieler1_100_50.png");
-		lblSpieler2 = new texHelper(500, 175, "assets/img/Stats/spieler2_100_50.png");
-		lblSpieler3 = new texHelper(600, 175, "assets/img/Stats/spieler3_100_50.png");
-		lblSpieler4 = new texHelper(700, 175, "assets/img/Stats/spieler4_100_50.png");
+		lblSpieler1 = new texHelper(400, 175, "img/Stats/spieler1_100_50.png");
+		lblSpieler2 = new texHelper(500, 175, "img/Stats/spieler2_100_50.png");
+		lblSpieler3 = new texHelper(600, 175, "img/Stats/spieler3_100_50.png");
+		lblSpieler4 = new texHelper(700, 175, "img/Stats/spieler4_100_50.png");
 
 		// Label für die Statistikunterpunkte initialisieren
-		lblSiege = new texHelper(200, 225, "assets/img/Stats/siege_200x50.png");
-		lblPunkte = new texHelper(200, 275, "assets/img/Stats/punkte_200x50.png");
-		lblPlacedBombs = new texHelper(200, 325, "assets/img/Stats/bomben_gelegt_200x50.png");
-		lblKilledEnemies = new texHelper(200, 375, "assets/img/Stats/gegner_gekillt_200x50.png");
-		lblSelfKills = new texHelper(200, 425, "assets/img/Stats/suizide_200x50.png");
-		lblPowerUpPickUp = new texHelper(200, 475, "assets/img/Stats/power_ups_200x50.png");
-		lblIllnessPickUp = new texHelper(200, 525, "assets/img/Stats/krankheiten_gesammelt_200x50.png");
-		lblIllnessTransfer = new texHelper(200, 575, "assets/img/Stats/krankheiten_uebergeben_200x50.png");
+		lblSiege = new texHelper(200, 225, "img/Stats/siege_200x50.png");
+		lblPunkte = new texHelper(200, 275, "img/Stats/punkte_200x50.png");
+		lblPlacedBombs = new texHelper(200, 325, "img/Stats/bomben_gelegt_200x50.png");
+		lblKilledEnemies = new texHelper(200, 375, "img/Stats/gegner_gekillt_200x50.png");
+		lblSelfKills = new texHelper(200, 425, "img/Stats/suizide_200x50.png");
+		lblPowerUpPickUp = new texHelper(200, 475, "img/Stats/power_ups_200x50.png");
+		lblIllnessPickUp = new texHelper(200, 525, "img/Stats/krankheiten_gesammelt_200x50.png");
+		lblIllnessTransfer = new texHelper(200, 575, "img/Stats/krankheiten_uebergeben_200x50.png");
 
 		// Zahlenfelder Initialiesieren
 		// Position festlegen
@@ -88,7 +91,7 @@ public class RoundStatGameState extends GameState {
 				if (y % 2 == 1)
 					xOffset = 50;
 				yOffset = (y / 2) * 50;
-				numbers[x][y] = new texHelper(400 + x * 100 + xOffset, 225 + yOffset, "assets/img/Stats/0_50x50.png");
+				numbers[x][y] = new texHelper(400 + x * 100 + xOffset, 225 + yOffset, "img/Stats/0_50x50.png");
 			}
 			setNumberTo(finalStats.getWins()[x], numbers[x][0], numbers[x][1]);
 			setNumberTo(stats[x].getPoints(), numbers[x][2], numbers[x][3]);
@@ -113,11 +116,14 @@ public class RoundStatGameState extends GameState {
 		
 		timer.update(dt);
 		
-//		if(timer.isFinished() || allpressedgo){
-//			if(last round){
-//				gsm.setState(gsm.FINAL_STATISTIC);
-//			}
-//		}
+		if(timer.isFinished() || next.isClicked()){
+			if(lastRound()){
+				gsm.setState(gsm.FINAL_STATISTIC);
+			}
+			else{
+				gsm.setState(gsm.GAME);
+			}
+		}
 
 	}
 
@@ -125,6 +131,9 @@ public class RoundStatGameState extends GameState {
 	public void render() {
 		// TODO Auto-generated method stub
 		batch.begin();
+		
+		next.render(batch);
+		
 		// Label für die Spieler rendern
 		lblSpieler1.render(batch);
 		lblSpieler2.render(batch);
@@ -205,9 +214,12 @@ public class RoundStatGameState extends GameState {
 		 * @author pbg2h15ala
 		 */
 		number %= 100;
-		value10.setTexture("assets/img/Stats/" + number / 10 + "_50x50.png");
-		value1.setTexture("assets/img/Stats/" + number % 10 + "_50x50.png");
-		// assets/img/Stats/0_50x50.png
+		value10.setTexture("img/Stats/" + number / 10 + "_50x50.png");
+		value1.setTexture("img/Stats/" + number % 10 + "_50x50.png");
 	}
-
+	
+	private boolean lastRound(){
+		return true;
+	}
+	
 }
