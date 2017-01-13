@@ -1,7 +1,5 @@
 package de.bib.pbg2h15a;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
 public class Illness{
 
 	/**

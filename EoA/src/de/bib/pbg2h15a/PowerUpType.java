@@ -6,7 +6,6 @@ public enum PowerUpType {
 	BOMB_PLUS("Bombe Plus", 1, false),
 	RANGE_PLUS("Range Plus", 1, false),
 	BOMB_THROW("Bomb Throw", 0, true),
-	BOMB_KICK("Bomb Kick", 0, true),
 	LIVE_PLUS("Live Plus", 1, false);
 	
 	private String description;

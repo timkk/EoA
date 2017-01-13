@@ -38,7 +38,7 @@ public class Player extends GameObject {
 		this.life = 1;
 		this.stats = new Statistic();
 		this.illness = null;
-		this.bombRadius = 1;
+		this.bombRadius = 5;
 		this.controls = controls;
 	}
 
