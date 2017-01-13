@@ -178,7 +178,24 @@ public class LocalGameState extends GameState {
 						for (Bomb bomb : bombs) {
 							if (collisionWithTwoGameObjects(bomb, (GameObject) player.get(i))) {
 								throwbomb = true;
-								bomb.setPos(new Point(bomb.getPos().getX() + direction.getX(), bomb.getPos().getY() + direction.getY()));
+								Point p = new Point(bomb.getPos().getX() + direction.getX(),
+										bomb.getPos().getY() + direction.getY());
+								if(!(p.getX() <= FIELD_START.getX() || p.getX() >= FIELD_END.getX()||
+										p.getY()<=FIELD_START.getY() || p.getY() >= FIELD_END.getY()))
+									bomb.setPos(p);
+								else{
+									if(p.getX() <= FIELD_START.getX()){
+										bomb.setPos(new Point(FIELD_END.getX()-SPRITESIZE,p.getY()));
+									}
+									else if(p.getX() >= FIELD_END.getX()){
+										bomb.setPos(new Point(FIELD_START.getX(),p.getY()));
+									}else if(p.getY() >= FIELD_END.getY()){
+										bomb.setPos(new Point(p.getX(),FIELD_START.getY()));
+									}else if(p.getY() <= FIELD_START.getY()){
+										bomb.setPos(new Point(p.getX(),FIELD_END.getY()-SPRITESIZE));
+										System.out.println(bomb.getPos().toString());
+									}
+								}
 							}
 						}
 					}
