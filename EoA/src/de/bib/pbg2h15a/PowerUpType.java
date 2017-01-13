@@ -23,24 +23,11 @@ public enum PowerUpType {
 		return description;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 	public int getValue() {
 		return value;
 	}
-
-	public void setValue(int value) {
-		this.value = value;
-	}
-
+	
 	public boolean isActive() {
 		return active;
 	}
-
-	public void setActive(boolean active) {
-		this.active = active;
-	}
-
 }

@@ -7,5 +7,4 @@ public abstract class Collectable extends GameObject {
 	public Collectable(Point p, Texture spritesheet) {
 		super(p, true, null);
 	}
-	
 }

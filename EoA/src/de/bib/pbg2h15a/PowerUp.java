@@ -8,7 +8,7 @@ public class PowerUp {
 	 * @author pbg2h15are
 	 */
 	public PowerUp() {
-		randPowerupType();
+		randPowerUpType();
 	}
 	
 	public PowerUpType getType() {
@@ -23,7 +23,7 @@ public class PowerUp {
 	 * @author pbg2h15are
 	 * @return Give the Constructor a PowerUp with a Random Type
 	 */
-	private void randPowerupType(){
+	private void randPowerUpType(){
 		PowerUpType[] types = PowerUpType.values();
 		int rndNumber = (int)(Math.random()*6);
 		this.type = types[rndNumber];
