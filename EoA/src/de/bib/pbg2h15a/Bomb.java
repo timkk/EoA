@@ -90,12 +90,12 @@ public class Bomb extends GameObject{
 			}
 		}
 		
-		if(a >= 0 && b >= 0){
+if(a >= 0 && b >= 0){
 			
 			int range = this.player.getBombRadius();
 			boolean lb = true, rb = true, ub = true, db = true;
 			
-			Explosion center = new Explosion(new Point(field[a][b].getPos().getX(), field[a][b].getPos().getY()));
+			Explosion center = new Explosion(new Point(field[a][b].getPos().getX(), field[a][b].getPos().getY()),Explosion_Animation.EXPLOSION_CENTER);
 			el.add(center);
 			
 			z = 0;
@@ -109,17 +109,26 @@ public class Bomb extends GameObject{
 			GameObject down = field[d-z][b];
 			
 			while(z < range && (lb || rb || ub || db)){
-				
 				if(lb)
 				if((left instanceof Pillar))
 					lb = false;
 				else{
-					el.add(new Explosion(left.getPos()));
+					
+					if(1==range){
+						el.add(new Explosion(left.getPos(),Explosion_Animation.EXPLOSION_LEFT));
+					}else{
+					el.add(new Explosion(left.getPos(),Explosion_Animation.EXPLOSION_HORI));
+					}
 					left = field[a][l-z];
 					for(Wall w : walls){
 						if(left.getPos().equals(w.getPos())){
-							el.add(new Explosion(left.getPos()));
+							el.add(new Explosion(left.getPos(),Explosion_Animation.EXPLOSION_HORI));
 							lb = false;	
+						}
+						else{
+							if(range-1==z&&lb&&!(left instanceof Pillar)){
+								el.add(new Explosion(left.getPos(),Explosion_Animation.EXPLOSION_LEFT));
+							}
 						}
 					}
 				}
@@ -127,12 +136,21 @@ public class Bomb extends GameObject{
 				if((right instanceof Pillar))
 					rb = false;
 				else{
-					el.add(new Explosion(right.getPos()));
+					if(1==range){
+						el.add(new Explosion(right.getPos(),Explosion_Animation.EXPLOSION_RIGHT));
+					}else{
+					el.add(new Explosion(right.getPos(),Explosion_Animation.EXPLOSION_HORI));
+					}
 					right = field[a][r+z];
 					for(Wall w : walls){
 						if(right.getPos().equals(w.getPos())){
-							el.add(new Explosion(right.getPos()));
+							el.add(new Explosion(right.getPos(),Explosion_Animation.EXPLOSION_HORI));
 							rb = false;
+						}
+						else{
+							if(range-1==z&&rb&&!(right instanceof Pillar)){
+								el.add(new Explosion(right.getPos(),Explosion_Animation.EXPLOSION_RIGHT));
+							}
 						}
 					}
 				}
@@ -140,12 +158,21 @@ public class Bomb extends GameObject{
 				if((up instanceof Pillar))
 					ub = false;
 				else{
-					el.add(new Explosion(up.getPos()));
+					if(1==range){
+						el.add(new Explosion(up.getPos(),Explosion_Animation.EXPLOSION_TOP));
+					}else{
+						el.add(new Explosion(up.getPos(),Explosion_Animation.EXPLOSION_VERT));
+					}
 					up = field[u+z][b];
 					for(Wall w : walls){
 						if(up.getPos().equals(w.getPos())){
-							el.add(new Explosion(up.getPos()));
+							el.add(new Explosion(up.getPos(),Explosion_Animation.EXPLOSION_VERT));
 							ub = false;
+						}
+						else{
+							if(range-1==z&&ub&&!(up instanceof Pillar)){
+								el.add(new Explosion(up.getPos(),Explosion_Animation.EXPLOSION_TOP));
+							}
 						}
 					}
 				}
@@ -153,18 +180,27 @@ public class Bomb extends GameObject{
 				if((down instanceof Pillar))
 					db = false;
 				else{
-					el.add(new Explosion(down.getPos()));
-					down = field[d-z][b];
+					if(1==range){
+						el.add(new Explosion(down.getPos(),Explosion_Animation.EXPLOSION_BOTTOM));
+					}else{
+						el.add(new Explosion(down.getPos(),Explosion_Animation.EXPLOSION_VERT));
+					}down = field[d-z][b];
 					for(Wall w : walls){
 						if(down.getPos().equals(w.getPos())){
-							el.add(new Explosion(down.getPos()));
+							el.add(new Explosion(down.getPos(),Explosion_Animation.EXPLOSION_VERT));
 							db = false;
+						}
+						else{
+							if(range-1==z&&db&&!(down instanceof Pillar)){
+								el.add(new Explosion(down.getPos(),Explosion_Animation.EXPLOSION_BOTTOM));
+							}
 						}
 					}
 				}
 				z++;
 			}
 		}
+		
 		
 		Sounds.EFFECT_EXPLOSION.Play();
 		
