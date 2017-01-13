@@ -195,6 +195,7 @@ public class LocalGameState extends GameState {
 			}
 
 			// spieler verwalten
+			List<Player> deadPlayer = new LinkedList<Player>();
 			for (Player p : player) {
 
 				List<GameObject> list = new LinkedList<GameObject>();
@@ -206,10 +207,15 @@ public class LocalGameState extends GameState {
 				if (collision(p.getPos(), list)) {
 					p.setLife(p.getLife() - 1); // player killed
 					Sounds.EFFECT_PLAYER_DIES.Play();
-					int i = (int) (Math.random() * 4);
-					p.setPos(player_spawns[i]);
+					if(p.getLife() < 1)
+						deadPlayer.add(p);
+					else{
+						int i = (int) (Math.random() * 4);
+						p.setPos(player_spawns[i]);
+					}
 				}
 			}
+			player.removeAll(deadPlayer);
 
 			// bomben verwalten
 			List<Bomb> delBomb = new LinkedList<Bomb>();
@@ -432,7 +438,7 @@ public class LocalGameState extends GameState {
 	 * @param b neue Bombe
 	 * @return positioniert die Bombe mittig auf dem Feld
 	 */
-	private void newBomb(Bomb b) {
+	public void newBomb(Bomb b) {
 		Point tmp = new Point(b.getPos());
 		int tmpx = (int) tmp.getX();
 		int tmpy = (int) tmp.getY() + 25;

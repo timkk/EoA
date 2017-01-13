@@ -24,10 +24,8 @@ public class PowerUp {
 	 * @return Give the Constructor a PowerUp with a Random Type
 	 */
 	private void randPowerupType(){
-		PowerUpType[] types = {PowerUpType.SPEED_UP, PowerUpType.BOMB_PLUS, PowerUpType.RANGE_PLUS,
-				PowerUpType.BOMB_THROW, PowerUpType.BOMB_KICK, PowerUpType.LIVE_PLUS};
+		PowerUpType[] types = PowerUpType.values();
 		int rndNumber = (int)(Math.random()*6);
 		this.type = types[rndNumber];
-	}	
-
+	}
 }

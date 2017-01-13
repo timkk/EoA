@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 public abstract class Collectable extends GameObject {
 
-	public Collectable(Point p, boolean passable, Texture spritesheet) {
+	public Collectable(Point p, Texture spritesheet) {
 		super(p, true, null);
 	}
 	

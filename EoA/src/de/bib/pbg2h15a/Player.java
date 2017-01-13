@@ -149,6 +149,9 @@ public class Player extends GameObject {
 
 	@Override
 	public void update(float dt) {
-		
+		if(hasIllness()){
+			illness.update(dt);
+			illness.illnessExpired();
+		}
 	}
 }

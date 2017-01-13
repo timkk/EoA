@@ -8,7 +8,7 @@ public class GameStateManager {
 	 * @author pbg2h15asu
 	 */
 	
-	private GameState gameState;
+	public static GameState gameState;
 	
 	public static boolean SOUND = true;
 	public static boolean MUSIC = true;
