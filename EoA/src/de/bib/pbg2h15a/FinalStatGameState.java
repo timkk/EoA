@@ -66,23 +66,23 @@ public class FinalStatGameState extends GameState {
 		batch = new SpriteBatch();
 		
 		// Zurück Button
-		zurueck = new ButtonErstellen(700, 625, "assets/img/Buttons/GUI/back.png");		
+		zurueck = new ButtonErstellen(700, 625, "img/Buttons/GUI/back.png");		
 
 		// Label für die Spieler initialisieren
-		lblSpieler1 = new texHelper(400, 175, "assets/img/Stats/spieler1_100_50.png");
-		lblSpieler2 = new texHelper(500, 175, "assets/img/Stats/spieler2_100_50.png");
-		lblSpieler3 = new texHelper(600, 175, "assets/img/Stats/spieler3_100_50.png");
-		lblSpieler4 = new texHelper(700, 175, "assets/img/Stats/spieler4_100_50.png");
+		lblSpieler1 = new texHelper(400, 175, "img/Stats/spieler1_100_50.png");
+		lblSpieler2 = new texHelper(500, 175, "img/Stats/spieler2_100_50.png");
+		lblSpieler3 = new texHelper(600, 175, "img/Stats/spieler3_100_50.png");
+		lblSpieler4 = new texHelper(700, 175, "img/Stats/spieler4_100_50.png");
 
 		// Label für die Statistikunterpunkte initialisieren
-		lblSiege = new texHelper(200, 225, "assets/img/Stats/siege_200x50.png");
-		lblPunkte = new texHelper(200, 275, "assets/img/Stats/punkte_200x50.png");
-		lblPlacedBombs = new texHelper(200, 325, "assets/img/Stats/bomben_gelegt_200x50.png");
-		lblKilledEnemies = new texHelper(200, 375, "assets/img/Stats/gegner_gekillt_200x50.png");
-		lblSelfKills = new texHelper(200, 425, "assets/img/Stats/suizide_200x50.png");
-		lblPowerUpPickUp = new texHelper(200, 475, "assets/img/Stats/power_ups_200x50.png");
-		lblIllnessPickUp = new texHelper(200, 525, "assets/img/Stats/krankheiten_gesammelt_200x50.png");
-		lblIllnessTransfer = new texHelper(200, 575, "assets/img/Stats/krankheiten_uebergeben_200x50.png");
+		lblSiege = new texHelper(200, 225, "img/Stats/siege_200x50.png");
+		lblPunkte = new texHelper(200, 275, "img/Stats/punkte_200x50.png");
+		lblPlacedBombs = new texHelper(200, 325, "img/Stats/bomben_gelegt_200x50.png");
+		lblKilledEnemies = new texHelper(200, 375, "img/Stats/gegner_gekillt_200x50.png");
+		lblSelfKills = new texHelper(200, 425, "img/Stats/suizide_200x50.png");
+		lblPowerUpPickUp = new texHelper(200, 475, "img/Stats/power_ups_200x50.png");
+		lblIllnessPickUp = new texHelper(200, 525, "img/Stats/krankheiten_gesammelt_200x50.png");
+		lblIllnessTransfer = new texHelper(200, 575, "img/Stats/krankheiten_uebergeben_200x50.png");
 
 		// Zahlenfelder Initialiesieren
 		// Position festlegen
@@ -93,7 +93,7 @@ public class FinalStatGameState extends GameState {
 				if (y % 2 == 1)
 					xOffset = 50;
 				yOffset = (y / 2) * 50;
-				numbers[x][y] = new texHelper(400 + x * 100 + xOffset, 225 + yOffset, "assets/img/Stats/0_50x50.png");
+				numbers[x][y] = new texHelper(400 + x * 100 + xOffset, 225 + yOffset, "img/Stats/0_50x50.png");
 			}
 			setNumberTo(getWins()[x], numbers[x][0], numbers[x][1]);
 			setNumberTo(stats[x].getPoints(), numbers[x][2], numbers[x][3]);
