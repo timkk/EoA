@@ -211,7 +211,6 @@ public class LocalGameState extends GameState {
 			}
 
 			// spieler verwalten
-			List<Player> deadPlayer = new LinkedList<Player>();
 			for (Player p : player) {
 
 				List<GameObject> list = new LinkedList<GameObject>();
@@ -224,14 +223,13 @@ public class LocalGameState extends GameState {
 					p.setLife(p.getLife() - 1); // player killed
 					Sounds.EFFECT_PLAYER_DIES.Play();
 					if(p.getLife() < 1)
-						deadPlayer.add(p);
+						p.setPos(new Point(300, -300));
 					else{
 						int i = (int) (Math.random() * 4);
 						p.setPos(player_spawns[i]);
 					}
 				}
 			}
-			player.removeAll(deadPlayer);
 
 			// bomben verwalten
 			List<Bomb> delBomb = new LinkedList<Bomb>();
