@@ -1,18 +1,22 @@
 package de.bib.pbg2h15a;
 
-public class PowerUp {	
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+public class PowerUp extends Collectable{	
 	
 	/**
 	 * @author pbg2h15are
 	 * @author pbg2h15ake
+	 * @author pbg2h15awi
 	 */
 	private PowerUpType type;
 	private int key;
-	private Player player;
 	
-	
-	public PowerUp() {
+	public PowerUp(Point p) {
+		super(p);
 		setRndmPowerUp();
+		this.spritesheet = new Texture("img/Stage_1/Feuerfalle.png");	//temporäres Bild
 	}
 	
 	/**
@@ -22,12 +26,11 @@ public class PowerUp {
 		int zufallszahl = (int)(Math.random()*4) + 0;
 		
 		this.key = zufallszahl;
-		
-		powerUpSet();
+		//TODO individuelle Power-Up-Bilder
+		//powerUpSet();
 	}
 	
-	private void powerUpSet(){
-		
+	public void setPowerUp(Player player){
 		switch(key)
 		{
 			case 0:
@@ -35,11 +38,11 @@ public class PowerUp {
 				break;
 				
 			case 1:
-				player.setAnzahlBomben(player.getAnzahlBomben() + PowerUpType.BOMB_PLUS.getValue());
+				player.setAnzahlBombenMax(player.getAnzahlBomben() + PowerUpType.BOMB_PLUS.getValue());
 				break;
 				
 			case 2:
-				player.setBombRadius(player.getBombRadius() + PowerUpType.RANGE_PLUS.getValue());
+				player.increaseBombRadius(PowerUpType.RANGE_PLUS.getValue());
 				break;
 				
 			case 3:
@@ -60,5 +63,22 @@ public class PowerUp {
 	public void setType(PowerUpType type) {
 		
 		this.type = type;
+	}
+
+	@Override
+	public void render(SpriteBatch sb) {
+		sb.draw(spritesheet, pos.getX(), pos.getY());
+		
+	}
+
+	@Override
+	public void update(float dt) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public String toString(){
+		return "" + key;
 	}
 }

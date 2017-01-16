@@ -53,18 +53,16 @@ public class Wall extends GameObject {
 
 		if (zufallsZahl < 50) {
 			collect = null;
-		}
-		if (zufallsZahl > 50 && zufallsZahl < 85) {
-			int powerUpZufall = (int) (Math.random() * 6);
-			// collect = new PowerUp();
-			// ((PowerUp) collect).setType(PoerUpType.values[PowerUpZufall]);
+		}else if (zufallsZahl > 50 && zufallsZahl < 85) {
+			collect = new PowerUp(pos);
 
-		} else if (zufallsZahl > 85 && zufallsZahl < 95) {
-			int debuffZufall = (int) (6 + Math.random() * 3);
+		} //else if (zufallsZahl > 85 && zufallsZahl < 95) {
+			//int debuffZufall = (int) (6 + Math.random() * 3);
 			// collect = new PowerUp();
 			// ((PowerUp) collect).setType(PoerUpType.values[debuffZufall]);
-		} else {
-			// collect = new Illness();
+		//}
+		else {
+			 collect = new Illness(pos);
 		}
 
 		return collect;

@@ -32,13 +32,13 @@ public class Player extends GameObject {
 		super(pos, false, spritesheet);
 		this.name = name;
 		this.moveSpeed = 2;
-		this.bombThrowable = true;
+		this.bombThrowable = false;
 		this.anzahlBomben = 0  ;
 		this.anzahlBombenMax = 1;
 		this.life = 1;
 		this.stats = new Statistic();
 		this.illness = null;
-		this.bombRadius = 5;
+		this.bombRadius = 1;
 		this.controls = controls;
 	}
 
@@ -56,6 +56,10 @@ public class Player extends GameObject {
 
 	public void setBombRadius(int bombRadius) {
 		this.bombRadius = bombRadius;
+	}
+	
+	public void increaseBombRadius(int amount) {
+		this.bombRadius += amount;
 	}
 
 	public int getMoveSpeed() {

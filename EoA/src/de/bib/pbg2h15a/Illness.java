@@ -1,6 +1,9 @@
 package de.bib.pbg2h15a;
 
-public class Illness{
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+public class Illness extends Collectable{
 
 	/**
 	 * @author pbg2h15ary
@@ -16,20 +19,20 @@ public class Illness{
 	private boolean rndDrop = false;
 	public float time;
 	
-	public Illness(Player player){
-		this.player = player;
+	public Illness(Point p){
+		super(p);
 		setRndmIllnes();
 		this.time = (float) ((Math.random() * 6) + 5);
-		
+		this.spritesheet = new Texture("img/Stats/0_50x50.png"); //temporäres bild
 	}
 	
 	private void setRndmIllnes(){
 		//Zufallszahl um eine der 6 Krankheiten auszusuchen
-		int zufallszahl = (int)(Math.random()*5) + 0;
+		int zufallszahl = (int)(Math.random()*6);
 		
 		this.key = zufallszahl;
-		
-		illnessSet();
+		//TODO illness bilder
+		//illnessSet();
 	}
 
 	public boolean illnessExpired(){
@@ -47,7 +50,8 @@ public class Illness{
 	 * @author pbg2h15ake
 	 * @author pbg2h15asu
 	 */
-	private void illnessSet(){
+	public void illnessSet(Player p){
+		this.player = p;
 		
 		switch(key)
 		{
@@ -137,5 +141,16 @@ public class Illness{
 				lgs.newBomb(player.dropBomb());
 			}
 		}
+	}
+
+	@Override
+	public void render(SpriteBatch sb) {
+		sb.draw(spritesheet, pos.getX(), pos.getY());
+		
+	}
+	
+	@Override
+	public String toString(){
+		return "" + key;
 	}
 }

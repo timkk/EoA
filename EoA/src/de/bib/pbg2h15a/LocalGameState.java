@@ -107,6 +107,7 @@ public class LocalGameState extends GameState {
 
 		//texturen todo
 		player = new LinkedList<Player>();
+		ai = new LinkedList<KI>();
 		player.add(new Player(player1, player_spawns[0], new Texture("img/Stage_1/WindFalle.png"), input[0], stage));
 		player.add(new Player(player2, player_spawns[1], new Texture("img/Stage_1/WindFalle.png"), input[1], stage));
 		ai.add(new KI("AI 1", player_spawns[2], new Texture("img/Stage_1/WindFalle.png"), input[2], stage));
@@ -219,7 +220,8 @@ public class LocalGameState extends GameState {
 
 			// spieler verwalten
 			for (Player p : player) {
-
+				p.update(dt);
+				
 				List<GameObject> list = new LinkedList<GameObject>();
 
 				for (Explosion e : explosions)
@@ -234,6 +236,20 @@ public class LocalGameState extends GameState {
 					else{
 						int i = (int) (Math.random() * 4);
 						p.setPos(player_spawns[i]);
+					}
+				}
+				//Kollision Player + Collectable
+				Collectable c = collisionWith(p.getPos(), collectables);
+				if(c != null){
+					if(c instanceof Illness){
+						((Illness) c).illnessSet(p);
+						p.setIllness((Illness)c);
+						collectables.remove(c);
+						System.out.println(((Illness) c).toString());
+					}else{
+						((PowerUp) c).setPowerUp(p);
+						collectables.remove(c);
+						System.out.println(((PowerUp) c).toString());
 					}
 				}
 			}
@@ -255,6 +271,19 @@ public class LocalGameState extends GameState {
 					else{
 						int i = (int) (Math.random() * 4);
 						a.setPos(player_spawns[i]);
+					}
+				}
+
+				//Kollision ai + Collectable
+				Collectable c = collisionWith(a.getPos(), collectables);
+				if(c != null){
+					if(c instanceof Illness){
+						((Illness) c).illnessSet(a);
+						a.setIllness((Illness)c);
+						collectables.remove(c);
+					}else{
+						((PowerUp) c).setPowerUp(a);
+						collectables.remove(c);
 					}
 				}
 			}
@@ -516,6 +545,18 @@ public class LocalGameState extends GameState {
 		}
 
 		return collision;
+	}
+	
+	private Collectable collisionWith(Point p, List<Collectable> list) {
+
+		CollisionDetector cd = new CollisionDetector(p, SPRITESIZE, SPRITESIZE, COLLISION_OFFSET);
+
+		for (Collectable c : list) {
+			if (cd.collidesWith(c))
+				return c;
+		}
+		
+		return null;
 	}
 
 	/**
