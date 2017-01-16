@@ -38,7 +38,7 @@ public class PowerUp extends Collectable{
 				break;
 				
 			case 1:
-				player.setAnzahlBombenMax(player.getAnzahlBomben() + PowerUpType.BOMB_PLUS.getValue());
+				player.setAnzahlBombenMax(player.getAnzahlBombenMax() + PowerUpType.BOMB_PLUS.getValue());
 				break;
 				
 			case 2:
