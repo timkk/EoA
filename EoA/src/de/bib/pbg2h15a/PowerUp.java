@@ -53,10 +53,12 @@ public class PowerUp {
 	}
 	
 	public PowerUpType getType() {
+		
 		return type;
 	}
 	
 	public void setType(PowerUpType type) {
+		
 		this.type = type;
 	}
 }
