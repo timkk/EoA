@@ -43,7 +43,7 @@ public class GameStateManager {
 			gameState = new LocalGamePrepareState(this);
 		}
 		if(state == GAME){
-			gameState = new LocalGameState(this);
+			gameState = new LocalGameState(this, null, null, 300, 3);
 		}
 		if(state == FINAL_STATISTIC){
 			gameState = FinalStatGameState.getInstance(this);

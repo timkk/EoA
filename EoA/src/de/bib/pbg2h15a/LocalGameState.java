@@ -24,9 +24,11 @@ public class LocalGameState extends GameState {
 
 	private SpriteBatch batch;
 
-	private Texture texture_player;
-
+	private String player1 = "Player 1";
+	private String player2 = "Player 2";
+	
 	private List<Player> player;
+	private List<KI> ai;
 
 	protected final InputConfig[] input = {
 			new InputConfig(Input.Keys.A, Input.Keys.D, Input.Keys.W, Input.Keys.S, Input.Keys.Q),
@@ -56,9 +58,12 @@ public class LocalGameState extends GameState {
 	private List<Collectable> collectables;
 
 	private Timer timer = new Timer(6);
+	private Timer rundenTimer;
 
 	private GUI gui;
-	private Timer rundenTimer;
+	
+	private float maxTime;
+	private int rounds;
 
 	private Point direction = new Point(0, 0);
 	private boolean throwbomb;
@@ -68,8 +73,12 @@ public class LocalGameState extends GameState {
 	 * @author pbg2h15asu
 	 * @param gsm GameStateManager
 	 */
-	protected LocalGameState(GameStateManager gsm) {
+	protected LocalGameState(GameStateManager gsm, String name_player1, String name_player2, float time, int rounds) {
 		super(gsm);
+		player1 = name_player1;
+		player2 = name_player2;
+		maxTime = time;
+		this.rounds = rounds;
 		init();
 	}
 
@@ -93,22 +102,21 @@ public class LocalGameState extends GameState {
 		font_countdown.getData().setScale(2);
 
 		Object[][] field = setupField(17, 13);
-		stage = new Stage((GameObject[][]) field, 300, StageType.STANDARD, player_spawns, 3, Mode.LAST_MAN_STANDING);
+		stage = new Stage((GameObject[][]) field, maxTime, StageType.STANDARD, player_spawns, rounds, Mode.LAST_MAN_STANDING);
 		walls = generateWalls(17, 13);
 
-		texture_player = new Texture("img/Stage_1/Windfalle.png");
-
+		//texturen todo
 		player = new LinkedList<Player>();
-		for (int i = 0; i < 4; i++) {
-			player.add(new Player("Player " + i, player_spawns[i], texture_player, input[i], stage));
-		}
+		player.add(new Player(player1, player_spawns[0], new Texture("img/Stage_1/WindFalle.png"), input[0], stage));
+		player.add(new Player(player2, player_spawns[1], new Texture("img/Stage_1/WindFalle.png"), input[1], stage));
+		ai.add(new KI("AI 1", player_spawns[2], new Texture("img/Stage_1/WindFalle.png"), input[2], stage));
+		ai.add(new KI("AI 2", player_spawns[3], new Texture("img/Stage_1/WindFalle.png"), input[3], stage));
 
-		rundenTimer = new Timer(300);
+		rundenTimer = new Timer(maxTime);
 
-		gui = new GUI(rundenTimer, player.get(0), player.get(1), player.get(2), player.get(3), gsm, this);
+		gui = new GUI(rundenTimer, player.get(0), player.get(1), ai.get(0), ai.get(1), gsm, this);
 
 		Tunes.MUSIC_GAME_BACKGROUND.Play();
-
 	}
 
 	/**
@@ -198,7 +206,6 @@ public class LocalGameState extends GameState {
 							}
 						}
 					}
-
 				}
 
 				// bombe legen
@@ -227,6 +234,27 @@ public class LocalGameState extends GameState {
 					else{
 						int i = (int) (Math.random() * 4);
 						p.setPos(player_spawns[i]);
+					}
+				}
+			}
+			
+			//ai verwalten
+			for (KI a : ai){
+				a.update(dt);
+				List<GameObject> list = new LinkedList<GameObject>();
+
+				for (Explosion e : explosions)
+					list.add((GameObject) e);
+
+				//Kollision ai + Explosion
+				if (collision(a.getPos(), list)) {
+					a.setLife(a.getLife() - 1); // ai killed
+					Sounds.EFFECT_PLAYER_DIES.Play();
+					if(a.getLife() < 1)
+						a.setPos(new Point(300, -300));
+					else{
+						int i = (int) (Math.random() * 4);
+						a.setPos(player_spawns[i]);
 					}
 				}
 			}
@@ -330,7 +358,7 @@ public class LocalGameState extends GameState {
 
 	/**
 	 * @author pbg2h15asu
-	 * @return rendert das Spielfeld: Spieler > Explosionen > Bomben > Kisten > Spielfeld
+	 * @return rendert das Spielfeld: Spieler > Explosionen > Bomben > PowerUps/Illness > Kisten > Spielfeld
 	 */
 	@Override
 	public void render() {
@@ -342,6 +370,9 @@ public class LocalGameState extends GameState {
 
 		for (Wall w : walls) {
 			w.render(batch);
+		}
+		for (Collectable c : collectables){
+			c.render(batch);
 		}
 		for (Bomb b : bombs) {
 			b.render(batch);
@@ -363,7 +394,6 @@ public class LocalGameState extends GameState {
 	@Override
 	public void dispose() {
 		batch.dispose();
-		texture_player.dispose();
 	}
 
 	/**
