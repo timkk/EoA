@@ -23,10 +23,10 @@ public class LocalGamePrepareState extends GameState {
 	Skin skinName;
 	
 	
-	int mapNr=1;
-	int rundenZeitMin=3;
-	int rundenZeitSek=30;
-	int rundenAnzahl =3;
+	private static int mapNr=1;
+	private static int rundenZeitMin=3;
+	private static int rundenZeitSek=30;
+	private static int rundenAnzahl =3;
 
 	// img/GamePrepare
 	ButtonErstellen name;
@@ -299,6 +299,22 @@ public class LocalGamePrepareState extends GameState {
 		number%=100;
 		value10.setTexture("img/GamePrepare/number_" + number/10+".png");
 		value1.setTexture("img/GamePrepare/number_" + number%10+".png");
+	}
+	
+	public static int getWinRounds(){
+		return rundenAnzahl;
+	}
+	
+	public static int getTimeMin(){
+		return rundenZeitMin;
+	}
+	
+	public static int getTimeSec(){
+		return rundenZeitSek;
+	}
+	
+	public static int getMap(){
+		return mapNr;
 	}
 
 }

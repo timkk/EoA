@@ -117,7 +117,7 @@ public class RoundStatGameState extends GameState {
 		timer.update(dt);
 		
 		if(timer.isFinished() || next.isClicked()){
-			if(lastRound()){
+			if(lastRound(LocalGamePrepareState.getWinRounds())){
 				gsm.setState(gsm.FINAL_STATISTIC);
 			}
 			else{
@@ -218,8 +218,13 @@ public class RoundStatGameState extends GameState {
 		value1.setTexture("img/Stats/" + number % 10 + "_50x50.png");
 	}
 	
-	private boolean lastRound(){
-		return true;
+	private boolean lastRound(int neededWins){
+		for(int i = 0; i < stats.length; ++i){
+			if(finalStats.getWins()[i] == neededWins){
+				return true;
+			}
+		}
+		return false;
 	}
 	
 }
