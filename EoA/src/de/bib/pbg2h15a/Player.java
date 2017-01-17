@@ -88,6 +88,8 @@ public class Player extends GameObject {
 	 */
 	public void addMoveSpeed(float f) {
 		this.moveSpeed += f;
+		if(this.moveSpeed > 10)
+			this.moveSpeed = 10;
 	}
 
 	public boolean isBombThrowable() {

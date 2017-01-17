@@ -241,7 +241,7 @@ public class LocalGameState extends GameState {
 				//Kollision Player + Collectable
 				Collectable c = collisionWith(p.getPos(), collectables);
 				if(c != null){
-					if(c instanceof Illness){
+					if(c instanceof Illness && !p.hasIllness()){
 						((Illness) c).illnessSet(p);
 						p.setIllness((Illness)c);
 						collectables.remove(c);
@@ -277,7 +277,7 @@ public class LocalGameState extends GameState {
 				//Kollision ai + Collectable
 				Collectable c = collisionWith(a.getPos(), collectables);
 				if(c != null){
-					if(c instanceof Illness){
+					if(c instanceof Illness && !a.hasIllness()){
 						((Illness) c).illnessSet(a);
 						a.setIllness((Illness)c);
 						collectables.remove(c);
@@ -372,7 +372,10 @@ public class LocalGameState extends GameState {
 			if(spielVorbei()){
 				Statistic[] stats = new Statistic[4];
 				int tmp = 0;
-				for(Player p: player){
+				List<Player> all = new LinkedList<>();
+				all.addAll(player);
+				all.addAll(ai);
+				for(Player p: all){
 					stats[tmp] = p.getStats();
 					++tmp;
 				}

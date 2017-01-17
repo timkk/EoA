@@ -123,9 +123,13 @@ public class Illness extends Collectable{
 			
 			//Geschwindigkeitserhöhung
 			case 3:
+				player.setMoveSpeed(this.orgValue);
+				break;
 			
 			//Geschwindigkeitsverringerung
 			case 4:
+				player.setMoveSpeed(this.orgValue);
+				break;
 			
 			//Invertierte Steuerung
 			case 5:
