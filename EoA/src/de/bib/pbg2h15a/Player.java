@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class Player extends GameObject {
 
 	private int bombRadius;
-	private int moveSpeed;
+	private float moveSpeed;
 	private boolean bombThrowable;
 	private int anzahlBomben;
 	private int anzahlBombenMax;
@@ -62,11 +62,11 @@ public class Player extends GameObject {
 		this.bombRadius += amount;
 	}
 
-	public int getMoveSpeed() {
+	public float getMoveSpeed() {
 		return moveSpeed;
 	}
 
-	public void setMoveSpeed(int moveSpeed) {
+	public void setMoveSpeed(float moveSpeed) {
 		this.moveSpeed = moveSpeed;
 	}
 
@@ -82,12 +82,12 @@ public class Player extends GameObject {
 	 * Adds the value to the original movespeed. To decrease commit a negative
 	 * number.
 	 * 
-	 * @param value
+	 * @param f
 	 *            Value gets added to the original movesspeed.
 	 * @author pbg2h15akl
 	 */
-	public void addMoveSpeed(int value) {
-		this.moveSpeed += value;
+	public void addMoveSpeed(float f) {
+		this.moveSpeed += f;
 	}
 
 	public boolean isBombThrowable() {
@@ -110,8 +110,8 @@ public class Player extends GameObject {
 		return anzahlBombenMax;
 	}
 
-	public void setAnzahlBombenMax(int anzahlBombenMax) {
-		this.anzahlBombenMax = anzahlBombenMax;
+	public void setAnzahlBombenMax(int f) {
+		this.anzahlBombenMax = f;
 	}
 
 	public int getLife() {

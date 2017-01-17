@@ -14,7 +14,8 @@ public class Illness extends Collectable{
 	 * represents an Illness on a Player
 	 */
 	private Player player;
-	private int orgValue;
+	private IllnessType type = null;
+	private float orgValue;
 	private int key;
 	private boolean rndDrop = false;
 	public float time;
@@ -59,35 +60,41 @@ public class Illness extends Collectable{
 			case 0:
 				this.orgValue = player.getBombRadius();
 				player.setBombRadius(IllnessType.EXPLOSIONSRADIUS_VERKLEINERN.getValue());
+				type = IllnessType.EXPLOSIONSRADIUS_VERKLEINERN;
 				break;
 			
 			//Bombe zufällig legen
 			case 1:
 				this.rndDrop = true;
+				type = IllnessType.BOMBEN_ZUFAELLIG;
 				break;
 			
 			//Bomben legen deaktivieren
 			case 2:
 				this.orgValue = player.getAnzahlBombenMax();
-				player.setAnzahlBombenMax(IllnessType.BOMBEN_DEAKTIVIEREN.getValue());;
+				player.setAnzahlBombenMax(IllnessType.BOMBEN_DEAKTIVIEREN.getValue());
+				type = IllnessType.BOMBEN_DEAKTIVIEREN;
 				break;
 			
 			//Geschwindigkeitserhöhung
 			case 3:
 				this.orgValue = player.getMoveSpeed();
 				player.setMoveSpeed(IllnessType.GESCHWINDIGKEITSERHÖHUNG.getValue());
+				type = IllnessType.GESCHWINDIGKEITSERHÖHUNG;
 				break;
 			
 			//Geschwindigkeitsverringerung
 			case 4:
 				this.orgValue = player.getMoveSpeed();
 				player.setMoveSpeed(IllnessType.GESCHWINDIGKEITSVERRINGERUNG.getValue());
+				type = IllnessType.GESCHWINDIGKEITSVERRINGERUNG;
 				break;
 			
 			//Invertierte Steuerung
 			case 5:
 				this.orgValue = player.getMoveSpeed();
 				player.setMoveSpeed(player.getMoveSpeed() * IllnessType.STEUERUNG_INVERTIERT.getValue());
+				type = IllnessType.STEUERUNG_INVERTIERT;
 				break;
 		}
 	}
@@ -101,7 +108,7 @@ public class Illness extends Collectable{
 		{
 			//Explosionsradius minimum
 			case 0:
-				player.setBombRadius(this.orgValue);
+				player.setBombRadius((int)this.orgValue);
 				break;
 			
 			//Bombe zufällig legen
@@ -111,7 +118,7 @@ public class Illness extends Collectable{
 			
 			//Bomben legen deaktivieren
 			case 2:
-				player.setAnzahlBombenMax(this.orgValue);
+				player.setAnzahlBombenMax((int)this.orgValue);
 				break;
 			
 			//Geschwindigkeitserhöhung
@@ -147,6 +154,10 @@ public class Illness extends Collectable{
 	public void render(SpriteBatch sb) {
 		sb.draw(spritesheet, pos.getX(), pos.getY());
 		
+	}
+	
+	public IllnessType getType(){
+		return this.type;
 	}
 	
 	@Override

@@ -27,7 +27,7 @@ public class PowerUp extends Collectable{
 		
 		this.key = zufallszahl;
 		//TODO individuelle Power-Up-Bilder
-		//powerUpSet();
+		
 	}
 	
 	public void setPowerUp(Player player){
@@ -35,22 +35,27 @@ public class PowerUp extends Collectable{
 		{
 			case 0:
 				player.addMoveSpeed(PowerUpType.SPEED_UP.getValue());
+				type = PowerUpType.SPEED_UP;
 				break;
 				
 			case 1:
-				player.setAnzahlBombenMax(player.getAnzahlBombenMax() + PowerUpType.BOMB_PLUS.getValue());
+				player.setAnzahlBombenMax(player.getAnzahlBombenMax() + (int)PowerUpType.BOMB_PLUS.getValue());
+				type = PowerUpType.BOMB_PLUS;
 				break;
 				
 			case 2:
-				player.increaseBombRadius(PowerUpType.RANGE_PLUS.getValue());
+				player.increaseBombRadius((int)PowerUpType.RANGE_PLUS.getValue());
+				type = PowerUpType.RANGE_PLUS;
 				break;
 				
 			case 3:
 				player.setBombThrowable(PowerUpType.BOMB_THROW.isActive());
+				type = PowerUpType.BOMB_THROW;
 				break;
 				
 			case 4:
-				player.setLife(player.getLife() + PowerUpType.LIVE_PLUS.getValue());
+				player.setLife(player.getLife() + (int)PowerUpType.LIVE_PLUS.getValue());
+				type = PowerUpType.LIVE_PLUS;
 				break;
 		}
 	}
@@ -58,11 +63,6 @@ public class PowerUp extends Collectable{
 	public PowerUpType getType() {
 		
 		return type;
-	}
-	
-	public void setType(PowerUpType type) {
-		
-		this.type = type;
 	}
 
 	@Override
@@ -73,7 +73,6 @@ public class PowerUp extends Collectable{
 
 	@Override
 	public void update(float dt) {
-		// TODO Auto-generated method stub
 		
 	}
 	

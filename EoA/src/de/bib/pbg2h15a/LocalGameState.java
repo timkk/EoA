@@ -245,11 +245,11 @@ public class LocalGameState extends GameState {
 						((Illness) c).illnessSet(p);
 						p.setIllness((Illness)c);
 						collectables.remove(c);
-						System.out.println(((Illness) c).toString());
+						System.out.println(((Illness) c).getType().toString());
 					}else{
 						((PowerUp) c).setPowerUp(p);
 						collectables.remove(c);
-						System.out.println(((PowerUp) c).toString());
+						System.out.println(((PowerUp) c).getType().toString());
 					}
 				}
 			}
