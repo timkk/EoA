@@ -250,9 +250,9 @@ public class LocalGameState extends GameState {
 						if(!p.hasIllness()){
 							((Illness) c).illnessSet(p);
 							p.setIllness((Illness)c);
+							System.out.println(((Illness) c).getType().toString());
 						}
 						collectables.remove(c);
-						System.out.println(((Illness) c).getType().toString());
 					}else{
 						((PowerUp) c).setPowerUp(p);
 						collectables.remove(c);
