@@ -15,7 +15,10 @@ public class Player extends GameObject {
 	private Illness illness;
 	private String name;
 	private InputConfig controls;
+	private Point bombDirection;
 	
+	
+
 	protected Point pos;
 	protected boolean passable;
 	protected Texture spritesheet;
@@ -49,7 +52,21 @@ public class Player extends GameObject {
 
 		return bombe;
 	}
+	/**
+	 * 
+	 * @author pbg2h15aln,pbg2h15ago
+	 */
+	public Point getBombDirection() {
+		return bombDirection;
+	}
 
+	public void setBombDirection(Point bombDirection) {
+		this.bombDirection = bombDirection;
+	}
+	
+	
+	
+	
 	public int getBombRadius() {
 		return bombRadius;
 	}

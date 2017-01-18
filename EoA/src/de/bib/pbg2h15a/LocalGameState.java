@@ -176,38 +176,43 @@ public class LocalGameState extends GameState {
 						player.get(i).setPos(tmp);
 				}
 				
+				
+				
 				/**
-				 * @author pbg2h15aln,pbg2h15ago,pbg2h15afa,pbg2h15aza
+				 * @author pbg2h15aln,pbg2h15ago,pbg2h15afa,pbg2h15aza,pbg2h15asu
 				 */
 				// bombe werfen
 				if (Gdx.input.isKeyJustPressed(playerinput.getKeyBomb())) {
-
+					//List<GameObject> collision_pipapo= collision_objects;
+					//collision_pipapo.addAll(player);
+					//collision_pipapo.remove(player.get(i));
 					throwbomb = false;
 					if (player.get(i).isBombThrowable()) {
 						for (Bomb bomb : bombs) {
 							if (collisionWithTwoGameObjects(bomb, (GameObject) player.get(i))) {
 								throwbomb = true;
-								Point p = new Point(bomb.getPos().getX() + direction.getX(),
-										bomb.getPos().getY() + direction.getY());
-								if(!(p.getX() <= FIELD_START.getX() || p.getX() >= FIELD_END.getX()||
-										p.getY()<=FIELD_START.getY() || p.getY() >= FIELD_END.getY()))
-									bomb.setPos(p);
-								else{
-									if(p.getX() < FIELD_START.getX()){
-										bomb.setPos(new Point(FIELD_END.getX()-SPRITESIZE,p.getY()));
-									}else if(p.getX() > FIELD_END.getX()){
-										bomb.setPos(new Point(FIELD_START.getX(),p.getY()));
-									}else if(p.getY() > FIELD_END.getY()){
-										bomb.setPos(new Point(p.getX(),FIELD_START.getY()));
-									}else if(p.getY() < FIELD_START.getY()){
-										bomb.setPos(new Point(p.getX(),FIELD_END.getY()-SPRITESIZE));
-										System.out.println(bomb.getPos().toString());
-									}
+								Point p = new Point(bomb.getPos().getX() + player.get(i).getBombDirection().getX(),
+										bomb.getPos().getY() + player.get(i).getBombDirection().getY());
+								if(!(p.getX() < FIELD_START.getX() || p.getX() > FIELD_END.getX()||
+										p.getY()< FIELD_START.getY() || p.getY() > FIELD_END.getY())){									
+										while(collision(p, collision_objects)){
+											p.set(p.getX()+player.get(i).getBombDirection().getX()/2, p.getY()+player.get(i).getBombDirection().getY()/2);
+											fixBombPos( p);
+										}
+										bomb.setPos(p);		
+										//collision_pipapo.removeAll(player);
+								}else{
+									fixBombPos(p);
+									bomb.setPos(p);		
+									//collision_pipapo.removeAll(player);
+									
 								}
 							}
 						}
 					}
+
 				}
+				
 
 				// bombe legen
 				if (Gdx.input.isKeyJustPressed(playerinput.getKeyBomb()) && player.get(i).getAnzahlBomben() < player.get(i).getAnzahlBombenMax()) {
@@ -388,6 +393,19 @@ public class LocalGameState extends GameState {
 			timer.update(dt);
 		}
 
+	}
+
+	private void fixBombPos(Point p) {
+		if(p.getX() < FIELD_START.getX()){
+			p.set(FIELD_END.getX()-SPRITESIZE,p.getY());
+		}else if(p.getX() > FIELD_END.getX()){
+			p.set(FIELD_START.getX(),p.getY());
+		}else if(p.getY() > FIELD_END.getY()){
+			p.set(p.getX(),FIELD_START.getY());
+		}else if(p.getY() < FIELD_START.getY()){
+			p.set(p.getX(),FIELD_END.getY()-SPRITESIZE);
+			
+		}
 	}
 
 	/**
