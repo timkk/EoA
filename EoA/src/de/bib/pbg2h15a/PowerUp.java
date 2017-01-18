@@ -34,7 +34,12 @@ public class PowerUp extends Collectable{
 		switch(key)
 		{
 			case 0:
-				player.addMoveSpeed(PowerUpType.SPEED_UP.getValue());
+				if(player.hasIllness()){
+					if(player.getIllness().getOrgValue() < 10){
+						player.getIllness().addToOrgValue(PowerUpType.SPEED_UP.getValue());
+					}
+				} else
+					player.addMoveSpeed(PowerUpType.SPEED_UP.getValue());
 				type = PowerUpType.SPEED_UP;
 				break;
 				
@@ -44,7 +49,10 @@ public class PowerUp extends Collectable{
 				break;
 				
 			case 2:
-				player.increaseBombRadius((int)PowerUpType.RANGE_PLUS.getValue());
+				if(player.hasIllness()){
+					player.getIllness().addToOrgValue(PowerUpType.RANGE_PLUS.getValue());
+				} else
+					player.increaseBombRadius((int)PowerUpType.RANGE_PLUS.getValue());
 				type = PowerUpType.RANGE_PLUS;
 				break;
 				

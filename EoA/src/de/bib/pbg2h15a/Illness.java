@@ -33,7 +33,6 @@ public class Illness extends Collectable{
 		
 		this.key = zufallszahl;
 		//TODO illness bilder
-		//illnessSet();
 	}
 
 	public boolean illnessExpired(){
@@ -152,6 +151,21 @@ public class Illness extends Collectable{
 				lgs.newBomb(player.dropBomb());
 			}
 		}
+	}
+	
+	/**
+	 * @author pbg2h15awi
+	 */
+	public void addToOrgValue(float value){
+		this.orgValue += value;
+	}
+
+	public float getOrgValue() {
+		return orgValue;
+	}
+
+	public void setOrgValue(float orgValue) {
+		this.orgValue = orgValue;
 	}
 
 	@Override

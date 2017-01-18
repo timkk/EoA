@@ -241,9 +241,11 @@ public class LocalGameState extends GameState {
 				//Kollision Player + Collectable
 				Collectable c = collisionWith(p.getPos(), collectables);
 				if(c != null){
-					if(c instanceof Illness && !p.hasIllness()){
-						((Illness) c).illnessSet(p);
-						p.setIllness((Illness)c);
+					if(c instanceof Illness){
+						if(!p.hasIllness()){
+							((Illness) c).illnessSet(p);
+							p.setIllness((Illness)c);
+						}
 						collectables.remove(c);
 						System.out.println(((Illness) c).getType().toString());
 					}else{
