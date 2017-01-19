@@ -9,7 +9,7 @@ public class LocalGamePrepareNames extends GameState{
 	/**
 	 * @author pbg2h15are
 	 * @author pbg2h15aro
-	 *
+	 *jojojo
 	 */
 	
 
