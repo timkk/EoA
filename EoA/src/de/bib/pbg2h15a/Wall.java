@@ -7,9 +7,9 @@ public class Wall extends GameObject {
 
 	/**
 	 * @author pbg2h15afa
-	 * 
+	 * @author pbg2h15ary
 	 */
-
+	int probability  = 40; //Wahrscheinlichkeit von Collectable spawn
 	private Collectable content;
 
 	public Wall(int x, int y) {
@@ -51,9 +51,9 @@ public class Wall extends GameObject {
 		int zufallsZahl = (int) (1 + Math.random() * 99);
 		Collectable collect = null;
 
-		if (zufallsZahl < 50) {
+		if (zufallsZahl < probability) {
 			collect = null;
-		}else if (zufallsZahl > 50 && zufallsZahl < 85) {
+		}else if (zufallsZahl > probability && zufallsZahl < 85) {
 			collect = new PowerUp(pos);
 
 		} //else if (zufallsZahl > 85 && zufallsZahl < 95) {
