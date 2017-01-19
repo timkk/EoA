@@ -1,16 +1,12 @@
 package de.bib.pbg2h15a;
 
-import java.awt.Point;
-
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-//TODO Extends GameObject
 public class Player extends GameObject {
 
 	private int bombRadius;
-	private int moveSpeed;
-	private boolean bombKickable;
+	private float moveSpeed;
 	private boolean bombThrowable;
 	private int anzahlBomben;
 	private int anzahlBombenMax;
@@ -18,14 +14,16 @@ public class Player extends GameObject {
 	private Statistic stats;
 	private Illness illness;
 	private String name;
-	private Stage stage;
+	private InputConfig controls;
+	private Point bombDirection;
+	
+	
 
 	protected Point pos;
 	protected boolean passable;
 	protected Texture spritesheet;
 
 	/**
-	 *
 	 * @param name
 	 *            Players name
 	 * @param pos
@@ -33,31 +31,43 @@ public class Player extends GameObject {
 	 * 
 	 * @author pbg2h15akl
 	 */
-	public Player(String name, Point pos, Texture spritesheet, Stage stage) {
+	public Player(String name, Point pos, Texture spritesheet, InputConfig controls, Stage stage) {
 		super(pos, false, spritesheet);
 		this.name = name;
 		this.moveSpeed = 2;
-		this.bombKickable = false;
 		this.bombThrowable = false;
-		this.anzahlBomben = 1;
-		this.anzahlBombenMax = 10;
+		this.anzahlBomben = 0  ;
+		this.anzahlBombenMax = 1;
 		this.life = 1;
 		this.stats = new Statistic();
 		this.illness = null;
-		this.stage = stage;
+		this.bombRadius = 1;
+		this.controls = controls;
+		bombDirection = new Point(0,0);
 	}
 
-	
 	public Bomb dropBomb() {
 
-		Bomb bombe = new Bomb(this, pos, this.bombRadius, stage.getFields());
-		Player player = new Player("", new Point(), null, stage);
-
-		bombe.setPos(player.getPos());
+		Bomb bombe = new Bomb(this, this.getPos(), this.getBombRadius());
+		this.anzahlBomben++;
 
 		return bombe;
 	}
+	/**
+	 * 
+	 * @author pbg2h15aln,pbg2h15ago
+	 */
+	public Point getBombDirection() {
+		return bombDirection;
+	}
 
+	public void setBombDirection(Point bombDirection) {
+		this.bombDirection = bombDirection;
+	}
+	
+	
+	
+	
 	public int getBombRadius() {
 		return bombRadius;
 	}
@@ -65,33 +75,39 @@ public class Player extends GameObject {
 	public void setBombRadius(int bombRadius) {
 		this.bombRadius = bombRadius;
 	}
+	
+	public void increaseBombRadius(int amount) {
+		this.bombRadius += amount;
+	}
 
-	public int getMoveSpeed() {
+	public float getMoveSpeed() {
 		return moveSpeed;
 	}
 
-	public void setMoveSpeed(int moveSpeed) {
+	public void setMoveSpeed(float moveSpeed) {
 		this.moveSpeed = moveSpeed;
+	}
+
+	/**
+	 * @author pbg2h15asu
+	 * @return input config for this player
+	 */
+	public InputConfig getControls() {
+		return controls;
 	}
 
 	/**
 	 * Adds the value to the original movespeed. To decrease commit a negative
 	 * number.
 	 * 
-	 * @param value
+	 * @param f
 	 *            Value gets added to the original movesspeed.
 	 * @author pbg2h15akl
 	 */
-	public void addMoveSpeed(int value) {
-		this.moveSpeed += value;
-	}
-
-	public boolean isBombKickable() {
-		return bombKickable;
-	}
-
-	public void setBombKickable(boolean bombKickable) {
-		this.bombKickable = bombKickable;
+	public void addMoveSpeed(float f) {
+		this.moveSpeed += f;
+		if(this.moveSpeed > 10)
+			this.moveSpeed = 10;
 	}
 
 	public boolean isBombThrowable() {
@@ -114,8 +130,8 @@ public class Player extends GameObject {
 		return anzahlBombenMax;
 	}
 
-	public void setAnzahlBombenMax(int anzahlBombenMax) {
-		this.anzahlBombenMax = anzahlBombenMax;
+	public void setAnzahlBombenMax(int f) {
+		this.anzahlBombenMax = f;
 	}
 
 	public int getLife() {
@@ -152,11 +168,14 @@ public class Player extends GameObject {
 
 	@Override
 	public void render(SpriteBatch sb) {
-		sb.draw(spritesheet, pos.x, pos.y);
+		sb.draw(this.getSpritesheet(), this.getPos().getX(), this.getPos().getY());
 	}
 
 	@Override
 	public void update(float dt) {
+		if(hasIllness()){
+			illness.update(dt);
+			illness.illnessExpired();
+		}
 	}
-
 }

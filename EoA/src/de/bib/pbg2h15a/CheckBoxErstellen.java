@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
-
 public class CheckBoxErstellen {
 
 	/**
@@ -20,7 +19,7 @@ public class CheckBoxErstellen {
 	private boolean checked;
 	private float x;
 	private float y;
-	private boolean test;
+	private boolean imClick;
 
 	public CheckBoxErstellen(float x, float y,String checkedPfad, String uncheckedPfad, boolean checked) {
 		textureChecked = new Texture(checkedPfad);
@@ -33,19 +32,20 @@ public class CheckBoxErstellen {
 		} else {
 			activeTexture = textureUnchecked;
 		}
+		imClick = true;
 
 	}
 
 	public boolean isClicked() {
 		if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
-			if(!test){
-				test = true;
+			if(!imClick){
+				imClick = true;
 				Rectangle r = new Rectangle(x, y, activeTexture.getWidth(), activeTexture.getHeight());			
 				return r.contains(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
 			}
 			
 		}else{
-			test = false;
+			imClick = false;
 		}
 		return false;
 	}
@@ -60,7 +60,6 @@ public class CheckBoxErstellen {
 	}
 	
 	public void render(SpriteBatch batch) {
-		// TODO Auto-generated method stub
 
 		batch.draw(activeTexture, x, y);
 

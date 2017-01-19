@@ -1,7 +1,5 @@
 package de.bib.pbg2h15a;
 
-import java.awt.Point;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.Event;
@@ -22,7 +20,7 @@ public class Control {
 	 * @return change the Position of the Player
 	 */
 	public void  movement(){
-		Point p = gameobject.getPos();
+		de.bib.pbg2h15a.Point p = gameobject.getPos();
 		if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
 			p.translate(-1, 0);
 			gameobject.setPos(p);

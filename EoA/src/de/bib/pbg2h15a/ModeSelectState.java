@@ -23,13 +23,14 @@ public class ModeSelectState extends GameState {
 	
 	protected ModeSelectState(GameStateManager gsm) {
 		super(gsm);
+		init();
 	}
 
 	@Override
 	public void init() {
-		btnLocal = new ButtonErstellen(Gdx.graphics.getWidth()/2 - 219/2, Gdx.graphics.getHeight()/1.5f, "assets/lokalesSpiel.jpg");
-		btnNetwork = new ButtonErstellen(Gdx.graphics.getWidth()/2 - 206/2, Gdx.graphics.getHeight()/2.5f, "assets/netzwerkSpiel.jpg");
-		btnBack = new ButtonErstellen(10, Gdx.graphics.getHeight() - 83, "assets/back.jpg");
+		btnLocal = new ButtonErstellen(Gdx.graphics.getWidth()/2 - 350/2, Gdx.graphics.getHeight()/1.5f - 42, "img/Buttons/lokalesSpiel.png");
+		btnNetwork = new ButtonErstellen(Gdx.graphics.getWidth()/2 - 350/2, Gdx.graphics.getHeight()/2.5f - 42, "img/Buttons/netzwerkSpiel.png");
+		btnBack = new ButtonErstellen(10, Gdx.graphics.getHeight() - 122, "img/Buttons/back.png");
 		
 		modiText = "Modi auswählen";
 		batch = new SpriteBatch();

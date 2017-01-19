@@ -1,6 +1,7 @@
 package de.bib.pbg2h15a;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -22,12 +23,12 @@ public class LocalGamePrepareState extends GameState {
 	Skin skinName;
 	
 	
-	int mapNr=1;
-	int rundenZeitMin=3;
-	int rundenZeitSek=30;
-	int rundenAnzahl =3;
+	private static int mapNr=1;
+	private static int rundenZeitMin=3;
+	private static int rundenZeitSek=30;
+	private static int rundenAnzahl =3;
 
-	// assets/GamePrepare
+	// img/GamePrepare
 	ButtonErstellen name;
 	private TextField txfName;	
 
@@ -56,7 +57,7 @@ public class LocalGamePrepareState extends GameState {
 
 	protected LocalGamePrepareState(GameStateManager gsm) {
 		super(gsm);
-		// TODO Auto-generated constructor stub
+		init();
 	}
 	
 	
@@ -68,6 +69,9 @@ public class LocalGamePrepareState extends GameState {
 		batch = new SpriteBatch();    	
     	buttonSet();
     	
+    	zeitValue = new BitmapFont();
+    	zeitValue.setColor(Color.BLACK);
+    	
     	stage = new Stage();
 		Gdx.input.setInputProcessor(stage);
 		
@@ -76,7 +80,7 @@ public class LocalGamePrepareState extends GameState {
 		/**
 		 * @author pbg2h15ago, pbg2h15ani
 		 */
-		skinName = new Skin(Gdx.files.internal("assets/GamePrepare/uiskin.json"));
+		skinName = new Skin(Gdx.files.internal("img/GamePrepare/uiskin.json"));
 		
 		txfName = new TextField("", skinName);
 		txfName.setPosition(330, 375);
@@ -122,7 +126,7 @@ public class LocalGamePrepareState extends GameState {
 			if (mapNr < 1) {
 				mapNr = 3;
 			}
-			changeStageValue.setTexture("assets/GamePrepare/stage_" + mapNr + ".png");
+			changeStageValue.setTexture("img/GamePrepare/stage_" + mapNr + ".png");
 			System.out.println(mapNr);
 		}
 		if (changeStageRight.isClicked()) {
@@ -130,7 +134,7 @@ public class LocalGamePrepareState extends GameState {
 			if (mapNr > 3) {
 				mapNr = 1;
 			}
-			changeStageValue.setTexture("assets/GamePrepare/stage_" + mapNr + ".png");
+			changeStageValue.setTexture("img/GamePrepare/stage_" + mapNr + ".png");
 		}
 		
 		/**
@@ -179,43 +183,42 @@ public class LocalGamePrepareState extends GameState {
 		 */
 		
 		//Gewinnrundenanzahl
-      if(rundenRight.isClicked() && rundenAnzahl < 5){
+		if(rundenRight.isClicked() && rundenAnzahl < 5){
         	rundenAnzahl++;
-      }
-        
-        
-       if(rundenLeft.isClicked() && rundenAnzahl > 1){
-        	rundenAnzahl--;
-       }
-       
-       setNumberTo(rundenAnzahl, rundenValue10, rundenValue1);
-		
+		}
+      
+		if(rundenLeft.isClicked() && rundenAnzahl > 1){
+	    	rundenAnzahl--;
+		}
+	   
+		setNumberTo(rundenAnzahl, rundenValue10, rundenValue1);
+			
 		/**
 		 *  @author pbg2h15ala
 		 */
-
+		
 		name.render(batch);
-
-
+		
+		
 		changeStage.render(batch);
 		changeStageLeft.render(batch);
 		changeStageRight.render(batch);
 		changeStageValue.render(batch);
-
+		
 		runden.render(batch);
 		rundenLeft.render(batch);
 		rundenValue1.render(batch);
 		rundenValue10.render(batch);
 		rundenRight.render(batch);
-
+		
 		zeit.render(batch);
 		zeitLeft.render(batch);
-
+		
 		zeitRight.render(batch);
-
+		
 		start.render(batch);
 		zuruck.render(batch);
-
+		
 		batch.end();
 		stage.draw();
 	}
@@ -233,34 +236,34 @@ public class LocalGamePrepareState extends GameState {
 
 		// 0.Zeile
 
-		name = new ButtonErstellen(110, 375, "assets/GamePrepare/name.png");
+		name = new ButtonErstellen(110, 375, "img/GamePrepare/name.png");
 
 
 		// 1. Zeile
 
-		changeStage = new ButtonErstellen(110, 285, "assets/GamePrepare/stage.png");
-		changeStageLeft = new ButtonErstellen(330, 285, "assets/GamePrepare/arrow_left.png");
-		changeStageValue = new texHelper(380, 285, "assets/GamePrepare/stage_1.png");
-		changeStageRight = new ButtonErstellen(480, 285, "assets/GamePrepare/arrow_right.png");
+		changeStage = new ButtonErstellen(110, 285, "img/GamePrepare/stage.png");
+		changeStageLeft = new ButtonErstellen(330, 285, "img/GamePrepare/arrow_left.png");
+		changeStageValue = new texHelper(380, 285, "img/GamePrepare/stage_1.png");
+		changeStageRight = new ButtonErstellen(480, 285, "img/GamePrepare/arrow_right.png");
 
 		// 2. Zeile
 
-		runden = new ButtonErstellen(110, 195, "assets/GamePrepare/runden.png");
-		rundenLeft = new ButtonErstellen(330, 195, "assets/GamePrepare/arrow_left.png");
-		rundenValue1 = new texHelper(430, 195, "assets/GamePrepare/number.png");
-		rundenValue10 = new texHelper(380, 195, "assets/GamePrepare/number.png");
-		rundenRight = new ButtonErstellen(480, 195, "assets/GamePrepare/arrow_right.png");
+		runden = new ButtonErstellen(110, 195, "img/GamePrepare/runden.png");
+		rundenLeft = new ButtonErstellen(330, 195, "img/GamePrepare/arrow_left.png");
+		rundenValue1 = new texHelper(430, 195, "img/GamePrepare/number.png");
+		rundenValue10 = new texHelper(380, 195, "img/GamePrepare/number.png");
+		rundenRight = new ButtonErstellen(480, 195, "img/GamePrepare/arrow_right.png");
 
 		// 3. Zeile
 
-		zeit = new ButtonErstellen(110, 105, "assets/GamePrepare/zeit.png");
-		zeitLeft = new ButtonErstellen(330, 105, "assets/GamePrepare/arrow_left.png");
-		zeitRight = new ButtonErstellen(480, 105, "assets/GamePrepare/arrow_right.png");
+		zeit = new ButtonErstellen(110, 105, "img/GamePrepare/zeit.png");
+		zeitLeft = new ButtonErstellen(330, 105, "img/GamePrepare/arrow_left.png");
+		zeitRight = new ButtonErstellen(480, 105, "img/GamePrepare/arrow_right.png");
 
 		// 4. Zeile
 
-		zuruck = new ButtonErstellen(110, 15, "assets/GamePrepare/zuruck.png");
-		start = new ButtonErstellen(330, 15, "assets/GamePrepare/start.png");
+		zuruck = new ButtonErstellen(110, 15, "img/GamePrepare/zuruck.png");
+		start = new ButtonErstellen(330, 15, "img/GamePrepare/start.png");
 	}
 	
 	private class texHelper {
@@ -294,9 +297,24 @@ public class LocalGamePrepareState extends GameState {
 		 *  @author pbg2h15ala
 		 */
 		number%=100;
-		value10.setTexture("assets/GamePrepare/number_" + number/10+".png");
-		value1.setTexture("assets/GamePrepare/number_" + number%10+".png");
+		value10.setTexture("img/GamePrepare/number_" + number/10+".png");
+		value1.setTexture("img/GamePrepare/number_" + number%10+".png");
 	}
 	
+	public static int getWinRounds(){
+		return rundenAnzahl;
+	}
+	
+	public static int getTimeMin(){
+		return rundenZeitMin;
+	}
+	
+	public static int getTimeSec(){
+		return rundenZeitSek;
+	}
+	
+	public static int getMap(){
+		return mapNr;
+	}
 
 }

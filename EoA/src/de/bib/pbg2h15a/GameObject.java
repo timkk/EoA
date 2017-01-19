@@ -1,6 +1,7 @@
 package de.bib.pbg2h15a;
 
-import java.awt.Point;
+import java.util.LinkedList;
+import java.util.List;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -12,8 +13,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  * 
  */
 public abstract class GameObject {
-	
-	
+
 	protected Point pos;
 	protected boolean passable;
 	protected Texture spritesheet;
@@ -39,6 +39,12 @@ public abstract class GameObject {
 	public void setPos(Point pos) {
 		this.pos = pos;
 	}
-	
 
+	public Animation getAnimation() {
+		return animation;
+	}
+
+	public Texture getSpritesheet() {
+		return this.spritesheet;
+	}
 }

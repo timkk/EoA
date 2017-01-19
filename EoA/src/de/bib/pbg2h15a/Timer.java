@@ -41,7 +41,5 @@ public class Timer {
 	public String toString() {
 		return String.format("%f", (double) time);
 	}
-	
-	
-	
+
 }

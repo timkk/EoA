@@ -59,29 +59,9 @@ public class GUI{
 	private Image imTimer;
 	private Image[] imgsPlayers;
 	
-	//Textures
-	private Texture txDP;
-	private Texture txDP2;
-	
 	//TextureRegionDrawables
 	private TextureRegionDrawable tdDP;
 	private TextureRegionDrawable tdDP2;
-	private TextureRegionDrawable tdBtnBack;
-	private TextureRegionDrawable tdBtnPause;
-	private TextureRegionDrawable tdBtnBomb;
-	private TextureRegionDrawable tdBtnUp;
-	private TextureRegionDrawable tdBtnDown;
-	private TextureRegionDrawable tdBtnRight;
-	private TextureRegionDrawable tdBtnLeft;
-	
-	private TextureRegionDrawable tdBtnBackPressed;
-	private TextureRegionDrawable tdBtnPausePressed;
-	private TextureRegionDrawable tdBtnBombPressed;
-	private TextureRegionDrawable tdBtnUpPressed;
-	private TextureRegionDrawable tdBtnDownPressed;
-	private TextureRegionDrawable tdBtnRightPressed;
-	private TextureRegionDrawable tdBtnLeftPressed;
-	
 	
 	//ImageButtons
 	private ImageButton iBtnBack;
@@ -126,10 +106,8 @@ public class GUI{
 		players[2]=p3;
 		players[3]=p4;
 		
-		txDP= new Texture(PFADE[1]);
-		txDP2= new Texture(PFADE[2]);
-		tdDP=new TextureRegionDrawable(new TextureRegion(txDP));
-		tdDP2=new TextureRegionDrawable(new TextureRegion(txDP2));
+		tdDP=new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[1])));
+		tdDP2=new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[2])));
 		
 		bitfont = new BitmapFont();
 		bitfont.setColor(Color.WHITE);
@@ -150,8 +128,8 @@ public class GUI{
 		stage.addActor(lbTimer);
 		stage.addActor(tblLabels);
 		stage.addActor(tblMenueBtns);
-		stage.addActor(tblSteuerungBnt);
-		stage.addActor(iBtnBomb);
+		//stage.addActor(tblSteuerungBnt);
+		//stage.addActor(iBtnBomb);
 		
 	}
 	
@@ -161,7 +139,6 @@ public class GUI{
 	 */	
 	public void render(SpriteBatch sb){
 		bitfont.draw(sb,"Puffer", 0, 0);
-		
 		lbTimer.setText(""+(int)time.getTime());
 		showIsAlife();
 		stage.draw();	
@@ -172,7 +149,6 @@ public class GUI{
 	 *isAlifeAnzeigen() is a private method, which changes the BackgroundImages connected to the Players number of lives.
 	 */	
 	private void showIsAlife(){
-		//TODO connect to Player.isAlife
 		for(int i=0; i<imgsPlayers.length;i++){
 			if(players[i].getLife()==0&&alife[i]){
 				if(i<2){
@@ -191,13 +167,8 @@ public class GUI{
 	 * and sets their position on the stage
 	 */	
 	private void createMenuButtons(){
-		tdBtnBack= 	new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[7])));
-		tdBtnPause= new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[8])));
-		tdBtnBackPressed= 	new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[9])));
-		tdBtnPausePressed= 	new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[10])));
-		
-		iBtnBack= new ImageButton(tdBtnBack,tdBtnBackPressed);
-		iBtnPause=new ImageButton(tdBtnPause,tdBtnPausePressed);
+		iBtnBack= new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[7]))),new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[9]))));
+		iBtnPause=new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[8]))),new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[10]))));
 		
 		tblMenueBtns= new Table();
 		tblMenueBtns.add(iBtnBack);
@@ -206,7 +177,6 @@ public class GUI{
 		if(gs.getClass().getName().equals("LocalGameState")){
 			tblMenueBtns.add(iBtnPause);
 		}
-		
 		tblMenueBtns.setFillParent(true);
 		tblMenueBtns.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		tblMenueBtns.setPosition(Gdx.graphics.getWidth()/2-SCALE_X*8 , Gdx.graphics.getHeight()/2-5.3f*SCALE_Y);
@@ -249,22 +219,12 @@ public class GUI{
 	 * and sets their position on the stage
 	 */	
 	private void createControlButtons(){
-		tdBtnBomb= 	new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[11])));
-		tdBtnUp= 	new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[12])));
-		tdBtnDown= 	new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[13])));
-		tdBtnRight= new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[14])));
-		tdBtnLeft= 	new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[15])));
-		tdBtnBombPressed=	new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[16])));
-		tdBtnUpPressed=		new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[17])));
-		tdBtnDownPressed=	new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[18])));
-		tdBtnRightPressed=	new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[19])));
-		tdBtnLeftPressed=	new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[20])));
-				
-		iBtnBomb= 	new ImageButton(tdBtnBomb,tdBtnBombPressed);
-		iBtnUp= 	new ImageButton(tdBtnUp,tdBtnUpPressed);
-		iBtnDown= 	new ImageButton(tdBtnDown,tdBtnDownPressed);
-		iBtnRight= 	new ImageButton(tdBtnRight,tdBtnRightPressed);
-		iBtnLeft= 	new ImageButton(tdBtnLeft,tdBtnLeftPressed);
+			
+		iBtnBomb= 	new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[11]))),new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[16]))));
+		iBtnUp= 	new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[12]))),new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[17]))));
+		iBtnDown= 	new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[13]))),new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[18]))));
+		iBtnRight= 	new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[14]))),new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[19]))));
+		iBtnLeft= 	new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[15]))),new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[20]))));
 				
 		iBtnBomb.setPosition(Gdx.graphics.getWidth()-12.5f*SCALE_X,10*SCALE_Y);
 				
@@ -328,19 +288,17 @@ public class GUI{
 				}
 			});
 			
-		//TODO connect with PauseMenu
-			iBtnPause.addListener(new InputListener() {	
-				@Override
-				public boolean handle(Event event) {
-					if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
-						System.out.println("Pause:click");
-						return true;
-					}
-					return false;}
-			});
+//			iBtnPause.addListener(new InputListener() {	
+//				@Override
+//				public boolean handle(Event event) {
+//					if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
+//						System.out.println("Pause:click");
+//						return true;
+//					}
+//					return false;}
+//			});
 	}
 	
-
 	public ImageButton getiBtnBomb() {
 		return iBtnBomb;
 	}
@@ -361,22 +319,15 @@ public class GUI{
 		return iBtnLeft;
 	}
 	
-	
 	/**
 	 * @author pbd2h15ary
 	 */	
-	
-	
-	public void create()
-	{
-	
-        createControlButtons();
+	public void create(){
+        //createControlButtons();
         createImages();
         createLabels();
-        createListeners();
         createMenuButtons();
+        createListeners();
 	}
-	
-
 
 }

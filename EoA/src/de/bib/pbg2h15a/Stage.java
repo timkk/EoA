@@ -1,7 +1,5 @@
 package de.bib.pbg2h15a;
 
-import java.awt.Point;
-
 public class Stage {
 
 	/**
@@ -59,5 +57,4 @@ public class Stage {
 		}
 		
 	}
-	
 }

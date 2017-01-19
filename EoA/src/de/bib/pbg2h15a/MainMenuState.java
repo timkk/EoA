@@ -19,16 +19,19 @@ public class MainMenuState extends GameState {
 	
 	protected MainMenuState(GameStateManager gsm) {
 		super(gsm);
-		// TODO Auto-generated constructor stub
+		init();
 	}
 
 	@Override
 	public void init() {
-		btnStart = new ButtonErstellen(Gdx.graphics.getWidth()/2 - 219/2, Gdx.graphics.getHeight()/1.5f, "assets/startSpiel.jpg");
-		btnOptions = new ButtonErstellen(Gdx.graphics.getWidth()/2 - 219/2, Gdx.graphics.getHeight()/2, "assets/options.jpg");
-		btnQuit = new ButtonErstellen(Gdx.graphics.getWidth()/2 - 219/2, Gdx.graphics.getHeight()/3, "assets/quit.jpg");
+		btnStart = new ButtonErstellen(Gdx.graphics.getWidth()/2 - 350/2, Gdx.graphics.getHeight()/1.5f, "img/Buttons/startSpiel.png");
+		btnOptions = new ButtonErstellen(Gdx.graphics.getWidth()/2 - 350/2, Gdx.graphics.getHeight()/2, "img/Buttons/options.png");
+		btnQuit = new ButtonErstellen(Gdx.graphics.getWidth()/2 - 350/2, Gdx.graphics.getHeight()/3, "img/Buttons/quit.png");
 		
 		batch = new SpriteBatch();
+		
+		//Musik abspielen
+		Tunes.MUSIC_MENU.Play();
 	}
 
 	@Override
@@ -61,6 +64,4 @@ public class MainMenuState extends GameState {
 		
 	}
 
-	
-	
 }

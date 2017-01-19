@@ -1,16 +1,15 @@
 package de.bib.pbg2h15a;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 
-public enum Accoustic {
-	
-	//Music
-	MUSIC_GAME_BACKGROUND("sounds/music/game_background_music.mp3"),	
-	MUSIC_GAME_FINISHED("sounds/music/game_finished_music.mp3"),
-	MUSIC_MENU("sounds/music/menu_music.mp3"),
-	
-	
+public enum Sounds {
+
+	/**
+	 * @author pbg2h15akl , pbg2h15ake
+	 */
+
 	//Effects
 	EFFECT_EXPLOSION("sounds/effects/explosion_effect.mp3"),
 	EFFECT_BOMB_DROPPED("sounds/effects/bomb_dropped_effect.mp3"),
@@ -23,17 +22,19 @@ public enum Accoustic {
 	EFFECT_WALL_DESTROYED("sounds/effects/wall_destroyed_effect.mp3");
 	
 	private Sound sound;
-	
-	
-	private Accoustic(String path) {
+
+	private Sounds(String path) {
 		this.sound = Gdx.audio.newSound(Gdx.files.internal(path));
 	}
-
 
 	public Sound getSound() {
 		return sound;
 	}
 
-	
+	public void Play()
+	{
+		if(GameStateManager.SOUND)
+			this.sound.play();
+	}
 	
 }

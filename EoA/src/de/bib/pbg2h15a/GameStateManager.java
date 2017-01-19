@@ -8,10 +8,10 @@ public class GameStateManager {
 	 * @author pbg2h15asu
 	 */
 	
-	private GameState gameState;
+	public static GameState gameState;
 	
-	public static boolean sound = true;
-	public static boolean music = true;
+	public static boolean SOUND = true;
+	public static boolean MUSIC = true;
 	
 	public static final int MAIN = 0;
 	public static final int MODE_SELECT = 100;
@@ -19,11 +19,14 @@ public class GameStateManager {
 	public static final int OPTIONS = 50;
 	public static final int GAME = 200;
 	public static final int ENDSCREEN = 300;
+	public static final int ROUND_STATISTIC = 3;
+	public static final int FINAL_STATISTIC = 4;
+	
 	
 	public GameStateManager() {
 		setState(MAIN);
 	}
-	
+
 	public void setState(int state) {
 		if(gameState != null) gameState.dispose();
 		
@@ -36,9 +39,21 @@ public class GameStateManager {
 		if(state == MODE_SELECT) {
 			gameState = new ModeSelectState(this);
 		}
+		if(state == LOCAL_PREPARE){
+			gameState = new LocalGamePrepareState(this);
+		}
 		if(state == GAME){
-			//prototyp
-			gameState = new LocalGameState(this);
+			gameState = new LocalGameState(this, null, null, 300, 3);
+		}
+		if(state == FINAL_STATISTIC){
+			gameState = FinalStatGameState.getInstance(this);
+		}
+		
+	}
+	
+	public void setState(int state, Statistic[] stats){
+		if(state == ROUND_STATISTIC){
+			gameState = new RoundStatGameState(this, stats);
 		}
 	}
 	
@@ -49,5 +64,5 @@ public class GameStateManager {
 	public void render() {
 		gameState.render();
 	}
-	
+
 }
