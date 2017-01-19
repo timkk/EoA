@@ -1,5 +1,7 @@
 package de.bib.pbg2h15a;
 
+import com.badlogic.gdx.Gdx;
+
 public class GameStateManager {
 
 	/**
@@ -19,6 +21,7 @@ public class GameStateManager {
 	public static final int OPTIONS = 50;
 	public static final int GAME = 200;
 	public static final int ENDSCREEN = 300;
+	public static final int TMPENDSCREENTDOT = 301;
 	public static final int ROUND_STATISTIC = 3;
 	public static final int FINAL_STATISTIC = 4;
 	
@@ -49,6 +52,12 @@ public class GameStateManager {
 			gameState = FinalStatGameState.getInstance(this);
 		}
 		
+	}
+	
+	public void setState(int state, Player player){
+		if(state == TMPENDSCREENTDOT){
+			gameState = new TmpEndScreenTdoT(this, player);
+		}
 	}
 	
 	public void setState(int state, Statistic[] stats){
