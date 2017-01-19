@@ -65,7 +65,7 @@ public class LocalGameState extends GameState {
 	private float maxTime;
 	private int rounds;
 
-	private Point direction = new Point(0, 0);
+	
 	private boolean throwbomb;
 
 	/**
@@ -140,7 +140,7 @@ public class LocalGameState extends GameState {
 
 				//links
 				if (Gdx.input.isKeyPressed(playerinput.getKeyLeft())) {
-					direction.set(-100, 0);
+					player.get(i).getBombDirection().set(-100, 0);
 					Point tmp = new Point(player.get(i).getPos());
 					tmp.translate(-player.get(i).getMoveSpeed(), 0);
 					if (!collision(tmp, collision_objects))
@@ -148,7 +148,7 @@ public class LocalGameState extends GameState {
 				}
 				//rechts
 				if (Gdx.input.isKeyPressed(playerinput.getKeyRight())) {
-					direction.set(100, 0);
+					player.get(i).getBombDirection().set(100, 0);
 					Point tmp = new Point(player.get(i).getPos());
 					tmp.translate(player.get(i).getMoveSpeed(), 0);
 					if (!collision(tmp, collision_objects))
@@ -161,7 +161,7 @@ public class LocalGameState extends GameState {
 
 				//oben
 				if (Gdx.input.isKeyPressed(playerinput.getKeyUp())) {
-					direction.set(0, 100);
+					player.get(i).getBombDirection().set(0, 100);
 					Point tmp = new Point(player.get(i).getPos());
 					tmp.translate(0, player.get(i).getMoveSpeed());
 					if (!collision(tmp, collision_objects))
@@ -169,7 +169,7 @@ public class LocalGameState extends GameState {
 				}
 				//unten
 				if (Gdx.input.isKeyPressed(playerinput.getKeyDown())) {
-					direction.set(0, -100);
+					player.get(i).getBombDirection().set(0, -100);
 					Point tmp = new Point(player.get(i).getPos());
 					tmp.translate(0, -player.get(i).getMoveSpeed());
 					if (!collision(tmp, collision_objects))

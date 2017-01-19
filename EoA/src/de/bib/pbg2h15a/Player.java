@@ -43,6 +43,7 @@ public class Player extends GameObject {
 		this.illness = null;
 		this.bombRadius = 1;
 		this.controls = controls;
+		bombDirection = new Point(0,0);
 	}
 
 	public Bomb dropBomb() {
