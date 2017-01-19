@@ -183,8 +183,7 @@ public class LocalGameState extends GameState {
 				 */
 				// bombe werfen
 				if (Gdx.input.isKeyJustPressed(playerinput.getKeyBomb())) {
-					List<GameObject> collision_pipapo= new LinkedList<>(collision_objects);
-					
+					List<GameObject> collision_pipapo= new LinkedList<>(collision_objects);  
 					collision_pipapo.addAll(player);
 					throwbomb = false;
 					if (player.get(i).isBombThrowable()) {
