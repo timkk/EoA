@@ -183,8 +183,9 @@ public class LocalGameState extends GameState {
 				 */
 				// bombe werfen
 				if (Gdx.input.isKeyJustPressed(playerinput.getKeyBomb())) {
-					List<GameObject> collision_pipapo= new LinkedList<>(collision_objects);  
-					collision_pipapo.addAll(player);
+					List<GameObject> collisionObjectsWithPlayer= new LinkedList<>(collision_objects);  
+					boolean collisionWithBombowner = false;
+					collisionObjectsWithPlayer.addAll(player);
 					throwbomb = false;
 					if (player.get(i).isBombThrowable()) {
 						for (Bomb bomb : bombs) {
@@ -194,17 +195,22 @@ public class LocalGameState extends GameState {
 										bomb.getPos().getY() + player.get(i).getBombDirection().getY());
 								if(!(p.getX() < FIELD_START.getX() || p.getX() > FIELD_END.getX()||
 										p.getY()< FIELD_START.getY() || p.getY() > FIELD_END.getY())){									
-										while(collision(p, collision_pipapo)){
+										while(collision(p, collisionObjectsWithPlayer) && !collisionWithBombowner){
 											p.set(p.getX()+player.get(i).getBombDirection().getX()/2, p.getY()+player.get(i).getBombDirection().getY()/2);
 											fixBombPos( p);
+											bomb.setPos(p);
+											if(collisionWithTwoGameObjects(bomb, player.get(i))){
+												collisionWithBombowner = true;
+											}
+											
 										}
 										bomb.setPos(p);		
-										collision_pipapo.removeAll(player);
+										collisionObjectsWithPlayer.removeAll(player);
 										
 								}else{
 									fixBombPos(p);
 									bomb.setPos(p);		
-									collision_pipapo.removeAll(player);
+									collisionObjectsWithPlayer.removeAll(player);
 									
 									
 								}
