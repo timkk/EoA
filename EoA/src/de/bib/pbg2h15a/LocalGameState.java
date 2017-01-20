@@ -30,8 +30,8 @@ public class LocalGameState extends GameState {
 	private List<KI> ai;
 
 	protected final InputConfig[] input = {
-			new InputConfig(Input.Keys.A, Input.Keys.D, Input.Keys.W, Input.Keys.S, Input.Keys.Q),
-			new InputConfig(Input.Keys.LEFT, Input.Keys.RIGHT, Input.Keys.UP, Input.Keys.DOWN, Input.Keys.PAGE_DOWN),
+			new InputConfig(Input.Keys.A, Input.Keys.D, Input.Keys.W, Input.Keys.S, Input.Keys.SPACE), // Q->Space
+			new InputConfig(Input.Keys.LEFT, Input.Keys.RIGHT, Input.Keys.UP, Input.Keys.DOWN, Input.Keys.NUMPAD_0), //PAGE_DOWN->NUMPAD_0
 			new InputConfig(Input.Keys.J, Input.Keys.L, Input.Keys.I, Input.Keys.K, Input.Keys.SPACE),
 			new InputConfig(Input.Keys.NUMPAD_1, Input.Keys.NUMPAD_3, Input.Keys.NUMPAD_5, Input.Keys.NUMPAD_2, Input.Keys.NUMPAD_0)
 	};
@@ -47,7 +47,7 @@ public class LocalGameState extends GameState {
 			new Point(FIELD_END.getX() - SPRITESIZE, FIELD_END.getY() - SPRITESIZE)
 	};
 
-	private final float COLLISION_OFFSET = 1f;
+	private final float COLLISION_OFFSET = 5f;
 
 	private Stage stage;
 	private List<GameObject> collision_objects;
@@ -109,8 +109,8 @@ public class LocalGameState extends GameState {
 		ai = new LinkedList<KI>();
 		player.add(new Player(player1, player_spawns[0], Player_Frames.P1_MV_DOWN, input[0], stage));
 		player.add(new Player(player2, player_spawns[1], Player_Frames.P2_MV_DOWN, input[1], stage));
-		ai.add(new KI("AI 1", player_spawns[2], Player_Frames.P3_MV_DOWN, input[2], stage));
-		ai.add(new KI("AI 2", player_spawns[3], Player_Frames.P4_MV_DOWN, input[3], stage));
+		ai.add(new KI("", player_spawns[2], Player_Frames.P3_MV_DOWN, input[2], stage));
+		ai.add(new KI("", player_spawns[3], Player_Frames.P4_MV_DOWN, input[3], stage));
 
 		rundenTimer = new Timer(maxTime);
 
