@@ -182,6 +182,7 @@ public class LocalGameState extends GameState {
 				 * @author pbg2h15aln,pbg2h15ago,pbg2h15afa,pbg2h15aza,pbg2h15asu
 				 */
 				// bombe werfen
+				
 				if (Gdx.input.isKeyJustPressed(playerinput.getKeyBomb())) {
 					List<GameObject> collisionObjectsWithPlayer= new LinkedList<>(collision_objects);  
 					boolean collisionWithBombowner = false;
