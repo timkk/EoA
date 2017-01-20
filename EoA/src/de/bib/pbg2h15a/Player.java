@@ -65,9 +65,6 @@ public class Player extends GameObject {
 		this.bombDirection = bombDirection;
 	}
 	
-	
-	
-	
 	public int getBombRadius() {
 		return bombRadius;
 	}
@@ -106,7 +103,7 @@ public class Player extends GameObject {
 	 */
 	public void addMoveSpeed(float f) {
 		this.moveSpeed += f;
-		if(this.moveSpeed > 10)
+		if(this.moveSpeed > 8)
 			this.moveSpeed = 10;
 	}
 
