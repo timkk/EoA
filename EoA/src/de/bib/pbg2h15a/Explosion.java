@@ -1,8 +1,7 @@
 package de.bib.pbg2h15a;
 
-import com.badlogic.gdx.graphics.Texture;
+
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class Explosion extends GameObject {
 	
@@ -14,24 +13,24 @@ public class Explosion extends GameObject {
 	private Player player;
 	
 	/**
-	 * 
+	 * @param frameSet sets the set of frames used for the animation
 	 * @param player Reference of the player who dropped the bomb and caused the explosion.	 
 	 */
-	public Explosion(Player player, Point pos, Texture spritesheet, int region) {
-		super(pos, true, spritesheet);
+	public Explosion(Player player, Point pos, Explosion_Animation frameSet, int region) {
+		super(pos, true, frameSet.getFrame(0));
+		this.expgr = frameSet;
 		this.player = player;
-		// TODO TextureRegion benötigt Bild
 	}
 
-	public Explosion(Point pos, Explosion_Animation texture) {
-		super(pos, true, texture.getTexture(0));
-		this.expgr = texture;
+	public Explosion(Point pos, Explosion_Animation frameSet) {
+		super(pos, true, frameSet.getFrame(0));
+		this.expgr = frameSet;
 	}
 	
-	//for testing
-	public Explosion(Point pos){
-		super(pos, true, new Texture("img/Stage_1/Feuerfalle.png"));
-	}
+//	//for testing
+//	public Explosion(Point pos){
+//		super(pos, true, new Texture("img/Stage_1/Feuerfalle.png"));
+//	}
 
 	public Player getPlayer() {
 		return player;
@@ -40,12 +39,12 @@ public class Explosion extends GameObject {
 	public boolean shouldRemove(){
 		return time <= 0;
 	}
+	
 	/**
 	 * @author pbd2h15aho
-	 * 
-	 * */
+	 **/
 	private void setAniTexture(Explosion_Animation set,int vers){
-		this.spritesheet=set.getTexture(vers);
+		this.spritesheet=set.getFrame(vers);
 	}
 	
 
@@ -58,6 +57,10 @@ public class Explosion extends GameObject {
 		sb.draw(this.getSpritesheet(), this.getPos().getX(), this.getPos().getY());
 	}
 
+	/**
+	 * @author pbd2h15aho
+	 */
+	
 	@Override
 	public void update(float dt) {
 		time -= dt;
@@ -82,7 +85,6 @@ public class Explosion extends GameObject {
 			if(time>=1.4){
 				 setAniTexture(this.expgr, 0);
 				}
-		
 	}
 
 	public float getTime() {

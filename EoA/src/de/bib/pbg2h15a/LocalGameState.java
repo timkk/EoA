@@ -7,7 +7,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -108,10 +107,10 @@ public class LocalGameState extends GameState {
 		//texturen todo
 		player = new LinkedList<Player>();
 		ai = new LinkedList<KI>();
-		player.add(new Player(player1, player_spawns[0], new Texture("img/Stage_1/WindFalle.png"), input[0], stage));
-		player.add(new Player(player2, player_spawns[1], new Texture("img/Stage_1/WindFalle.png"), input[1], stage));
-		ai.add(new KI("AI 1", player_spawns[2], new Texture("img/Stage_1/WindFalle.png"), input[2], stage));
-		ai.add(new KI("AI 2", player_spawns[3], new Texture("img/Stage_1/WindFalle.png"), input[3], stage));
+		player.add(new Player(player1, player_spawns[0], Player_Frames.P1_MV_DOWN, input[0], stage));
+		player.add(new Player(player2, player_spawns[1], Player_Frames.P2_MV_DOWN, input[1], stage));
+		ai.add(new KI("AI 1", player_spawns[2], Player_Frames.P3_MV_DOWN, input[2], stage));
+		ai.add(new KI("AI 2", player_spawns[3], Player_Frames.P4_MV_DOWN, input[3], stage));
 
 		rundenTimer = new Timer(maxTime);
 
@@ -121,7 +120,7 @@ public class LocalGameState extends GameState {
 	}
 
 	/**
-	 * @author pbg2h15asu
+	 * @author pbg2h15asu,pbd2h15aho
 	 */
 	@Override
 	public void update(float dt) {
@@ -137,9 +136,9 @@ public class LocalGameState extends GameState {
 				Point pos = player.get(i).getPos();
 
 				// bewegung auf x
-
 				//links
 				if (Gdx.input.isKeyPressed(playerinput.getKeyLeft())) {
+					player.get(i).setSprite(i,"LEFT");
 					player.get(i).getBombDirection().set(-100, 0);
 					Point tmp = new Point(player.get(i).getPos());
 					tmp.translate(-player.get(i).getMoveSpeed(), 0);
@@ -148,6 +147,7 @@ public class LocalGameState extends GameState {
 				}
 				//rechts
 				if (Gdx.input.isKeyPressed(playerinput.getKeyRight())) {
+					player.get(i).setSprite(i,"RIGHT");
 					player.get(i).getBombDirection().set(100, 0);
 					Point tmp = new Point(player.get(i).getPos());
 					tmp.translate(player.get(i).getMoveSpeed(), 0);
@@ -161,6 +161,7 @@ public class LocalGameState extends GameState {
 
 				//oben
 				if (Gdx.input.isKeyPressed(playerinput.getKeyUp())) {
+					player.get(i).setSprite(i,"UP");
 					player.get(i).getBombDirection().set(0, 100);
 					Point tmp = new Point(player.get(i).getPos());
 					tmp.translate(0, player.get(i).getMoveSpeed());
@@ -169,14 +170,13 @@ public class LocalGameState extends GameState {
 				}
 				//unten
 				if (Gdx.input.isKeyPressed(playerinput.getKeyDown())) {
+					player.get(i).setSprite(i,"DOWN");
 					player.get(i).getBombDirection().set(0, -100);
 					Point tmp = new Point(player.get(i).getPos());
 					tmp.translate(0, -player.get(i).getMoveSpeed());
 					if (!collision(tmp, collision_objects))
 						player.get(i).setPos(tmp);
 				}
-				
-				
 				
 				/**
 				 * @author pbg2h15aln,pbg2h15ago,pbg2h15afa,pbg2h15aza,pbg2h15asu

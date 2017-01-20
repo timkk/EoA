@@ -1,6 +1,5 @@
 package de.bib.pbg2h15a;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Player extends GameObject {
@@ -17,11 +16,10 @@ public class Player extends GameObject {
 	private InputConfig controls;
 	private Point bombDirection;
 	
-	
-
 	protected Point pos;
 	protected boolean passable;
-	protected Texture spritesheet;
+	private Player_Frames sprite;
+	private float alivetime=0;
 
 	/**
 	 * @param name
@@ -31,8 +29,8 @@ public class Player extends GameObject {
 	 * 
 	 * @author pbg2h15akl
 	 */
-	public Player(String name, Point pos, Texture spritesheet, InputConfig controls, Stage stage) {
-		super(pos, false, spritesheet);
+	public Player(String name, Point pos, Player_Frames spritesheet, InputConfig controls, Stage stage) {
+		super(pos, false, spritesheet.getFrame(0));
 		this.name = name;
 		this.moveSpeed = 2;
 		this.bombThrowable = false;
@@ -43,7 +41,9 @@ public class Player extends GameObject {
 		this.illness = null;
 		this.bombRadius = 1;
 		this.controls = controls;
+		this.sprite=spritesheet;
 		bombDirection = new Point(0,0);
+		
 	}
 
 	public Bomb dropBomb() {
@@ -165,17 +165,65 @@ public class Player extends GameObject {
 	public Statistic getStats() {
 		return stats;
 	}
+	
+	/**
+	 * @author pbd2h15aho
+	 * */
+	private void setAniTexture(Player_Frames set,int vers){
+		this.spritesheet=set.getFrame(vers);
+	}
+	
+	public void setSprite(int i,String direction){
+		switch(i){
+		case 0:
+			if(direction=="UP"){this.sprite=Player_Frames.P1_MV_UP;}
+			if(direction=="DOWN"){this.sprite=Player_Frames.P1_MV_DOWN;}
+			if(direction=="LEFT"){this.sprite=Player_Frames.P1_MV_LEFT;}
+			if(direction=="RIGHT"){this.sprite=Player_Frames.P1_MV_RIGHT;};
+		break;
+		case 1:
+			if(direction=="UP"){this.sprite=Player_Frames.P2_MV_UP;}
+			if(direction=="DOWN"){this.sprite=Player_Frames.P2_MV_DOWN;}
+			if(direction=="LEFT"){this.sprite=Player_Frames.P2_MV_LEFT;}
+			if(direction=="RIGHT"){this.sprite=Player_Frames.P2_MV_RIGHT;};
+		break;
+		case 2:
+			if(direction=="UP"){this.sprite=Player_Frames.P3_MV_UP;}
+			if(direction=="DOWN"){this.sprite=Player_Frames.P3_MV_DOWN;}
+			if(direction=="LEFT"){this.sprite=Player_Frames.P3_MV_LEFT;}
+			if(direction=="RIGHT"){this.sprite=Player_Frames.P3_MV_RIGHT;};
+		break;
+		case 3:
+			if(direction=="UP"){this.sprite=Player_Frames.P4_MV_UP;}
+			if(direction=="DOWN"){this.sprite=Player_Frames.P4_MV_DOWN;}
+			if(direction=="LEFT"){this.sprite=Player_Frames.P4_MV_LEFT;}
+			if(direction=="RIGHT"){this.sprite=Player_Frames.P4_MV_RIGHT;};
+		}
+	}
 
 	@Override
 	public void render(SpriteBatch sb) {
 		sb.draw(this.getSpritesheet(), this.getPos().getX(), this.getPos().getY());
 	}
 
+	/**
+	 * @author pbd2h15aho
+	 * */
 	@Override
 	public void update(float dt) {
 		if(hasIllness()){
 			illness.update(dt);
 			illness.illnessExpired();
+		}
+		alivetime+=dt;
+		if(alivetime%2>=0&&alivetime%2<0.15||alivetime%2>=0.5&&alivetime%2<0.65||alivetime%2>=1&&alivetime%2<1.15||alivetime%2>=1.5&&alivetime%2<1.65){
+			setAniTexture(sprite, 1);
+		}
+		if(alivetime%2>=0.15&&alivetime%2<0.35||alivetime%2>=0.65&&alivetime%2<0.85||alivetime%2>=1.15&&alivetime%2<1.35||alivetime%2>=1.65&&alivetime%2<1.85){
+			setAniTexture(sprite, 2);
+		}
+		if(alivetime%2>=0.35&&alivetime%2<0.5||alivetime%2>=0.85&&alivetime%2<1||alivetime%2>=1.35&&alivetime%2<1.5||alivetime%2>=1.85&&alivetime%2<2){
+			setAniTexture(sprite, 0);
 		}
 	}
 }

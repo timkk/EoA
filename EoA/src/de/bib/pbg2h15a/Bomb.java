@@ -26,7 +26,7 @@ public class Bomb extends GameObject{
 	public Bomb(Player player, Point pos, int radius) {
 		super(pos, false, null);
 		spritesheet = new Texture("img/Stage_1/Bombe.png");
-		//Ãœbergibt  den Spieler, der die Bombe gelegt hat
+		//Übergibt  den Spieler, der die Bombe gelegt hat
 		this.player = player;
 		this.radius = radius;
 		this.time = BOMB_TIMER;
