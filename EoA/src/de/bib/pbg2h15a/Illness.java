@@ -24,7 +24,7 @@ public class Illness extends Collectable{
 		super(p);
 		setRndmIllnes();
 		this.time = (float) ((Math.random() * 6) + 5);
-		this.spritesheet = new Texture("img/Stats/0_50x50.png"); //temporäres bild
+		this.spritesheet = new Texture("img/Stage_1/Krankheit.png");
 	}
 	
 	private void setRndmIllnes(){

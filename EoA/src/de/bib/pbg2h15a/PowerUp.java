@@ -16,7 +16,7 @@ public class PowerUp extends Collectable{
 	public PowerUp(Point p) {
 		super(p);
 		setRndmPowerUp();
-		this.spritesheet = new Texture("img/Stage_1/Feuerfalle.png");	//temporäres Bild
+		this.spritesheet = new Texture("img/Stage_1/powerdown.png");	//temporäres Bild
 	}
 	
 	/**
