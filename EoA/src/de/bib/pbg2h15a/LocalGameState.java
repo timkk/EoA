@@ -194,28 +194,21 @@ public class LocalGameState extends GameState {
 								throwbomb = true;
 								Point p = new Point(bomb.getPos().getX() + player.get(i).getBombDirection().getX(),
 										bomb.getPos().getY() + player.get(i).getBombDirection().getY());
-								if(!(p.getX() < FIELD_START.getX() || p.getX() > FIELD_END.getX()||
-										p.getY()< FIELD_START.getY() || p.getY() > FIELD_END.getY())){									
-										while(collision(p, collisionObjectsWithPlayer) && !collisionWithBombowner){
-											p.set(p.getX()+player.get(i).getBombDirection().getX()/2, p.getY()+player.get(i).getBombDirection().getY()/2);
-											fixBombPos( p);
-											bomb.setPos(p);
-											if(collisionWithTwoGameObjects(bomb, player.get(i))){
-												collisionWithBombowner = true;
-											}
-											
+								fixBombPos(p);					
+								while(collision(p, collisionObjectsWithPlayer) && !collisionWithBombowner){
+										p.set(p.getX()+player.get(i).getBombDirection().getX()/2, p.getY()+player.get(i).getBombDirection().getY()/2);
+										fixBombPos(p);
+										if(collisionWith(p, player.get(i))){
+											collisionWithBombowner = true;
 										}
-										bomb.setPos(p);		
-										collisionObjectsWithPlayer.removeAll(player);
-										
-								}else{
-									fixBombPos(p);
-									bomb.setPos(p);		
-									collisionObjectsWithPlayer.removeAll(player);
-									
-									
+											
 								}
+						
+								fixBombPos(p);
+								bomb.setPos(p);		
+								collisionObjectsWithPlayer.removeAll(player);
 							}
+							
 						}
 					}
 
@@ -614,6 +607,12 @@ public class LocalGameState extends GameState {
 	private boolean collisionWithTwoGameObjects(GameObject g1, GameObject g2) {
 		CollisionDetector cd = new CollisionDetector(g1, COLLISION_OFFSET);
 		return cd.collidesWith(g2);
+	}
+	
+	private boolean collisionWith(Point p, GameObject g) {
+
+		CollisionDetector cd = new CollisionDetector(p, SPRITESIZE, SPRITESIZE, COLLISION_OFFSET);
+		return cd.collidesWith(g);
 	}
 	
 	/**
