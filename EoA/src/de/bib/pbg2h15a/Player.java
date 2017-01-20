@@ -32,7 +32,7 @@ public class Player extends GameObject {
 	public Player(String name, Point pos, Player_Frames spritesheet, InputConfig controls, Stage stage) {
 		super(pos, false, spritesheet.getFrame(0));
 		this.name = name;
-		this.moveSpeed = 2;
+		this.moveSpeed = 4;
 		this.bombThrowable = false;
 		this.anzahlBomben = 0  ;
 		this.anzahlBombenMax = 1;

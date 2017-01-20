@@ -533,7 +533,7 @@ public class LocalGameState extends GameState {
 			}
 		}
 
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < 40; i++) {
 			int x = (int) (Math.random() * newList.size());
 			collision_objects.remove(newList.get(x));
 			newList.remove(x);
