@@ -29,15 +29,17 @@ public class PlayerUIList {
 	}
 
 	private void initTxtFields(int pA){
+		txtFields = new TextField[pA];
 		for (int i = 0; i < pA; i++) {
 			txtFields[i] = new TextField("", skinName);
 		}
 	}
 	
 	private void init(){
+		list = new Vector<>();
 		for (int i = playerAmount; i > 0; i--) {
 			
-			txtFields[playerAmount-i].setPosition((Gdx.graphics.getWidth() / 2) + 5, (Gdx.graphics.getHeight()-(Gdx.graphics.getHeight() / playerAmount)*i));
+			txtFields[playerAmount-i].setPosition((Gdx.graphics.getWidth() / 2) + 5, (Gdx.graphics.getHeight()-250*i));
 			txtFields[playerAmount-i].setSize(200, 50);
 			
 			list.add(new PlayerUI(new ButtonErstellen((Gdx.graphics.getWidth() / 2) - 225, (Gdx.graphics.getHeight()-(Gdx.graphics.getHeight() / playerAmount)*i), "img/GamePrepare/name.png"),

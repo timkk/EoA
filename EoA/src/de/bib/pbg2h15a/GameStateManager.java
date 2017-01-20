@@ -40,7 +40,8 @@ public class GameStateManager {
 			gameState = new OptionsState(this);
 		}
 		if(state == MODE_SELECT) {
-			gameState = new ModeSelectState(this);
+			//gameState = new ModeSelectState(this);
+			gameState = new LocalGamePrepareNames(this);
 		}
 		if(state == LOCAL_PREPARE){
 			gameState = new LocalGamePrepareState(this);
@@ -52,6 +53,12 @@ public class GameStateManager {
 			gameState = FinalStatGameState.getInstance(this);
 		}
 		
+	}
+	
+	public void setState(int state, String name1, String name2){
+		if(state == GAME){
+			gameState = new LocalGameState(this, name1, name2, 300, 3);
+		}
 	}
 	
 	public void setState(int state, Player player){
