@@ -251,11 +251,13 @@ public class LocalGameState extends GameState {
 						if(!p.hasIllness()){
 							((Illness) c).illnessSet(p);
 							p.setIllness((Illness)c);
+							Sounds.EFFECT_ILLNESS_COLLECTED.Play();
 							System.out.println(((Illness) c).getType().toString());
 						}
 						collectables.remove(c);
 					}else{
 						((PowerUp) c).setPowerUp(p);
+						Sounds.EFFECT_POWERUP_COLLECTED.Play();
 						collectables.remove(c);
 						System.out.println(((PowerUp) c).getType().toString());
 					}
@@ -378,6 +380,7 @@ public class LocalGameState extends GameState {
 			 * @author pbg2h15ani
 			 */
 			if(spielVorbei()){
+				Tunes.MUSIC_GAME_FINISHED.Play();
 				Statistic[] stats = new Statistic[4];
 				int tmp = 0;
 				List<Player> all = new LinkedList<>();
