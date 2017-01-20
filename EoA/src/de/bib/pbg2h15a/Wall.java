@@ -54,7 +54,7 @@ public class Wall extends GameObject {
 
 		if (zufallsZahl < probability) {
 			collect = null;
-		}else if (zufallsZahl > probability && zufallsZahl < probSickness ){
+		}else if (zufallsZahl >= probability && zufallsZahl < probSickness ){
 			collect = new PowerUp(pos);
 
 		} //else if (zufallsZahl > 85 && zufallsZahl < 95) {
