@@ -393,6 +393,7 @@ public class LocalGameState extends GameState {
 				/**
 				 * @author pbg2h15ake
 				 */
+				/*
 				Player winner;
 				if(player.get(0).getLife()>0){
 					winner = player.get(0);
@@ -400,9 +401,9 @@ public class LocalGameState extends GameState {
 					winner = player.get(1);
 				}
 				
-				gsm.setState(GameStateManager.TMPENDSCREENTDOT, winner);
-				
-				//gsm.setState(gsm.ROUND_STATISTIC, stats);
+				gsm.setState(GameStateManager.TMPENDSCREENTDOT, winner); //tdot
+				*/
+				gsm.setState(gsm.ROUND_STATISTIC, stats);
 			}
 
 		} else {

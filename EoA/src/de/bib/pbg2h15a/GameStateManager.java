@@ -40,8 +40,8 @@ public class GameStateManager {
 			gameState = new OptionsState(this);
 		}
 		if(state == MODE_SELECT) {
-			//gameState = new ModeSelectState(this);
-			gameState = new LocalGamePrepareNames(this);
+			gameState = new ModeSelectState(this);
+			//gameState = new LocalGamePrepareNames(this); //tdot
 		}
 		if(state == LOCAL_PREPARE){
 			gameState = new LocalGamePrepareState(this);
