@@ -461,6 +461,11 @@ public class LocalGameState extends GameState {
 			int time = (int) timer.getTime();
 			font_countdown.draw(batch, "" + time, Gdx.graphics.getWidth() / 2 - 8, Gdx.graphics.getHeight() / 2 - 20);
 		}
+		if(rundenTimer.getTime()<11 && rundenTimer.getTime() >=9)
+		{
+			//int rTime = (int) timer.getTime();
+			font_countdown.draw(batch, "Achtung, nur noch 10 Sekunden verbleiben!", Gdx.graphics.getWidth() / 2 - 260, Gdx.graphics.getHeight() / 2 - 35);
+		}
 		gui.render(batch);
 		batch.end();
 	}
@@ -632,7 +637,7 @@ public class LocalGameState extends GameState {
 			}
 		}
 		
-		return anzahlLebenderSpieler < 2;
+		return anzahlLebenderSpieler < 2 || rundenTimer.getTime() <= 0;
 	}
 	/***
 	 * @author pbg2h15afo
