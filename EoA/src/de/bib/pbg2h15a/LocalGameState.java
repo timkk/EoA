@@ -236,15 +236,39 @@ public class LocalGameState extends GameState {
 					list.add((GameObject) e);
 
 				//Kollision Player + Explosion
-				if (collision(p.getPos(), list)) {
+//				if (collision(p.getPos(), list)) {
+//					p.setLife(p.getLife() - 1); // player killed
+//					Sounds.EFFECT_PLAYER_DIES.Play();
+//					if(p.getLife() < 1)
+//						p.setPos(new Point(300, -300));
+//					else{
+//						int i = (int) (Math.random() * 4);
+//						p.setPos(player_spawns[i]);
+//					}
+//				}
+				/**
+				 * @author pbg2h15ary
+				 */
+				if (!p.isInvincible() && collision(p.getPos(), list)) {
+					if (p.getLife()==1){
 					p.setLife(p.getLife() - 1); // player killed
 					Sounds.EFFECT_PLAYER_DIES.Play();
-					if(p.getLife() < 1)
-						p.setPos(new Point(300, -300));
-					else{
-						int i = (int) (Math.random() * 4);
-						p.setPos(player_spawns[i]);
+					} else {
+						p.setInvincible();
+						
+//						Timer outTimer = new Timer(1.5f);
+//						int i = (int) (Math.random() * 4);												
+//						Point outsidePos = new Point (300,-300);
+//						Point curPos =  new Point (p.getPos().getX(),p.getPos().getY());
+//						p.setPos(outsidePos);					
+						p.setLife(1);
+//						outTimer.update(dt);
+//						if (outTimer.isFinished()){
+//							p.setPos(curPos);
+//						}
+					
 					}
+					
 				}
 				//Kollision Player + Collectable
 				Collectable c = collisionWith(p.getPos(), collectables);

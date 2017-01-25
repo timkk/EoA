@@ -20,7 +20,7 @@ public class Player extends GameObject {
 	protected boolean passable;
 	private Player_Frames sprite;
 	private float alivetime=0;
-
+	private Timer invincible;
 	/**
 	 * @param name
 	 *            Players name
@@ -36,13 +36,15 @@ public class Player extends GameObject {
 		this.bombThrowable = false;
 		this.anzahlBomben = 0  ;
 		this.anzahlBombenMax = 1;
-		this.life = 1;
+		this.life = 2;
 		this.stats = new Statistic();
 		this.illness = null;
 		this.bombRadius = 1;
 		this.controls = controls;
 		this.sprite=spritesheet;
 		bombDirection = new Point(0,0);
+		this.invincible = new Timer(0);
+
 		
 	}
 
@@ -200,8 +202,11 @@ public class Player extends GameObject {
 
 	@Override
 	public void render(SpriteBatch sb) {
+		if(!isInvincible() || (int) (invincible.getTime()*10)%2==0 ){
 		sb.draw(this.getSpritesheet(), this.getPos().getX(), this.getPos().getY());
-	}
+		}
+		
+		}
 
 	/**
 	 * @author pbd2h15aho
@@ -222,5 +227,19 @@ public class Player extends GameObject {
 		if(alivetime%2>=0.35&&alivetime%2<0.5||alivetime%2>=0.85&&alivetime%2<1||alivetime%2>=1.35&&alivetime%2<1.5||alivetime%2>=1.85&&alivetime%2<2){
 			setAniTexture(sprite, 0);
 		}
+		invincible.update(dt);
+	}
+	/**
+	 * *@author pbg2h15ary
+	 * @return
+	 */
+	public boolean isInvincible(){
+		if (invincible.isFinished()){
+			return false;
+		}
+		return true;
+	}
+	public void setInvincible(){
+		invincible.setTime(1.5f);
 	}
 }
