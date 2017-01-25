@@ -174,7 +174,7 @@ public class GUI{
 		tblMenueBtns.add(iBtnBack);
 		tblMenueBtns.add().size(2*SCALE_X,0);
 		
-		if(gs.getClass().getName().equals("LocalGameState")){
+		if(gs instanceof LocalGameState){
 			tblMenueBtns.add(iBtnPause);
 		}
 		tblMenueBtns.setFillParent(true);
@@ -287,16 +287,18 @@ public class GUI{
 					return false;
 				}
 			});
-			
-//			iBtnPause.addListener(new InputListener() {	
-//				@Override
-//				public boolean handle(Event event) {
-//					if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
-//						System.out.println("Pause:click");
-//						return true;
-//					}
-//					return false;}
-//			});
+			/***
+			 * @author pbg2h15afo
+			 */
+			iBtnPause.addListener(new InputListener() {	
+				@Override
+				public boolean handle(Event event) {
+					if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
+					((LocalGameState) gs).tooglePause();
+						return true;
+					}
+					return false;}
+			});
 	}
 	
 	public ImageButton getiBtnBomb() {

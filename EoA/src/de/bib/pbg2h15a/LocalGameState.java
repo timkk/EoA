@@ -66,6 +66,8 @@ public class LocalGameState extends GameState {
 
 	
 	private boolean throwbomb;
+	
+	private boolean pausiert;
 
 	/**
 	 * @author pbg2h15aza
@@ -125,7 +127,7 @@ public class LocalGameState extends GameState {
 	@Override
 	public void update(float dt) {
 
-		if (timer.isFinished()) {
+		if (timer.isFinished() && !pausiert) {
 			rundenTimer.update(dt);
 
 			// spieler input
@@ -631,6 +633,14 @@ public class LocalGameState extends GameState {
 		}
 		
 		return anzahlLebenderSpieler < 2;
+	}
+	/***
+	 * @author pbg2h15afo
+	 */
+	public void tooglePause(){
+		
+		pausiert = !pausiert;
+		
 	}
 
 }
