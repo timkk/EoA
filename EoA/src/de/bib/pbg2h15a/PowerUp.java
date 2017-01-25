@@ -16,7 +16,7 @@ public class PowerUp extends Collectable{
 	public PowerUp(Point p) {
 		super(p);
 		setRndmPowerUp();
-		this.spritesheet = new Texture("img/Stage_1/powerdown.png");	//temporäres Bild
+		//this.spritesheet = new Texture("img/Stage_1/powerdown.png");	//temporäres Bild
 	}
 	
 	/**
@@ -26,7 +26,27 @@ public class PowerUp extends Collectable{
 		int zufallszahl = (int)(Math.random()*4) + 0;
 		
 		this.key = zufallszahl;
-		//TODO individuelle Power-Up-Bilder
+		
+		/**
+		 *@author pbd2h15aho
+		 **/
+		switch(key){
+			case 0:
+				spritesheet= PowerUpType.SPEED_UP.getTexture();
+				break;
+			case 1:
+				spritesheet= PowerUpType.BOMB_PLUS.getTexture();
+				break;
+			case 2:
+				spritesheet= PowerUpType.RANGE_PLUS.getTexture();
+				break;
+			case 3:
+				spritesheet= PowerUpType.BOMB_THROW.getTexture();
+				break;
+			case 4:
+				spritesheet= PowerUpType.LIVE_PLUS.getTexture();
+				break;
+		}
 		
 	}
 	
