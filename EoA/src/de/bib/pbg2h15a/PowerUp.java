@@ -46,8 +46,7 @@ public class PowerUp extends Collectable{
 			case 4:
 				spritesheet= PowerUpType.LIVE_PLUS.getTexture();
 				break;
-		}
-		
+		}	
 	}
 	
 	public void setPowerUp(Player player){

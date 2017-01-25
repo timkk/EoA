@@ -8,7 +8,7 @@ public enum PowerUpType {
 	BOMB_PLUS("Bombe Plus", 1, false,"img/Stage_1/bomb+.png"),
 	RANGE_PLUS("Range Plus", 1, false,"img/Stage_1/range+.png"),
 	BOMB_THROW("Bomb Throw", 0, true,"img/Stage_1/throw.png"),
-	LIVE_PLUS("Live Plus", 1, false,"img/Stage_1/speed+.png");
+	LIVE_PLUS("Live Plus", 1, false,"img/Stage_1/leben+.png");
 	
 	private String description;
 	private float value;
