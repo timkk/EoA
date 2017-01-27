@@ -37,12 +37,12 @@ public class PlayerUIList {
 	
 	private void init(){
 		list = new Vector<>();
-		for (int i = playerAmount; i > 0; i--) {
+			for (int i = playerAmount; i > 0; i--) {
 			
-			txtFields[playerAmount-i].setPosition((Gdx.graphics.getWidth() / 2) + 5, (Gdx.graphics.getHeight()-250*i));
-			txtFields[playerAmount-i].setSize(200, 50);
+				txtFields[playerAmount-i].setPosition((Gdx.graphics.getWidth() / 2) + 5, (Gdx.graphics.getHeight()-200-70*i));
+				txtFields[playerAmount-i].setSize(200, 50);
 			
-			list.add(new PlayerUI(new ButtonErstellen((Gdx.graphics.getWidth() / 2) - 225, (Gdx.graphics.getHeight()-(Gdx.graphics.getHeight() / playerAmount)*i), "img/GamePrepare/name.png"),
+				list.add(new PlayerUI(new ButtonErstellen((Gdx.graphics.getWidth() / 2) - 225, (Gdx.graphics.getHeight()-Gdx.graphics.getHeight()-165-50*i), "img/GamePrepare/name.png"),
 					txtFields[playerAmount-i]));
 		}
 	}

@@ -24,6 +24,7 @@ public class GameStateManager {
 	public static final int TMPENDSCREENTDOT = 301;
 	public static final int ROUND_STATISTIC = 3;
 	public static final int FINAL_STATISTIC = 4;
+	public static final int NAME_STATE = 500;
 	
 	
 	public GameStateManager() {
@@ -41,13 +42,12 @@ public class GameStateManager {
 		}
 		if(state == MODE_SELECT) {
 			gameState = new ModeSelectState(this);
-			//gameState = new LocalGamePrepareNames(this); //tdot
 		}
 		if(state == LOCAL_PREPARE){
 			gameState = new LocalGamePrepareState(this);
 		}
 		if(state == GAME){
-			gameState = new LocalGameState(this, null, null, 300, 3);
+			gameState = new LocalGameState(this, null, null, null, null, 300, 3);
 		}
 		if(state == FINAL_STATISTIC){
 			gameState = FinalStatGameState.getInstance(this);
@@ -55,11 +55,12 @@ public class GameStateManager {
 		
 	}
 	
-	public void setState(int state, String name1, String name2){
+	public void setState(int state, String name1, String name2, String name3, String name4){
 		if(state == GAME){
-			gameState = new LocalGameState(this, name1, name2, 300, 3);
+			gameState = new LocalGameState(this, name1, name2, name3, name4, 300, 3);
 		}
 	}
+	
 	
 	public void setState(int state, Player player){
 		if(state == TMPENDSCREENTDOT){
@@ -72,6 +73,18 @@ public class GameStateManager {
 			gameState = new RoundStatGameState(this, stats);
 		}
 	}
+	
+	/**
+	 * @author pbg2h15agu, pbg2h15afa
+	 */
+	public void setState(int state, int playerCount){
+		if(state == NAME_STATE){
+			gameState = new LocalGamePrepareNames(this, playerCount);
+		}
+	}
+	/**
+	 * 
+	 */
 	
 	public void update(float dt) {
 		gameState.update(dt);

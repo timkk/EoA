@@ -23,8 +23,10 @@ public class LocalGameState extends GameState {
 
 	private SpriteBatch batch;
 
-	private String player1 = "Player 1";
-	private String player2 = "Player 2";
+	private String player1 = "Dumbledore";
+	private String player2 = "Gandalf";
+	private String player3 = "Merlin";
+	private String player4 = "Oz";
 
 	private List<Player> player;
 	private List<KI> ai;
@@ -72,10 +74,26 @@ public class LocalGameState extends GameState {
 	 * @param gsm
 	 *            GameStateManager
 	 */
-	protected LocalGameState(GameStateManager gsm, String name_player1, String name_player2, float time, int rounds) {
+	protected LocalGameState(GameStateManager gsm, String name_player1, String name_player2, String name_player3, String name_player4, float time, int rounds) {
 		super(gsm);
-		player1 = name_player1;
-		player2 = name_player2;
+		/**
+		 * @author pbg2h15agu, pbg2h15afa
+		 */
+		if(!name_player1.equals("")){
+			player1 = name_player1;
+		}
+		if(name_player2 != null &&!name_player2.equals("")){
+			player2 = name_player2;
+		}
+		if(name_player3 != null &&!name_player3.equals("")){
+			player3 = name_player3;
+		}
+		if(name_player4 != null && !name_player4.equals("")){
+			player4 = name_player4;
+		}
+		/**
+		 * 
+		 */
 		maxTime = time;
 		this.rounds = rounds;
 		init();
