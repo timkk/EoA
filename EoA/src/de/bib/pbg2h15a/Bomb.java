@@ -38,15 +38,12 @@ public class Bomb extends GameObject{
 	}
 
 	public int getRadius() {
-		
 		return radius;
 	}
 
 	public Point getDirection() {
 		return direction;
 	}
-
-
 
 	public void setDirection(Point direction) {
 		this.direction = direction;

@@ -193,6 +193,7 @@ public class LocalGameState extends GameState {
 								Point poi = player.get(i).getBombDirection();
 								bomb.setDirection(new Point(poi));
 								throwbomb = true;
+								
 								Point p = new Point(bomb.getPos().getX() + bomb.getDirection().getX() * 32,
 										bomb.getPos().getY() + bomb.getDirection().getY() * 32);
 								if (collision(p, new LinkedList<GameObject>(bombs))) {
