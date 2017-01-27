@@ -17,6 +17,7 @@ public class Bomb extends GameObject{
 	private int radius;
 	private float time;
 	private Player player;
+	private Point direction;
 	private static final float BOMB_TIMER = 5;
 	
 
@@ -41,6 +42,16 @@ public class Bomb extends GameObject{
 		return radius;
 	}
 
+	public Point getDirection() {
+		return direction;
+	}
+
+
+
+	public void setDirection(Point direction) {
+		this.direction = direction;
+	}
+	
 	public void setRadius(int radius) {
 		
 		this.radius = radius;

@@ -25,27 +25,25 @@ public class LocalGameState extends GameState {
 
 	private String player1 = "Player 1";
 	private String player2 = "Player 2";
-	
+
 	private List<Player> player;
 	private List<KI> ai;
 
 	protected final InputConfig[] input = {
 			new InputConfig(Input.Keys.A, Input.Keys.D, Input.Keys.W, Input.Keys.S, Input.Keys.SPACE), // Q->Space
-			new InputConfig(Input.Keys.LEFT, Input.Keys.RIGHT, Input.Keys.UP, Input.Keys.DOWN, Input.Keys.NUMPAD_0), //PAGE_DOWN->NUMPAD_0
+			new InputConfig(Input.Keys.LEFT, Input.Keys.RIGHT, Input.Keys.UP, Input.Keys.DOWN, Input.Keys.NUMPAD_0), // PAGE_DOWN->NUMPAD_0
 			new InputConfig(Input.Keys.J, Input.Keys.L, Input.Keys.I, Input.Keys.K, Input.Keys.SPACE),
-			new InputConfig(Input.Keys.NUMPAD_1, Input.Keys.NUMPAD_3, Input.Keys.NUMPAD_5, Input.Keys.NUMPAD_2, Input.Keys.NUMPAD_0)
-	};
+			new InputConfig(Input.Keys.NUMPAD_1, Input.Keys.NUMPAD_3, Input.Keys.NUMPAD_5, Input.Keys.NUMPAD_2,
+					Input.Keys.NUMPAD_0) };
 
 	private final Point FIELD_START = new Point(125f, 50f);
 	private final Point FIELD_END = new Point(875f, 600f);
 	private final int SPRITESIZE = 50;
 
-	protected final Point[] player_spawns = {
-			new Point(FIELD_START.getX(), FIELD_END.getY() - SPRITESIZE),
+	protected final Point[] player_spawns = { new Point(FIELD_START.getX(), FIELD_END.getY() - SPRITESIZE),
 			new Point(FIELD_END.getX() - SPRITESIZE, FIELD_START.getY()),
 			new Point(FIELD_START.getX(), FIELD_START.getY()),
-			new Point(FIELD_END.getX() - SPRITESIZE, FIELD_END.getY() - SPRITESIZE)
-	};
+			new Point(FIELD_END.getX() - SPRITESIZE, FIELD_END.getY() - SPRITESIZE) };
 
 	private final float COLLISION_OFFSET = 5f;
 
@@ -60,19 +58,19 @@ public class LocalGameState extends GameState {
 	private Timer rundenTimer;
 
 	private GUI gui;
-	
+
 	private float maxTime;
 	private int rounds;
 
-	
 	private boolean throwbomb;
-	
+
 	private boolean pausiert;
 
 	/**
 	 * @author pbg2h15aza
 	 * @author pbg2h15asu
-	 * @param gsm GameStateManager
+	 * @param gsm
+	 *            GameStateManager
 	 */
 	protected LocalGameState(GameStateManager gsm, String name_player1, String name_player2, float time, int rounds) {
 		super(gsm);
@@ -103,10 +101,11 @@ public class LocalGameState extends GameState {
 		font_countdown.getData().setScale(2);
 
 		Object[][] field = setupField(17, 13);
-		stage = new Stage((GameObject[][]) field, maxTime, StageType.STANDARD, player_spawns, rounds, Mode.LAST_MAN_STANDING);
+		stage = new Stage((GameObject[][]) field, maxTime, StageType.STANDARD, player_spawns, rounds,
+				Mode.LAST_MAN_STANDING);
 		walls = generateWalls(17, 13);
 
-		//texturen todo
+		// texturen todo
 		player = new LinkedList<Player>();
 		ai = new LinkedList<KI>();
 		player.add(new Player(player1, player_spawns[0], Player_Frames.P1_MV_DOWN, input[0], stage));
@@ -138,19 +137,19 @@ public class LocalGameState extends GameState {
 				Point pos = player.get(i).getPos();
 
 				// bewegung auf x
-				//links
+				// links
 				if (Gdx.input.isKeyPressed(playerinput.getKeyLeft())) {
-					player.get(i).setSprite(i,"LEFT");
-					player.get(i).getBombDirection().set(-100, 0);
+					player.get(i).setSprite(i, "LEFT");
+					player.get(i).getBombDirection().set(-3.125f, 0);
 					Point tmp = new Point(player.get(i).getPos());
 					tmp.translate(-player.get(i).getMoveSpeed(), 0);
 					if (!collision(tmp, collision_objects))
 						player.get(i).setPos(tmp);
 				}
-				//rechts
+				// rechts
 				if (Gdx.input.isKeyPressed(playerinput.getKeyRight())) {
-					player.get(i).setSprite(i,"RIGHT");
-					player.get(i).getBombDirection().set(100, 0);
+					player.get(i).setSprite(i, "RIGHT");
+					player.get(i).getBombDirection().set(3.125f, 0);
 					Point tmp = new Point(player.get(i).getPos());
 					tmp.translate(player.get(i).getMoveSpeed(), 0);
 					if (!collision(tmp, collision_objects))
@@ -161,64 +160,75 @@ public class LocalGameState extends GameState {
 
 				// bewegung auf y
 
-				//oben
+				// oben
 				if (Gdx.input.isKeyPressed(playerinput.getKeyUp())) {
-					player.get(i).setSprite(i,"UP");
-					player.get(i).getBombDirection().set(0, 100);
+					player.get(i).setSprite(i, "UP");
+					player.get(i).getBombDirection().set(0, 3.125f);
 					Point tmp = new Point(player.get(i).getPos());
 					tmp.translate(0, player.get(i).getMoveSpeed());
 					if (!collision(tmp, collision_objects))
 						player.get(i).setPos(tmp);
 				}
-				//unten
+				// unten
 				if (Gdx.input.isKeyPressed(playerinput.getKeyDown())) {
-					player.get(i).setSprite(i,"DOWN");
-					player.get(i).getBombDirection().set(0, -100);
+					player.get(i).setSprite(i, "DOWN");
+					player.get(i).getBombDirection().set(0, -3.125f);
 					Point tmp = new Point(player.get(i).getPos());
 					tmp.translate(0, -player.get(i).getMoveSpeed());
 					if (!collision(tmp, collision_objects))
 						player.get(i).setPos(tmp);
 				}
-				
+
 				/**
-				 * @author pbg2h15aln,pbg2h15ago,pbg2h15afa,pbg2h15aza,pbg2h15asu
-				 */
+				 * @author pbg2h15aln,pbg2h15ago,pbg2h15afa,pbg2h15aza,
+				 *         pbg2h15asu
+				 * 
+				 **/
 				// bombe werfen
-				
 				if (Gdx.input.isKeyJustPressed(playerinput.getKeyBomb())) {
-					List<GameObject> collisionObjectsWithPlayer= new LinkedList<>(collision_objects);  
-					boolean collisionWithBombowner = false;
-					collisionObjectsWithPlayer.addAll(player);
 					throwbomb = false;
 					if (player.get(i).isBombThrowable()) {
 						for (Bomb bomb : bombs) {
 							if (collisionWithTwoGameObjects(bomb, (GameObject) player.get(i))) {
+								Point poi = player.get(i).getBombDirection();
+								bomb.setDirection(new Point(poi));
 								throwbomb = true;
-								Point p = new Point(bomb.getPos().getX() + player.get(i).getBombDirection().getX(),
-										bomb.getPos().getY() + player.get(i).getBombDirection().getY());
-								fixBombPos(p);					
-								while(collision(p, collisionObjectsWithPlayer) && !collisionWithBombowner){
-										p.set(p.getX()+player.get(i).getBombDirection().getX()/2, p.getY()+player.get(i).getBombDirection().getY()/2);
-										fixBombPos(p);
-										if(collisionWith(p, player.get(i))){
-											collisionWithBombowner = true;
-										}
-											
+								Point p = new Point(bomb.getPos().getX() + bomb.getDirection().getX() * 32,
+										bomb.getPos().getY() + bomb.getDirection().getY() * 32);
+								if (collision(p, new LinkedList<GameObject>(bombs))) {
+									p.set(p.getX() + bomb.getDirection().getX() * 16,
+											p.getY() + bomb.getDirection().getY() * 16);
 								}
-						
+
 								fixBombPos(p);
-								bomb.setPos(p);		
-								collisionObjectsWithPlayer.removeAll(player);
+								bomb.setPos(p);
 							}
-							
 						}
 					}
 
 				}
-				
+
+				for (Bomb b : bombs) {
+					List<GameObject> collisionObjectsWithoutBomb = new LinkedList<>(collision_objects);
+					collisionObjectsWithoutBomb.remove(b);
+					if (collision(b.getPos(), collisionObjectsWithoutBomb)) {
+						Point p = new Point(b.getPos().getX() + b.getDirection().getX(),
+								b.getPos().getY() + b.getDirection().getY());
+						fixBombPos(p);
+						b.setPos(p);
+					} else {
+						/**
+						 * 
+						 * @author pbg2h15awi
+						 */
+						b.setDirection(new Point(0, 0));
+					}
+
+				}
 
 				// bombe legen
-				if (Gdx.input.isKeyJustPressed(playerinput.getKeyBomb()) && player.get(i).getAnzahlBomben() < player.get(i).getAnzahlBombenMax()) {
+				if (Gdx.input.isKeyJustPressed(playerinput.getKeyBomb())
+						&& player.get(i).getAnzahlBomben() < player.get(i).getAnzahlBombenMax()) {
 					if (!throwbomb) {
 						newBomb(player.get(i).dropBomb());
 						Sounds.EFFECT_BOMB_DROPPED.Play();
@@ -229,59 +239,60 @@ public class LocalGameState extends GameState {
 			// spieler verwalten
 			for (Player p : player) {
 				p.update(dt);
-				
+
 				List<GameObject> list = new LinkedList<GameObject>();
 
 				for (Explosion e : explosions)
 					list.add((GameObject) e);
 
-				//Kollision Player + Explosion
-//				if (collision(p.getPos(), list)) {
-//					p.setLife(p.getLife() - 1); // player killed
-//					Sounds.EFFECT_PLAYER_DIES.Play();
-//					if(p.getLife() < 1)
-//						p.setPos(new Point(300, -300));
-//					else{
-//						int i = (int) (Math.random() * 4);
-//						p.setPos(player_spawns[i]);
-//					}
-//				}
+				// Kollision Player + Explosion
+				// if (collision(p.getPos(), list)) {
+				// p.setLife(p.getLife() - 1); // player killed
+				// Sounds.EFFECT_PLAYER_DIES.Play();
+				// if(p.getLife() < 1)
+				// p.setPos(new Point(300, -300));
+				// else{
+				// int i = (int) (Math.random() * 4);
+				// p.setPos(player_spawns[i]);
+				// }
+				// }
 				/**
 				 * @author pbg2h15ary
 				 */
 				if (!p.isInvincible() && collision(p.getPos(), list)) {
-					if (p.getLife()==1){
-					p.setLife(p.getLife() - 1); // player killed
-					Sounds.EFFECT_PLAYER_DIES.Play();
+					if (p.getLife() == 1) {
+						p.setLife(p.getLife() - 1); // player killed
+						Sounds.EFFECT_PLAYER_DIES.Play();
 					} else {
 						p.setInvincible();
-						
-//						Timer outTimer = new Timer(1.5f);
-//						int i = (int) (Math.random() * 4);												
-//						Point outsidePos = new Point (300,-300);
-//						Point curPos =  new Point (p.getPos().getX(),p.getPos().getY());
-//						p.setPos(outsidePos);					
+
+						// Timer outTimer = new Timer(1.5f);
+						// int i = (int) (Math.random() * 4);
+						// Point outsidePos = new Point (300,-300);
+						// Point curPos = new Point
+						// (p.getPos().getX(),p.getPos().getY());
+						// p.setPos(outsidePos);
 						p.setLife(1);
-//						outTimer.update(dt);
-//						if (outTimer.isFinished()){
-//							p.setPos(curPos);
-//						}
-					
+						// outTimer.update(dt);
+						// if (outTimer.isFinished()){
+						// p.setPos(curPos);
+						// }
+
 					}
-					
+
 				}
-				//Kollision Player + Collectable
+				// Kollision Player + Collectable
 				Collectable c = collisionWith(p.getPos(), collectables);
-				if(c != null){
-					if(c instanceof Illness){
-						if(!p.hasIllness()){
+				if (c != null) {
+					if (c instanceof Illness) {
+						if (!p.hasIllness()) {
 							((Illness) c).illnessSet(p);
-							p.setIllness((Illness)c);
+							p.setIllness((Illness) c);
 							Sounds.EFFECT_ILLNESS_COLLECTED.Play();
 							System.out.println(((Illness) c).getType().toString());
 						}
 						collectables.remove(c);
-					}else{
+					} else {
 						((PowerUp) c).setPowerUp(p);
 						Sounds.EFFECT_POWERUP_COLLECTED.Play();
 						collectables.remove(c);
@@ -289,35 +300,35 @@ public class LocalGameState extends GameState {
 					}
 				}
 			}
-			
-			//ai verwalten
-			for (KI a : ai){
+
+			// ai verwalten
+			for (KI a : ai) {
 				a.update(dt);
 				List<GameObject> list = new LinkedList<GameObject>();
 
 				for (Explosion e : explosions)
 					list.add((GameObject) e);
 
-				//Kollision ai + Explosion
+				// Kollision ai + Explosion
 				if (collision(a.getPos(), list)) {
 					a.setLife(a.getLife() - 1); // ai killed
 					Sounds.EFFECT_PLAYER_DIES.Play();
-					if(a.getLife() < 1)
+					if (a.getLife() < 1)
 						a.setPos(new Point(300, -300));
-					else{
+					else {
 						int i = (int) (Math.random() * 4);
 						a.setPos(player_spawns[i]);
 					}
 				}
 
-				//Kollision ai + Collectable
+				// Kollision ai + Collectable
 				Collectable c = collisionWith(a.getPos(), collectables);
-				if(c != null){
-					if(c instanceof Illness && !a.hasIllness()){
+				if (c != null) {
+					if (c instanceof Illness && !a.hasIllness()) {
 						((Illness) c).illnessSet(a);
-						a.setIllness((Illness)c);
+						a.setIllness((Illness) c);
 						collectables.remove(c);
-					}else{
+					} else {
 						((PowerUp) c).setPowerUp(a);
 						collectables.remove(c);
 					}
@@ -329,8 +340,8 @@ public class LocalGameState extends GameState {
 			List<Bomb> delCollBomb = new LinkedList<Bomb>();
 			for (Bomb b : bombs) {
 				b.update(dt);
-				
-				//ermöglicht von Bombe runter gehen nach platzieren
+
+				// ermöglicht von Bombe runter gehen nach platzieren
 				if (!collision_objects.contains(b)) {
 
 					List<GameObject> list = new LinkedList<GameObject>();
@@ -342,7 +353,8 @@ public class LocalGameState extends GameState {
 						collision_objects.add(b);
 				}
 
-				//Zeit aufgelaufen ? Explosion : Kollision mit Explosion ? Explosion
+				// Zeit aufgelaufen ? Explosion : Kollision mit Explosion ?
+				// Explosion
 				if (b.getTime() <= 0) {
 					delBomb.add(b);
 					explosions.addAll(b.explode(stage, walls));
@@ -365,7 +377,7 @@ public class LocalGameState extends GameState {
 					}
 				}
 			}
-			//Explosdierte Bomben entfernen
+			// Explosdierte Bomben entfernen
 			bombs.removeAll(delBomb);
 			collision_objects.removeAll(delCollBomb);
 
@@ -388,7 +400,8 @@ public class LocalGameState extends GameState {
 				for (Explosion e : explosions)
 					list.add((GameObject) e);
 
-				//Kollision mit Explosion -> entfernen und mögliches Collectable platzieren
+				// Kollision mit Explosion -> entfernen und mögliches
+				// Collectable platzieren
 				if (collision(w.getPos(), list)) {
 					if (w.getContent() != null) {
 						Collectable c = w.getContent();
@@ -401,18 +414,18 @@ public class LocalGameState extends GameState {
 			}
 			walls.removeAll(delWall);
 			collision_objects.removeAll(delWall);
-			
+
 			/**
 			 * @author pbg2h15ani
 			 */
-			if(spielVorbei()){
+			if (spielVorbei()) {
 				Tunes.MUSIC_GAME_FINISHED.Play();
 				Statistic[] stats = new Statistic[4];
 				int tmp = 0;
 				List<Player> all = new LinkedList<>();
 				all.addAll(player);
 				all.addAll(ai);
-				for(Player p: all){
+				for (Player p : all) {
 					stats[tmp] = p.getStats();
 					++tmp;
 				}
@@ -420,15 +433,12 @@ public class LocalGameState extends GameState {
 				 * @author pbg2h15ake
 				 */
 				/*
-				Player winner;
-				if(player.get(0).getLife()>0){
-					winner = player.get(0);
-				}else{
-					winner = player.get(1);
-				}
-				
-				gsm.setState(GameStateManager.TMPENDSCREENTDOT, winner); //tdot
-				*/
+				 * Player winner; if(player.get(0).getLife()>0){ winner =
+				 * player.get(0); }else{ winner = player.get(1); }
+				 * 
+				 * gsm.setState(GameStateManager.TMPENDSCREENTDOT, winner);
+				 * //tdot
+				 */
 				gsm.setState(gsm.ROUND_STATISTIC, stats);
 			}
 
@@ -442,21 +452,22 @@ public class LocalGameState extends GameState {
 	 * @author pbg2h15aln,pbg2h15ago
 	 */
 	private void fixBombPos(Point p) {
-		if(p.getX() < FIELD_START.getX()){
-			p.set(FIELD_END.getX()-SPRITESIZE,p.getY());
-		}else if(p.getX() > FIELD_END.getX()){
-			p.set(FIELD_START.getX(),p.getY());
-		}else if(p.getY() > FIELD_END.getY()){
-			p.set(p.getX(),FIELD_START.getY());
-		}else if(p.getY() < FIELD_START.getY()){
-			p.set(p.getX(),FIELD_END.getY()-SPRITESIZE);
-			
+		if (p.getX() < FIELD_START.getX()) {
+			p.set(FIELD_END.getX() - SPRITESIZE, p.getY());
+		} else if (p.getX() > FIELD_END.getX()) {
+			p.set(FIELD_START.getX(), p.getY());
+		} else if (p.getY() > FIELD_END.getY()) {
+			p.set(p.getX(), FIELD_START.getY());
+		} else if (p.getY() < FIELD_START.getY()) {
+			p.set(p.getX(), FIELD_END.getY() - SPRITESIZE);
+
 		}
 	}
 
 	/**
 	 * @author pbg2h15asu
-	 * @return rendert das Spielfeld: Spieler > Explosionen > Bomben > PowerUps/Illness > Kisten > Spielfeld
+	 * @return rendert das Spielfeld: Spieler > Explosionen > Bomben >
+	 *         PowerUps/Illness > Kisten > Spielfeld
 	 */
 	@Override
 	public void render() {
@@ -469,7 +480,7 @@ public class LocalGameState extends GameState {
 		for (Wall w : walls) {
 			w.render(batch);
 		}
-		for (Collectable c : collectables){
+		for (Collectable c : collectables) {
 			c.render(batch);
 		}
 		for (Bomb b : bombs) {
@@ -485,10 +496,10 @@ public class LocalGameState extends GameState {
 			int time = (int) timer.getTime();
 			font_countdown.draw(batch, "" + time, Gdx.graphics.getWidth() / 2 - 8, Gdx.graphics.getHeight() / 2 - 20);
 		}
-		if(rundenTimer.getTime()<11 && rundenTimer.getTime() >=9)
-		{
-			//int rTime = (int) timer.getTime();
-			font_countdown.draw(batch, "Achtung, nur noch 10 Sekunden verbleiben!", Gdx.graphics.getWidth() / 2 - 260, Gdx.graphics.getHeight() / 2 - 35);
+		if (rundenTimer.getTime() < 11 && rundenTimer.getTime() >= 9) {
+			// int rTime = (int) timer.getTime();
+			font_countdown.draw(batch, "Achtung, nur noch 10 Sekunden verbleiben!", Gdx.graphics.getWidth() / 2 - 260,
+					Gdx.graphics.getHeight() / 2 - 35);
 		}
 		gui.render(batch);
 		batch.end();
@@ -501,8 +512,10 @@ public class LocalGameState extends GameState {
 
 	/**
 	 * @author pbg2h15asu
-	 * @param width breite des Spielfelds
-	 * @param height höhe des Spielfelds
+	 * @param width
+	 *            breite des Spielfelds
+	 * @param height
+	 *            höhe des Spielfelds
 	 * @return Spielfeld als 2dim Array
 	 */
 	private Object[][] setupField(int width, int height) {
@@ -535,8 +548,10 @@ public class LocalGameState extends GameState {
 
 	/**
 	 * @author pbg2h15awi
-	 * @param width briete des felds
-	 * @param height höhe des felds
+	 * @param width
+	 *            briete des felds
+	 * @param height
+	 *            höhe des felds
 	 * @return
 	 */
 	private List<Wall> generateWalls(int width, int height) {
@@ -569,7 +584,8 @@ public class LocalGameState extends GameState {
 
 	/**
 	 * @author pbg2h15asu
-	 * @param s Stage
+	 * @param s
+	 *            Stage
 	 */
 	private void drawField(Stage s) {
 		for (int i = 0; i < 13; i++) {
@@ -582,7 +598,8 @@ public class LocalGameState extends GameState {
 
 	/**
 	 * @author pbg2h15asu
-	 * @param b neue Bombe
+	 * @param b
+	 *            neue Bombe
 	 * @return positioniert die Bombe mittig auf dem Feld
 	 */
 	public void newBomb(Bomb b) {
@@ -604,8 +621,10 @@ public class LocalGameState extends GameState {
 
 	/**
 	 * @author pbg2h15asu
-	 * @param p Position des Objects
-	 * @param objects Objekte die auf Kollision überprüft werden sollen
+	 * @param p
+	 *            Position des Objects
+	 * @param objects
+	 *            Objekte die auf Kollision überprüft werden sollen
 	 * @return true wenn Kollision erfolgt
 	 */
 	private boolean collision(Point p, List<GameObject> objects) {
@@ -620,7 +639,7 @@ public class LocalGameState extends GameState {
 
 		return collision;
 	}
-	
+
 	private Collectable collisionWith(Point p, List<Collectable> list) {
 
 		CollisionDetector cd = new CollisionDetector(p, SPRITESIZE, SPRITESIZE, COLLISION_OFFSET);
@@ -629,7 +648,7 @@ public class LocalGameState extends GameState {
 			if (cd.collidesWith(c))
 				return c;
 		}
-		
+
 		return null;
 	}
 
@@ -640,36 +659,35 @@ public class LocalGameState extends GameState {
 		CollisionDetector cd = new CollisionDetector(g1, COLLISION_OFFSET);
 		return cd.collidesWith(g2);
 	}
-	
+
 	private boolean collisionWith(Point p, GameObject g) {
 
 		CollisionDetector cd = new CollisionDetector(p, SPRITESIZE, SPRITESIZE, COLLISION_OFFSET);
 		return cd.collidesWith(g);
 	}
-	
+
 	/**
 	 * @author pbg2h15ani
 	 */
-	public boolean spielVorbei()
-	{
+	public boolean spielVorbei() {
 		int anzahlLebenderSpieler = 0;
-		
-		for (Player p:player) {
-			if(p.getLife() > 0)
-			{
+
+		for (Player p : player) {
+			if (p.getLife() > 0) {
 				anzahlLebenderSpieler++;
 			}
 		}
-		
+
 		return anzahlLebenderSpieler < 2 || rundenTimer.getTime() <= 0;
 	}
+
 	/***
 	 * @author pbg2h15afo
 	 */
-	public void tooglePause(){
-		
+	public void tooglePause() {
+
 		pausiert = !pausiert;
-		
+
 	}
 
 }
