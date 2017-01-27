@@ -269,6 +269,8 @@ public class LocalGameState extends GameState {
 				// p.setLife(p.getLife() - 1); // player killed
 				// Sounds.EFFECT_PLAYER_DIES.Play();
 				// if(p.getLife() < 1)
+				//TODO PlayerPos für Death übernehmen
+				//death = new Death(p.getPos());
 				// p.setPos(new Point(300, -300));
 				// else{
 				// int i = (int) (Math.random() * 4);
@@ -533,6 +535,11 @@ public class LocalGameState extends GameState {
 			font_countdown.draw(batch, "Achtung, nur noch 10 Sekunden verbleiben!", Gdx.graphics.getWidth() / 2 - 260,
 					Gdx.graphics.getHeight() / 2 - 35);
 		}
+//		TODO Death rendern
+//		if(death != null)
+//		{
+//			death.render()
+//		}		
 		gui.render(batch);
 		batch.end();
 	}
