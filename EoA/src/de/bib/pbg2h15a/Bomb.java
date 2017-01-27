@@ -42,7 +42,7 @@ public class Bomb extends GameObject{
 	}
 
 	public Point getDirection() {
-		return direction;
+		return direction;   
 	}
 
 	public void setDirection(Point direction) {

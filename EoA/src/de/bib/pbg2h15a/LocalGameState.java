@@ -193,16 +193,16 @@ public class LocalGameState extends GameState {
 								Point poi = player.get(i).getBombDirection();
 								bomb.setDirection(new Point(poi));
 								throwbomb = true;
-								
 								Point p = new Point(bomb.getPos().getX() + bomb.getDirection().getX() * 32,
 										bomb.getPos().getY() + bomb.getDirection().getY() * 32);
+
 								if (collision(p, new LinkedList<GameObject>(bombs))) {
 									p.set(p.getX() + bomb.getDirection().getX() * 16,
 											p.getY() + bomb.getDirection().getY() * 16);
 								}
 
 								fixBombPos(p);
-								bomb.setPos(p);
+								bomb.setPos(p); 
 							}
 						}
 					}
@@ -470,8 +470,9 @@ public class LocalGameState extends GameState {
 	 * @return rendert das Spielfeld: Spieler > Explosionen > Bomben >
 	 *         PowerUps/Illness > Kisten > Spielfeld
 	 */
-	
-	/** @author pbg2h15ani
+
+	/**
+	 * @author pbg2h15ani
 	 * @return Warnung bei 10 Sekunden verbleibend eingefügt
 	 */
 	@Override
