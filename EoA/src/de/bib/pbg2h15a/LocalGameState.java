@@ -284,20 +284,28 @@ public class LocalGameState extends GameState {
 				}
 				// Kollision Player + Collectable
 				Collectable c = collisionWith(p.getPos(), collectables);
-				if (c != null) {
-					if (c instanceof Illness) {
-						if (!p.hasIllness()) {
+				if(c != null){
+					if(c instanceof Illness){
+						if(!p.hasIllness()){
 							((Illness) c).illnessSet(p);
-							p.setIllness((Illness) c);
+							p.setIllness((Illness)c);
 							Sounds.EFFECT_ILLNESS_COLLECTED.Play();
-							System.out.println(((Illness) c).getType().toString());
+							//System.out.println(((Illness) c).getType().toString());
 						}
 						collectables.remove(c);
-					} else {
+					}
+					/**
+					 * @author pbg2h15afo
+					 */
+					else if(c instanceof FireTrap){
+						bombs.add(((FireTrap) c).activate());
+						collectables.remove(c);
+					}
+					else{
 						((PowerUp) c).setPowerUp(p);
 						Sounds.EFFECT_POWERUP_COLLECTED.Play();
 						collectables.remove(c);
-						System.out.println(((PowerUp) c).getType().toString());
+						//System.out.println(((PowerUp) c).getType().toString());
 					}
 				}
 			}

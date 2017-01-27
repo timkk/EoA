@@ -11,6 +11,8 @@ public class Wall extends GameObject {
 	 */
 	int probability  = 60 ; //Wahrscheinlichkeit von Collectable spawn
 	int probSickness = 90;
+	int probTrap = 95;
+			
 	private Collectable content;
 
 	public Wall(int x, int y) {
@@ -57,11 +59,19 @@ public class Wall extends GameObject {
 		}else if (zufallsZahl >= probability && zufallsZahl < probSickness ){
 			collect = new PowerUp(pos);
 
-		} //else if (zufallsZahl > 85 && zufallsZahl < 95) {
-			//int debuffZufall = (int) (6 + Math.random() * 3);
-			// collect = new PowerUp();
-			// ((PowerUp) collect).setType(PoerUpType.values[debuffZufall]);
-		//}
+		}
+		else if(zufallsZahl >= probSickness && zufallsZahl < probTrap){
+			if((int) (Math.random() * 2)== 0)
+				collect = new FireTrap(pos);
+			else{
+				collect = new WindTrap(pos);
+			}
+		}
+//		else if (zufallsZahl > 85 && zufallsZahl < 95) {
+//			int debuffZufall = (int) (6 + Math.random() * 3);
+//			 collect = new PowerUp();
+//			 ((PowerUp) collect).setType(PoerUpType.values[debuffZufall]);
+//		}
 		else {
 			 collect = new Illness(pos);
 		}

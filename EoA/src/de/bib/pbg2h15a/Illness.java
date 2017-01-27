@@ -13,9 +13,9 @@ public class Illness extends Collectable{
 	/**
 	 * represents an Illness on a Player
 	 */
-	private Player player;
+	protected Player player;
 	private IllnessType type = null;
-	private float orgValue;
+	protected float orgValue;
 	private int key;
 	private boolean rndDrop = false;
 	public float time;
@@ -101,7 +101,7 @@ public class Illness extends Collectable{
 	/**
 	 * @author pbg2h15asu
 	 */
-	private void undoIllness(){
+	public void undoIllness(){
 
 		switch(key)
 		{
