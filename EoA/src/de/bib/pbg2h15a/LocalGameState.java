@@ -458,6 +458,10 @@ public class LocalGameState extends GameState {
 	 * @author pbg2h15asu
 	 * @return rendert das Spielfeld: Spieler > Explosionen > Bomben > PowerUps/Illness > Kisten > Spielfeld
 	 */
+	
+	/** @author pbg2h15ani
+	 * @return Warnung bei 10 Sekunden verbleibend eingefügt
+	 */
 	@Override
 	public void render() {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
