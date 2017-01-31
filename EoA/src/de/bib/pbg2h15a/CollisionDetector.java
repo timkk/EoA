@@ -59,10 +59,10 @@ public class CollisionDetector {
 		        rect1.getHeight() + rect1.getY() > rect2.getY());
 	}
 	
-	public boolean collidesWith(Sprite other){
+	public boolean collidesWith(Point other, float width, float height){
 		
 		Rectangle rect1 = new Rectangle(this.x, this.y, this.width, this.height);
-		Rectangle rect2 = new Rectangle(other.getX()+os, other.getY()+os, other.getWidth()-os*2, other.getHeight()-os*2);
+		Rectangle rect2 = new Rectangle(other.getX()+os, other.getY()+os, width-os*2, height-os*2);
 		
 		return (rect1.getX() < rect2.getX() + rect2.getWidth() &&
 		        rect1.getX() + rect1.getWidth() > rect2.getX() &&

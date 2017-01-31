@@ -56,4 +56,9 @@ public class Point {
 		this.x = x;
 		this.y = y;
 	}
+	
+	public float PointDistance(Point other)
+	{
+		return (float) Math.sqrt(Math.pow(other.x - this.x, 2) + Math.pow(other.y - this.y, 2)); 
+	}
 }

@@ -227,22 +227,30 @@ public class LocalGameState extends GameState {
 
 				}
 
+
 				for (Bomb b : bombs) {
 					List<GameObject> collisionObjectsWithoutBomb = new LinkedList<>(collision_objects);
 					collisionObjectsWithoutBomb.remove(b);
-					if (collision(b.getPos(), collisionObjectsWithoutBomb)) {
+					collisionObjectsWithoutBomb.addAll(player);
+					collisionObjectsWithoutBomb.remove(player.get(i));
+					if (collision(b.getPos(), collisionObjectsWithoutBomb)
+							&&!collisionWithTwoGameObjects(b, b.getPlayer())) {
+						
 						Point p = new Point(b.getPos().getX() + b.getDirection().getX(),
 								b.getPos().getY() + b.getDirection().getY());
 						fixBombPos(p);
 						b.setPos(p);
-					} else {
+						
+					} else if(collision(b.getPos(), new LinkedList<>(player))){
+						collision_objects.remove(b);
+					
+					}else {
 						/**
 						 * 
 						 * @author pbg2h15awi
 						 */
 						b.setDirection(new Point(0, 0));
 					}
-
 				}
 
 				// bombe legen
