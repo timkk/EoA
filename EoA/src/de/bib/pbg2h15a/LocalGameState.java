@@ -251,7 +251,7 @@ public class LocalGameState extends GameState {
 						 */
 						b.setDirection(new Point(0, 0));
 					}
-
+				}
 
 				// bombe legen
 				if (Gdx.input.isKeyJustPressed(playerinput.getKeyBomb())
