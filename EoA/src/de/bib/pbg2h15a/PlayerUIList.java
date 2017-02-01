@@ -6,6 +6,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
+/**
+ * 
+ * Die Klasse PlayerUIList erstellt die Texteingabefelder für die eingabe der Namen der Spieler anhand der Anzahl der Spieler
+ * (Kommentiert von Philipp Grosch)
+ *
+ */
+
 public class PlayerUIList {
 
 	/**
@@ -20,14 +27,22 @@ public class PlayerUIList {
 	
 	TextField[] txtFields;
 	
-	
+	/**
+	 * 
+	 * ruft die Methoden initTxtFields und Init auf
+	 * @param playerAmount Die Anzahl der Spieler
+	 */
 	public PlayerUIList(int playerAmount) {
 		this.playerAmount = playerAmount;
 		this.skinName = new Skin(Gdx.files.internal("img/GamePrepare/uiskin.json"));
 		initTxtFields(playerAmount);
 		init();
 	}
-
+	
+	/**
+	 * Erstellt die Eingabefelder für die Spieler
+	 * @param pA Anzahl der Spieler
+	 */
 	private void initTxtFields(int pA){
 		txtFields = new TextField[pA];
 		for (int i = 0; i < pA; i++) {
@@ -35,6 +50,9 @@ public class PlayerUIList {
 		}
 	}
 	
+	/**
+	 * Setzt die position und größe der Eingabefelder und fügt sie einer Liste hinzu
+	 */
 	private void init(){
 		list = new Vector<>();
 			for (int i = playerAmount; i > 0; i--) {
