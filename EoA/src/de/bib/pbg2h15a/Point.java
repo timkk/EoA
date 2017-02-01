@@ -3,6 +3,7 @@ package de.bib.pbg2h15a;
 /**
  * @author pbg2h15asu
  * speichert einen Punkt als x und y Koordinate
+ * Kommentare: Michael Surmund - pbg2h15asu
  */
 
 public class Point {

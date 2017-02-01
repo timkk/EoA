@@ -8,6 +8,7 @@ import de.bib.pbg2h15a.Rectangle;
 /**
  * @author pbg2h15asu
  * dient zur Erfassung von Kollision zwischen zwei Objekten unter Angabe von Punkt sowie Länge und Breite
+ * Kommentare: Michael Surmund - pbg2h15asu
  */
 
 public class CollisionDetector {

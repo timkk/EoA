@@ -31,6 +31,7 @@ public class Bomb extends GameObject{
 		this.player = player;
 		this.radius = radius;
 		this.time = BOMB_TIMER;
+		direction = new Point(0, 0);
 	}
 
 	public Player getPlayer() {
