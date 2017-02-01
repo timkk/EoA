@@ -1,5 +1,11 @@
 package de.bib.pbg2h15a;
 
+/**
+ * Statistikklasse zur Erfassung der Statistiken
+ * @author pbg2h15akl
+ * 
+ */
+
 public class Statistic {
 
 	private int points;
@@ -10,9 +16,11 @@ public class Statistic {
 	private int illnessPickUpCount;
 	private int illnessTransferCount;
 
+	
 	/**
-	 * @author pbg2h15akl
+	 * Initialisiert eine leere Statistikklasse
 	 */
+	
 	public Statistic() {
 		this.points = 0;
 		this.placedBombs = 0;
@@ -23,120 +31,80 @@ public class Statistic {
 		this.illnessTransferCount = 0;
 	}
 
-	/**	 
-	 * @return Get Current points
-	 */
+
 	public int getPoints() {
 		return points;
 	}
 
-	/**
-	 * 
-	 * @param points Set the current points
-	 */
+
 	public void setPoints(int points) {
 		this.points = points;
 	}
 
 
-	/**
-	 * 
-	 * @return Returns the current amount of placed Bombs.
-	 */
 	public int getPlacedBombs() {
 		return placedBombs;
 	}
 
-	/**
-	 * 
-	 * @param placedBombs Set the current amount of placed Bombs.
-	 */
+
 	public void setPlacedBombs(int placedBombs) {
 		this.placedBombs = placedBombs;
 	}
 
-	/**
-	 * 
-	 * @return Get the amount of killed enemies
-	 */
+
 	public int getKilledEnemies() {
 		return killedEnemies;
 	}
 
-	/**
-	 * 
-	 * @param placedBombs Set the current amount of killed enemies.
-	 */
+
 	public void setKilledEnemies(int killedEnemies) {
 		this.killedEnemies = killedEnemies;
 	}
 
-	/**
-	 * 
-	 * @return Get the current amount of selfkills
-	 */
+
 	public int getSelfkills() {
 		return selfkills;
 	}
 
-	/**
-	 * 
-	 * @param selfkills Set the current amount of selfkills
-	 */
+
 	public void setSelfkills(int selfkills) {
 		this.selfkills = selfkills;
 	}
 
-	/**
-	 * 
-	 * @return Gets the current amount of picked up power-ups
-	 */
+
 	public int getPowerUpPickUpCount() {
 		return powerUpPickUpCount;
 	}
 
-	/**
-	 * 
-	 * Set the amount of picked up power-ups
-	 */
+
 	public void setPowerUpPickUpCount(int powerUpPickUpCount) {
 		this.powerUpPickUpCount = powerUpPickUpCount;
 	}
 
-	/**
-	 * 
-	 * @return Get the current amount of picked up illnesses
-	 */
+
 	public int getIllnessPickUpCount() {
 		return illnessPickUpCount;
 	}
 
-	/**
-	 * 
-	 * Set the current amount of picked up illnesses
-	 */
+
 	public void setIllnessPickUpCount(int illnessPickUpCount) {
 		this.illnessPickUpCount = illnessPickUpCount;
 	}
 
-	/**
-	 * 
-	 * @return Get the current amount of transfered illnesses
-	 */
+
 	public int getIllnessTransferCount() {
 		return illnessTransferCount;
 	}
 
-	/**
-	 * Set the current amount of transfered illnesses
-	 */
+
 	public void setIllnessTransferCount(int illnessTransferCount) {
 		this.illnessTransferCount = illnessTransferCount;
 	}
 
 	/**
+	 * Hängt Statistiken an vorhandene an, z.B.: Ergebnisse von Runde 1 und Runde 2 werden zusammengefasst.
 	 * @author pbg2h15asu
-	 * @param statistic that will be added to this one
+	 * @param s Statistik, die hinzugefügt wird, Werte werden übernommen
 	 */
 	public void addStatistic(Statistic s) {
 		this.points += s.points;

@@ -4,13 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
+/**
+  * @author pbg2h15ake
+  * @author pbg2h15awi
+  * Endscreen nach dem Ablauf des Spiels um den Sieger anzuzeigen
+  * (Kommentiert von Felix Kellmereit pbg2h15ake)
+  */
 public class TmpEndScreenTdoT extends GameState {
 
-	/**
-	 * @author pbg2h15ake
-	 * @author pbg2h15awi
-	 */
+	
 	private SpriteBatch batch;
 	private BitmapFont font;
 	
@@ -23,7 +25,9 @@ public class TmpEndScreenTdoT extends GameState {
 		this.name = player.getName();
 		init();
 	}
-
+	/**
+	 * Initialisiert alle Attribute
+	 */
 	@Override
 	public void init() {
 		batch = new SpriteBatch();
@@ -32,15 +36,20 @@ public class TmpEndScreenTdoT extends GameState {
 		font.setColor(Color.GOLD);
 		text = "Herzlichen Glückwunsch " + name + "!\n         Du hast gewonnen!";
 	}
-
+	
+	/**
+	 * Wechselt beim klicken auf Back-Button zum Hauptmenü
+	 */
 	@Override
 	public void update(float dt) {
-		// TODO Auto-generated method stub
 		if(btnBack.isClicked()) {
 			gsm.setState(GameStateManager.MAIN);
 		}
 	}
-
+	
+	/**
+	 * Rendert den Endscreen 
+	 */
 	@Override
 	public void render() {
 		batch.begin();

@@ -4,6 +4,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 /**
+ * Stellt die Bild-Dateien der Sprites als <code>Enum</code> zu Verfügung.
+ * (Kommentiert von pbg2h15akl)
+ * 
+ * 
  * @author pbd2h15aho
  * */
 
@@ -35,6 +39,12 @@ public enum Player_Frames {
 		this.frame3=new Texture(tx3);
 	}
 
+	/**
+	 * Gibt ein Bild für verschiedene Bewegungsabläufe zurück.
+	 * (Kommentiert von pbg2h15akl)
+	 * @param vers Wert, für den die Bewegunganimation ausgewählt wird.
+	 * @return
+	 */
 	public Texture getFrame(int vers) {
 		switch (vers){
 		case 0:return frame1;
