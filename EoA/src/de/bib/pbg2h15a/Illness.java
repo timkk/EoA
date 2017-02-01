@@ -3,16 +3,16 @@ package de.bib.pbg2h15a;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+/**
+ * @author pbg2h15ary
+ * @author pbg2h15ake
+ * @author pbg2h15asu
+ * Eine Krankheit die einen negativen Effekt auf einen Spieler hat 
+ * (Kommentiert von Felix Kellmereit pbg2h15ake)
+ */
 public class Illness extends Collectable{
 
-	/**
-	 * @author pbg2h15ary
-	 * @author pbg2h15ake
-	 * @author pbg2h15asu
-	 */
-	/**
-	 * represents an Illness on a Player
-	 */
+	
 	protected Player player;
 	private IllnessType type = null;
 	protected float orgValue;
@@ -49,6 +49,7 @@ public class Illness extends Collectable{
 	/**
 	 * @author pbg2h15ake
 	 * @author pbg2h15asu
+	 * Ändert abhängig vom IllnesType die Krankheit auf dem Spieler
 	 */
 	public void illnessSet(Player p){
 		this.player = p;
@@ -100,6 +101,7 @@ public class Illness extends Collectable{
 	
 	/**
 	 * @author pbg2h15asu
+	 * Macht den Effekt der Krankheit rückgängig
 	 */
 	public void undoIllness(){
 
@@ -141,6 +143,7 @@ public class Illness extends Collectable{
 	 * @author pbg2h15asu
 	 * @author pbg2h15awi
 	 * @param dt
+	 * Zählt den Timer der Krankheit runter und legt zufällig Bomben wenn die zufällig Bomben legen Krankheit aktiv ist
 	 */
 	public void update(float dt) {
 		time -= dt;
@@ -155,6 +158,7 @@ public class Illness extends Collectable{
 	
 	/**
 	 * @author pbg2h15awi
+	 * Werte werden unabhängig von der Krankheit hochgezählt
 	 */
 	public void addToOrgValue(float value){
 		this.orgValue += value;
@@ -168,6 +172,9 @@ public class Illness extends Collectable{
 		this.orgValue = orgValue;
 	}
 
+	/**
+	 * Rendert die Krankheiten
+	 */
 	@Override
 	public void render(SpriteBatch sb) {
 		sb.draw(spritesheet, pos.getX(), pos.getY());
