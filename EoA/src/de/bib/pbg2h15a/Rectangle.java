@@ -5,6 +5,7 @@ public class Rectangle {
 /**
  * @author pbg2h15asu
  * speichert ein Rechteck mit Koordinaten und Seitenlängen
+ * Kommentare: Michael Surmund - pbg2h15asu
  */
 	
 	private float x;
