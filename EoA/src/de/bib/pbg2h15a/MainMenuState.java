@@ -3,25 +3,40 @@ package de.bib.pbg2h15a;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+/**
+ * Erstellt das Hauptmenü mit den drei Auswahlbuttons und deren Funktion
+ * 
+ * @author pbg2h15aza
+ * @author pbg2h15awi
+ * 
+ * (Kommentiert von Marco Struck pbg2h15ast)
+ */
+
 public class MainMenuState extends GameState {
 
-	/**
-	 * @author pbg2h15aza
-	 * @author pbg2h15awi
-	 */
-	
-	private SpriteBatch batch;
+	private SpriteBatch batch; 
 
 	private ButtonErstellen btnStart;
 	private ButtonErstellen btnOptions;
 	private ButtonErstellen btnQuit;
 
-	
+	/**
+	 * Konstruktor der Klasse MainMenuState
+	 * 
+	 * @param gsm
+	 */
 	protected MainMenuState(GameStateManager gsm) {
 		super(gsm);
 		init();
 	}
 
+	/**
+	 * Erstellt den Start/-Quit/-Options Button
+	 * 
+	 * Erstellt die Main Menu Buttons und versieht diese mit den zughörigen Texturen
+	 * Zusätzlich wird die Main Menu Musik abgespielt und ein SpriteBatch erstellt
+	 * 
+	 */
 	@Override
 	public void init() {
 		btnStart = new ButtonErstellen(Gdx.graphics.getWidth()/2 - 350/2, Gdx.graphics.getHeight()/1.5f, "img/Buttons/startSpiel.png");
@@ -34,6 +49,14 @@ public class MainMenuState extends GameState {
 		Tunes.MUSIC_MENU.Play();
 	}
 
+	/**
+	 * Wechselt in das zugehörige Menü, wenn auf den Start/-Quit/-Options Button geklickt wird
+	 * 
+	 * Wechselt in die Modiauswahl, wenn auf den Startbutton geklickt wird
+	 * Wechselt in das Optionsmenü, wenn auf den Optionsbutton geklickt wird
+	 * Beendet die Anwendung, wenn auf den Quitbutton geklickt wird
+	 * 
+	 */
 	@Override
 	public void update(float dt) {
 		
@@ -47,6 +70,11 @@ public class MainMenuState extends GameState {
 		
 	}
 
+	/**
+	 * Erstellt die Texturen der Buttons
+	 * 
+	 */
+	
 	@Override
 	public void render() {
 		batch.begin();
@@ -57,11 +85,13 @@ public class MainMenuState extends GameState {
 		
 		batch.end();
 	}
-
+	
+	/**
+	 * Gibt Ressourcen frei
+	 */
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
-		
+		batch.dispose();
 	}
 
 }

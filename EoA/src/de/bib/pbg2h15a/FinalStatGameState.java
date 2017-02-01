@@ -5,11 +5,16 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+/**
+ * Anzeige und DatenModdell der finalen Statisitk
+ * 
+ * @author pbg2h15agu, pbg2h15ala
+ * 
+ *  (Kommentiert von Johnny Gunko pbg2h15agu)
+ */
 
 public class FinalStatGameState extends GameState {
-	/**
-	 * @author pbg2h15agu, pbg2h15ala 
-	 */
+
 	private static FinalStatGameState ref = null;
 	private Statistic[] stats = null;	
 	private int[] wins = null;
@@ -44,7 +49,13 @@ public class FinalStatGameState extends GameState {
 
 	texHelper[][] numbers = new texHelper[4][16];
 	
-	//Singelton erstellen/Referen holen
+	
+	/**
+	 * Singelton erstellen/Referenz hohlen
+	 * 
+	 * @param gsm GameStateManager
+	 * @return die Referenz der finalen Statistik (Singelton)
+	 */
 	public static FinalStatGameState  getInstance(GameStateManager gsm){
 
 		if(ref == null)
@@ -52,11 +63,20 @@ public class FinalStatGameState extends GameState {
 		return ref;
 	}
 	
-	//Kostruktor für Singelton
+	
+	/**
+	 * Konstruktor für Singelton
+	 * 
+	 * @param gsm GameStateManager
+	 */
 	private FinalStatGameState(GameStateManager gsm) {
 		super(gsm);
 	}
 
+	
+	/**
+	 * Initalisierung der Variablen
+	 */
 	@Override
 	public void init() {
 		writer = new BitmapFont();
@@ -108,14 +128,22 @@ public class FinalStatGameState extends GameState {
 		
 	}
 
+	
+	/**
+	 * Wird jeden Frame aufgerufen um Aktionen auszuführen
+	 * @param dt ist die DeltaTime
+	 */
 	@Override
 	public void update(float dt) {
-		// TODO Auto-generated method stub
 		if(zurueck.isClicked()){
 			gsm.setState(gsm.MAIN);
 		}
 	}
 
+	
+	/**
+	 * Rendert alle für die State benötigten Grafiken
+	 */
 	@Override
 	public void render() {
 		batch.begin();
@@ -149,13 +177,14 @@ public class FinalStatGameState extends GameState {
 
 		batch.end();
 	}
-
-	@Override
-	public void dispose() {
-		// TODO Auto-generated method stub
-		
-	} 
 	
+	
+	/**
+	 * Fügt die Ergebnisse der letzten Runde der Endstatistik hinzu
+	 * 
+	 * @param roundStats die Statistiken der letzen Runde
+	 * @param posOfWinner der Gewinner der letzen Runde
+	 */
 	public void addRound(Statistic[] roundStats, int posOfWinner){
 		// Stats übernehmen wenn null
 		if(stats == null){
@@ -172,9 +201,11 @@ public class FinalStatGameState extends GameState {
 		init();
 	}
 	
+	
+	/**
+	 * Setzt die Endstatistik zurück
+	 */
 	public void resetFinalStats(){
-		// Statistik zurücksetzten
-		// TODO Methode in SpielEnde aufrufen
 		stats = null;	
 		wins = null;
 	}
@@ -182,11 +213,12 @@ public class FinalStatGameState extends GameState {
 		return wins;
 	}
 	
+	
+	/**
+	 * Einfachere ausfürhung der Platzierung und austtausch von Grafiken
+	 * @author pbg2h15ala
+	 */
 	private class texHelper {
-
-		/**
-		 * @author pbg2h15ala
-		 */
 
 		private Texture texture;
 		private float x;
@@ -209,14 +241,25 @@ public class FinalStatGameState extends GameState {
 		}
 	}
 	
-	
+	/**
+	 * Sorgt dafür das die Grafik, die Ziffer ist die Dargestellt werden soll
+	 * 
+	 * @param number die darzustellende Zahl
+	 * @param value10 die Zehnerstelle der Zahl
+	 * @param value1 die Einerstelle der zahl
+	 */
 	
 	private void setNumberTo(int number, texHelper value10, texHelper value1) {
-		/**
-		 * @author pbg2h15ala
-		 */
 		number %= 100;
 		value10.setTexture("img/Stats/" + number / 10 + "_50x50.png");
 		value1.setTexture("img/Stats/" + number % 10 + "_50x50.png");
+	}
+	
+	/**
+	 * Gibt Ressourcen frei
+	 */
+	@Override
+	public void dispose() {
+		batch.dispose();
 	}
 }

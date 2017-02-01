@@ -1,12 +1,13 @@
 package de.bib.pbg2h15a;
 
+/**
+ * @author pbg2h15are
+ * @author pbg2h15asu
+ * Enthält alle Arten von Krankheiten mit ihrem Namen und einem Wert 
+ * (Kommentiert von Felix Kellmereit pbg2h15ake)
+ * 
+ */
 public enum IllnessType {
-	
-	/**
-	 * @author pbg2h15are
-	 * @author pbg2h15asu
-	 * Hold every IllnesType in the Game with a Name and Value
-	 */
 	
 	EXPLOSIONSRADIUS_VERKLEINERN("Explosionsradius verkleinern", 1),
 	BOMBEN_ZUFAELLIG("Bomben zufällig legen", (int)Math.random()*10),

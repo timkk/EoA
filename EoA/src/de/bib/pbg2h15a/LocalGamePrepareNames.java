@@ -6,6 +6,11 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
+/**
+ * Menü zur Eingabe der Spielernamen und Textfeldern entsprechend der Anzahl der Spieler die zuvor im LocalGamePrepareState eingestellt wurden.
+ * Wenn ein Spieler keinen Namen eingibt wird ein Name zugewiesen.
+ * 
+ */
 public class LocalGamePrepareNames extends GameState{
 
 	/**
@@ -27,6 +32,13 @@ public class LocalGamePrepareNames extends GameState{
 	private ButtonErstellen start;
 	
 	private BitmapFont font;
+	
+	/**
+	 * LocalGamePrepareNames benögt beim erstellen die Anzahl der Spieler um entsprechend viele Textfelder zu erzeugen.
+	 * 
+	 * @param gsm Referenz auf den Gamestate Manager
+	 * @param playerCount Anzahl der Spieler
+	 */
 	
 	protected LocalGamePrepareNames(GameStateManager gsm, int playerCount) {
 		super(gsm);

@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
 
 /**
+ * GameState mit Menü mit Optionen für Anzahl der Spieler, Anzahl der Runden, Rundenzeit und  Auswahl des Levels
  * 
  * @author pbg2h15ala
  */
