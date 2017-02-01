@@ -17,7 +17,6 @@ public class InputConfig {
 	private int bomb;
 	
 	/**
-	 * 
 	 * @param left move left
 	 * @param right move right
 	 * @param up move up
