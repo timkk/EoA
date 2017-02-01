@@ -1,20 +1,28 @@
 package de.bib.pbg2h15a;
 
+/**
+ * Klasse Timer
+ * @author pbg2h15akl
+ * (Kommentiert von Stefan Niesel / pbg2h15ani)
+ *
+ */
+
+
 public class Timer {
 
 	private float time; 
 	
 	/**
-	 * @param Amount of time; deltaTime will be subtracted from time. 
-	 * @author pbg2h15akl
+	 * Erstellt einen ablaufenden Timer;
+	 * @param time Zeit, die heruntergezählt wird
 	 */
 	public Timer(float time)
 	{
 		this.time = time;
 	}
 	
-	/** 
-	 * @param dt(DeltaTime) is given from the Main-Update.
+	/**Zeit, die durch die Update Methode abgezogen wird um die Zeit des Timers zu berechnen
+	 * @param dt Update-Frequenz
 	 */
 	public void update(float dt)
 	{
@@ -22,7 +30,8 @@ public class Timer {
 	}
 	
 	/**
-	 * @return Returns if timer is expired.
+	 * Abfrage, ob der Timer fertig ist
+	 * @return Gibt true zurück, wenn der Timer abgelaufen ist
 	 */
 	public boolean isFinished()
 	{

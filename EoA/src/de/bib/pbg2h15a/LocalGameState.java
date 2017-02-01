@@ -128,8 +128,8 @@ public class LocalGameState extends GameState {
 		ai = new LinkedList<KI>();
 		player.add(new Player(player1, player_spawns[0], Player_Frames.P1_MV_DOWN, input[0], stage));
 		player.add(new Player(player2, player_spawns[1], Player_Frames.P2_MV_DOWN, input[1], stage));
-		ai.add(new KI("", player_spawns[2], Player_Frames.P3_MV_DOWN, input[2], stage));
-		ai.add(new KI("", player_spawns[3], Player_Frames.P4_MV_DOWN, input[3], stage));
+		ai.add(new KI(player3, player_spawns[2], Player_Frames.P3_MV_DOWN, input[2], stage));
+		ai.add(new KI(player4, player_spawns[3], Player_Frames.P4_MV_DOWN, input[3], stage));
 
 		rundenTimer = new Timer(maxTime);
 
