@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 /***
  * 
- * (kommentiert von Fortmeier)
+ * (Kommentiert von Fortmeier)
  * @author pbg2h15afo,pbg2h15awi, pbg2h15ast
  * 
  */

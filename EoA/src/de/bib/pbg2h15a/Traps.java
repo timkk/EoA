@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
- * (kommentiert von Fortmeier)
+ * (Kommentiert von Fortmeier)
  * @author pbg2h15ast
  * @author pbg2h15afo
  */
