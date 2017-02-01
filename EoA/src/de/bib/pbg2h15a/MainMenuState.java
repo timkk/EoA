@@ -85,5 +85,13 @@ public class MainMenuState extends GameState {
 		
 		batch.end();
 	}
+	
+	/**
+	 * Gibt Ressourcen frei
+	 */
+	@Override
+	public void dispose() {
+		batch.dispose();
+	}
 
 }

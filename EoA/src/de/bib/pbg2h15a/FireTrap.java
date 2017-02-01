@@ -3,6 +3,7 @@ package de.bib.pbg2h15a;
 import com.badlogic.gdx.graphics.Texture;
 
 /**
+ * Eine Trap die ein Bombe legt
  * (Kommentiert von Fortmeier)
  * @author pbg2h15afo, pbg2h15awi, pbg2h15ast
  *
@@ -22,7 +23,7 @@ public class FireTrap extends Traps {
 	}
 
 	/**
-	 * Gibt eine Bome zurück
+	 * Gibt eine Bombe zurück
 	 * 
 	 * @return eine Bombe mit max Reichweite
 	 */

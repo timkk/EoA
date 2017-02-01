@@ -254,4 +254,12 @@ public class FinalStatGameState extends GameState {
 		value10.setTexture("img/Stats/" + number / 10 + "_50x50.png");
 		value1.setTexture("img/Stats/" + number % 10 + "_50x50.png");
 	}
+	
+	/**
+	 * Gibt Ressourcen frei
+	 */
+	@Override
+	public void dispose() {
+		batch.dispose();
+	}
 }

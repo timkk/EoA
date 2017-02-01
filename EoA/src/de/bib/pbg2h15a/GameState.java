@@ -39,5 +39,10 @@ public abstract class GameState {
 	 * Rendert alle für die State benötigten Grafiken
 	 */
 	public abstract void render();
+	
+	/**
+	 * Gibt Ressourcen frei
+	 */
+	public abstract void dispose();
 
 }
