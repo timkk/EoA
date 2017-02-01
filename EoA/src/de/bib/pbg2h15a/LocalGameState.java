@@ -70,6 +70,8 @@ public class LocalGameState extends GameState {
 	private boolean throwbomb;
 
 	private boolean pausiert;
+	
+	private Death death;
 
 	/**
 	 * 
@@ -301,8 +303,6 @@ public class LocalGameState extends GameState {
 				// p.setLife(p.getLife() - 1); // player killed
 				// Sounds.EFFECT_PLAYER_DIES.Play();
 				// if(p.getLife() < 1)
-				//TODO PlayerPos für Death übernehmen
-				//death = new Death(p.getPos());
 				// p.setPos(new Point(300, -300));
 				// else{
 				// int i = (int) (Math.random() * 4);
@@ -315,6 +315,7 @@ public class LocalGameState extends GameState {
 				if (!p.isInvincible() && collision(p.getPos(), list)) {
 					if (p.getLife() == 1) {
 						p.setLife(p.getLife() - 1); // player killed
+						death = new Death(p.getPos());
 						Sounds.EFFECT_PLAYER_DIES.Play();
 					} else {
 						p.setInvincible();
@@ -325,14 +326,14 @@ public class LocalGameState extends GameState {
 						// Point curPos = new Point
 						// (p.getPos().getX(),p.getPos().getY());
 						// p.setPos(outsidePos);
-						p.setLife(1);
+						p.setLife(p.getLife() - 1);
 						// outTimer.update(dt);
 						// if (outTimer.isFinished()){
 						// p.setPos(curPos);
 						// }
 
 					}
-
+			
 				}
 				// Kollision Player + Collectable
 				Collectable c = collisionWith(p.getPos(), collectables);

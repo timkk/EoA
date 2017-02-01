@@ -3,16 +3,49 @@ package de.bib.pbg2h15a;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+/**
+ * Die Oberklasse der PowerUp's die von <code>Collectable</code> erbt.
+ * 
+ * Hier wird beim Laden der <code>Collectable</code>-Klasse eine zufällige Anzahl an PowerUp's
+ * mit zufälligen <code>PowerUpType</code> generiert.
+ * Zusätzlich wird bei Aufnahme eines PowerUp's die Attribute des <code>Player</code> angepasst.
+ * 
+ * 
+ * @author pbg2h15are
+ * @author pbg2h15ake
+ * @author pbg2h15awi
+ * @version 1.0
+ */
+
 public class PowerUp extends Collectable{	
 	
 	/**
+	 * Ein Type aus dem Enum <code>PowerupType</code>.
+	 * 
 	 * @author pbg2h15are
 	 * @author pbg2h15ake
 	 * @author pbg2h15awi
 	 */
 	private PowerUpType type;
+	
+	/**
+	 * Interger der eine Zufallszahl enthält um den <code>PowerUpType</code> zu bestimmen.
+	 * 
+	 * @author pbg2h15are
+	 * @author pbg2h15ake
+	 * @author pbg2h15awi
+	 */
 	private int key;
 	
+	
+	/**
+	 * Konstruktor der <code>PowerUp</code>-Klasse in dem der <code>PowerUpType</code> gesetzt wird.
+	 * 
+	 * @author pbg2h15are
+	 * @author pbg2h15ake
+	 * @author pbg2h15awi
+	 * @param p
+	 */
 	public PowerUp(Point p) {
 		super(p);
 		setRndmPowerUp();
@@ -20,7 +53,11 @@ public class PowerUp extends Collectable{
 	}
 	
 	/**
-	 * Give the Constructor a PowerUp with a Random Type
+	 * Wird im Konstruktor aufgerufen und setzt anhand der <code>key</code>-Variable den <code>PowerUpType</code> fest.
+	 * 
+	 * @author pbg2h15are
+	 * @author pbg2h15ake
+	 * @author pbg2h15awi
 	 */
 	private void setRndmPowerUp(){
 		int zufallszahl = (int)(Math.random()*4) + 0;
@@ -49,6 +86,14 @@ public class PowerUp extends Collectable{
 		}	
 	}
 	
+	/**
+	 * Verändert die entsprechende Variable ,die das PowerUp beeinflusst, im <code>Player</code>.
+	 * 
+	 * @author pbg2h15are
+	 * @author pbg2h15ake
+	 * @author pbg2h15awi
+	 * @param player
+	 */
 	public void setPowerUp(Player player){
 		switch(key)
 		{
@@ -90,22 +135,32 @@ public class PowerUp extends Collectable{
 		}
 	}
 	
+
 	public PowerUpType getType() {
 		
 		return type;
 	}
-
+	
+	/**
+	 * Speichert das jeweilige Spritesheet des <code>PowerUpType</code>.
+	 * 
+	 * @author pbg2h15are
+	 * @author pbg2h15ake
+	 * @author pbg2h15awi
+	 */
 	@Override
 	public void render(SpriteBatch sb) {
 		sb.draw(spritesheet, pos.getX(), pos.getY());
 		
 	}
+	
 
 	@Override
 	public void update(float dt) {
 		
 	}
 	
+
 	@Override
 	public String toString(){
 		return "" + key;
