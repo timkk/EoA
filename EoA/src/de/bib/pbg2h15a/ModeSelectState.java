@@ -86,5 +86,10 @@ public class ModeSelectState extends GameState {
 		batch.end();
 		
 	}
+	
+	@Override
+	public void dispose() {
+		batch.dispose();
+	}
 
 }

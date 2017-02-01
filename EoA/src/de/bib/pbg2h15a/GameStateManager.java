@@ -39,6 +39,7 @@ public class GameStateManager {
 	 * @param state Zielstate in welche gewechselt wird
 	 */
 	public void setState(int state) {
+		if(gameState != null) gameState.dispose();
 		
 		if(state == MAIN) {
 			gameState = new MainMenuState(this);
