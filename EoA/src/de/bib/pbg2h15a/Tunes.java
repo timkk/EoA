@@ -6,11 +6,11 @@ import com.badlogic.gdx.audio.Music;
 public enum Tunes {
 
 	/**
-	 * Represents the music-files.
-	 * Can be used to play music in the menues/game.
+	 * Stellt die Musik als <code>Enum</code> zu Verfügung um diese abzuspielen.
+	 * (Kommentiert von pbg2h15akl)
 	 */
 
-	//Music
+	
 	MUSIC_GAME_BACKGROUND("sounds/music/game_background_music.mp3"),	
 	MUSIC_GAME_FINISHED("sounds/music/game_finished_music.mp3"),
 	MUSIC_MENU("sounds/music/menu_music.mp3");
@@ -26,6 +26,12 @@ public enum Tunes {
 		return this.music;
 	}
 
+	
+	/**
+	 * Spielt die Musik ab. Alle anderen Musik-Objekte die bisher abgespielt werden, werden gestoppt.
+	 * Die Musik wiederholt sich automatisch wenn Sie einmal durchgelaufen ist.
+	 * (Kommentiert von pbg2h15akl)
+	 */
 	public void Play(){
 		for (Tunes m : Tunes.values()) {
 			m.getSound().stop();
