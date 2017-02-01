@@ -6,6 +6,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
+/**
+ * @author pbg2h15aza
+ * @author pbg2h15awi
+ * 
+ * Erstellung einer Checkbox
+ * Kommentiert von pbg2h15arm
+ */
+
 public class CheckBoxErstellen {
 
 	/**
@@ -20,7 +28,14 @@ public class CheckBoxErstellen {
 	private float x;
 	private float y;
 	private boolean imClick;
-
+	/**
+	 * Erstellt eine Checkbox
+	 * @param x = X-Koordinate für die Position der CheckBox
+	 * @param y = Y-Koordiante für die Position der CheckBox
+	 * @param checkedPfad = Pfad der Texture für die Variable textureChecked
+	 * @param uncheckedPfad = Pfad der Texture für die Variable textureUnchecked
+	 * @param checked = Gibt an ob die CheckBox cheked oder unchecked ist
+	 */
 	public CheckBoxErstellen(float x, float y,String checkedPfad, String uncheckedPfad, boolean checked) {
 		textureChecked = new Texture(checkedPfad);
 		textureUnchecked = new Texture(uncheckedPfad);
@@ -36,6 +51,10 @@ public class CheckBoxErstellen {
 
 	}
 
+	/**
+	 * Überprüft ob ein Button geklickt wurde.
+	 * @return
+	 */
 	public boolean isClicked() {
 		if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
 			if(!imClick){
@@ -50,6 +69,9 @@ public class CheckBoxErstellen {
 		return false;
 	}
 
+	/**
+	 * Ändert die checked Variable woraufhin sich die activeTexture auf textureChecked oder textureUnchecked stellt
+	 */
 	public void toggle() {
 		checked = !checked;
 		if(checked) {
@@ -59,6 +81,10 @@ public class CheckBoxErstellen {
 		}
 	}
 	
+	/**
+	 * Zeichnet die Checkbox
+	 * @param batch = Die SpriteBatch auf der gezeichnet wird
+	 */
 	public void render(SpriteBatch batch) {
 
 		batch.draw(activeTexture, x, y);

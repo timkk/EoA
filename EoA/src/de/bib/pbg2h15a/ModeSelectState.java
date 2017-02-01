@@ -5,12 +5,16 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+/**
+ * @author pbg2h15aza
+ * @author pbg2h15awi
+ * 
+ * Die State für die ModusAuswahl
+ * Kommentiert von pbg2h15arm
+ */
+
 public class ModeSelectState extends GameState {
 
-	/**
-	 * @author pbg2h15aza
-	 * @author pbg2h15awi
-	 */
 	
 	private SpriteBatch batch;
 	private BitmapFont font;
@@ -21,11 +25,21 @@ public class ModeSelectState extends GameState {
 
 	private String modiText;
 	
+	
+	/**
+	 * 
+	 * @param gsm
+	 */
 	protected ModeSelectState(GameStateManager gsm) {
 		super(gsm);
 		init();
 	}
 
+	
+	/**
+	 * Erstellt die Buttons für LocalesSpiel, NetzwerkSpiel und ein ZurückButton um ins Hauptmenü zu kommen. 
+	 * Außerdem wird ein roter Text angezeigt "Modi auswählen"
+	 */
 	@Override
 	public void init() {
 		btnLocal = new ButtonErstellen(Gdx.graphics.getWidth()/2 - 350/2, Gdx.graphics.getHeight()/1.5f - 42, "img/Buttons/lokalesSpiel.png");
@@ -39,6 +53,9 @@ public class ModeSelectState extends GameState {
 		
 	}
 
+	/**
+	 * Beim Klicken auf einen Button wird entweder die Entsprechende state über denn GameStateManager aufgerufen oder die Variable modiText wird geändert
+	 */
 	@Override
 	public void update(float dt) {
 		
@@ -52,6 +69,9 @@ public class ModeSelectState extends GameState {
 		
 	}
 
+	/**
+	 * Zeichnet die Buttons auf dem Bildschirm
+	 */
 	@Override
 	public void render() {
 
@@ -64,12 +84,6 @@ public class ModeSelectState extends GameState {
 		font.draw(batch, modiText, Gdx.graphics.getWidth()/2-20, Gdx.graphics.getHeight()-10);
 
 		batch.end();
-		
-	}
-
-	@Override
-	public void dispose() {
-		// TODO Auto-generated method stub
 		
 	}
 
