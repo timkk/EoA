@@ -3,15 +3,18 @@ package de.bib.pbg2h15a;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+/**
+ * (kommentiert von Fortmeier)
+ * @author pbg2h15ast
+ * @author pbg2h15afo
+ */
+
 public abstract class Traps extends Collectable{
 	
 	/**
-	 * @author pbg2h15ake
-	 * @author pbg2h15are
-	 * @author pbg2h15ast
-	 * @author pbg2h15afo
+	 * Konstruktor für die Traps
+	 * @param pos
 	 */
-	
 	public Traps(Point pos) {
 		super(pos);
 		
