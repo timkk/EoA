@@ -40,7 +40,7 @@ public class KI extends Player {
 			check(mapData);
 			break;
 		case 4:
-
+			
 			break;
 		default:
 			break;
@@ -167,7 +167,7 @@ public class KI extends Player {
 				}
 			}
 			if (possiblePoints.size() > 0) {
-				currentState = KIStates.ESPACE_STATE;
+				currentState = KIStates.ESCAPE_STATE;
 				Point near = getNearestPoint(possiblePoints);
 				if(escapePoint == null)
 				{
@@ -207,7 +207,7 @@ public class KI extends Player {
 				}
 			}
 			if (possiblePoints.size() > 0) {
-				currentState = KIStates.ESPACE_STATE;
+				currentState = KIStates.ESCAPE_STATE;
 				Point near = getNearestPoint(possiblePoints);
 				if(escapePoint == null)
 				{
@@ -239,5 +239,5 @@ public class KI extends Player {
 			return null;
 		}
 	}
-
+	
 }

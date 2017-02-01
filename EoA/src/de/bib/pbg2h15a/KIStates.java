@@ -8,7 +8,7 @@ public enum KIStates {
 	 */
 	
 	WALK_STATE(0),
-	ESPACE_STATE(1),
+	ESCAPE_STATE(1),
 	CHECK_STATE(2),
 	ATTACK_STATE(3),
 	GOTO_STATE(4);

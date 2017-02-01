@@ -323,8 +323,10 @@ public class GUI{
 	
 	/**
 	 * @author pbd2h15ary
+	 * fasst alle create() methoden zusammen
 	 */	
 	public void create(){
+	
         //createControlButtons();
         createImages();
         createLabels();

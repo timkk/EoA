@@ -8,9 +8,10 @@ public class Wall extends GameObject {
 	/**
 	 * @author pbg2h15afa
 	 * @author pbg2h15ary
+	 * //Wahrscheinlichkeit von Collectable spawn
 	 */
-	int probability  = 60 ; //Wahrscheinlichkeit von Collectable spawn
-	int probSickness = 90;
+	int probability  = 60 ; 
+	int probSickness = 90;	
 	int probTrap = 95;
 			
 	private Collectable content;
@@ -50,7 +51,12 @@ public class Wall extends GameObject {
 	}
 
 	private Collectable generateCollectable() {
-
+		
+		/**
+		 * @author pbg2h15ary
+		 * "Würfelt" ob ein Collectable gespawnt wird
+		 */
+		
 		int zufallsZahl = (int) (1 + Math.random() * 99);
 		Collectable collect = null;
 

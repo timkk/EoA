@@ -3,11 +3,18 @@ package de.bib.pbg2h15a;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+
+	/**
+	 * Die Klasse ist für das darstellen des Options Menü da und für deren Funktionen(Kommentiert von Philipp Grosch)
+	 * 
+	 */
+
 public class OptionsState extends GameState {
 
 	/**
 	 * @author pbg2h15aza
 	 */
+	
 	
 	private SpriteBatch batch;
 	
@@ -16,11 +23,21 @@ public class OptionsState extends GameState {
 	
 	private ButtonErstellen btnBack;
 	
+	/**
+	 * Der Constructor erbt von der Klasse GameState
+	 * Im Constructor wird die init Methode aufgerufen
+	 * @param gsm referenz auf dem GamestateManger um die GameState zu wechseln
+	 */
+	
 	protected OptionsState(GameStateManager gsm) {
 		super(gsm);
 		init();
 	}
 
+	/**
+	 * In der init Methode werden die Attribute initialisiert
+	 */
+	
 	@Override
 	public void init() {
 		batch = new SpriteBatch();
@@ -29,6 +46,11 @@ public class OptionsState extends GameState {
 		btnBack = new ButtonErstellen(10, Gdx.graphics.getHeight() - 122, "img/Buttons/back.png");
 	}
 
+	
+	/**
+	 * Die update Methode überprüft ob auf einem Button geklickt wurde
+	 * Und sorgt dann für deren Funktion
+	 */
 	@Override
 	public void update(float dt) {
 		if(cbxSound.isClicked()) {
@@ -46,6 +68,11 @@ public class OptionsState extends GameState {
 		
 	}
 
+	
+	/**
+	 * Die render Methode zeichnet die Checkboxen und den Button
+	 */
+	
 	@Override
 	public void render() {
 		batch.begin();
