@@ -285,7 +285,9 @@ public class LocalGameState extends GameState {
 				// }
 				/**
 				 * @author pbg2h15ary
+				 * Setzt bei einem Treffer, den Status "Invincible" zurück.
 				 */
+		
 				if (!p.isInvincible() && collision(p.getPos(), list)) {
 					if (p.getLife() == 1) {
 						p.setLife(p.getLife() - 1); // player killed

@@ -199,8 +199,14 @@ public class Player extends GameObject {
 			if(direction=="RIGHT"){this.sprite=Player_Frames.P4_MV_RIGHT;};
 		}
 	}
-
+	
+	/**
+	 * @author pbd2h15aho
+	 * @author pbg2h15ary
+	 * Falls der Spieler der Status "Invincible" hat und getroffen wird, wird nur jeder zweite Frame gerendert um einen "Blinkeffekt" zu erzeugen
+	 * */
 	@Override
+
 	public void render(SpriteBatch sb) {
 		if(!isInvincible() || (int) (invincible.getTime()*10)%2==0 ){
 		sb.draw(this.getSpritesheet(), this.getPos().getX(), this.getPos().getY());
@@ -232,7 +238,9 @@ public class Player extends GameObject {
 	/**
 	 * *@author pbg2h15ary
 	 * @return
+	 *Gibt dem Spieler den Status "Invincible", falls er das PowerUp "LebenPlus" aufhebt
 	 */
+	 
 	public boolean isInvincible(){
 		if (invincible.isFinished()){
 			return false;
