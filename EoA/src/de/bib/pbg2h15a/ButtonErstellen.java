@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
 /**
- * 
+ * Ein Button auf den man klicken kann
  * @author pbg2h15ago 
  * @author pbg2h15awi 
  * @author pbg2h15aza

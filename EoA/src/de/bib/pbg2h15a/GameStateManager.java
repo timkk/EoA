@@ -1,6 +1,7 @@
 package de.bib.pbg2h15a;
 
 /**
+ * Verwaltet die aktuelle GameState
  * @author pbg2h15aza
  * @author pbg2h15awi
  * @author pbg2h15asu
