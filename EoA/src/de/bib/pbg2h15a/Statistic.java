@@ -106,7 +106,6 @@ public class Statistic {
 	 * @author pbg2h15asu
 	 * @param s Statistik, die hinzugefügt wird, Werte werden übernommen
 	 */
-	
 	public void addStatistic(Statistic s) {
 		this.points += s.points;
 		this.selfkills += s.selfkills;

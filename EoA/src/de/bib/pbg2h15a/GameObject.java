@@ -37,7 +37,6 @@ public abstract class GameObject {
 	 */
 	public abstract void render(SpriteBatch sb);
 	
-	
 	/**
 	 * Abstrakte Update Methode, die mit der deltaTime befüllt wird
 	 * @param dt Legt die Zeit fest

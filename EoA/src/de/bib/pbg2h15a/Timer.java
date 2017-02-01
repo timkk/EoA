@@ -29,7 +29,6 @@ public class Timer {
 		this.time -= dt;
 	}
 	
-	
 	/**
 	 * Abfrage, ob der Timer fertig ist
 	 * @return Gibt true zurück, wenn der Timer abgelaufen ist
