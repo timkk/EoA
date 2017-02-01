@@ -11,9 +11,12 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
+ * Beinhaltet das Spielgeschehen
+ * 
  * @author pbg2h15asu
  * @author pbg2h15aza: timer & gamestate
  * @author pbg2h15awi
+ * (Kommentiert von David Langen/pbg2h15aln & Daniel Roser/pbg2h15aro)
  */
 
 public class LocalGameState extends GameState {
@@ -69,10 +72,19 @@ public class LocalGameState extends GameState {
 	private boolean pausiert;
 
 	/**
+	 * 
+	 * Spieler Initialisierung im Konstruktor.
+	 * 
+	 * 
 	 * @author pbg2h15aza
 	 * @author pbg2h15asu
-	 * @param gsm
-	 *            GameStateManager
+	 * @param gsm GameStateManager
+	 * @param name_player1 Name des ersten Spielers
+	 * @param name_player2 Name des zweiten Spielers
+	 * @param name_player3 Name des dritten Spielers
+	 * @param name_player4 Name des vierten Spielers
+	 * @param time
+	 * @param rounds 
 	 */
 	protected LocalGameState(GameStateManager gsm, String name_player1, String name_player2, String name_player3, String name_player4, float time, int rounds) {
 		super(gsm);
@@ -100,6 +112,9 @@ public class LocalGameState extends GameState {
 	}
 
 	/**
+	 * 
+	 * Setzt die Attribute auf vordefinierte Werte
+	 * 
 	 * @author pbg2h15asu
 	 */
 	@Override
@@ -128,8 +143,8 @@ public class LocalGameState extends GameState {
 		ai = new LinkedList<KI>();
 		player.add(new Player(player1, player_spawns[0], Player_Frames.P1_MV_DOWN, input[0], stage));
 		player.add(new Player(player2, player_spawns[1], Player_Frames.P2_MV_DOWN, input[1], stage));
-		ai.add(new KI(player3, player_spawns[2], Player_Frames.P3_MV_DOWN, input[2], stage));
-		ai.add(new KI(player4, player_spawns[3], Player_Frames.P4_MV_DOWN, input[3], stage));
+		ai.add(new KI("", player_spawns[2], Player_Frames.P3_MV_DOWN, input[2], stage));
+		ai.add(new KI("", player_spawns[3], Player_Frames.P4_MV_DOWN, input[3], stage));
 
 		rundenTimer = new Timer(maxTime);
 
@@ -139,6 +154,14 @@ public class LocalGameState extends GameState {
 	}
 
 	/**
+	 * Greift die Eingaben des Users auf und bewegt das Spielerobjekt bzw. platziert/wirft Bombenobjekte dementsprechend.
+	 * Zudem werden Bomben und deren Explosionen verwaltet, wobei die Kollision zwischen Spieler und die Explosionsanimation behandelt wird.
+	 * PowerUps bzw. Debuffs und Krankheiten können durch eine Kollision vom Spieler eingesammelt werden.
+	 * Und die KI Logik der KI-Klasse wird aufgerufen um den computergesteuerten Gegenspieler zum Leben zu erwecken.
+	 * Außerdem werden Bomben, die sich auf den Spielfeld befinden, nach einer bestimmtent Zeit(Timer) entfernt und erzeugen anschließend an ihrer Stelle eine Explosionsanimation(mit Explosionsradius).
+	 * Kollisionen zwischen Kisten und Explosionsanimationen werden abgehandelt und daraufhin werden die entsprechenden Kisten vom Spielfeld entfernt.
+	 * Sobald die Spielzeit kleiner 11 beträgt, wird ein Countdown gestartet und eingeblendet.
+	 * 
 	 * @author pbg2h15asu,pbd2h15aho
 	 */
 	@Override
@@ -224,9 +247,9 @@ public class LocalGameState extends GameState {
 							}
 						}
 					}
-
+				
 				}
-
+			
 
 				for (Bomb b : bombs) {
 					List<GameObject> collisionObjectsWithoutBomb = new LinkedList<>(collision_objects);
@@ -252,6 +275,7 @@ public class LocalGameState extends GameState {
 						b.setDirection(new Point(0, 0));
 					}
 				}
+
 
 				// bombe legen
 				if (Gdx.input.isKeyJustPressed(playerinput.getKeyBomb())
@@ -285,9 +309,7 @@ public class LocalGameState extends GameState {
 				// }
 				/**
 				 * @author pbg2h15ary
-				 * Setzt bei einem Treffer, den Status "Invincible" zurück.
 				 */
-		
 				if (!p.isInvincible() && collision(p.getPos(), list)) {
 					if (p.getLife() == 1) {
 						p.setLife(p.getLife() - 1); // player killed
@@ -484,8 +506,11 @@ public class LocalGameState extends GameState {
 		}
 
 	}
+	
+	//Ende Update
 
 	/**
+	 * Sobald ein Punkt (insbesondere der einer Bombe) über den Spielfeldrand gelangt wird es auf die gegenüberliegende Seite gesetzt.
 	 * @author pbg2h15aln,pbg2h15ago
 	 */
 	private void fixBombPos(Point p) {
@@ -501,14 +526,14 @@ public class LocalGameState extends GameState {
 		}
 	}
 
+	
+
 	/**
+	 * Zeichnet alle Spielelemente
+	 * @author pbg2h15ani
 	 * @author pbg2h15asu
 	 * @return rendert das Spielfeld: Spieler > Explosionen > Bomben >
 	 *         PowerUps/Illness > Kisten > Spielfeld
-	 */
-
-	/**
-	 * @author pbg2h15ani
 	 * @return Warnung bei 10 Sekunden verbleibend eingefügt
 	 */
 	@Override
@@ -546,7 +571,12 @@ public class LocalGameState extends GameState {
 		gui.render(batch);
 		batch.end();
 	}
-
+	
+	
+	/**
+	 * Gibt Resourcen frei. 
+	 * #LibGdxClass
+	 */
 	@Override
 	public void dispose() {
 		batch.dispose();
@@ -589,9 +619,11 @@ public class LocalGameState extends GameState {
 	}
 
 	/**
+	 * Generiert die Wände, die die Spielbegrenzung und die sich im Spielfeld befindenden Säulen darstellen.
+	 * 
 	 * @author pbg2h15awi
 	 * @param width
-	 *            briete des felds
+	 *            breite des felds
 	 * @param height
 	 *            höhe des felds
 	 * @return
@@ -625,6 +657,7 @@ public class LocalGameState extends GameState {
 	}
 
 	/**
+	 * Zeichnet das Spielfeld
 	 * @author pbg2h15asu
 	 * @param s
 	 *            Stage
@@ -639,6 +672,8 @@ public class LocalGameState extends GameState {
 	}
 
 	/**
+	 * 
+	 * Erlaubt eine Bombe mittig auf einen Spielfeld-Feld zu platzieren.
 	 * @author pbg2h15asu
 	 * @param b
 	 *            neue Bombe
@@ -662,6 +697,8 @@ public class LocalGameState extends GameState {
 	}
 
 	/**
+	 * Überprüft eine Liste GameObjekten, ob sie mit einem Punkt kolliedieren
+	 * 
 	 * @author pbg2h15asu
 	 * @param p
 	 *            Position des Objects
@@ -682,6 +719,14 @@ public class LocalGameState extends GameState {
 		return collision;
 	}
 
+	/**
+	 * 
+	 * Überprüft eine Liste PowerUps/Debuffs bzw Illness, ob sie mit einem Punkt kolliedieren
+	 * 
+	 * @param p der Punkt!!!
+	 * @param list die Liste an PowerUps/Debuffs bzw. Krankheiten
+	 * @return
+	 */
 	private Collectable collisionWith(Point p, List<Collectable> list) {
 
 		CollisionDetector cd = new CollisionDetector(p, SPRITESIZE, SPRITESIZE, COLLISION_OFFSET);
@@ -695,6 +740,9 @@ public class LocalGameState extends GameState {
 	}
 
 	/**
+	 * Überprüft die Kollison zwischen zwei GameObjekten
+	 * @param g1 erstes GameObjekt
+	 * @param g2 zweites GameObjekt
 	 * @author pbg2h15aln,pbg2h15ago,pbg2h15afa
 	 */
 	private boolean collisionWithTwoGameObjects(GameObject g1, GameObject g2) {
@@ -702,13 +750,10 @@ public class LocalGameState extends GameState {
 		return cd.collidesWith(g2);
 	}
 
-	private boolean collisionWith(Point p, GameObject g) {
-
-		CollisionDetector cd = new CollisionDetector(p, SPRITESIZE, SPRITESIZE, COLLISION_OFFSET);
-		return cd.collidesWith(g);
-	}
-
 	/**
+	 * Überprüft, ob das Spiel vorbei ist
+	 * 
+	 * 
 	 * @author pbg2h15ani
 	 */
 	public boolean spielVorbei() {
@@ -724,6 +769,9 @@ public class LocalGameState extends GameState {
 	}
 
 	/***
+	 * 
+	 * Ändert den Spielzeitzusatnd in den entgegengesetzten Zustand
+	 * 
 	 * @author pbg2h15afo
 	 */
 	public void tooglePause() {

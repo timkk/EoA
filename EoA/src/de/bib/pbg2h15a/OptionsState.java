@@ -84,11 +84,13 @@ public class OptionsState extends GameState {
 		batch.end();
 		
 	}
-
+	/**
+	 * Gibt die Ressourcen frei
+	 */
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
-		
+		batch.dispose();
 	}
 
 }
