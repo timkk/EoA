@@ -86,10 +86,4 @@ public class MainMenuState extends GameState {
 		batch.end();
 	}
 
-	@Override
-	public void dispose() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
