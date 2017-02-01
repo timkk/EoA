@@ -5,16 +5,27 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
 
 /**
+ * Erstellt die Eingabefelder der Namenseingabe für jeden Spieler
+ * 
+ * Erstellt für jeden Spieler ein Eingabefeld für den Spielernamen,
+ * nachdem der Benutzer die Spieleinstellungen abgeschlossen hat
+ * 
  * @author pbg2h15are
  * @author pbg2h15aro
  * 
- *
+ * (Kommentiert von Marco Struck pbg2h15ast)
  */
 public class PlayerUI {
 
 	private ButtonErstellen btn;
 	private TextField txf;
 	
+	/**
+	 * Konstruktor der Klasse PlayerUI
+	 * 
+	 * @param btn
+	 * @param txf
+	 */
 	
 	public PlayerUI(ButtonErstellen btn, TextField txf) {
 		super();
