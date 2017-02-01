@@ -1,7 +1,11 @@
 package de.bib.pbg2h15a;
 
 /**
+ * Helferklasse für den Input der Spieler.
+ * Hält die Keys(Tasten) für die Bewegung und das Bombenlegen fest
+ * 
  * @author pbg2h15asu
+ * @kommentiertVon pbg2h15aro
  */
 
 public class InputConfig {
@@ -20,6 +24,7 @@ public class InputConfig {
 	 * @param down move down
 	 * @param bomb place bomb
 	 */
+	
 	public InputConfig(int left, int right, int up, int down, int bomb) {
 
 		this.left = left;
