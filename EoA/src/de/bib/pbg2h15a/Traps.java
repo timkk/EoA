@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
+ * Oberklasse von den Traps
  * (Kommentiert von Fortmeier)
  * @author pbg2h15ast
  * @author pbg2h15afo
