@@ -24,8 +24,7 @@ public abstract class GameObject {
 	 * @param pos Pixelkoordinaten auf dem Spielfeld
 	 * @param passable Legt fest, ob das Element durchlässig ist
 	 * @param spritesheet Legt die Textur fest
-	 */
-	
+	 */	
 	public GameObject(Point pos, boolean passable, Texture spritesheet){
 		this.pos=pos;
 		this.passable=passable;
