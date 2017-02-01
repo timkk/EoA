@@ -1,54 +1,79 @@
 package de.bib.pbg2h15a;
-
-
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+	/**Explosion dient der Erstellung eines Explosions Objektes
+ 	* 
+ 	* @author pbg2h15azu
+ 	* @author pbd2h15aho
+ 	* Kommentiert von pbd2h15aho Franziska Hoffmann
+ 	**/
 
 public class Explosion extends GameObject {
 	
-	/**
-	 * @author pbg2h15azu
-	 */
+	/**Dauer der Explosion*/
 	private float time = 1.5f;
+	
+	/**Enum Element mit den zur Explosion gehoerigen Texturen.*/
 	private Explosion_Animation expgr;
+	
+	/**Player, der die Bombe gelegt und die Explosion ausgeloest hat.*/
 	private Player player;
 	
-	/**
-	 * @param frameSet sets the set of frames used for the animation
-	 * @param player Reference of the player who dropped the bomb and caused the explosion.	 
+	
+	/** Konstruktor fuer ein Explosions Objekt
+	 * 
+	 * @author pbg2h15azu
+	 * @param player	Referenz auf den Player, der die Bombe gelegt und die Explosion ausgeloest hat.	 
+	 * @param pos	Referenz auf die Position der Explosion.
+	 * @param frameSet	Referenz auf das Enum mit den zur Explosion gehoerigen Texturen.
 	 */
-	public Explosion(Player player, Point pos, Explosion_Animation frameSet, int region) {
+	public Explosion(Player player, Point pos, Explosion_Animation frameSet) {
 		super(pos, true, frameSet.getFrame(0));
 		this.expgr = frameSet;
 		this.player = player;
 	}
-
+	
+	
+	/** Konstruktor fuer ein Explosions Objekt
+	 * 
+	 * @author pbg2h15azu
+	 * @param player	Referenz auf den Player, der die Bombe gelegt und die Explosion ausgeloest hat.	 
+	 * @param frameSet	Referenz auf das Enum mit den zur Explosion gehoerigen Texturen.
+	 */
 	public Explosion(Point pos, Explosion_Animation frameSet) {
 		super(pos, true, frameSet.getFrame(0));
 		this.expgr = frameSet;
 	}
 	
-//	//for testing
-//	public Explosion(Point pos){
-//		super(pos, true, new Texture("img/Stage_1/Feuerfalle.png"));
-//	}
 
 	public Player getPlayer() {
 		return player;
 	}
-
+	
+	
+	/** shouldRemove gibt zuruek ob die Explosion entfernt werden soll.
+	 * 
+	 * @author pbg2h15azu
+	 * @return false wenn die Zeit groeﬂer gleich 0 ist.
+	 * @return true wenn die Zeit kleine 0 ist.
+	 **/
 	public boolean shouldRemove(){
 		return time <= 0;
 	}
 	
-	/**
+	
+	/**setAniTexture ersetzt die Texture.
+	 * 
 	 * @author pbd2h15aho
+	 * @param frames Referenz auf das Enum mit den Texturen.
+	 * @param vers Position der Texture im Enum.
 	 **/
-	private void setAniTexture(Explosion_Animation set,int vers){
-		this.spritesheet=set.getFrame(vers);
+	private void setAniTexture(Explosion_Animation frames,int vers){
+		this.spritesheet=frames.getFrame(vers);
 	}
 	
-
-	/**
+	
+	/** rendert die Texture
 	 * 
 	 * @author pbg2h15awi
 	 */
@@ -57,10 +82,11 @@ public class Explosion extends GameObject {
 		sb.draw(this.getSpritesheet(), this.getPos().getX(), this.getPos().getY());
 	}
 
-	/**
+	
+	/** update ersetzt nach einer bestimmten Zeit die Texture, sodass eine Animation entsteht. 
+	 * 
 	 * @author pbd2h15aho
 	 */
-	
 	@Override
 	public void update(float dt) {
 		time -= dt;

@@ -3,7 +3,6 @@ package de.bib.pbg2h15a;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -17,14 +16,20 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
+	/**GUI dient der Erzeugung einer Nutzeroberflaeche im LocalGame. 
+	* 
+	* @author pbd2h15aho
+	* Kommentiert von pbd2h15aho Franziska Hoffmann
+	**/
 public class GUI{
-	/**
-	 * @author pbd2h15aho
-	 */	
-	
+
+	/**Prozentuale Angabe der Breite*/
 	private static final float SCALE_X=Gdx.graphics.getWidth()/100;
+	
+	/**Prozentuale Angabe der Hoehe*/
 	private static final float SCALE_Y=Gdx.graphics.getHeight()/100;
 	
+	/**Array an Dateipfaden der Texturen*/
 	private static final String[] PFADE={"img/Buttons/GUI/Timer_BGLabel.png"				//0
 									   	,"img/Buttons/GUI/SpielerDead_BGLabel.png"
 									   	,"img/Buttons/GUI/SpielerDead_BGLabel2.png"
@@ -48,22 +53,13 @@ public class GUI{
 									   	,"img/Buttons/GUI/LeftButtonPressed.png"			//20
 										};
 	
-	//Label
 	private Label lbTimer;
-	private Label lbP1;
-	private Label lbP2;
-	private Label lbP3;
-	private Label lbP4;
-	
-	//Images
 	private Image imTimer;
 	private Image[] imgsPlayers;
 	
-	//TextureRegionDrawables
 	private TextureRegionDrawable tdDP;
 	private TextureRegionDrawable tdDP2;
 	
-	//ImageButtons
 	private ImageButton iBtnBack;
 	private ImageButton iBtnPause;
 	private ImageButton iBtnBomb;
@@ -72,15 +68,12 @@ public class GUI{
 	private ImageButton iBtnRight;
 	private ImageButton iBtnLeft;
 	
-	//Tables
 	private Table tblMenueBtns;
 	private Table tblLabels;
 	private Table tblSteuerungBnt;
 	
-	//Font
 	private BitmapFont bitfont;
 	
-	//Objects
 	private Stage stage;
 	private Timer time;
 	private GameStateManager gsm;
@@ -88,12 +81,14 @@ public class GUI{
 	
 	private Player[] players;
 	private boolean[] alife={true,true,true,true};
-    private OrthographicCamera camera;
-    private SpriteBatch batch;
 	
-	/**
+	/** Konstruktor fuer ein GUI Objekt.
+	 * 
 	 * @author pbd2h15aho
-	 * The GUI is the Graphical User Interface, which enables the User to control the game through mouse controls
+	 * @param time Timer der die Spielzeit anzeigt
+	 * @param p1,p2,p3,p4 Referenz auf den Spieler
+	 * @param gameStateManager Referenz auf den GameStateManager
+	 * @param gameState Referenz auf den GameState
 	 */	
 	public GUI(Timer time, Player p1, Player p2, Player p3, Player p4,GameStateManager gameStateManager, GameState gameState) {
 		super();
@@ -111,12 +106,7 @@ public class GUI{
 		
 		bitfont = new BitmapFont();
 		bitfont.setColor(Color.WHITE);
-
-		//createMenuButtons();
-		//createControlButtons();
-		//createLabels();
-		//createImages();
-		//createListeners();
+		
 		create();
 		
 		stage= new Stage();
@@ -130,12 +120,12 @@ public class GUI{
 		stage.addActor(tblMenueBtns);
 		//stage.addActor(tblSteuerungBnt);
 		//stage.addActor(iBtnBomb);
-		
 	}
 	
-	/**
+	
+	/** render rendert die einzelnen Texturen in der GUI
+	 * 
 	 * @author pbd2h15aho
-	 * The public method render renders the GUI 
 	 */	
 	public void render(SpriteBatch sb){
 		bitfont.draw(sb,"Puffer", 0, 0);
@@ -144,9 +134,9 @@ public class GUI{
 		stage.draw();	
 	}
 	
-	/**
+	/** showIsAlife aendert die Texture der Spieleranzeige, wenn der Spieler stirbt.
+	 * 
 	 * @author pbd2h15aho
-	 *isAlifeAnzeigen() is a private method, which changes the BackgroundImages connected to the Players number of lives.
 	 */	
 	private void showIsAlife(){
 		for(int i=0; i<imgsPlayers.length;i++){
@@ -161,10 +151,10 @@ public class GUI{
 		}
 	}
 
-	/**
+	
+	/**createMenuButtons erzeugt die Buttons des Menues.
+	 * 
 	 * @author pbd2h15aho
-	 * The private method createMenueButtons initializes the Buttons which are connected to the Menu
-	 * and sets their position on the stage
 	 */	
 	private void createMenuButtons(){
 		iBtnBack= new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[7]))),new TextureRegionDrawable(new TextureRegion(new Texture(PFADE[9]))));
@@ -182,10 +172,10 @@ public class GUI{
 		tblMenueBtns.setPosition(Gdx.graphics.getWidth()/2-SCALE_X*8 , Gdx.graphics.getHeight()/2-5.3f*SCALE_Y);
 	}
 	
-	/**
+	
+	/**createLabels erzeugt die Labels.
+	 * 
 	 * @author pbd2h15aho
-	 * The private method createLabels initializes the Labels which are connected to the Players and the Timer
-	 * and sets their position on the stage
 	 */	
 	private void createLabels(){
 		Label.LabelStyle lbStyle=new Label.LabelStyle();
@@ -196,10 +186,10 @@ public class GUI{
 		lbTimer=new Label(text,lbStyle);
 		lbTimer.setPosition(Gdx.graphics.getWidth()/2-text.length()*3, Gdx.graphics.getHeight()-6*SCALE_Y);
 		
-		lbP1= new Label(players[0].getName(),lbStyle);
-		lbP2= new Label(players[1].getName(),lbStyle);
-		lbP3= new Label(players[2].getName(),lbStyle);
-		lbP4= new Label(players[3].getName(),lbStyle);
+		Label lbP1= new Label(players[0].getName(),lbStyle);
+		Label lbP2= new Label(players[1].getName(),lbStyle);
+		Label lbP3= new Label(players[2].getName(),lbStyle);
+		Label lbP4= new Label(players[3].getName(),lbStyle);
 		
 		tblLabels= new Table();
 		tblLabels.add(lbP1).size(15*SCALE_X);
@@ -213,10 +203,10 @@ public class GUI{
 		tblLabels.setPosition(0,Gdx.graphics.getHeight()/2-13.6f*SCALE_Y);
 	}
 	
-	/**
+	
+	/**createControlButtons erzeugt die Buttons zur Steruerung für eine eventuelle Mobileversion.
+	 * 
 	 * @author pbd2h15aho
-	 * The private method createControlButtons initializes the Buttons which are connected to the Controls
-	 * and sets their position on the stage
 	 */	
 	private void createControlButtons(){
 			
@@ -244,10 +234,10 @@ public class GUI{
 		tblSteuerungBnt.setPosition(8.8f*SCALE_X,20*SCALE_Y);
 	}
 	
-	/**
+	
+	/**createImages erzeugt die Texturen der Spieleranzeige .
+	 * 
 	 * @author pbd2h15aho
-	 * The private method createImages initializes the Images
-	 * and sets their position on the stage
 	 */	
 	private void createImages() {
 		
@@ -271,7 +261,9 @@ public class GUI{
 								   Gdx.graphics.getHeight()-imgsPlayers[3].getHeight()-10.6f*SCALE_Y);
 	}
 	
-	/**
+	
+	/**createListener erzeugt die Listener für den Zurueck- und den Pausebuttons.
+	 * 
 	 * @author pbd2h15aho
 	 * The private method createListeners initializes the Buttons Listeners and connects them to their functionalities
 	 */	
@@ -301,37 +293,51 @@ public class GUI{
 			});
 	}
 	
-	public ImageButton getiBtnBomb() {
-		return iBtnBomb;
-	}
-
-	public ImageButton getiBtnUp() {
-		return iBtnUp;
-	}
-
-	public ImageButton getiBtnDown() {
-		return iBtnDown;
-	}
-
-	public ImageButton getiBtnRight() {
-		return iBtnRight;
-	}
-
-	public ImageButton getiBtnLeft() {
-		return iBtnLeft;
-	}
-	
-	/**
+	/**create erzeugt alle Elemente.
+	 * 
 	 * @author pbd2h15ary
-	 * fasst alle create() methoden zusammen
 	 */	
 	public void create(){
-	
-        //createControlButtons();
         createImages();
         createLabels();
         createMenuButtons();
         createListeners();
 	}
+
+
+	public ImageButton getiBtnBack() {
+		return iBtnBack;
+	}
+
+
+	public ImageButton getiBtnPause() {
+		return iBtnPause;
+	}
+
+
+	public ImageButton getiBtnBomb() {
+		return iBtnBomb;
+	}
+
+
+	public ImageButton getiBtnUp() {
+		return iBtnUp;
+	}
+
+
+	public ImageButton getiBtnDown() {
+		return iBtnDown;
+	}
+
+
+	public ImageButton getiBtnRight() {
+		return iBtnRight;
+	}
+
+
+	public ImageButton getiBtnLeft() {
+		return iBtnLeft;
+	}
+	
 
 }

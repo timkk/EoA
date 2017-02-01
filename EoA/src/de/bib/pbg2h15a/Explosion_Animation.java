@@ -1,13 +1,13 @@
 package de.bib.pbg2h15a;
 
 import com.badlogic.gdx.graphics.Texture;
-
-public enum Explosion_Animation {
 	
-	/**
-	 * @author pbd2h15aho
-	 * This Enum sets the frames for the animation played during an Explosion
-	 **/
+	/**Das Enum Explosion_Frames beinhaltet die Texturen  für die Animation der Explosion. 
+ 	* 
+ 	* @author pbd2h15aho
+ 	* Kommentiert von pbd2h15aho Franziska Hoffmann
+ 	**/
+public enum Explosion_Animation {
 	
 	EXPLOSION_CENTER("img/Stage_1/ExplodeAni/exp_center1.png",	"img/Stage_1/ExplodeAni/exp_center2.png",	"img/Stage_1/ExplodeAni/exp_center3.png",	"img/Stage_1/ExplodeAni/exp_center4.png"),
 	EXPLOSION_TOP(	"img/Stage_1/ExplodeAni/exp_top1.png",		"img/Stage_1/ExplodeAni/exp_top2.png",		"img/Stage_1/ExplodeAni/exp_top3.png",		"img/Stage_1/ExplodeAni/exp_top4.png"),
@@ -22,6 +22,14 @@ public enum Explosion_Animation {
 	private Texture frame3;
 	private Texture frame4;
 	
+	/** Konstruktor fuer das Enum Explosion_Frames
+	 * 
+	 * @param path1 Dateipfad der ersten Texture
+	 * @param path2	Dateipfad der zweiten Texture
+	 * @param path3 Dateipfad der dritten Texture
+	 * @param path4 Dateipfad der vierten Texture
+	 * 
+	 **/
 	private Explosion_Animation(String path1,String path2,String path3,String path4){
 		this.frame1=new Texture(path1);
 		this.frame2=new Texture(path2);
@@ -29,6 +37,11 @@ public enum Explosion_Animation {
 		this.frame4=new Texture(path4);
 	}
 	
+	/** getFrame gibt die Texture des angegebenen index wieder 
+	 * 
+	 * @param index Indexnummer des frames 
+	 * @return Texture des angegebenen index
+	 **/
 	public Texture getFrame(int vers) {
 		switch (vers){
 		case 0:return frame1;
