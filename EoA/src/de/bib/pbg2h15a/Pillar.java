@@ -3,11 +3,19 @@ package de.bib.pbg2h15a;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+/**
+ *  definiert die Begrenzung des Spielfeldes und 
+ *  sind zeitgleich unzerstˆrbare Blˆcke im Spielfeld (Kommentiert von David Langen/pbg2h15aln)
+ *
+ */
+
 public class Pillar extends GameObject {
 	
 	/**
-	 * 
-	 * @author pbg2h15ani
+	 * 	Konstruktur eines Pillar-Objekt
+	 *	@param x stellt die X-Position dar
+	 *	@param y stellt die Y-Position dar
+	 *	@author pbg2h15ani
 	 *  
 	 */
 	public Pillar(int x, int y) {
@@ -17,6 +25,7 @@ public class Pillar extends GameObject {
 	}
 
 	/**
+	 * Konstruktur eines Pillar-Objekt
 	 * @author pbg2h15asu
 	 * @param p Position
 	 * 			erstellt S‰ule mit Gras texture
@@ -28,6 +37,7 @@ public class Pillar extends GameObject {
 	}
 	
 	/**
+	 * Konstruktur eines Pillar-Objekt
 	 * @author pbg2h15asu
 	 * @param p Position
 	 * @param b true -> innen, false -> auﬂen
@@ -41,6 +51,11 @@ public class Pillar extends GameObject {
 			this.spritesheet = new Texture("img/Stage_1/Aussenwand.png");
 	}
 
+	
+	/**
+	 * zeichnet den Sprite
+	 * @param sb legt das SpriteBatch fest
+	 */
 	@Override
 	public void render(SpriteBatch sb) {
 		
