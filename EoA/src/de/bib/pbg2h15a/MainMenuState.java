@@ -14,7 +14,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class MainMenuState extends GameState {
 
-	private SpriteBatch batch;
+	private SpriteBatch batch; 
 
 	private ButtonErstellen btnStart;
 	private ButtonErstellen btnOptions;

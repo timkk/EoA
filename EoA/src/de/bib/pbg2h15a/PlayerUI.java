@@ -20,7 +20,7 @@ public class PlayerUI {
 	private ButtonErstellen btn;
 	private TextField txf;
 	
-	/**
+	/** 
 	 * Konstruktor der Klasse PlayerUI
 	 * 
 	 * @param btn
