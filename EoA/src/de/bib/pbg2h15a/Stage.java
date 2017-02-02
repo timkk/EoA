@@ -4,6 +4,8 @@ public class Stage {
 
 	/**
 	 * @author pbg2h15azu
+	 * Diese Klasse kreiert eine Stage auf dem die Player spielen können
+	 * (Kommentiert von Niko Zuppa(pbg2h15azu))
 	 */
 	
 	private GameObject[][] fields;
@@ -12,6 +14,7 @@ public class Stage {
 	private Point[] spawns;
 	private int rundenAnzahl;
 	private Mode mode;
+	
 	
 	public Stage(GameObject[][] fields, float timeMax, StageType type, Point[] spawns, int rundenAnzahl, Mode mode) {
 		super();
@@ -28,13 +31,14 @@ public class Stage {
 	}
 	
 	public Object moveObject(GameObject object, int richtung){
-		
 		return null;
 	}
 	
 	/**
 	 * @author pbg2h15are
-	 * @return set Pillars on the Stage
+	 * @return set Pillars on Stage
+	 * setzt die verschiedenen unzerstörbaren Wände in einer festgelegten Reihenfolge
+	 * auf das Spielfeld
 	 */
 	public void setStage(){
 		

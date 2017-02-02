@@ -9,7 +9,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 /**
  * 
  * @author pbg2h15ast
- *
+ * erstellt eine Bombe welche nach einer bestimmten Zeit explodiert
+ * (Kommentiert von Niko Zuppa(pbg2h15azu))
  */
 
 public class Bomb extends GameObject{
@@ -69,6 +70,7 @@ public class Bomb extends GameObject{
 	 * @author pbg2h15azu
 	 * @author pbg2h15asu
 	 * @author pbd2h15aho
+	 * erzeugt eine Explosion mit Zentrum dort wo die jeweilige Bombe lag
 	 */
 	public List<Explosion> explode(Stage stage, List<Wall> walls){
 		
@@ -100,7 +102,7 @@ public class Bomb extends GameObject{
 			}
 		}
 		
-if(a >= 0 && b >= 0){
+		if(a >= 0 && b >= 0){
 			
 			int range = this.player.getBombRadius();
 			boolean lb = true, rb = true, ub = true, db = true;
@@ -266,8 +268,5 @@ if(a >= 0 && b >= 0){
 		time -= dt;
 	}
 	
-	public void dropBomb() {
-		// TODO Auto-generated method stub
-		
-	}
+
 }
