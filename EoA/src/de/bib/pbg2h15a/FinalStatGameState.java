@@ -1,5 +1,8 @@
 package de.bib.pbg2h15a;
 
+import java.util.List;
+
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -21,12 +24,19 @@ public class FinalStatGameState extends GameState {
 	
 	private BitmapFont writer;
 	private SpriteBatch batch;
+	
+	List<Player> player;
 
 	// Label für die Spieler
 	texHelper lblSpieler1;
 	texHelper lblSpieler3;
 	texHelper lblSpieler2;
 	texHelper lblSpieler4;
+	
+	BitmapFont lbSpieler1Name;
+	BitmapFont lbSpieler2Name;
+	BitmapFont lbSpieler3Name;
+	BitmapFont lbSpieler4Name;
 
 	// Label für die Statistikunterpunkte
 	texHelper lblSiege;
@@ -56,10 +66,10 @@ public class FinalStatGameState extends GameState {
 	 * @param gsm GameStateManager
 	 * @return die Referenz der finalen Statistik (Singelton)
 	 */
-	public static FinalStatGameState  getInstance(GameStateManager gsm){
+	public static FinalStatGameState  getInstance(GameStateManager gsm, List<Player> player){
 
 		if(ref == null)
-			ref = new FinalStatGameState(gsm);
+			ref = new FinalStatGameState(gsm, player);
 		return ref;
 	}
 	
@@ -69,8 +79,9 @@ public class FinalStatGameState extends GameState {
 	 * 
 	 * @param gsm GameStateManager
 	 */
-	private FinalStatGameState(GameStateManager gsm) {
+	private FinalStatGameState(GameStateManager gsm, List<Player> player) {
 		super(gsm);
+		this.player = player;
 	}
 
 	
@@ -91,6 +102,18 @@ public class FinalStatGameState extends GameState {
 		lblSpieler2 = new texHelper(475, 75, "img/Stats/spieler2_100_50.png");
 		lblSpieler3 = new texHelper(600, 75, "img/Stats/spieler3_100_50.png");
 		lblSpieler4 = new texHelper(725, 75, "img/Stats/spieler4_100_50.png");
+		
+		lbSpieler1Name = new BitmapFont();
+		lbSpieler1Name.setColor(Color.WHITE);
+		
+		lbSpieler2Name = new BitmapFont();
+		lbSpieler2Name.setColor(Color.WHITE);
+		
+		lbSpieler3Name = new BitmapFont();
+		lbSpieler3Name.setColor(Color.WHITE);
+		
+		lbSpieler4Name = new BitmapFont();
+		lbSpieler4Name.setColor(Color.WHITE);
 
 		// Label für die Statistikunterpunkte initialisieren
 		lblSiege = new texHelper(100, 150, "img/Stats/siege_200x50.png");
@@ -136,6 +159,7 @@ public class FinalStatGameState extends GameState {
 	@Override
 	public void update(float dt) {
 		if(zurueck.isClicked()){
+			resetFinalStats();
 			gsm.setState(gsm.MAIN);
 		}
 	}
@@ -175,6 +199,11 @@ public class FinalStatGameState extends GameState {
 			}
 		}
 
+		lbSpieler1Name.draw(batch, player.get(0).getName(), 355, Gdx.graphics.getHeight()-45);
+		lbSpieler2Name.draw(batch, player.get(1).getName(), 485, Gdx.graphics.getHeight()-45);
+		lbSpieler2Name.draw(batch, player.get(2).getName(), 605, Gdx.graphics.getHeight()-45);
+		lbSpieler2Name.draw(batch, player.get(3).getName(), 735, Gdx.graphics.getHeight()-45);
+		
 		batch.end();
 	}
 	

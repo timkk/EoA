@@ -78,16 +78,16 @@ public class LocalGamePrepareNames extends GameState{
 			 * @author pbg2h15agu, pbg2h15afa
 			 */
 			if(playerAmount == 4){
-				gsm.setState(GameStateManager.GAME, playerUIs.getList().get(3).getTxf().getText(), playerUIs.getList().get(2).getTxf().getText(), playerUIs.getList().get(1).getTxf().getText(), playerUIs.getList().get(0).getTxf().getText());
+				gsm.setState(GameStateManager.GAME, playerUIs.getList().get(3).getTxf().getText(), playerUIs.getList().get(2).getTxf().getText(), playerUIs.getList().get(1).getTxf().getText(), playerUIs.getList().get(0).getTxf().getText(), playerAmount);
 			}
 			if(playerAmount == 3){
-				gsm.setState(GameStateManager.GAME, playerUIs.getList().get(2).getTxf().getText(), playerUIs.getList().get(1).getTxf().getText(), playerUIs.getList().get(0).getTxf().getText(), null);
+				gsm.setState(GameStateManager.GAME, playerUIs.getList().get(2).getTxf().getText(), playerUIs.getList().get(1).getTxf().getText(), playerUIs.getList().get(0).getTxf().getText(), null, playerAmount);
 			}
 			if(playerAmount == 2){
-				gsm.setState(GameStateManager.GAME, playerUIs.getList().get(1).getTxf().getText(), playerUIs.getList().get(0).getTxf().getText(), null, null);
+				gsm.setState(GameStateManager.GAME, playerUIs.getList().get(1).getTxf().getText(), playerUIs.getList().get(0).getTxf().getText(), null, null, playerAmount);
 			}
 			if(playerAmount == 1){
-				gsm.setState(GameStateManager.GAME, playerUIs.getList().get(0).getTxf().getText(), null, null, null);
+				gsm.setState(GameStateManager.GAME, playerUIs.getList().get(0).getTxf().getText(), null, null, null, playerAmount);
 			}
 			/**
 			 * 

@@ -72,6 +72,8 @@ public class LocalGameState extends GameState {
 	private boolean pausiert;
 	
 	private Death death;
+	
+	private int playerAmount;
 
 	/**
 	 * 
@@ -88,18 +90,19 @@ public class LocalGameState extends GameState {
 	 * @param time
 	 * @param rounds 
 	 */
-	protected LocalGameState(GameStateManager gsm, String name_player1, String name_player2, String name_player3, String name_player4, float time, int rounds) {
+	protected LocalGameState(GameStateManager gsm, String name_player1, String name_player2, String name_player3, String name_player4, float time, int playerAmount) {
 		super(gsm);
 		/**
 		 * @author pbg2h15agu, pbg2h15afa
 		 */
+		this.playerAmount = playerAmount;
 		if(!name_player1.equals("")){
 			player1 = name_player1;
 		}
-		if(name_player2 != null &&!name_player2.equals("")){
+		if(name_player2 != null && !name_player2.equals("")){
 			player2 = name_player2;
 		}
-		if(name_player3 != null &&!name_player3.equals("")){
+		if(name_player3 != null && !name_player3.equals("")){
 			player3 = name_player3;
 		}
 		if(name_player4 != null && !name_player4.equals("")){
@@ -109,7 +112,6 @@ public class LocalGameState extends GameState {
 		 * 
 		 */
 		maxTime = time;
-		this.rounds = rounds;
 		init();
 	}
 
@@ -140,17 +142,38 @@ public class LocalGameState extends GameState {
 				Mode.LAST_MAN_STANDING);
 		walls = generateWalls(17, 13);
 
-		// texturen todo
+		
 		player = new LinkedList<Player>();
 		ai = new LinkedList<KI>();
 		player.add(new Player(player1, player_spawns[0], Player_Frames.P1_MV_DOWN, input[0], stage));
-		player.add(new Player(player2, player_spawns[1], Player_Frames.P2_MV_DOWN, input[1], stage));
-		ai.add(new KI("", player_spawns[2], Player_Frames.P3_MV_DOWN, input[2], stage));
-		ai.add(new KI("", player_spawns[3], Player_Frames.P4_MV_DOWN, input[3], stage));
+		if(playerAmount>1){
+			player.add(new Player(player2, player_spawns[1], Player_Frames.P2_MV_DOWN, input[1], stage));
+		}
+		else{
+			ai.add(new KI(player2, player_spawns[1], Player_Frames.P2_MV_DOWN, input[1], stage));
+		}
+		if(playerAmount>2){
+			player.add(new Player(player3, player_spawns[2], Player_Frames.P3_MV_DOWN, input[2], stage));
+		}
+		else{
+			ai.add(new KI(player3, player_spawns[2], Player_Frames.P3_MV_DOWN, input[2], stage));
+		}
+		if(playerAmount>3){
+			player.add(new Player(player4, player_spawns[3], Player_Frames.P4_MV_DOWN, input[3], stage));
+		}
+		else{
+			ai.add(new KI(player4, player_spawns[3], Player_Frames.P4_MV_DOWN, input[3], stage));
+		}
 
 		rundenTimer = new Timer(maxTime);
 
-		gui = new GUI(rundenTimer, player.get(0), player.get(1), ai.get(0), ai.get(1), gsm, this);
+		switch (playerAmount){
+		case 1:gui = new GUI(rundenTimer, player.get(0), ai.get(0), ai.get(1), ai.get(2), gsm, this); break;
+		case 2:gui = new GUI(rundenTimer, player.get(0), player.get(1), ai.get(0), ai.get(1), gsm, this); break;
+		case 3:gui = new GUI(rundenTimer, player.get(0), player.get(1), player.get(2), ai.get(0), gsm, this); break;
+		case 4:gui = new GUI(rundenTimer, player.get(0), player.get(1), player.get(2), player.get(3), gsm, this); break;
+		
+		}
 
 		Tunes.MUSIC_GAME_BACKGROUND.Play();
 	}
@@ -501,7 +524,7 @@ public class LocalGameState extends GameState {
 				 * gsm.setState(GameStateManager.TMPENDSCREENTDOT, winner);
 				 * //tdot
 				 */
-				gsm.setState(gsm.ROUND_STATISTIC, stats);
+				gsm.setState(gsm.ROUND_STATISTIC, stats, all, playerAmount);
 			}
 
 		} else {

@@ -28,7 +28,7 @@ public class Death extends GameObject{
 	 * 
 	 * @author pbg2h15are
 	 */
-	private static Texture deathSign = new Texture("img/Stage_1/TodMarker.png");
+	private static Texture deathSign = new Texture("img/Stage_1/deathP1.png");
 	
 	/**
 	 * Intitialisiert ein Objekt der Klasse <code>Death</code>

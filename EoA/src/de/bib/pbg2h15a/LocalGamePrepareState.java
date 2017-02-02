@@ -424,5 +424,9 @@ public class LocalGamePrepareState extends GameState {
 	public static int getMap(){
 		return mapNr;
 	}
+	
+	public static int getTime(){
+		return (getTimeMin()*60) + getTimeSec();
+	}
 
 }

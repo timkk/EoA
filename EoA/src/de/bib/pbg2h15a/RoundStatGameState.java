@@ -1,9 +1,13 @@
 package de.bib.pbg2h15a;
 
+import java.util.List;
+
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 public class RoundStatGameState extends GameState {
 	/**
@@ -18,12 +22,21 @@ public class RoundStatGameState extends GameState {
 	
 	private Timer timer;
 	ButtonErstellen next;
+	
+	private List<Player> player;
+	int playerAmount;
+	int rounds;
 
 	// Label für die Spieler
 	texHelper lblSpieler1;
 	texHelper lblSpieler3;
 	texHelper lblSpieler2;
 	texHelper lblSpieler4;
+	
+	BitmapFont lbSpieler1Name;
+	BitmapFont lbSpieler2Name;
+	BitmapFont lbSpieler3Name;
+	BitmapFont lbSpieler4Name;
 
 	// Label für die Statistikunterpunkte
 	texHelper lblSiege;
@@ -46,15 +59,17 @@ public class RoundStatGameState extends GameState {
 	// zum Spiel zurück
 	// nach letzter Runde zu Endstatistik wechseln
 
-	protected RoundStatGameState(GameStateManager gsm, Statistic[] stats) {
+	protected RoundStatGameState(GameStateManager gsm, Statistic[] stats, List<Player> player,int playerAmount) {
 		super(gsm);
 		
 		this.stats = stats;
 		// FinalStatGameState - Referenz holen
-		finalStats = FinalStatGameState.getInstance(gsm);
+		finalStats = FinalStatGameState.getInstance(gsm, player);
 		// FinalStatGameState add round;
 		finalStats.addRound(stats, getWinner());
 		
+		this.player = player;
+		this.playerAmount = playerAmount;
 		init();
 	}
 
@@ -64,13 +79,25 @@ public class RoundStatGameState extends GameState {
 		writer.setColor(Color.BLACK);
 		batch = new SpriteBatch();
 		
-		next = new ButtonErstellen(0,0,"img/GamePrepare/arrow_right.png");
+		next = new ButtonErstellen(0,-10,"img/GamePrepare/weiter.png");
 
 		// Label für die Spieler initialisieren
 		lblSpieler1 = new texHelper(350, 75, "img/Stats/spieler1_100_50.png");
 		lblSpieler2 = new texHelper(475, 75, "img/Stats/spieler2_100_50.png");
 		lblSpieler3 = new texHelper(600, 75, "img/Stats/spieler3_100_50.png");
 		lblSpieler4 = new texHelper(725, 75, "img/Stats/spieler4_100_50.png");
+
+		lbSpieler1Name = new BitmapFont();
+		lbSpieler1Name.setColor(Color.WHITE);
+		
+		lbSpieler2Name = new BitmapFont();
+		lbSpieler2Name.setColor(Color.WHITE);
+		
+		lbSpieler3Name = new BitmapFont();
+		lbSpieler3Name.setColor(Color.WHITE);
+		
+		lbSpieler4Name = new BitmapFont();
+		lbSpieler4Name.setColor(Color.WHITE);
 
 		// Label für die Statistikunterpunkte initialisieren
 		lblSiege = new texHelper(100, 150, "img/Stats/siege_200x50.png"); //y=225 // x überall 200
@@ -118,10 +145,10 @@ public class RoundStatGameState extends GameState {
 		
 		if(timer.isFinished() || next.isClicked()){
 			if(lastRound(LocalGamePrepareState.getWinRounds())){
-				gsm.setState(gsm.FINAL_STATISTIC);
+				gsm.setState(gsm.FINAL_STATISTIC, player);
 			}
 			else{
-				gsm.setState(gsm.GAME);
+				gsm.setState(gsm.GAME,player.get(0).getName(),player.get(1).getName(),player.get(2).getName(),player.get(3).getName(),playerAmount);
 			}
 		}
 
@@ -158,6 +185,11 @@ public class RoundStatGameState extends GameState {
 
 			}
 		}
+		
+		lbSpieler1Name.draw(batch, player.get(0).getName(), 355, Gdx.graphics.getHeight()-45);
+		lbSpieler2Name.draw(batch, player.get(1).getName(), 485, Gdx.graphics.getHeight()-45);
+		lbSpieler2Name.draw(batch, player.get(2).getName(), 605, Gdx.graphics.getHeight()-45);
+		lbSpieler2Name.draw(batch, player.get(3).getName(), 735, Gdx.graphics.getHeight()-45);
 
 		batch.end();
 

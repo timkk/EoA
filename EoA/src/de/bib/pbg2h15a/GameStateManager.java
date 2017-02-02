@@ -1,5 +1,7 @@
 package de.bib.pbg2h15a;
 
+import java.util.List;
+
 /**
  * Verwaltet die aktuelle GameState
  * @author pbg2h15aza
@@ -53,12 +55,6 @@ public class GameStateManager {
 		if(state == LOCAL_PREPARE){
 			gameState = new LocalGamePrepareState(this);
 		}
-		if(state == GAME){
-			gameState = new LocalGameState(this, null, null, null, null, 300, 3);
-		}
-		if(state == FINAL_STATISTIC){
-			gameState = FinalStatGameState.getInstance(this);
-		}
 		
 	}
 	
@@ -70,9 +66,9 @@ public class GameStateManager {
 	 * @param name3 Name Spieler 3
 	 * @param name4 Name Spieler 4
 	 */
-	public void setState(int state, String name1, String name2, String name3, String name4){
+	public void setState(int state, String name1, String name2, String name3, String name4,int playerAmount){
 		if(state == GAME){
-			gameState = new LocalGameState(this, name1, name2, name3, name4, 300, 3);
+			gameState = new LocalGameState(this, name1, name2, name3, name4, LocalGamePrepareState.getTime(), playerAmount);
 		}
 	}
 	
@@ -85,6 +81,13 @@ public class GameStateManager {
 		if(state == TMPENDSCREENTDOT){
 			gameState = new TmpEndScreenTdoT(this, player);
 		}
+		
+	}
+	
+	public void setState(int state, List<Player> player){
+		if(state == FINAL_STATISTIC){
+			gameState = FinalStatGameState.getInstance(this, player);
+		}
 	}
 	
 	/**
@@ -92,9 +95,9 @@ public class GameStateManager {
 	 * @param state Zielstate in welche gewechselt wird
 	 * @param stats Statistics
 	 */
-	public void setState(int state, Statistic[] stats){
+	public void setState(int state, Statistic[] stats, List<Player> player, int playerAmount){
 		if(state == ROUND_STATISTIC){
-			gameState = new RoundStatGameState(this, stats);
+			gameState = new RoundStatGameState(this, stats, player, playerAmount);
 		}
 	}
 	
