@@ -2,6 +2,12 @@ package de.bib.pbg2h15a;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+/**
+ * 
+ * Die Klasse Player repräsentiert den Charakter den man im Spiel spielt  (kommentiert von Dennis Fast)
+ *
+ */
+
 public class Player extends GameObject {
 
 	private int bombRadius;
@@ -26,7 +32,13 @@ public class Player extends GameObject {
 	 *            Players name
 	 * @param pos
 	 *            Players position
-	 * 
+	 *            
+	 * @param controls
+	 * 			  Beinhaltet die Eingabe des Spielers
+	 * @param stage
+	 * 			  Beinhaltet die Stage
+	 * @param spritesheet
+	 * 			  Beinhaltet die Darstellung des Spielers
 	 * @author pbg2h15akl
 	 */
 	public Player(String name, Point pos, Player_Frames spritesheet, InputConfig controls, Stage stage) {
@@ -47,7 +59,10 @@ public class Player extends GameObject {
 
 		
 	}
-
+	/**
+	* Bombe wird auf dieselbe Position des Spielers gelet (kommeniert von Dennis Fast)
+	* @return bombe
+	*/
 	public Bomb dropBomb() {
 
 		Bomb bombe = new Bomb(this, this.getPos(), this.getBombRadius());
@@ -103,6 +118,7 @@ public class Player extends GameObject {
 	 *            Value gets added to the original movesspeed.
 	 * @author pbg2h15akl
 	 */
+	
 	public void addMoveSpeed(float f) {
 		this.moveSpeed += f;
 		if(this.moveSpeed > 8)
@@ -167,11 +183,17 @@ public class Player extends GameObject {
 	
 	/**
 	 * @author pbd2h15aho
-	 * */
+	 * setzt die Frames für jeden Spieler
+	 */
 	private void setAniTexture(Player_Frames set,int vers){
 		this.spritesheet=set.getFrame(vers);
 	}
 	
+	/**
+	 * setzt die Textur des Spielers (animation)
+	 * @param i Frame der Animation
+	 * @param direction Richtung in der der Spieler guckt (kommeniert von Dennis Fast)
+	 */
 	public void setSprite(int i,String direction){
 		switch(i){
 		case 0:
@@ -199,24 +221,31 @@ public class Player extends GameObject {
 			if(direction=="RIGHT"){this.sprite=Player_Frames.P4_MV_RIGHT;};
 		}
 	}
-	
-	/**
-	 * @author pbd2h15aho
-	 * @author pbg2h15ary
-	 * Falls der Spieler der Status "Invincible" hat und getroffen wird, wird nur jeder zweite Frame gerendert um einen "Blinkeffekt" zu erzeugen
-	 * */
-	@Override
 
+	/**
+	 * zeichnet den Spieler und blinkt wenn er getrofen wurde
+	 * @param sb SpriteBatch auf der gezeichnet wird (Kommentiert von Dennis Fast)
+	 */
+	@Override
 	public void render(SpriteBatch sb) {
 		if(!isInvincible() || (int) (invincible.getTime()*10)%2==0 ){
 		sb.draw(this.getSpritesheet(), this.getPos().getX(), this.getPos().getY());
 		}
 		
-		}
+	}
 
 	/**
 	 * @author pbd2h15aho
-	 * */
+	 * 
+	 * @param dt Zeit
+	 * überprüft ob ein Spieler eine Krankheit hat wenn ja 
+	 * wird die Zeit geupdatet und die Methode illnessExpired 
+	 * wird von der Klasse Illnes aufgerufen
+	 * 
+	 * ausführung Animation der Spieler 
+	 * 
+	 * unverwundbarkeitsTimer wird geudatet (kommentiert von Dennis Fast)
+	 */
 	@Override
 	public void update(float dt) {
 		if(hasIllness()){
@@ -235,19 +264,21 @@ public class Player extends GameObject {
 		}
 		invincible.update(dt);
 	}
+	
 	/**
 	 * *@author pbg2h15ary
-	 * @return
-	 *Gibt dem Spieler den Status "Invincible", falls er das PowerUp "LebenPlus" aufhebt
+	 * @return false wenn man verwundbar ist
+	 * @return true wenn man unverwundbar ist(komeniert von Dennis Fast)
 	 */
-	 
 	public boolean isInvincible(){
 		if (invincible.isFinished()){
 			return false;
 		}
 		return true;
 	}
+	
 	public void setInvincible(){
 		invincible.setTime(1.5f);
 	}
 }
+
