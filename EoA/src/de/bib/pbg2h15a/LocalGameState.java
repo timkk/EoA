@@ -138,8 +138,7 @@ public class LocalGameState extends GameState {
 		font_countdown.getData().setScale(2);
 
 		Object[][] field = setupField(17, 13);
-		stage = new Stage((GameObject[][]) field, maxTime, StageType.STANDARD, player_spawns, rounds,
-				Mode.LAST_MAN_STANDING);
+		stage = new Stage((GameObject[][]) field, maxTime, player_spawns, rounds);
 		walls = generateWalls(17, 13);
 
 		
