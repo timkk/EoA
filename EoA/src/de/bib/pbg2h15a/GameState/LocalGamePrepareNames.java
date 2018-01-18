@@ -1,4 +1,4 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameState;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -6,8 +6,12 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
+import de.bib.pbg2h15a.Interface.PlayerUI;
+import de.bib.pbg2h15a.Interface.PlayerUIList;
+import de.bib.pbg2h15a.Uitl.ButtonErstellen;
+
 /**
- * Menü zur Eingabe der Spielernamen und Textfeldern entsprechend der Anzahl der Spieler die zuvor im LocalGamePrepareState eingestellt wurden.
+ * Menï¿½ zur Eingabe der Spielernamen und Textfeldern entsprechend der Anzahl der Spieler die zuvor im LocalGamePrepareState eingestellt wurden.
  * Wenn ein Spieler keinen Namen eingibt wird ein Name zugewiesen.
  * 
  */
@@ -34,7 +38,7 @@ public class LocalGamePrepareNames extends GameState{
 	private BitmapFont font;
 	
 	/**
-	 * LocalGamePrepareNames benögt beim erstellen die Anzahl der Spieler um entsprechend viele Textfelder zu erzeugen.
+	 * LocalGamePrepareNames benï¿½gt beim erstellen die Anzahl der Spieler um entsprechend viele Textfelder zu erzeugen.
 	 * 
 	 * @param gsm Referenz auf den Gamestate Manager
 	 * @param playerCount Anzahl der Spieler

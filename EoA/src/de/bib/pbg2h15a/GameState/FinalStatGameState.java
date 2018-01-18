@@ -1,4 +1,4 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameState;
 
 import java.util.List;
 
@@ -7,6 +7,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import de.bib.pbg2h15a.GameComp.Player;
+import de.bib.pbg2h15a.Uitl.ButtonErstellen;
+import de.bib.pbg2h15a.Uitl.Statistic;
 
 /**
  * Anzeige und DatenModdell der finalen Statisitk
@@ -27,7 +31,7 @@ public class FinalStatGameState extends GameState {
 	
 	List<Player> player;
 
-	// Label für die Spieler
+	// Label fï¿½r die Spieler
 	texHelper lblSpieler1;
 	texHelper lblSpieler3;
 	texHelper lblSpieler2;
@@ -38,7 +42,7 @@ public class FinalStatGameState extends GameState {
 	BitmapFont lbSpieler3Name;
 	BitmapFont lbSpieler4Name;
 
-	// Label für die Statistikunterpunkte
+	// Label fï¿½r die Statistikunterpunkte
 	texHelper lblSiege;
 	texHelper lblPunkte;
 	texHelper lblPlacedBombs;
@@ -48,7 +52,7 @@ public class FinalStatGameState extends GameState {
 	texHelper lblIllnessPickUp;
 	texHelper lblIllnessTransfer;
 	
-	// Zurück Button
+	// Zurï¿½ck Button
 
 	ButtonErstellen zurueck;
 	
@@ -75,7 +79,7 @@ public class FinalStatGameState extends GameState {
 	
 	
 	/**
-	 * Konstruktor für Singelton
+	 * Konstruktor fï¿½r Singelton
 	 * 
 	 * @param gsm GameStateManager
 	 */
@@ -94,10 +98,10 @@ public class FinalStatGameState extends GameState {
 		writer.setColor(Color.BLACK);
 		batch = new SpriteBatch();
 		
-		// Zurück Button
+		// Zurï¿½ck Button
 		zurueck = new ButtonErstellen(810, -10, "img/GamePrepare/zuruck.png");		
 
-		// Label für die Spieler initialisieren
+		// Label fï¿½r die Spieler initialisieren
 		lblSpieler1 = new texHelper(350, 75, "img/Stats/spieler1_100_50.png");
 		lblSpieler2 = new texHelper(475, 75, "img/Stats/spieler2_100_50.png");
 		lblSpieler3 = new texHelper(600, 75, "img/Stats/spieler3_100_50.png");
@@ -115,7 +119,7 @@ public class FinalStatGameState extends GameState {
 		lbSpieler4Name = new BitmapFont();
 		lbSpieler4Name.setColor(Color.WHITE);
 
-		// Label für die Statistikunterpunkte initialisieren
+		// Label fï¿½r die Statistikunterpunkte initialisieren
 		lblSiege = new texHelper(100, 150, "img/Stats/siege_200x50.png");
 		lblPunkte = new texHelper(100, 225, "img/Stats/punkte_200x50.png");
 		lblPlacedBombs = new texHelper(100, 300, "img/Stats/bomben_gelegt_200x50.png");
@@ -153,7 +157,7 @@ public class FinalStatGameState extends GameState {
 
 	
 	/**
-	 * Wird jeden Frame aufgerufen um Aktionen auszuführen
+	 * Wird jeden Frame aufgerufen um Aktionen auszufï¿½hren
 	 * @param dt ist die DeltaTime
 	 */
 	@Override
@@ -166,7 +170,7 @@ public class FinalStatGameState extends GameState {
 
 	
 	/**
-	 * Rendert alle für die State benötigten Grafiken
+	 * Rendert alle fï¿½r die State benï¿½tigten Grafiken
 	 */
 	@Override
 	public void render() {
@@ -174,13 +178,13 @@ public class FinalStatGameState extends GameState {
 		
 		zurueck.render(batch);
 		
-		// Label für die Spieler rendern
+		// Label fï¿½r die Spieler rendern
 		lblSpieler1.render(batch);
 		lblSpieler2.render(batch);
 		lblSpieler3.render(batch);
 		lblSpieler4.render(batch);
 
-		// Label für die Statistikunterpunkte rendern
+		// Label fï¿½r die Statistikunterpunkte rendern
 		lblSiege.render(batch);
 		lblPunkte.render(batch);
 		lblPlacedBombs.render(batch);
@@ -190,7 +194,7 @@ public class FinalStatGameState extends GameState {
 		lblIllnessPickUp.render(batch);
 		lblIllnessTransfer.render(batch);
 
-		// Label für die Zahlen rendern
+		// Label fï¿½r die Zahlen rendern
 
 		for (int x = 0; x < 4; x++) {
 			for (int y = 0; y < 16; y++) {
@@ -209,13 +213,13 @@ public class FinalStatGameState extends GameState {
 	
 	
 	/**
-	 * Fügt die Ergebnisse der letzten Runde der Endstatistik hinzu
+	 * Fï¿½gt die Ergebnisse der letzten Runde der Endstatistik hinzu
 	 * 
 	 * @param roundStats die Statistiken der letzen Runde
 	 * @param posOfWinner der Gewinner der letzen Runde
 	 */
 	public void addRound(Statistic[] roundStats, int posOfWinner){
-		// Stats übernehmen wenn null
+		// Stats ï¿½bernehmen wenn null
 		if(stats == null){
 			stats = roundStats;
 			wins = new int[roundStats.length];
@@ -232,7 +236,7 @@ public class FinalStatGameState extends GameState {
 	
 	
 	/**
-	 * Setzt die Endstatistik zurück
+	 * Setzt die Endstatistik zurï¿½ck
 	 */
 	public void resetFinalStats(){
 		stats = null;	
@@ -244,7 +248,7 @@ public class FinalStatGameState extends GameState {
 	
 	
 	/**
-	 * Einfachere ausfürhung der Platzierung und austtausch von Grafiken
+	 * Einfachere ausfï¿½rhung der Platzierung und austtausch von Grafiken
 	 * @author pbg2h15ala
 	 */
 	private class texHelper {
@@ -271,7 +275,7 @@ public class FinalStatGameState extends GameState {
 	}
 	
 	/**
-	 * Sorgt dafür das die Grafik, die Ziffer ist die Dargestellt werden soll
+	 * Sorgt dafï¿½r das die Grafik, die Ziffer ist die Dargestellt werden soll
 	 * 
 	 * @param number die darzustellende Zahl
 	 * @param value10 die Zehnerstelle der Zahl

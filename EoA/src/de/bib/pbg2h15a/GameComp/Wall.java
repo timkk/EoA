@@ -1,7 +1,9 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameComp;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import de.bib.pbg2h15a.Uitl.Point;
 
 public class Wall extends GameObject {
 
@@ -54,7 +56,7 @@ public class Wall extends GameObject {
 		
 		/**
 		 * @author pbg2h15ary
-		 * "Würfelt" ob ein Collectable gespawnt wird
+		 * "Wï¿½rfelt" ob ein Collectable gespawnt wird
 		 */
 		
 		int zufallsZahl = (int) (1 + Math.random() * 99);

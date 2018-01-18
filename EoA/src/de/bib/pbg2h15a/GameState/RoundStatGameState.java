@@ -1,4 +1,4 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameState;
 
 import java.util.List;
 
@@ -8,6 +8,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+
+import de.bib.pbg2h15a.GameComp.Player;
+import de.bib.pbg2h15a.Uitl.ButtonErstellen;
+import de.bib.pbg2h15a.Uitl.Statistic;
+import de.bib.pbg2h15a.Uitl.Timer;
 
 public class RoundStatGameState extends GameState {
 	/**
@@ -27,7 +32,7 @@ public class RoundStatGameState extends GameState {
 	int playerAmount;
 	int rounds;
 
-	// Label für die Spieler
+	// Label fï¿½r die Spieler
 	texHelper lblSpieler1;
 	texHelper lblSpieler3;
 	texHelper lblSpieler2;
@@ -38,7 +43,7 @@ public class RoundStatGameState extends GameState {
 	BitmapFont lbSpieler3Name;
 	BitmapFont lbSpieler4Name;
 
-	// Label für die Statistikunterpunkte
+	// Label fï¿½r die Statistikunterpunkte
 	texHelper lblSiege;
 	texHelper lblPunkte;
 	texHelper lblPlacedBombs;
@@ -56,7 +61,7 @@ public class RoundStatGameState extends GameState {
 	
 	// TODO
 	// Timer
-	// zum Spiel zurück
+	// zum Spiel zurï¿½ck
 	// nach letzter Runde zu Endstatistik wechseln
 
 	protected RoundStatGameState(GameStateManager gsm, Statistic[] stats, List<Player> player,int playerAmount) {
@@ -81,7 +86,7 @@ public class RoundStatGameState extends GameState {
 		
 		next = new ButtonErstellen(0,-10,"img/GamePrepare/weiter.png");
 
-		// Label für die Spieler initialisieren
+		// Label fï¿½r die Spieler initialisieren
 		lblSpieler1 = new texHelper(350, 75, "img/Stats/spieler1_100_50.png");
 		lblSpieler2 = new texHelper(475, 75, "img/Stats/spieler2_100_50.png");
 		lblSpieler3 = new texHelper(600, 75, "img/Stats/spieler3_100_50.png");
@@ -99,15 +104,15 @@ public class RoundStatGameState extends GameState {
 		lbSpieler4Name = new BitmapFont();
 		lbSpieler4Name.setColor(Color.WHITE);
 
-		// Label für die Statistikunterpunkte initialisieren
-		lblSiege = new texHelper(100, 150, "img/Stats/siege_200x50.png"); //y=225 // x überall 200
+		// Label fï¿½r die Statistikunterpunkte initialisieren
+		lblSiege = new texHelper(100, 150, "img/Stats/siege_200x50.png"); //y=225 // x ï¿½berall 200
 		lblPunkte = new texHelper(100, 225, "img/Stats/punkte_200x50.png");//y=275
-		lblPlacedBombs = new texHelper(100, 300, "img/Stats/bomben_gelegt_200x50.png");//y=325				  //PlacedBombs nicht nötig in der Statistik
+		lblPlacedBombs = new texHelper(100, 300, "img/Stats/bomben_gelegt_200x50.png");//y=325				  //PlacedBombs nicht nï¿½tig in der Statistik
 		lblKilledEnemies = new texHelper(100, 375, "img/Stats/gegner_gekillt_200x50.png");//y=375
-		lblSelfKills = new texHelper(100, 450, "img/Stats/suizide_200x50.png");//y=425						  //SelfKills nicht nötig in der Statistik
+		lblSelfKills = new texHelper(100, 450, "img/Stats/suizide_200x50.png");//y=425						  //SelfKills nicht nï¿½tig in der Statistik
 		lblPowerUpPickUp = new texHelper(100, 525, "img/Stats/power_ups_200x50.png");//y=475
 		lblIllnessPickUp = new texHelper(100, 600, "img/Stats/krankheiten_gesammelt_200x50.png");//y=525
-		lblIllnessTransfer = new texHelper(100, 675, "img/Stats/krankheiten_uebergeben_200x50.png");//y=575         //Illness Transfer nicht nötig in der Statistik, Abfrage ist schwierig
+		lblIllnessTransfer = new texHelper(100, 675, "img/Stats/krankheiten_uebergeben_200x50.png");//y=575         //Illness Transfer nicht nï¿½tig in der Statistik, Abfrage ist schwierig
 
 		// Zahlenfelder Initialiesieren
 		// Position festlegen
@@ -161,13 +166,13 @@ public class RoundStatGameState extends GameState {
 		
 		next.render(batch);
 		
-		// Label für die Spieler rendern
+		// Label fï¿½r die Spieler rendern
 		lblSpieler1.render(batch);
 		lblSpieler2.render(batch);
 		lblSpieler3.render(batch);
 		lblSpieler4.render(batch);
 
-		// Label für die Statistikunterpunkte rendern
+		// Label fï¿½r die Statistikunterpunkte rendern
 		lblSiege.render(batch);
 		lblPunkte.render(batch);
 		lblPlacedBombs.render(batch);
@@ -177,7 +182,7 @@ public class RoundStatGameState extends GameState {
 		lblIllnessPickUp.render(batch);
 		lblIllnessTransfer.render(batch);
 
-		// Label für die Zahlen rendern
+		// Label fï¿½r die Zahlen rendern
 
 		for (int x = 0; x < 4; x++) {
 			for (int y = 0; y < 16; y++) {
@@ -202,7 +207,7 @@ public class RoundStatGameState extends GameState {
 
 	private int getWinner() {
 		
-		// TODO: Methode zum gewinner wählen festlegen
+		// TODO: Methode zum gewinner wï¿½hlen festlegen
 		int maxPos = 0;
 		int maxPoints = 0;
 		for (int i = 0; i < stats.length; i++) {

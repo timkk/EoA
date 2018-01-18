@@ -1,11 +1,15 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameState;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import de.bib.pbg2h15a.GameComp.Tunes;
+import de.bib.pbg2h15a.Uitl.ButtonErstellen;
+import de.bib.pbg2h15a.Uitl.CheckBoxErstellen;
+
 
 	/**
-	 * Die Klasse ist für das darstellen des Options Menü da und für deren Funktionen(Kommentiert von Philipp Grosch)
+	 * Die Klasse ist fï¿½r das darstellen des Options Menï¿½ da und fï¿½r deren Funktionen(Kommentiert von Philipp Grosch)
 	 * 
 	 */
 
@@ -48,8 +52,8 @@ public class OptionsState extends GameState {
 
 	
 	/**
-	 * Die update Methode überprüft ob auf einem Button geklickt wurde
-	 * Und sorgt dann für deren Funktion
+	 * Die update Methode ï¿½berprï¿½ft ob auf einem Button geklickt wurde
+	 * Und sorgt dann fï¿½r deren Funktion
 	 */
 	@Override
 	public void update(float dt) {

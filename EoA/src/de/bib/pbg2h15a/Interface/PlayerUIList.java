@@ -1,4 +1,4 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.Interface;
 
 import java.util.Vector;
 
@@ -6,9 +6,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
+import de.bib.pbg2h15a.Uitl.ButtonErstellen;
+
 /**
  * 
- * Die Klasse PlayerUIList erstellt die Texteingabefelder für die eingabe der Namen der Spieler anhand der Anzahl der Spieler
+ * Die Klasse PlayerUIList erstellt die Texteingabefelder fï¿½r die eingabe der Namen der Spieler anhand der Anzahl der Spieler
  * (Kommentiert von Philipp Grosch)
  *
  */
@@ -40,7 +42,7 @@ public class PlayerUIList {
 	}
 	
 	/**
-	 * Erstellt die Eingabefelder für die Spieler
+	 * Erstellt die Eingabefelder fï¿½r die Spieler
 	 * @param pA Anzahl der Spieler
 	 */
 	private void initTxtFields(int pA){
@@ -51,7 +53,7 @@ public class PlayerUIList {
 	}
 	
 	/**
-	 * Setzt die position und größe der Eingabefelder und fügt sie einer Liste hinzu
+	 * Setzt die position und grï¿½ï¿½e der Eingabefelder und fï¿½gt sie einer Liste hinzu
 	 */
 	private void init(){
 		list = new Vector<>();

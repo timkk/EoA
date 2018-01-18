@@ -1,11 +1,13 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameComp;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import de.bib.pbg2h15a.Uitl.Point;
+
 /**
  *  definiert die Begrenzung des Spielfeldes und 
- *  sind zeitgleich unzerstörbare Blöcke im Spielfeld (Kommentiert von David Langen/pbg2h15aln)
+ *  sind zeitgleich unzerstï¿½rbare Blï¿½cke im Spielfeld (Kommentiert von David Langen/pbg2h15aln)
  *
  */
 
@@ -28,7 +30,7 @@ public class Pillar extends GameObject {
 	 * Konstruktur eines Pillar-Objekt
 	 * @author pbg2h15asu
 	 * @param p Position
-	 * 			erstellt Säule mit Gras texture
+	 * 			erstellt Sï¿½ule mit Gras texture
 	 */
 	public Pillar(Point p) {
 		
@@ -40,7 +42,7 @@ public class Pillar extends GameObject {
 	 * Konstruktur eines Pillar-Objekt
 	 * @author pbg2h15asu
 	 * @param p Position
-	 * @param b true -> innen, false -> außen
+	 * @param b true -> innen, false -> auï¿½en
 	 */
 	public Pillar(Point p, boolean b){
 		

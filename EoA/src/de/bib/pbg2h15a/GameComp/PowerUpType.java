@@ -1,4 +1,4 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameComp;
 
 import com.badlogic.gdx.graphics.Texture;
 
@@ -33,7 +33,7 @@ public enum PowerUpType {
 	private String description;
 	
 	/**
-	 * Dies ist der Wert um den die Variable im <code>Player</code> geändert wird.
+	 * Dies ist der Wert um den die Variable im <code>Player</code> geï¿½ndert wird.
 	 * Die Methode <code>setPowerUp</code> in <code>Player</code> benutzt diesen Wert.
 	 * 
 	 * @author pbg2h15are
@@ -41,14 +41,14 @@ public enum PowerUpType {
 	private float value;
 	
 	/**
-	 * Dies wird von <b>BOMB_THROW</b> benutzt und wird durch <code>PowerUp</code> im <code>Player</code> geändert.
+	 * Dies wird von <b>BOMB_THROW</b> benutzt und wird durch <code>PowerUp</code> im <code>Player</code> geï¿½ndert.
 	 * 
 	 * @author pbg2h15are
 	 */
 	private boolean active;
 	
 	/**
-	 * Dies sind die Texturen die für jeden PowerUp-Typen im Asset-Ordner vorliegen.
+	 * Dies sind die Texturen die fï¿½r jeden PowerUp-Typen im Asset-Ordner vorliegen.
 	 * 
 	 * @author pbg2h15are
 	 */

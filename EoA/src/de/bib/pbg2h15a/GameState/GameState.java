@@ -1,7 +1,9 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameState;
+
+import de.bib.pbg2h15a.GameState.GameStateManager;
 
 /**
- * Abstrakte Klasse für GameStates
+ * Abstrakte Klasse fï¿½r GameStates
  * 
  * @author pbg2h15aza
  * @author pbg2h15awi
@@ -29,14 +31,14 @@ public abstract class GameState {
 	
 	
 	/**
-	 * Wird jeden Frame aufgerufen um Aktionen auszuführen
+	 * Wird jeden Frame aufgerufen um Aktionen auszufï¿½hren
 	 * @param dt ist die Delta Time
 	 */
 	public abstract void update(float dt);
 	
 	
 	/**
-	 * Rendert alle für die State benötigten Grafiken
+	 * Rendert alle fï¿½r die State benï¿½tigten Grafiken
 	 */
 	public abstract void render();
 	

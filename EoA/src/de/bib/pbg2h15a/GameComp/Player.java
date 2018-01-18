@@ -1,10 +1,16 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameComp;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import de.bib.pbg2h15a.Config.InputConfig;
+import de.bib.pbg2h15a.Interface.Player_Frames;
+import de.bib.pbg2h15a.Uitl.Point;
+import de.bib.pbg2h15a.Uitl.Statistic;
+import de.bib.pbg2h15a.Uitl.Timer;
+
 /**
  * 
- * Die Klasse Player repräsentiert den Charakter den man im Spiel spielt  (kommentiert von Dennis Fast)
+ * Die Klasse Player reprï¿½sentiert den Charakter den man im Spiel spielt  (kommentiert von Dennis Fast)
  *
  */
 
@@ -183,7 +189,7 @@ public class Player extends GameObject {
 	
 	/**
 	 * @author pbd2h15aho
-	 * setzt die Frames für jeden Spieler
+	 * setzt die Frames fï¿½r jeden Spieler
 	 */
 	private void setAniTexture(Player_Frames set,int vers){
 		this.spritesheet=set.getFrame(vers);
@@ -238,11 +244,11 @@ public class Player extends GameObject {
 	 * @author pbd2h15aho
 	 * 
 	 * @param dt Zeit
-	 * überprüft ob ein Spieler eine Krankheit hat wenn ja 
+	 * ï¿½berprï¿½ft ob ein Spieler eine Krankheit hat wenn ja 
 	 * wird die Zeit geupdatet und die Methode illnessExpired 
 	 * wird von der Klasse Illnes aufgerufen
 	 * 
-	 * ausführung Animation der Spieler 
+	 * ausfï¿½hrung Animation der Spieler 
 	 * 
 	 * unverwundbarkeitsTimer wird geudatet (kommentiert von Dennis Fast)
 	 */

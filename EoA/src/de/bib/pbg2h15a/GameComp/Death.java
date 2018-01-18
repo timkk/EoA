@@ -1,13 +1,15 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameComp;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import de.bib.pbg2h15a.Uitl.Point;
 
 /**
  * Object der Klasse <code>Death</code> wird an die Todesstelle eines Spieler gesetzt.
  * 
  * Das Objekt ersetzt den Spieler wenn er von einer Bombenexplosion getroffn wird.
- * Mit dem Objekt wird eine Textur einer png-Datei übergeben was auf dem Spielfeld gerendert wird.
+ * Mit dem Objekt wird eine Textur einer png-Datei ï¿½bergeben was auf dem Spielfeld gerendert wird.
  * Dies ist ein Kindobjekt von <code>Gameobject</code>.
  * 
  * @author pbg2h15are
@@ -24,7 +26,7 @@ public class Death extends GameObject{
 	private Point pos;
 	
 	/**
-	 * Textur für ein Zeichen der Position
+	 * Textur fï¿½r ein Zeichen der Position
 	 * 
 	 * @author pbg2h15are
 	 */
@@ -33,7 +35,7 @@ public class Death extends GameObject{
 	/**
 	 * Intitialisiert ein Objekt der Klasse <code>Death</code>
 	 * 
-	 * Mit Übergabewert der letzten Position des Spielers bevor er von einer Bombenexplosion getroffen wird.
+	 * Mit ï¿½bergabewert der letzten Position des Spielers bevor er von einer Bombenexplosion getroffen wird.
 	 * Die Textur benutzt den Konstruktor der Klasse <code>Gameobject</code> und nimmt die png-Datei aus den Assets
 	 * 
 	 * @author pbg2h15are
@@ -48,7 +50,7 @@ public class Death extends GameObject{
 	/**
 	 * In Bearbeitung!
 	 * 
-	 * Render-Methode für die <code>LocalGameState</code>
+	 * Render-Methode fï¿½r die <code>LocalGameState</code>
 	 * 
 	 * @author pbg2h15are
 	 */
@@ -61,7 +63,7 @@ public class Death extends GameObject{
 	/**
 	 * In Bearbeitung!
 	 * 
-	 * Update-Methode für die <code>LocalGameState</code>
+	 * Update-Methode fï¿½r die <code>LocalGameState</code>
 	 * 
 	 * @author pbg2h15are
 	 */

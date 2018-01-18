@@ -1,6 +1,8 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameComp;
 
 import com.badlogic.gdx.graphics.Texture;
+
+import de.bib.pbg2h15a.Uitl.Point;
 
 /**
  * Oberklasse der <code>PowerUp</code>, <code>Illness</code> und <code>Traps</code>.

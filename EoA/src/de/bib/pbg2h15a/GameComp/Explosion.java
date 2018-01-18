@@ -1,5 +1,7 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameComp;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import de.bib.pbg2h15a.Uitl.Point;
 
 	/**Explosion dient der Erstellung eines Explosions Objektes
  	* 
@@ -54,7 +56,7 @@ public class Explosion extends GameObject {
 	/** shouldRemove gibt zuruek ob die Explosion entfernt werden soll.
 	 * 
 	 * @author pbg2h15azu
-	 * @return false wenn die Zeit groeßer gleich 0 ist.
+	 * @return false wenn die Zeit groeï¿½er gleich 0 ist.
 	 * @return true wenn die Zeit kleine 0 ist.
 	 **/
 	public boolean shouldRemove(){

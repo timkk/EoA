@@ -1,14 +1,16 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameComp;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import de.bib.pbg2h15a.Uitl.Point;
+
 /**
  * Die Oberklasse der PowerUp's die von <code>Collectable</code> erbt.
  * 
- * Hier wird beim Laden der <code>Collectable</code>-Klasse eine zufällige Anzahl an PowerUp's
- * mit zufälligen <code>PowerUpType</code> generiert.
- * Zusätzlich wird bei Aufnahme eines PowerUp's die Attribute des <code>Player</code> angepasst.
+ * Hier wird beim Laden der <code>Collectable</code>-Klasse eine zufï¿½llige Anzahl an PowerUp's
+ * mit zufï¿½lligen <code>PowerUpType</code> generiert.
+ * Zusï¿½tzlich wird bei Aufnahme eines PowerUp's die Attribute des <code>Player</code> angepasst.
  * 
  * 
  * @author pbg2h15are
@@ -29,7 +31,7 @@ public class PowerUp extends Collectable{
 	private PowerUpType type;
 	
 	/**
-	 * Interger der eine Zufallszahl enthält um den <code>PowerUpType</code> zu bestimmen.
+	 * Interger der eine Zufallszahl enthï¿½lt um den <code>PowerUpType</code> zu bestimmen.
 	 * 
 	 * @author pbg2h15are
 	 * @author pbg2h15ake
@@ -49,7 +51,7 @@ public class PowerUp extends Collectable{
 	public PowerUp(Point p) {
 		super(p);
 		setRndmPowerUp();
-		//this.spritesheet = new Texture("img/Stage_1/powerdown.png");	//temporäres Bild
+		//this.spritesheet = new Texture("img/Stage_1/powerdown.png");	//temporï¿½res Bild
 	}
 	
 	/**
@@ -87,7 +89,7 @@ public class PowerUp extends Collectable{
 	}
 	
 	/**
-	 * Verändert die entsprechende Variable ,die das PowerUp beeinflusst, im <code>Player</code>.
+	 * Verï¿½ndert die entsprechende Variable ,die das PowerUp beeinflusst, im <code>Player</code>.
 	 * 
 	 * @author pbg2h15are
 	 * @author pbg2h15ake

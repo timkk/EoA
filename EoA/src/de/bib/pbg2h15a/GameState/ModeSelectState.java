@@ -1,15 +1,17 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameState;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import de.bib.pbg2h15a.Uitl.ButtonErstellen;
+
 /**
  * @author pbg2h15aza
  * @author pbg2h15awi
  * 
- * Die State für die ModusAuswahl
+ * Die State fï¿½r die ModusAuswahl
  * Kommentiert von pbg2h15arm
  */
 
@@ -37,8 +39,8 @@ public class ModeSelectState extends GameState {
 
 	
 	/**
-	 * Erstellt die Buttons für LocalesSpiel, NetzwerkSpiel und ein ZurückButton um ins Hauptmenü zu kommen. 
-	 * Außerdem wird ein roter Text angezeigt "Modi auswählen"
+	 * Erstellt die Buttons fï¿½r LocalesSpiel, NetzwerkSpiel und ein Zurï¿½ckButton um ins Hauptmenï¿½ zu kommen. 
+	 * Auï¿½erdem wird ein roter Text angezeigt "Modi auswï¿½hlen"
 	 */
 	@Override
 	public void init() {
@@ -46,7 +48,7 @@ public class ModeSelectState extends GameState {
 		btnNetwork = new ButtonErstellen(Gdx.graphics.getWidth()/2 - 350/2, Gdx.graphics.getHeight()/2.5f - 42, "img/Buttons/netzwerkSpiel.png");
 		btnBack = new ButtonErstellen(10, Gdx.graphics.getHeight() - 122, "img/Buttons/back.png");
 		
-		modiText = "Modi auswählen";
+		modiText = "Modi auswï¿½hlen";
 		batch = new SpriteBatch();
 		font = new BitmapFont();
 		font.setColor(Color.RED);
@@ -54,7 +56,7 @@ public class ModeSelectState extends GameState {
 	}
 
 	/**
-	 * Beim Klicken auf einen Button wird entweder die Entsprechende state über denn GameStateManager aufgerufen oder die Variable modiText wird geändert
+	 * Beim Klicken auf einen Button wird entweder die Entsprechende state ï¿½ber denn GameStateManager aufgerufen oder die Variable modiText wird geï¿½ndert
 	 */
 	@Override
 	public void update(float dt) {
@@ -62,7 +64,7 @@ public class ModeSelectState extends GameState {
 		if (btnLocal.isClicked()) {
 			gsm.setState(GameStateManager.LOCAL_PREPARE);
 		} else if (btnNetwork.isClicked()) {
-			modiText = "Netzwerk Spiel ausgewählt.";
+			modiText = "Netzwerk Spiel ausgewï¿½hlt.";
 		} else if(btnBack.isClicked()) {
 			gsm.setState(GameStateManager.MAIN);
 		}

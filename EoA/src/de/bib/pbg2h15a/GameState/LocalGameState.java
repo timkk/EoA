@@ -1,4 +1,4 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameState;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -9,6 +9,31 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import de.bib.pbg2h15a.Config.InputConfig;
+import de.bib.pbg2h15a.GameComp.Background;
+import de.bib.pbg2h15a.GameComp.Bomb;
+import de.bib.pbg2h15a.GameComp.Collectable;
+import de.bib.pbg2h15a.GameComp.CollisionDetector;
+import de.bib.pbg2h15a.GameComp.Death;
+import de.bib.pbg2h15a.GameComp.Explosion;
+import de.bib.pbg2h15a.GameComp.FireTrap;
+import de.bib.pbg2h15a.GameComp.GameObject;
+import de.bib.pbg2h15a.GameComp.Illness;
+import de.bib.pbg2h15a.GameComp.KI;
+import de.bib.pbg2h15a.GameComp.Pillar;
+import de.bib.pbg2h15a.GameComp.Player;
+import de.bib.pbg2h15a.GameComp.PowerUp;
+import de.bib.pbg2h15a.GameComp.Sounds;
+import de.bib.pbg2h15a.GameComp.Stage;
+import de.bib.pbg2h15a.GameComp.Tunes;
+import de.bib.pbg2h15a.GameComp.Wall;
+import de.bib.pbg2h15a.GameState.GameStateManager;
+import de.bib.pbg2h15a.Interface.GUI;
+import de.bib.pbg2h15a.Interface.Player_Frames;
+import de.bib.pbg2h15a.Uitl.Point;
+import de.bib.pbg2h15a.Uitl.Statistic;
+import de.bib.pbg2h15a.Uitl.Timer;
 
 /**
  * Beinhaltet das Spielgeschehen
@@ -180,11 +205,11 @@ public class LocalGameState extends GameState {
 	/**
 	 * Greift die Eingaben des Users auf und bewegt das Spielerobjekt bzw. platziert/wirft Bombenobjekte dementsprechend.
 	 * Zudem werden Bomben und deren Explosionen verwaltet, wobei die Kollision zwischen Spieler und die Explosionsanimation behandelt wird.
-	 * PowerUps bzw. Debuffs und Krankheiten können durch eine Kollision vom Spieler eingesammelt werden.
+	 * PowerUps bzw. Debuffs und Krankheiten kï¿½nnen durch eine Kollision vom Spieler eingesammelt werden.
 	 * Und die KI Logik der KI-Klasse wird aufgerufen um den computergesteuerten Gegenspieler zum Leben zu erwecken.
-	 * Außerdem werden Bomben, die sich auf den Spielfeld befinden, nach einer bestimmtent Zeit(Timer) entfernt und erzeugen anschließend an ihrer Stelle eine Explosionsanimation(mit Explosionsradius).
+	 * Auï¿½erdem werden Bomben, die sich auf den Spielfeld befinden, nach einer bestimmtent Zeit(Timer) entfernt und erzeugen anschlieï¿½end an ihrer Stelle eine Explosionsanimation(mit Explosionsradius).
 	 * Kollisionen zwischen Kisten und Explosionsanimationen werden abgehandelt und daraufhin werden die entsprechenden Kisten vom Spielfeld entfernt.
-	 * Sobald die Spielzeit kleiner 11 beträgt, wird ein Countdown gestartet und eingeblendet.
+	 * Sobald die Spielzeit kleiner 11 betrï¿½gt, wird ein Countdown gestartet und eingeblendet.
 	 * 
 	 * @author pbg2h15asu,pbd2h15aho
 	 */
@@ -425,7 +450,7 @@ public class LocalGameState extends GameState {
 			for (Bomb b : bombs) {
 				b.update(dt);
 
-				// ermöglicht von Bombe runter gehen nach platzieren
+				// ermï¿½glicht von Bombe runter gehen nach platzieren
 				if (!collision_objects.contains(b)) {
 
 					List<GameObject> list = new LinkedList<GameObject>();
@@ -484,7 +509,7 @@ public class LocalGameState extends GameState {
 				for (Explosion e : explosions)
 					list.add((GameObject) e);
 
-				// Kollision mit Explosion -> entfernen und mögliches
+				// Kollision mit Explosion -> entfernen und mï¿½gliches
 				// Collectable platzieren
 				if (collision(w.getPos(), list)) {
 					if (w.getContent() != null) {
@@ -535,7 +560,7 @@ public class LocalGameState extends GameState {
 	//Ende Update
 
 	/**
-	 * Sobald ein Punkt (insbesondere der einer Bombe) über den Spielfeldrand gelangt wird es auf die gegenüberliegende Seite gesetzt.
+	 * Sobald ein Punkt (insbesondere der einer Bombe) ï¿½ber den Spielfeldrand gelangt wird es auf die gegenï¿½berliegende Seite gesetzt.
 	 * @author pbg2h15aln,pbg2h15ago
 	 */
 	private void fixBombPos(Point p) {
@@ -559,7 +584,7 @@ public class LocalGameState extends GameState {
 	 * @author pbg2h15asu
 	 * @return rendert das Spielfeld: Spieler > Explosionen > Bomben >
 	 *         PowerUps/Illness > Kisten > Spielfeld
-	 * @return Warnung bei 10 Sekunden verbleibend eingefügt
+	 * @return Warnung bei 10 Sekunden verbleibend eingefï¿½gt
 	 */
 	@Override
 	public void render() {
@@ -617,7 +642,7 @@ public class LocalGameState extends GameState {
 	 * @param width
 	 *            breite des Spielfelds
 	 * @param height
-	 *            höhe des Spielfelds
+	 *            hï¿½he des Spielfelds
 	 * @return Spielfeld als 2dim Array
 	 */
 	private Object[][] setupField(int width, int height) {
@@ -649,13 +674,13 @@ public class LocalGameState extends GameState {
 	}
 
 	/**
-	 * Generiert die Wände, die die Spielbegrenzung und die sich im Spielfeld befindenden Säulen darstellen.
+	 * Generiert die Wï¿½nde, die die Spielbegrenzung und die sich im Spielfeld befindenden Sï¿½ulen darstellen.
 	 * 
 	 * @author pbg2h15awi
 	 * @param width
 	 *            breite des felds
 	 * @param height
-	 *            höhe des felds
+	 *            hï¿½he des felds
 	 * @return
 	 */
 	private List<Wall> generateWalls(int width, int height) {
@@ -727,13 +752,13 @@ public class LocalGameState extends GameState {
 	}
 
 	/**
-	 * Überprüft eine Liste GameObjekten, ob sie mit einem Punkt kolliedieren
+	 * ï¿½berprï¿½ft eine Liste GameObjekten, ob sie mit einem Punkt kolliedieren
 	 * 
 	 * @author pbg2h15asu
 	 * @param p
 	 *            Position des Objects
 	 * @param objects
-	 *            Objekte die auf Kollision überprüft werden sollen
+	 *            Objekte die auf Kollision ï¿½berprï¿½ft werden sollen
 	 * @return true wenn Kollision erfolgt
 	 */
 	private boolean collision(Point p, List<GameObject> objects) {
@@ -751,7 +776,7 @@ public class LocalGameState extends GameState {
 
 	/**
 	 * 
-	 * Überprüft eine Liste PowerUps/Debuffs bzw Illness, ob sie mit einem Punkt kolliedieren
+	 * ï¿½berprï¿½ft eine Liste PowerUps/Debuffs bzw Illness, ob sie mit einem Punkt kolliedieren
 	 * 
 	 * @param p der Punkt!!!
 	 * @param list die Liste an PowerUps/Debuffs bzw. Krankheiten
@@ -770,7 +795,7 @@ public class LocalGameState extends GameState {
 	}
 
 	/**
-	 * Überprüft die Kollison zwischen zwei GameObjekten
+	 * ï¿½berprï¿½ft die Kollison zwischen zwei GameObjekten
 	 * @param g1 erstes GameObjekt
 	 * @param g2 zweites GameObjekt
 	 * @author pbg2h15aln,pbg2h15ago,pbg2h15afa
@@ -781,7 +806,7 @@ public class LocalGameState extends GameState {
 	}
 
 	/**
-	 * Überprüft, ob das Spiel vorbei ist
+	 * ï¿½berprï¿½ft, ob das Spiel vorbei ist
 	 * 
 	 * 
 	 * @author pbg2h15ani
@@ -800,7 +825,7 @@ public class LocalGameState extends GameState {
 
 	/***
 	 * 
-	 * Ändert den Spielzeitzusatnd in den entgegengesetzten Zustand
+	 * ï¿½ndert den Spielzeitzusatnd in den entgegengesetzten Zustand
 	 * 
 	 * @author pbg2h15afo
 	 */

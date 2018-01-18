@@ -1,8 +1,8 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameComp;
 
 import com.badlogic.gdx.graphics.Texture;
 	
-	/**Das Enum Explosion_Frames beinhaltet die Texturen  für die Animation der Explosion. 
+	/**Das Enum Explosion_Frames beinhaltet die Texturen  fï¿½r die Animation der Explosion. 
  	* 
  	* @author pbd2h15aho
  	* Kommentiert von pbd2h15aho Franziska Hoffmann

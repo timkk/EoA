@@ -1,10 +1,12 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameComp;
+
+import de.bib.pbg2h15a.Uitl.Point;
 
 public class Stage {
 
 	/**
 	 * @author pbg2h15azu
-	 * Diese Klasse kreiert eine Stage auf dem die Player spielen können
+	 * Diese Klasse kreiert eine Stage auf dem die Player spielen kï¿½nnen
 	 * (Kommentiert von Niko Zuppa(pbg2h15azu))
 	 */
 	
@@ -33,7 +35,7 @@ public class Stage {
 	/**
 	 * @author pbg2h15are
 	 * @return set Pillars on Stage
-	 * setzt die verschiedenen unzerstörbaren Wände in einer festgelegten Reihenfolge
+	 * setzt die verschiedenen unzerstï¿½rbaren Wï¿½nde in einer festgelegten Reihenfolge
 	 * auf das Spielfeld
 	 */
 	public void setStage(){

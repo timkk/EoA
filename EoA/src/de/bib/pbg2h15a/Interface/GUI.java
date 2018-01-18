@@ -1,4 +1,4 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.Interface;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -15,6 +15,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+
+import de.bib.pbg2h15a.GameComp.Player;
+import de.bib.pbg2h15a.GameState.GameState;
+import de.bib.pbg2h15a.GameState.GameStateManager;
+import de.bib.pbg2h15a.GameState.LocalGameState;
+import de.bib.pbg2h15a.Uitl.Timer;
 
 	/**GUI dient der Erzeugung einer Nutzeroberflaeche im LocalGame. 
 	* 
@@ -204,7 +210,7 @@ public class GUI{
 	}
 	
 	
-	/**createControlButtons erzeugt die Buttons zur Steruerung für eine eventuelle Mobileversion.
+	/**createControlButtons erzeugt die Buttons zur Steruerung fï¿½r eine eventuelle Mobileversion.
 	 * 
 	 * @author pbd2h15aho
 	 */	
@@ -262,7 +268,7 @@ public class GUI{
 	}
 	
 	
-	/**createListener erzeugt die Listener für den Zurueck- und den Pausebuttons.
+	/**createListener erzeugt die Listener fï¿½r den Zurueck- und den Pausebuttons.
 	 * 
 	 * @author pbd2h15aho
 	 * The private method createListeners initializes the Buttons Listeners and connects them to their functionalities

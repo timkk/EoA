@@ -1,4 +1,4 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameComp;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -7,8 +7,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import de.bib.pbg2h15a.Uitl.Point;
+
 /**
- * Übergeordnete, abstrakte Klasse von denen alle im Spiel vorkommenden Objekte erben
+ * ï¿½bergeordnete, abstrakte Klasse von denen alle im Spiel vorkommenden Objekte erben
  * (Kommentiert von Stefan Niesel / pbg2h15ani)
  * @author pbg2h15arm
  */
@@ -22,7 +24,7 @@ public abstract class GameObject {
 	/**
 	 * Erstellt ein GameObject
 	 * @param pos Pixelkoordinaten auf dem Spielfeld
-	 * @param passable Legt fest, ob das Element durchlässig ist
+	 * @param passable Legt fest, ob das Element durchlï¿½ssig ist
 	 * @param spritesheet Legt die Textur fest
 	 */	
 	public GameObject(Point pos, boolean passable, Texture spritesheet){
@@ -32,13 +34,13 @@ public abstract class GameObject {
 	}
 	
 	/**
-	 * Abstrakte Render Methode, die mit einem SpriteBatch befüllt werden muss
+	 * Abstrakte Render Methode, die mit einem SpriteBatch befï¿½llt werden muss
 	 * @param sb Legt das SpriteBatch fest
 	 */
 	public abstract void render(SpriteBatch sb);
 	
 	/**
-	 * Abstrakte Update Methode, die mit der deltaTime befüllt wird
+	 * Abstrakte Update Methode, die mit der deltaTime befï¿½llt wird
 	 * @param dt Legt die Zeit fest
 	 */
 	public abstract void update(float dt);

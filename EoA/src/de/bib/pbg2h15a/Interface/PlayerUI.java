@@ -1,13 +1,15 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.Interface;
 
 
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
+import de.bib.pbg2h15a.Uitl.ButtonErstellen;
+
 
 /**
- * Erstellt die Eingabefelder der Namenseingabe für jeden Spieler
+ * Erstellt die Eingabefelder der Namenseingabe fï¿½r jeden Spieler
  * 
- * Erstellt für jeden Spieler ein Eingabefeld für den Spielernamen,
+ * Erstellt fï¿½r jeden Spieler ein Eingabefeld fï¿½r den Spielernamen,
  * nachdem der Benutzer die Spieleinstellungen abgeschlossen hat
  * 
  * @author pbg2h15are

@@ -4,10 +4,12 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 
+import de.bib.pbg2h15a.GameState.GameStateManager;
+
 /**
- * (Kommentiert von Julian Zameit / pbg2h15aza) Kern des Spiel, über die
- * render()-Methode wird erst durch den gsm sämtliche andere Klassen und deren
- * render()-Methoden asugeführt.
+ * (Kommentiert von Julian Zameit / pbg2h15aza) Kern des Spiel, ï¿½ber die
+ * render()-Methode wird erst durch den gsm sï¿½mtliche andere Klassen und deren
+ * render()-Methoden asugefï¿½hrt.
  * 
  * @author pbg2h15aza
  * @author pbg2h15awi
@@ -22,9 +24,9 @@ public class Game implements ApplicationListener {
 	}
 
 	/**
-	 * LibGDX-Methode, die jeden Frame einmal ausgeführt wird. Dabei wird zuerst
+	 * LibGDX-Methode, die jeden Frame einmal ausgefï¿½hrt wird. Dabei wird zuerst
 	 * die Farbe des Screens auf Schwarz (1,1,1,1) gesetzt, danach die
-	 * update()-Methode mit der übergebenen DeltaTime ausgeführt und
+	 * update()-Methode mit der ï¿½bergebenen DeltaTime ausgefï¿½hrt und
 	 * letztendlich durch render() gerendert.
 	 */
 	public void render() {

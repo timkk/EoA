@@ -1,7 +1,11 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameComp;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import de.bib.pbg2h15a.GameState.GameStateManager;
+import de.bib.pbg2h15a.GameState.LocalGameState;
+import de.bib.pbg2h15a.Uitl.Point;
 
 /**
  * @author pbg2h15ary
@@ -49,7 +53,7 @@ public class Illness extends Collectable{
 	/**
 	 * @author pbg2h15ake
 	 * @author pbg2h15asu
-	 * Ändert abhängig vom IllnesType die Krankheit auf dem Spieler
+	 * ï¿½ndert abhï¿½ngig vom IllnesType die Krankheit auf dem Spieler
 	 */
 	public void illnessSet(Player p){
 		this.player = p;
@@ -63,7 +67,7 @@ public class Illness extends Collectable{
 				type = IllnessType.EXPLOSIONSRADIUS_VERKLEINERN;
 				break;
 			
-			//Bombe zufällig legen
+			//Bombe zufï¿½llig legen
 			case 1:
 				this.rndDrop = true;
 				type = IllnessType.BOMBEN_ZUFAELLIG;
@@ -76,11 +80,11 @@ public class Illness extends Collectable{
 				type = IllnessType.BOMBEN_DEAKTIVIEREN;
 				break;
 			
-			//Geschwindigkeitserhöhung
+			//Geschwindigkeitserhï¿½hung
 			case 3:
 				this.orgValue = player.getMoveSpeed();
-				player.setMoveSpeed(IllnessType.GESCHWINDIGKEITSERHÖHUNG.getValue());
-				type = IllnessType.GESCHWINDIGKEITSERHÖHUNG;
+				player.setMoveSpeed(IllnessType.GESCHWINDIGKEITSERHÃ–HUNG.getValue());
+				type = IllnessType.GESCHWINDIGKEITSERHÃ–HUNG;
 				break;
 			
 			//Geschwindigkeitsverringerung
@@ -101,7 +105,7 @@ public class Illness extends Collectable{
 	
 	/**
 	 * @author pbg2h15asu
-	 * Macht den Effekt der Krankheit rückgängig
+	 * Macht den Effekt der Krankheit rï¿½ckgï¿½ngig
 	 */
 	public void undoIllness(){
 
@@ -112,7 +116,7 @@ public class Illness extends Collectable{
 				player.setBombRadius((int)this.orgValue);
 				break;
 			
-			//Bombe zufällig legen
+			//Bombe zufï¿½llig legen
 			case 1:
 				this.rndDrop = false;
 				break;
@@ -122,7 +126,7 @@ public class Illness extends Collectable{
 				player.setAnzahlBombenMax((int)this.orgValue);
 				break;
 			
-			//Geschwindigkeitserhöhung
+			//Geschwindigkeitserhï¿½hung
 			case 3:
 				player.setMoveSpeed(this.orgValue);
 				break;
@@ -143,7 +147,7 @@ public class Illness extends Collectable{
 	 * @author pbg2h15asu
 	 * @author pbg2h15awi
 	 * @param dt
-	 * Zählt den Timer der Krankheit runter und legt zufällig Bomben wenn die zufällig Bomben legen Krankheit aktiv ist
+	 * Zï¿½hlt den Timer der Krankheit runter und legt zufï¿½llig Bomben wenn die zufï¿½llig Bomben legen Krankheit aktiv ist
 	 */
 	public void update(float dt) {
 		time -= dt;
@@ -158,7 +162,7 @@ public class Illness extends Collectable{
 	
 	/**
 	 * @author pbg2h15awi
-	 * Werte werden unabhängig von der Krankheit hochgezählt
+	 * Werte werden unabhï¿½ngig von der Krankheit hochgezï¿½hlt
 	 */
 	public void addToOrgValue(float value){
 		this.orgValue += value;

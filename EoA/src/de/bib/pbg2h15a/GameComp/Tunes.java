@@ -1,12 +1,14 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameComp;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 
+import de.bib.pbg2h15a.GameState.GameStateManager;
+
 public enum Tunes {
 
 	/**
-	 * Stellt die Musik als <code>Enum</code> zu Verfügung um diese abzuspielen.
+	 * Stellt die Musik als <code>Enum</code> zu Verfï¿½gung um diese abzuspielen.
 	 * (Kommentiert von pbg2h15akl)
 	 */
 

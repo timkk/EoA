@@ -1,10 +1,13 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameState;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import de.bib.pbg2h15a.GameComp.Tunes;
+import de.bib.pbg2h15a.Uitl.ButtonErstellen;
+
 /**
- * Erstellt das Hauptmenü mit den drei Auswahlbuttons und deren Funktion
+ * Erstellt das Hauptmenï¿½ mit den drei Auswahlbuttons und deren Funktion
  * 
  * @author pbg2h15aza
  * @author pbg2h15awi
@@ -33,8 +36,8 @@ public class MainMenuState extends GameState {
 	/**
 	 * Erstellt den Start/-Quit/-Options Button
 	 * 
-	 * Erstellt die Main Menu Buttons und versieht diese mit den zughörigen Texturen
-	 * Zusätzlich wird die Main Menu Musik abgespielt und ein SpriteBatch erstellt
+	 * Erstellt die Main Menu Buttons und versieht diese mit den zughï¿½rigen Texturen
+	 * Zusï¿½tzlich wird die Main Menu Musik abgespielt und ein SpriteBatch erstellt
 	 * 
 	 */
 	@Override
@@ -50,10 +53,10 @@ public class MainMenuState extends GameState {
 	}
 
 	/**
-	 * Wechselt in das zugehörige Menü, wenn auf den Start/-Quit/-Options Button geklickt wird
+	 * Wechselt in das zugehï¿½rige Menï¿½, wenn auf den Start/-Quit/-Options Button geklickt wird
 	 * 
 	 * Wechselt in die Modiauswahl, wenn auf den Startbutton geklickt wird
-	 * Wechselt in das Optionsmenü, wenn auf den Optionsbutton geklickt wird
+	 * Wechselt in das Optionsmenï¿½, wenn auf den Optionsbutton geklickt wird
 	 * Beendet die Anwendung, wenn auf den Quitbutton geklickt wird
 	 * 
 	 */

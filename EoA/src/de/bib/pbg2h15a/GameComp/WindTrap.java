@@ -1,6 +1,8 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameComp;
 
 import com.badlogic.gdx.graphics.Texture;
+
+import de.bib.pbg2h15a.Uitl.Point;
 
 /***
  * Eine Trap die den Spieler vom bewegen hindert
@@ -10,7 +12,7 @@ import com.badlogic.gdx.graphics.Texture;
  */
 public class WindTrap extends Illness{
 /**
- * Konstruktor dür die WindTrap
+ * Konstruktor dï¿½r die WindTrap
  * @param pos die position der Falle
  */
 	public WindTrap(Point pos) {

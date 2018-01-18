@@ -1,4 +1,4 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.Uitl;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -30,10 +30,10 @@ public class CheckBoxErstellen {
 	private boolean imClick;
 	/**
 	 * Erstellt eine Checkbox
-	 * @param x = X-Koordinate für die Position der CheckBox
-	 * @param y = Y-Koordiante für die Position der CheckBox
-	 * @param checkedPfad = Pfad der Texture für die Variable textureChecked
-	 * @param uncheckedPfad = Pfad der Texture für die Variable textureUnchecked
+	 * @param x = X-Koordinate fï¿½r die Position der CheckBox
+	 * @param y = Y-Koordiante fï¿½r die Position der CheckBox
+	 * @param checkedPfad = Pfad der Texture fï¿½r die Variable textureChecked
+	 * @param uncheckedPfad = Pfad der Texture fï¿½r die Variable textureUnchecked
 	 * @param checked = Gibt an ob die CheckBox cheked oder unchecked ist
 	 */
 	public CheckBoxErstellen(float x, float y,String checkedPfad, String uncheckedPfad, boolean checked) {
@@ -52,7 +52,7 @@ public class CheckBoxErstellen {
 	}
 
 	/**
-	 * Überprüft ob ein Button geklickt wurde.
+	 * ï¿½berprï¿½ft ob ein Button geklickt wurde.
 	 * @return
 	 */
 	public boolean isClicked() {
@@ -70,7 +70,7 @@ public class CheckBoxErstellen {
 	}
 
 	/**
-	 * Ändert die checked Variable woraufhin sich die activeTexture auf textureChecked oder textureUnchecked stellt
+	 * ï¿½ndert die checked Variable woraufhin sich die activeTexture auf textureChecked oder textureUnchecked stellt
 	 */
 	public void toggle() {
 		checked = !checked;

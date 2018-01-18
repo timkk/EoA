@@ -1,8 +1,8 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameComp;
 
 /**
- * (Kommentiert von Julian Zameit / pbg2h15aza) Ein Enum mit den möglichen
- * States der KI. Jede State enthält eine Nummer um sie zu identifizieren.
+ * (Kommentiert von Julian Zameit / pbg2h15aza) Ein Enum mit den mï¿½glichen
+ * States der KI. Jede State enthï¿½lt eine Nummer um sie zu identifizieren.
  * 
  * @author pbg2h15aza
  * @author pbg2h15asu

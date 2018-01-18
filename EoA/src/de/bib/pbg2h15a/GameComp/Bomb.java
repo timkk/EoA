@@ -1,10 +1,12 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameComp;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import de.bib.pbg2h15a.Uitl.Point;
 
 /**
  * 
@@ -28,7 +30,7 @@ public class Bomb extends GameObject{
 	public Bomb(Player player, Point pos, int radius) {
 		super(pos, false, null);
 		spritesheet = new Texture("img/Stage_1/Bombe.png");
-		//Übergibt  den Spieler, der die Bombe gelegt hat
+		//ï¿½bergibt  den Spieler, der die Bombe gelegt hat
 		this.player = player;
 		this.radius = radius;
 		this.time = BOMB_TIMER;

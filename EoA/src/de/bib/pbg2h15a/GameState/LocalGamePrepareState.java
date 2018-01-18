@@ -1,4 +1,4 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameState;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -10,10 +10,12 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
+import de.bib.pbg2h15a.Uitl.ButtonErstellen;
+
 
 
 /**
- * GameState mit Menü mit Optionen für Anzahl der Spieler, Anzahl der Runden, Rundenzeit und  Auswahl des Levels
+ * GameState mit Menï¿½ mit Optionen fï¿½r Anzahl der Spieler, Anzahl der Runden, Rundenzeit und  Auswahl des Levels
  * 
  * @author pbg2h15ala
  */
@@ -122,7 +124,7 @@ public class LocalGamePrepareState extends GameState {
 		 * @author pbg2h15ala, pbg2h15ago
 		 */
 		
-		//Zurückbutton
+		//Zurï¿½ckbutton
 		
 		if(zuruck.isClicked()){
 			gsm.setState(GameStateManager.MAIN);

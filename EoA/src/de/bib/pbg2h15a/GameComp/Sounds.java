@@ -1,11 +1,13 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameComp;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 
+import de.bib.pbg2h15a.GameState.GameStateManager;
+
 /**
- * Stellt die Sound-Effekte als <code>Enum</code> zu Verfügung.
+ * Stellt die Sound-Effekte als <code>Enum</code> zu Verfï¿½gung.
  * Diese Klasse stellt keine Musik-Dateien bereit.
  * (Kommentiert von pbg2h15akl)
  * @author pbg2h15akl
@@ -39,7 +41,7 @@ public enum Sounds {
 	}
 
 	/**
-	 * Spielt den Sound einmal ab. Wird nach vollständigem Abspielen von sich aus nicht wiederholt.
+	 * Spielt den Sound einmal ab. Wird nach vollstï¿½ndigem Abspielen von sich aus nicht wiederholt.
 	 * (Kommentiert von pbg2h15akl)
 	 */
 	public void Play()

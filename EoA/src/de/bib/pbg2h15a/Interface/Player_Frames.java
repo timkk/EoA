@@ -1,10 +1,10 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.Interface;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 /**
- * Stellt die Bild-Dateien der Sprites als <code>Enum</code> zu Verfügung.
+ * Stellt die Bild-Dateien der Sprites als <code>Enum</code> zu Verfï¿½gung.
  * (Kommentiert von pbg2h15akl)
  * 
  * 
@@ -40,9 +40,9 @@ public enum Player_Frames {
 	}
 
 	/**
-	 * Gibt ein Bild für verschiedene Bewegungsabläufe zurück.
+	 * Gibt ein Bild fï¿½r verschiedene Bewegungsablï¿½ufe zurï¿½ck.
 	 * (Kommentiert von pbg2h15akl)
-	 * @param vers Wert, für den die Bewegunganimation ausgewählt wird.
+	 * @param vers Wert, fï¿½r den die Bewegunganimation ausgewï¿½hlt wird.
 	 * @return
 	 */
 	public Texture getFrame(int vers) {

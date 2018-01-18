@@ -1,4 +1,4 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.Uitl;
 
 /**
  * Statistikklasse zur Erfassung der Statistiken
@@ -102,9 +102,9 @@ public class Statistic {
 	}
 
 	/**
-	 * Hängt Statistiken an vorhandene an, z.B.: Ergebnisse von Runde 1 und Runde 2 werden zusammengefasst.
+	 * Hï¿½ngt Statistiken an vorhandene an, z.B.: Ergebnisse von Runde 1 und Runde 2 werden zusammengefasst.
 	 * @author pbg2h15asu
-	 * @param s Statistik, die hinzugefügt wird, Werte werden übernommen
+	 * @param s Statistik, die hinzugefï¿½gt wird, Werte werden ï¿½bernommen
 	 */
 	public void addStatistic(Statistic s) {
 		this.points += s.points;

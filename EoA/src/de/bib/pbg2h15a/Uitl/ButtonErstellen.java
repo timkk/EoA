@@ -1,10 +1,12 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.Uitl;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+
+import de.bib.pbg2h15a.GameComp.Sounds;
 
 /**
  * Ein Button auf den man klicken kann
@@ -36,8 +38,8 @@ public class ButtonErstellen {
 	}
 
 	/**
-	 * Prüft ob der Button geklickt wurde
-	 * @return true wenn auf den Button gedrückt wird, sonst false
+	 * Prï¿½ft ob der Button geklickt wurde
+	 * @return true wenn auf den Button gedrï¿½ckt wird, sonst false
 	 */
 	public boolean isClicked() {
 		if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {

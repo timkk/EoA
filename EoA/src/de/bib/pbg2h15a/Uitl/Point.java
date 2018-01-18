@@ -1,4 +1,4 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.Uitl;
 
 /**
  * @author pbg2h15asu
@@ -33,7 +33,7 @@ public class Point {
 	}
 	
 	/**
-	 * gibt den Wert der x-Koordinate zurück
+	 * gibt den Wert der x-Koordinate zurï¿½ck
 	 * @return x-Koordinate
 	 */
 	public float getX() {
@@ -49,7 +49,7 @@ public class Point {
 	}
 
 	/**
-	 * gibt Wert der y-Koordinate zurück
+	 * gibt Wert der y-Koordinate zurï¿½ck
 	 * @return y-Koordinate : float
 	 */
 	public float getY() {
@@ -100,7 +100,7 @@ public class Point {
 	}
 	
 	/**
-	 * gibt Distanz zu einem anderen Punkt zurück
+	 * gibt Distanz zu einem anderen Punkt zurï¿½ck
 	 * @param other anderer Punkt : Point
 	 * @return die Distanz zum anderen Punkt
 	 */

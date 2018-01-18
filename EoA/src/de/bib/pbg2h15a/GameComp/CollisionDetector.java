@@ -1,13 +1,14 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameComp;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import de.bib.pbg2h15a.Point;
-import de.bib.pbg2h15a.Rectangle;
+
+import de.bib.pbg2h15a.Uitl.Point;
+import de.bib.pbg2h15a.Uitl.Rectangle;
 
 /**
  * @author pbg2h15asu
- * dient zur Erfassung von Kollision zwischen zwei Objekten unter Angabe von Punkt sowie Länge und Breite
+ * dient zur Erfassung von Kollision zwischen zwei Objekten unter Angabe von Punkt sowie Lï¿½nge und Breite
  * Kommentare: Michael Surmund - pbg2h15asu
  */
 
@@ -16,8 +17,8 @@ public class CollisionDetector {
 	float x, y, width, height, os;
 	
 	/**
-	 * Erstellt Kollider für einen Sprite
-	 * @param s Sprite(beinhaltet Punkt sowie Länge und Höhe) : Sprite
+	 * Erstellt Kollider fï¿½r einen Sprite
+	 * @param s Sprite(beinhaltet Punkt sowie Lï¿½nge und Hï¿½he) : Sprite
 	 * @param os Kollisionstoleranz von mindestens 1 : float > 1
 	 */
 	public CollisionDetector(Sprite s, float os){
@@ -29,10 +30,10 @@ public class CollisionDetector {
 	}
 
 	/**
-	 * Erstellt Kollider für einen Punkt
+	 * Erstellt Kollider fï¿½r einen Punkt
 	 * @param point Der Punkt : Point
 	 * @param width Breite : float
-	 * @param height Höhe : float
+	 * @param height Hï¿½he : float
 	 */
 	public CollisionDetector(Point point, float width, float height, float os) {
 		super();
@@ -47,7 +48,7 @@ public class CollisionDetector {
 	}
 
 	/**
-	 * Erstellt Kollider für ein GameObjekt
+	 * Erstellt Kollider fï¿½r ein GameObjekt
 	 * @param g Das GameObjekt : GameObject
 	 * @param os Kollisionstoleranz von mindestens 1
 	 */
@@ -64,7 +65,7 @@ public class CollisionDetector {
 	}
 
 	/**
-	 * überprüft Kollision mit einem anderen GameObjekt
+	 * ï¿½berprï¿½ft Kollision mit einem anderen GameObjekt
 	 * @param other anderes GameObject : Gamebject
 	 * @return true wenn Kollision erfolgt ist, false wenn nicht
 	 */
@@ -83,10 +84,10 @@ public class CollisionDetector {
 	}
 	
 	/**
-	 * überprüft Kollision mit einem anderen Rechteck unter Angabe von Punkt, Breite und Höhe
+	 * ï¿½berprï¿½ft Kollision mit einem anderen Rechteck unter Angabe von Punkt, Breite und Hï¿½he
 	 * @param other Punkt : Point
 	 * @param width Breite : float
-	 * @param height Höhe : float
+	 * @param height Hï¿½he : float
 	 * @return true wenn Kollision erfolgt ist, false wenn nicht
 	 */
 	public boolean collidesWith(Point other, float width, float height){
@@ -102,11 +103,11 @@ public class CollisionDetector {
 	}
 	
 	/**
-	 * überprüft Kollision mit einem anderen Rechteck unter Angabe von Punkt Koordinaten x und y, Breite und Höhe 
+	 * ï¿½berprï¿½ft Kollision mit einem anderen Rechteck unter Angabe von Punkt Koordinaten x und y, Breite und Hï¿½he 
 	 * @param x x-Koordinate des Punktes : float
 	 * @param y y-Koordinate des Punktes : float
 	 * @param width Breite : float
-	 * @param height Höhe : float
+	 * @param height Hï¿½he : float
 	 * @return true wenn Kollision erfolgt ist, false wenn nicht
 	 */
 	public boolean collidesWith(float x, float y, float width, float height){
@@ -121,7 +122,7 @@ public class CollisionDetector {
 	}
 
 	/**
-	 * gibt Wert der x-Koordinate zurück
+	 * gibt Wert der x-Koordinate zurï¿½ck
 	 * @return x-Koordinate
 	 */
 	public float getX() {
@@ -129,7 +130,7 @@ public class CollisionDetector {
 	}
 
 	/**
-	 * gibt Wert der y-Koordinate zurück
+	 * gibt Wert der y-Koordinate zurï¿½ck
 	 * @return y-Koordinate
 	 */
 	public float getY() {
@@ -137,7 +138,7 @@ public class CollisionDetector {
 	}
 
 	/**
-	 * gibt Wert der Breite zurück
+	 * gibt Wert der Breite zurï¿½ck
 	 * @return Breite
 	 */
 	public float getWidth() {
@@ -145,15 +146,15 @@ public class CollisionDetector {
 	}
 
 	/**
-	 * gibt Wert der Höhe zurück
-	 * @return Höhe
+	 * gibt Wert der Hï¿½he zurï¿½ck
+	 * @return Hï¿½he
 	 */
 	public float getHeight() {
 		return height;
 	}
 
 	/**
-	 * gibt Wert der Kollisionstoleranz zurück
+	 * gibt Wert der Kollisionstoleranz zurï¿½ck
 	 * @return Kollisionstoleranz
 	 */
 	public float getOs() {

@@ -1,7 +1,11 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameComp;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import de.bib.pbg2h15a.Config.InputConfig;
+import de.bib.pbg2h15a.Interface.Player_Frames;
+import de.bib.pbg2h15a.Uitl.Point;
 
 /**
  * (Kommentiert von Julian Zameit / pbg2h15aza) Diese Klasse stellt eine KI in
@@ -49,8 +53,8 @@ public class KI extends Player {
 	 * Spielfeldes.
 	 * 
 	 * @param mapData
-	 *            Sämtliche Informationen des Spielfeld im aktuellen Frame um
-	 *            reagieren zu können
+	 *            Sï¿½mtliche Informationen des Spielfeld im aktuellen Frame um
+	 *            reagieren zu kï¿½nnen
 	 */
 	public void react(List<List<GameObject>> mapData) {
 
@@ -74,11 +78,11 @@ public class KI extends Player {
 	}
 
 	/**
-	 * Wählt eine zufällige Richtung von den übergebenen möglichen Richtungen.
+	 * Wï¿½hlt eine zufï¿½llige Richtung von den ï¿½bergebenen mï¿½glichen Richtungen.
 	 * 
 	 * @param possibleDirections
-	 *            Mögliche Richtungen, in die die KI laufen kann.
-	 * @return eine zufällige Richtung.
+	 *            Mï¿½gliche Richtungen, in die die KI laufen kann.
+	 * @return eine zufï¿½llige Richtung.
 	 */
 	private Point getRandomRichtung(List<Point> possibleDirections) {
 		int rnd = (int) (Math.random() * possibleDirections.size());
@@ -86,11 +90,11 @@ public class KI extends Player {
 	}
 
 	/**
-	 * Die KI überprüft alle 4 Bewegungsrichtungen und setzt die nächste
+	 * Die KI ï¿½berprï¿½ft alle 4 Bewegungsrichtungen und setzt die nï¿½chste
 	 * Position, zu der sich die KI bewegen will.
 	 * 
 	 * @param collisionData
-	 *            Sämtliche Objekte mit denen der Spieler kollidieren kann
+	 *            Sï¿½mtliche Objekte mit denen der Spieler kollidieren kann
 	 */
 	private void walk(List<GameObject> collisionData) {
 		List<Point> pd = new LinkedList<>();
@@ -118,12 +122,12 @@ public class KI extends Player {
 	}
 
 	/**
-	 * Überprüft, ob sich die KI auf die Position bewegen könnte.
+	 * ï¿½berprï¿½ft, ob sich die KI auf die Position bewegen kï¿½nnte.
 	 * 
 	 * @param p
-	 *            Die zu überprüfende Position
+	 *            Die zu ï¿½berprï¿½fende Position
 	 * @param collisionData
-	 *            Sämtliche Objekte mit denen der Spieler kollidieren kann
+	 *            Sï¿½mtliche Objekte mit denen der Spieler kollidieren kann
 	 * @return kollidiert oder nicht.
 	 */
 	private boolean checkWalkCollision(Point p, List<GameObject> collisionData) {
@@ -139,12 +143,12 @@ public class KI extends Player {
 	}
 
 	/**
-	 * Überprüft alle möglichen Bewegungsrichtungen und setzt die Position auf
+	 * ï¿½berprï¿½ft alle mï¿½glichen Bewegungsrichtungen und setzt die Position auf
 	 * das Feld, welches sich am weitesten von dem Objekt befindet, von dem die
 	 * KI flieht.
 	 * 
 	 * @param collisionData
-	 *            Sämtliche Objekte mit denen der Spieler kollidieren kann
+	 *            Sï¿½mtliche Objekte mit denen der Spieler kollidieren kann
 	 */
 	private void escape(List<GameObject> collisionData) {
 		List<Point> pd = new LinkedList<>();
@@ -173,10 +177,10 @@ public class KI extends Player {
 
 	/**
 	 * Alle Richtungen werden auf ihre Entfernung zu der zu fliehenden Position
-	 * überprüft.
+	 * ï¿½berprï¿½ft.
 	 * 
 	 * @param possibleDirections
-	 *            Mögliche Richtungen, in die die KI laufen kann.
+	 *            Mï¿½gliche Richtungen, in die die KI laufen kann.
 	 * @return Die am weitesten entfernte Richtung.
 	 */
 	private Point getMaxDistanceRichtung(List<Point> possibleDirections) {
@@ -192,7 +196,7 @@ public class KI extends Player {
 	}
 
 	/**
-	 * Die am nächsten sich zum Spieler befindene Position wird gesucht.
+	 * Die am nï¿½chsten sich zum Spieler befindene Position wird gesucht.
 	 * 
 	 * @param objPositions
 	 *            Liste mit relevanten Positionen
@@ -211,7 +215,7 @@ public class KI extends Player {
 	}
 
 	/**
-	 * Es wird überprüft, welcher Zustand als nächstes für die KI gilt.
+	 * Es wird ï¿½berprï¿½ft, welcher Zustand als nï¿½chstes fï¿½r die KI gilt.
 	 * 
 	 * @param mapData
 	 *            Die kompletten Informationen der Objekte auf dem Spielfeld.
@@ -224,11 +228,11 @@ public class KI extends Player {
 	}
 
 	/**
-	 * Es werden alle Daten der Karte überprüft und der wichtigste auf der
-	 * jeweiligen Achse ausgewählt.
+	 * Es werden alle Daten der Karte ï¿½berprï¿½ft und der wichtigste auf der
+	 * jeweiligen Achse ausgewï¿½hlt.
 	 * 
 	 * @param axis
-	 *            Die Achse, die überprüft wird.
+	 *            Die Achse, die ï¿½berprï¿½ft wird.
 	 * @param mapData
 	 *            Die kompletten Informationen der Objekte auf dem Spielfeld.
 	 * @return den wichtigsten Punkt der Achse.

@@ -1,4 +1,4 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.Uitl;
 
 /**
  * Klasse Timer
@@ -14,7 +14,7 @@ public class Timer {
 	
 	/**
 	 * Erstellt einen ablaufenden Timer;
-	 * @param time Zeit, die heruntergezählt wird
+	 * @param time Zeit, die heruntergezï¿½hlt wird
 	 */
 	public Timer(float time)
 	{
@@ -31,7 +31,7 @@ public class Timer {
 	
 	/**
 	 * Abfrage, ob der Timer fertig ist
-	 * @return Gibt true zurück, wenn der Timer abgelaufen ist
+	 * @return Gibt true zurï¿½ck, wenn der Timer abgelaufen ist
 	 */
 	public boolean isFinished()
 	{

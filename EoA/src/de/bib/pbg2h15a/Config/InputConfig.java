@@ -1,8 +1,8 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.Config;
 
 /**
- * Helferklasse für den Input der Spieler.
- * Hält die Keys(Tasten) für die Bewegung und das Bombenlegen fest
+ * Helferklasse fï¿½r den Input der Spieler.
+ * Hï¿½lt die Keys(Tasten) fï¿½r die Bewegung und das Bombenlegen fest
  * 
  * @author pbg2h15asu
  * @kommentiertVon pbg2h15aro

@@ -1,6 +1,9 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameState;
 
 import java.util.List;
+
+import de.bib.pbg2h15a.GameComp.Player;
+import de.bib.pbg2h15a.Uitl.Statistic;
 
 /**
  * Verwaltet die aktuelle GameState
@@ -79,7 +82,7 @@ public class GameStateManager {
 	 */
 	public void setState(int state, Player player){
 		if(state == TMPENDSCREENTDOT){
-			gameState = new TmpEndScreenTdoT(this, player);
+			//gameState = new TmpEndScreenTdoT(this, player);
 		}
 		
 	}

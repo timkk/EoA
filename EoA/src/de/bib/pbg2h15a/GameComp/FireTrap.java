@@ -1,6 +1,9 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.GameComp;
 
 import com.badlogic.gdx.graphics.Texture;
+
+import de.bib.pbg2h15a.Interface.Player_Frames;
+import de.bib.pbg2h15a.Uitl.Point;
 
 /**
  * Eine Trap die ein Bombe legt
@@ -12,7 +15,7 @@ import com.badlogic.gdx.graphics.Texture;
 public class FireTrap extends Traps {
 
 	/**
-	 * Konstruktor für die FireTrap
+	 * Konstruktor fï¿½r die FireTrap
 	 * @param pos die position der Falle
 	 */
 	public FireTrap(Point pos) {
@@ -23,7 +26,7 @@ public class FireTrap extends Traps {
 	}
 
 	/**
-	 * Gibt eine Bombe zurück
+	 * Gibt eine Bombe zurï¿½ck
 	 * 
 	 * @return eine Bombe mit max Reichweite
 	 */

@@ -1,10 +1,10 @@
-package de.bib.pbg2h15a;
+package de.bib.pbg2h15a.Uitl;
 
 public class Rectangle {
 
 /**
  * @author pbg2h15asu
- * speichert ein Rechteck mit Koordinaten und Seitenlängen
+ * speichert ein Rechteck mit Koordinaten und Seitenlï¿½ngen
  * Kommentare: Michael Surmund - pbg2h15asu
  */
 	
@@ -18,7 +18,7 @@ public class Rectangle {
 	 * @param x x-Koordinate : float
 	 * @param y y-Koordinate : float
 	 * @param width Breite : float
-	 * @param height Höhe : float
+	 * @param height Hï¿½he : float
 	 */
 	public Rectangle(float x, float y, float width, float height) {
 		super();
@@ -29,7 +29,7 @@ public class Rectangle {
 	}
 
 	/**
-	 * gibt Wert der x-Koordinate zurück
+	 * gibt Wert der x-Koordinate zurï¿½ck
 	 * @return x-Koordinate
 	 */
 	public float getX() {
@@ -45,7 +45,7 @@ public class Rectangle {
 	}
 
 	/**
-	 * gibt Wert der y-Koordinate zurück
+	 * gibt Wert der y-Koordinate zurï¿½ck
 	 * @return y-Koordinate
 	 */
 	public float getY() {
@@ -61,7 +61,7 @@ public class Rectangle {
 	}
 
 	/**
-	 * gibt Wert der Breite zurück
+	 * gibt Wert der Breite zurï¿½ck
 	 * @return Breite : float
 	 */
 	public float getWidth() {
@@ -77,16 +77,16 @@ public class Rectangle {
 	}
 	
 	/**
-	 * gibt Wert der x-Koordinate zurück
-	 * @return Höhe : float
+	 * gibt Wert der x-Koordinate zurï¿½ck
+	 * @return Hï¿½he : float
 	 */
 	public float getHeight() {
 		return height;
 	}
 
 	/**
-	 * setzt Wert der Höhe
-	 * @param height neue Höhe : float
+	 * setzt Wert der Hï¿½he
+	 * @param height neue Hï¿½he : float
 	 */
 	public void setHeight(float height) {
 		this.height = height;
